@@ -1,0 +1,275 @@
+<th:block th:fragment="header">
+	<link href="/css/KHE/header.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<header>
+		<span style="margin-left: 50px;">
+			<a href="/board/list"><img src="/images/KHE/aplogo.png" style="height: 100px;"></a>
+		</span>
+		<span id="alarm" class="alarm alarmwindow">
+			<a href=""><img src="/images/KHE/bell1.png" style="height: 80px;"></a>
+		</span>
+		<span id="alarm2" class="alarm2" style="display:none; ">
+			<img src="/images/KHE/alarm.png" style="height: 30px;">
+		</span>
+		<div id="alarmpage" style="display: none;"></div>
+		<div id="alarmpagetri" class="alarmwindow" style="display: none;"></div>
+		<div id="alarmnotice" style="display:none">게시글에 확인하지 않은 내역이 있습니다!</div>
+		<span id="login" class="alarm" style="display:none">
+			<a href="" id="login">로그인</a>
+		</span>
+		<span id="menu">
+			<a href="" class="menu"><img src="/images/KHE/menu.svg"></a>
+		</span>
+		<div id="loginmodal" class="modal" style="display: none;">
+			<div class="modal-content" id="modal-image">
+				<span class="close">&times;</span>
+				<form id="loginForm" action="/user/login" method="post" name="loginForm">
+					<input id="path" type="hidden" name="path" th:value="${path}">
+					<table id="modal_login">
+						<tbody>
+							<tr>
+								<th id="loginid">아이디</th>
+								<td>
+									<input id="lgd" type="text" name="userid">
+								</td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td>
+									<input id="lgp" type="password" name="userpw">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<div>
+										<input class="btn" id="submitlogin" type="button" value="로그인">
+										<input class="btn" type="button" value="회원가입"
+											onclick="location.href = '/user/join'">
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+			<div id="caption"></div>
+		</div>
+		<div id="popup" style="display: none;">
+			<table>
+				<tr>
+					<td><a>회원정보</a></td>
+				</tr>
+				<tr>
+					<td><a>쪽지보내기</a></td>
+				</tr>
+			</table>
+		</div>
+	</header>
+	<div id="header"></div>
+	<div id="menubar" style="right: -400px">
+		<ul id="menulist">
+			<h3 style="font-size: 30px;">메뉴</h3>
+			<li><a class="usermenu" id="b1">분양게시판</a></li>
+			<li><a id="b2">질병정보</a></li>
+			<li><a id="b3">병원위치</a></li>
+			<li><a id="b4">모임게시판</a></li>
+			<li><a id="b5">SNS</a></li>
+			<li id="mypage" style="color: rgb(50,50,50);">마이페이지</li>
+		</ul>
+		<div>
+			<ul id="mypagelist">
+				<li><a href="/my/profile">회원정보</a></li>
+				<li><a href="/my/contents">등록한글</a></li>
+				<li><a href="/my/alarm">쪽지함</a></li>
+				<li><a id="logout">로그아웃</a></li>
+			</ul>
+		</div>
+		<th:block th:if="${session.loginUser == null}">
+			<script>
+				$("#alarm").hide();
+				$("#mypagelist").hide();
+				$("#mypage").hide();
+				$("#login").show();
+			</script>
+		</th:block>
+	</div>
+	<script th:inline="javascript">
+		let flag = false;
+		const loginUser = /*[[${session.loginUser}]]*/'';
+		const menu = document.getElementById("menubar");
+		$(".menu").click(function (e) {
+			e.preventDefault(); // 기본 동작 방지
+			if (menu.style.right === "-400px") {
+				menu.style.right = "0px"; // 메뉴 열기
+			} else {
+				menu.style.right = "-400px"; // 메뉴 닫기
+			}
+		});
+
+		window.addEventListener('load', function () {
+			if (loginUser != null) {
+				alex();
+			}
+		})
+
+		const alamcaller = setInterval(alex, 300000); //주기적으로 alex()함수 호출
+		$("#logout").click(function (e) {
+			e.preventDefault();
+			const path = window.location.pathname;
+			window.location.href = "/user/logout?path=" + path;
+		})
+
+		$(".alarmwindow").click(function (e) {
+			e.preventDefault();
+			if (flag) {
+				showAlarm();
+			}
+		}
+		)
+		$(".alarmwindow").hover(function () {
+			$("#alarmnotice").fadeOut(200);
+		})
+		$("#login").click(function (e) {
+			e.preventDefault();
+			const path = window.location.pathname;
+			$("#loginmodal").fadeIn(200);
+			$("#path").val(path);
+			$("#lgd").focus();
+			$("#lgd").val("");
+			$("#lgp").val("");
+		})
+		$('.close').on('click', function () {
+			$('#loginmodal').fadeOut(200); // 모달 숨기기
+		})
+		$(window).on('click', function (event) {
+			if (event.target === document.getElementById('loginmodal')) {
+				$('#loginmodal').fadeOut(200);
+			}
+		});
+		$("#submitlogin").click(function (e) { //로그인 시도시 아이디/비밀번호를 체크하는 함수
+			e.preventDefault();
+			submitlogin();
+		})
+		$("#lgp").keydown(function (e) {
+			if (e.key === 'Enter') {
+				submitlogin();
+			}
+		});
+		function submitlogin() {
+			if ($("#lgd").val() == null || $("#lgd").val() == '' || $("#lgp").val() == null || $("#lgp").val() == '') {
+				alert("아이디/비밀번호를 입력해주세요!");
+				$("#lgd").val("");
+				$("#lgp").val("");
+				$("#lgd").focus();
+			}
+			else {
+				let str = '';
+				str += $("#lgd").val();
+				str += '&userpw=';
+				str += $("#lgp").val();
+				console.log(str);
+				$.getJSON(
+					`/user/isUser?userid=` + str,
+					function (data) {
+						if (data) {
+							$("#loginForm").submit();
+						}
+						else {
+							alert("등록된 회원정보와 일치하지 않습니다!");
+							$("#lgd").val("");
+							$("#lgp").val("");
+							$("#lgd").focus();
+						}
+					}
+				)
+			}
+		}
+		function alex() {		//알람목록을 검색하여 알람내역 여부를 확인하는 함수
+			$.getJSON(
+				`/my/alarmcheck`,
+				function (data) {
+					if (data) {
+						flag = data;
+						$("#alarm2").fadeIn(200);
+						$("#alarmnotice").fadeIn(200);
+					}
+					else {
+						$("#alarmnotice").hide();
+					}
+				}
+			)
+		}
+		function showAlarm() {		//알람 창을 보여주는 함수
+			if ($("#alarmpage").css("display") == 'none') {
+				$("#alarmpage").fadeIn(200);
+				$("#alarmpagetri").fadeIn(200);
+				alarm();
+			}
+			else {
+				$("#alarmpage").fadeOut(200);
+				$("#alarmpagetri").fadeOut(200);
+			}
+		}
+		function alarm() {		//알람 창에 알람 내역을 불러오는 함수
+			$.getJSON(
+				`/my/alarm`,
+				function (data) {
+					let str = "";
+					for (let i = 0; i < data.length; i++) {
+						const content = data[i];
+						str += `<div class="alarmtable"><div><a href="${content.contentpath}">${content.boardtitle} </a>글에 댓글이 달렸습니다!</div>
+						<div><a onclick="alcheck(${content.alarmnum})">확인</a></div></div>`;
+					}
+					$("#alarmpage").html(str);
+				}
+			)
+		}
+		function alcheck(num) {		//알람창에서 '확인' 버튼을 누르면 내역이 없어지도록 하는 함수
+			$.get("/my/deleteAlarm?num=" + num);
+			window.setTimeout(function () {
+				alarm();
+			}, 30)
+			$.getJSON(
+				`/my/alarm`,
+				function (data) {
+					if (data.length == 1) {
+						showAlarm();
+						$("#alarm2").fadeOut(200);
+						$("#alarmnotice").fadeOut(200);
+						flag = false;
+					}
+				}
+			)
+		}
+
+		$(document).on('click', '.usermenu', function (e) {
+			event.preventDefault();
+			usermenu(e);
+		});
+		function usermenu(e) {
+			var x = e.pageX;
+			var y = e.pageY;
+			
+			
+			
+			// 팝업 위치 설정
+			$('#popup').css({
+				top: y -5 + 'px' ,
+				left: x -5 + 'px'
+			}).fadeIn(200);
+
+
+		}
+		$('#popup').click(function (event) {
+			event.stopPropagation(); // 이벤트 전파 방지
+			$(this).fadeOut(200);
+		});
+		$(document).on('click', function (event) {
+
+			if (!$(event.target).closest('#popup').length && !$(event.target).is('.usermenu')) {
+				$('#popup').fadeOut(200);
+			}
+		});
+
+	</script>
+</th:block>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니멀플레이스</title>
+	<link href="/css/KHE/style.css" rel="stylesheet">
+</head>
+<body>
+	<div id="wrap" class="all">
+		<div id ="wrap" class="login">
+		        <form action="user/login" method="post" name="loginForm">
+					<input type="hidden" name="path" th:value="${path}">
+		            <table>
+		                <tbody>
+		                    <tr>
+		                        <th id="loginid">아이디</th>
+		                        <td>
+		                            <input id="lgd" type="text" name="userid">
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <th>비밀번호</th>
+		                        <td>
+		                            <input id="lgp" type="password" name="userpw">
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td colspan="2">
+		                            <div>
+		                                <input type="submit" value="로그인">
+		                                <input type="button" value="회원가입" onclick="location.href = '/user/join'">
+		                            </div>
+		                        </td>
+		                    </tr>
+		                </tbody>
+		            </table>
+		     </form>
+		 </div>
+		<img src="/images/KHE/ap2.png">
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+	window.setTimeout(function(){
+			$("#wrap.login + img").addClass("hdd");
+			$("#wrap.login").css("display", "block");
+			$("#lgd").focus();
+		},1300)
+	window.setTimeout(function(){
+		window.location.href = "/board/list";
+	},1500)
+</script>
+</html>
