@@ -10,4 +10,6 @@ public interface UserMapper {
 	UserDTO getUserByUserid(String userid);
 	int updateUser(UserDTO user);
 	boolean update_schedule(UserDTO user);
+	// 제발
+	//제발
 }

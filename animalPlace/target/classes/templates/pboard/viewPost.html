@@ -213,7 +213,7 @@
 			boardFileList.empty();
 			orgFile.forEach(file => {
 				const li = $('<li>').addClass('del_item');
-				const thumbnailDiv = $('<div>').addClass('thumbnail-container');
+				const thumbnailDiv = $('<div>').addClass('thumbnail_container');
 				const img = $('<img>').attr('src', `/images/pimages/${file}`).addClass('thumbnail');
 				const input = $('<input>').attr('type', 'hidden').addClass('fpath').val(file);
 
@@ -492,6 +492,7 @@
 				success: function (response) {
 					const newReply = response.reply;
 					alert("댓글 등록 완료");
+					$('#commentSection p').hide(); // 메시지 숨기기
 					// 새 댓글을 리스트의 가장 위에 추가
 					$('#commentList').prepend(`
 		                <li>
@@ -589,6 +590,9 @@
 					success: function (response) {
 						alert("삭제 완료");
 						$thisButton.closest('li').remove(); // 댓글 삭제
+						if ($('#commentList li').length === 0) {
+							$('#commentSection p').show(); // 메시지 보이기
+						}
 					},
 					error: function (xhr) {
 						console.error(xhr);
@@ -616,12 +620,12 @@
 
 		$('.board-likebtn').on('click', function (e) {
 			e.preventDefault();
-			
+
 			if (loginUser == null || loginUser.length === 0) {
 				alert("로그인 해야 좋아요를 할 수 있습니다.");
 				return;
 			}
-			
+
 			const boardnum = $(this).data('boardnum');
 			const likeImg = $(this).find('.likeimg');
 			const likeCountElem = $(this).find('.likecnt');
