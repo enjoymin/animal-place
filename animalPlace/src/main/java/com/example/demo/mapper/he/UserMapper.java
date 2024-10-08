@@ -9,4 +9,5 @@ public interface UserMapper {
 	int insertUser(UserDTO user);
 	UserDTO getUserByUserid(String userid);
 	int updateUser(UserDTO user);
+	void update_schedule(UserDTO user);
 }
