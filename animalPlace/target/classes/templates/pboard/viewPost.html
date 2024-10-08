@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>게시글</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+	<div id="modalContent">
+		<div id="contentView">
+			<div class="images-container carousel slide" id="carouselExample">
+				<div class="carousel-inner">
+					<div th:each="img, iterStat : ${flist}"
+						th:class="${iterStat.first} ? 'active carousel-item' : 'carousel-item'">
+						<img th:src="@{/images/pimages/}+${img}" th:attr="border=${img.endsWith('.png')} ? '1' : null"
+							style="width: 100%; height: 500px; object-fit: cover;">
+					</div>
+				</div>
+
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+					data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" style="background-color: black;" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+					data-bs-slide="next">
+					<span class="carousel-control-next-icon" style="background-color: black;" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+			<div id="contentSection">
+				<input id="boardnum" type="hidden" th:value="${board.boardnum}" />
+				<h2 th:text="${board.boardtitle}">제목</h2>
+				<th:block>
+					<div id="user_area">
+						<p th:text="${board.userid}">작성자</p>
+						<a href="#" class="board-likebtn" id="viewPostlike" th:data-boardnum="${board.boardnum}">
+							<img class="likeimg" th:src="${llist == null ? '/images/pimages/nomal.png' : '/images/pimages/like.png'}" />
+							<p class="likecnt" th:text="${board.boardlikecnt}"></p>
+						</a>
+					</div>
+					<div class="md_btn" th:if="${board.userid == session.loginUser}">
+						<a class="modify" href="#">수정</a>
+						<a class="delete" href="#">삭제</a>
+					</div>
+				</th:block>
+				<p th:text="${board.boardcontents}">내용</p>
+
+			</div>
+			<!-- 댓글은 추후에 -->
+			<div id="commentSection" style="max-height: 300px; overflow-y: auto;">
+				<input type="hidden" id="lastReplyNum" th:value="${lastReplynum}" />
+				<div th:if="${rlist == null or rlist.size() == 0}">
+					<p>등록된 댓글이 없습니다.</p>
+				</div>
+				<ul id="commentList" class="list_unstyled">
+					<li th:each="reply : ${rlist}">
+						<div>
+							<strong th:text="${reply.replyuserid}">작성자</strong>
+							<p class="replyContent" th:text="${reply.replycontent}">댓글 내용</p>
+							<textarea class="editTextarea" style="display: none;"
+								th:text="${reply.replycontent}"></textarea>
+							<div class="buttonGroup">
+								<button class="modifyReply" th:data-replynum="${reply.replynum}"
+									th:style="${session.loginUser != reply.replyuserid} ? 'display: none;' : ''">수정</button>
+								<button class="deleteReply" th:data-replynum="${reply.replynum}"
+									th:style="${session.loginUser != reply.replyuserid} ? 'display: none;' : ''">삭제</button>
+								<button class="saveReply" th:data-replynum="${reply.replynum}" style="display: none;">수정
+									완료</button>
+								<button class="cancelEdit" style="display: none;">취소</button>
+							</div>
+						</div>
+						<hr>
+					</li>
+				</ul>
+				<div id="commentInputSection">
+					<textarea id="commentContent" placeholder="댓글을 입력하세요..." required></textarea>
+					<button id="submitComment">댓글 등록</button>
+				</div>
+			</div>
+
+		</div>
+		<div id="modify" style="display: none;">
+			<h2>게시물 수정</h2>
+			<form id="modifyForm" method="post" action="/pboard/modify" enctype="multipart/form-data">
+				<input type="hidden" class="boardnum" th:value="${board.boardnum}" />
+				<input type="text" name="newboardtitle" th:value="${board.boardtitle}" placeholder="제목"
+					required /><br /><br />
+
+				<input type="file" id="newFileInput" name="newfiles" style="display: none;" multiple
+					accept=".jpg,.jpeg,.png,.webp,.gif" />
+				<button type="button" id="newFileButton">사진 추가하기</button>
+				<div id="warningText" style="visibility: hidden;">
+					<p>사진을 추가해야 게시글을 작성할 수 있습니다.</p> <!-- 경고 메시지 -->
+				</div>
+
+				<!--기존파일 list-->
+				<ul class="board_file">
+					<li class="del_item" th:each="img:${flist}">
+						<div class="thumbnail_container">
+							<input type="hidden" class="fpath" th:value="${img}">
+							<img th:src="@{/images/pimages/}+${img}" class="thumbnail">
+						</div>
+						<button>삭제</button>
+					</li>
+				</ul>
+
+
+				<ul id="newFileList"></ul> <!--선택된 파일 리스트를 보기 위한 태그-->
+
+				<textarea name="newboardcontents" required>[[${board.boardcontents}]]</textarea><br /><br />
+				<input type="text" name="userid" th:value="${session.loginUser}" readonly />
+				<button type="submit">등록</button>
+				<button type="button" id="close">취소</button>
+				<div id="loadingmodify">
+					<div class="loader">
+						<div class="dots">
+							<div class="dot"></div>
+							<div class="dot"></div>
+							<div class="dot"></div>
+						</div>
+						<p style="color: white;">수정 중...</p>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+
+<script th:inline="javascript">
+	$(document).ready(function () {
+		$('body').addClass('no-scroll'); // 스크롤 비활성화
+
+		const newFileInput = $('#newFileInput')[0];
+		const newFileList = $('#newFileList');
+		const boardFileList = $('.board_file');
+
+		let orgFile = [];
+		let deletedFiles = [];
+		let newDataTransfer = new DataTransfer();
+
+
+		$('.del_item').each(function () {
+			const filePath = $(this).find('.fpath').val();
+			orgFile.push(filePath);
+		});
+
+		// 수정 버튼 클릭 시 이벤트
+		$('.modify').on('click', function (e) {
+			e.preventDefault(); // 기본 링크 동작 방지
+
+			// 현재 콘텐츠를 숨기고 수정 폼 표시
+			$('#contentView').hide(); // 기존 게시글 내용을 숨김
+			$('#modify').show(); // 수정 폼을 보여줌
+			updateBoardFileList(); // 기존 파일 목록 업데이트
+		});
+
+		$('.delete').on('click', function (e) {
+			e.preventDefault(); // 기본 링크 동작 방지
+
+			const boardNum = $('#boardnum').val(); // 게시물 번호
+			const filePaths = []; // 이미지 경로를 저장할 배열
+
+			// 현재 등록된 이미지 파일 경로를 수집
+			$('.carousel-inner img').each(function () {
+				const src = $(this).attr('src'); // src 속성 가져오기
+				filePaths.push(src.substring(src.lastIndexOf('/') + 1)); // 파일명만 추출하여 배열에 추가
+			});
+			console.log("Board Number:", boardNum); // 확인용
+			// 서버에 삭제 요청 전송
+			$.ajax({
+				url: '/pboard/remove', // 게시물 삭제 API URL
+				method: 'POST',
+				data: {
+					boardnum: boardNum,
+					files: filePaths // 현재 등록된 파일 주소
+				},
+				traditional: true, // 배열을 URL 인코딩할 때 필요
+				success: function (response) {
+					alert("게시물 삭제를 완료했습니다.");
+					window.location.href = '/pboard/list'; // 성공 시 리다이렉트
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.error('삭제 요청 실패:', textStatus, errorThrown);
+					alert("게시물 삭제에 실패했습니다.");
+				}
+			});
+		});
+
+		// 수정 폼에서 취소 버튼 클릭 시 이벤트
+		$('#close').on('click', function () {
+			// 기존 파일 목록 복원
+			boardFileList.empty(); // <ul class="board-file">의 모든 <li> 제거
+			deletedFiles = []; // 삭제된 파일 초기화
+			newDataTransfer = new DataTransfer();
+			newFileInput.value = '';
+			$('#newFileList').empty();
+			$('#warningText').css('visibility', 'hidden');
+			$('#modify').hide(); // 수정 폼 숨김
+			$('#contentView').show(); // 기존 콘텐츠 다시 표시
+
+			updateBoardFileList(); // 기존 파일 목록 복원
+		});
+
+		function updateBoardFileList() {
+			boardFileList.empty();
+			orgFile.forEach(file => {
+				const li = $('<li>').addClass('del_item');
+				const thumbnailDiv = $('<div>').addClass('thumbnail-container');
+				const img = $('<img>').attr('src', `/images/pimages/${file}`).addClass('thumbnail');
+				const input = $('<input>').attr('type', 'hidden').addClass('fpath').val(file);
+
+				thumbnailDiv.append(img);
+				li.append(thumbnailDiv).append(input);
+
+				// 삭제 버튼 추가
+				const removeBtn = $('<button>').text('삭제').on('click', function () {
+					// orgFile에서 삭제하지 않고 deletedFiles에 추가
+					const index = orgFile.indexOf(file);
+					if (index > -1) {
+						deletedFiles.push(orgFile[index]); // deletedFiles에 추가
+					}
+					li.remove(); // 리스트에서 삭제
+					checkFileList();
+				});
+				li.append(removeBtn);
+				boardFileList.append(li); // board-file에 추가
+				checkFileList();
+			});
+		}
+
+		$('#newFileButton').on('click', function () {
+			newFileInput.click(); // 숨겨진 파일 입력 요소 클릭
+		});
+
+		// 파일 추가 및 리스트 업데이트
+		newFileInput.addEventListener('change', function (event) {
+			const selectedFiles = Array.from(event.target.files);
+			selectedFiles.forEach(file => {
+				// 중복 체크
+				if (![...newDataTransfer.files].some(f => f.name === file.name && f.size === file.size) &&
+					!deletedFiles.includes(file.name)) {
+					newDataTransfer.items.add(file); // DataTransfer에 파일 추가
+				}
+				newFileInput.files = newDataTransfer.files; // input의 파일 리스트 업데이트
+				updateNewFileList(); // 파일 리스트 업데이
+			});
+
+			// 삭제된 파일 목록을 걸러내고 newFileList 업데이트
+			const existingFiles = Array.from(newDataTransfer.files).map(f => f.name);
+			const filteredDeletedFiles = deletedFiles.filter(file => !existingFiles.includes(file));
+
+			// 기존 파일을 제거하고 newFileList를 업데이트
+			$('#newFileList').empty(); // newFileList 초기화
+			filteredDeletedFiles.forEach(file => {
+				const li = $('<li>').addClass('file_item');
+				const removeBtn = $('<button>').text('삭제').on('click', function () {
+					// 삭제 버튼 클릭 시 파일 제거
+					const index = [...newDataTransfer.files].findIndex(f => f.name === file);
+					if (index > -1) {
+						newDataTransfer.items.remove(index); // DataTransfer에서 파일 제거
+						newFileInput.files = newDataTransfer.files; // input의 파일 리스트 업데이트
+						updateNewFileList(); // 리스트 업데이트
+					}
+				});
+				li.append(removeBtn);
+				$('#newFileList').append(li);
+			});
+
+			// 입력 필드의 파일 리스트 업데이트
+			newFileInput.files = newDataTransfer.files;
+			updateNewFileList(); // 파일 리스트 업데이트
+		});
+
+		// 파일 리스트 업데이트 함수
+		function updateNewFileList() {
+			newFileList.empty();
+			Array.from(newDataTransfer.files).forEach((file, index) => {
+				const li = $('<li>').addClass('file_item');
+
+				// 이미지 파일일 경우 썸네일 생성
+				if (file.type.startsWith('image/')) {
+					const thumbnailDiv = $('<div>').addClass('thumbnail_container');
+					const img = $('<img>').attr('src', URL.createObjectURL(file)).addClass('thumbnail');
+					thumbnailDiv.append(img);
+					li.prepend(thumbnailDiv);
+				}
+
+				const removeBtn = $('<button>').text('삭제').on('click', function () {
+					newDataTransfer.items.remove(index); // DataTransfer에서 파일 제거
+					newFileInput.files = newDataTransfer.files; // input의 파일 리스트 업데이트
+					updateNewFileList(); // 리스트 업데이트
+					checkFileList();
+				});
+				li.append(removeBtn);
+				newFileList.append(li);
+				checkFileList();
+			});
+		}
+
+
+
+		$('#modifyForm').on('submit', function (e) {
+			e.preventDefault();
+			const delitem = $('.del_item').length;
+
+
+			if (delitem === 0 && newDataTransfer.files.length === 0) {
+				alert('이미지 파일 추 필요합니다.');
+				return; // 전송 중지
+			}
+
+			const formData = new FormData(this);
+			//보낼 board 관련 데이터 추가
+			formData.append('boardnum', $('#boardnum').val());
+			formData.append('boardtitle', $('input[name="newboardtitle"]').val());
+			formData.append('boardcontents', $('textarea[name="newboardcontents"]').val());
+
+			//보낼 file 관련 데이터 추가
+			formData.append('delete', deletedFiles.join(','));
+
+
+			for (let i = 0; i < newDataTransfer.files.length; i++) {
+				formData.append('files', newDataTransfer.files[i]);
+				console.log('파일 추가:', newDataTransfer.files[i].name);
+			}
+
+
+
+			$.ajax({
+				url: '/pboard/modify',
+				method: 'POST',
+				data: formData,
+				contentType: false,
+				processData: false,
+				success: function (response) {
+					console.log(response);
+					$('#loadingmodify').show();
+					const updatedBoard = response.updatedBoard;
+
+					// 2초 후에 화면 업데이트
+					setTimeout(function () {
+						$('#contentView h2').text(updatedBoard.boardtitle);
+						$('#contentView p').text(updatedBoard.boardcontents);
+
+						// 이미지 업데이트 (기존 이미지와 새 이미지를 반영)
+						const imageContainer = $('#contentView .carousel-inner');
+						imageContainer.empty(); // 기존 이미지 삭제
+
+						updatedBoard.images.forEach((img, index) => {
+							const itemClass = index === 0 ? 'active carousel-item' : 'carousel-item';
+							imageContainer.append(`
+				                <div class="${itemClass}">
+				                    <img src="/images/pimages/${img}" style="width: auto; max-width: 500px; height: auto;">
+				                </div>
+				            `);
+						});
+						$('#newFileList').empty(); // newFileList를 초기화
+						boardFileList.empty(); // <ul class="board-file">의 모든 <li> 제거
+						deletedFiles = []; // 삭제된 파일 초기화
+						newDataTransfer = new DataTransfer();
+						newFileInput.value = '';
+
+						orgFile.length = 0;
+						orgFile.push(...updatedBoard.images); // orgFile에 기존 이미지 추가
+
+						// 파일 리스트 업데이트
+						updateBoardFileList(); // 리스트 업데이트
+
+						//테스트 코드
+						// 부모 창의 데이터 업데이트
+						updateParentData(updatedBoard); // 부모 창에서 데이터 업데이트 함수 호출
+
+						$('#modify').hide(); // 수정 폼 숨김
+						$('#contentView').show(); // 기존 콘텐츠 다시 표시
+						$('#loadingmodify').hide();
+						alert("수정이 완료되었습니다!");
+					}, 2000);
+				}, error: function (jqXHR, textStatus, errorThrown) {
+					console.error('AJAX 요청 실패:', textStatus, errorThrown); // 오류 메시지 출력
+					console.log('서버 응답:', jqXHR.responseText); // 서버 응답 내용 확인
+				}
+			});
+		});
+
+		function checkFileList() {
+			if (newDataTransfer.files.length === 0 && $('.del_item').length === 0) {
+				$('#warningText').css('visibility', 'visible'); // 경고 메시지 표시
+			} else {
+				$('#warningText').css('visibility', 'hidden'); // 경고 메시지 숨김
+			}
+		}
+
+		//모달 밖 list.html의 내용을 바꾸기 위한 함수
+		function updateParentData(updatedBoard) {
+			// 부모 창의 DOM 업데이트를 위해 직접 호출
+
+			const boardNumToUpdate = $('.boardnum').val(); // 수정된 게시물의 번호
+			const newImageSrc = `/images/pimages/${updatedBoard.images[0]}`; // 새로운 이미지 경로
+
+			// 해당 boardnum을 가진 div를 찾아 이미지 src 업데이트
+			$(`.list${boardNumToUpdate} .boardimg`).attr('src', newImageSrc);
+		}
+
+
+
+		let lastReplyNum = $('#lastReplyNum').val(); // 마지막 댓글 번호 초기화
+		let isLoading = false; // 로딩 상태 초기화
+
+		// 스크롤 이벤트 리스너
+		$('#commentSection').on('scroll', function () {
+			if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight && !isLoading) {
+				isLoading = true; // 로딩 시작
+				loadMoreComments();
+			}
+		});
+
+		const loginUser = /*[[${session.loginUser}]]*/'';
+
+		function loadMoreComments() {
+			console.log('스크롤이 바닥에 도달했습니다.'); // 로그 확인
+			$.ajax({
+				url: '/preply/loadMore', // 서버의 댓글 로드 API 경로
+				method: 'GET',
+				data: {
+					lastBoardnum: $('#boardnum').val(),
+					replynum: lastReplyNum // 마지막 댓글 번호
+				},
+				success: function (data) {
+					console.log('댓글 로드 성공:', data); // 서버 응답 확인
+					console.log("loginUser : ", loginUser);
+					if (data.length > 0) {
+						data.forEach(reply => {
+							$('#commentList').append(`
+					            <li>
+					                <div>
+					                    <strong th:text="${reply.replyuserid}">${reply.replyuserid}</strong>
+					                    <p class="replyContent" th:text="${reply.replycontent}">${reply.replycontent}</p>
+					                    <textarea class="editTextarea" style="display: none;" th:text="${reply.replycontent}">${reply.replycontent}</textarea>
+					                    <div class="buttonGroup" style="display: ${reply.replyuserid === loginUser ? 'block' : 'none'};">
+					                        <button class="modifyReply" data-replynum="${reply.replynum}">수정</button>
+					                        <button class="deleteReply" data-replynum="${reply.replynum}">삭제</button>
+					                        <button class="saveReply" data-replynum="${reply.replynum}" style="display: none;">수정 완료</button>
+					                        <button class="cancelEdit" style="display: none;">취소</button>
+					                    </div>
+					                </div>
+					                <hr>
+					            </li>
+					        `);
+							lastReplyNum = reply.replynum; // 마지막 댓글 번호 업데이트
+						});
+					}
+					else {
+						$('#noComments').remove(); // 더 이상 댓글이 없으면 메시지 삭제
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.error("댓글 로드 실패:", textStatus, errorThrown); // 오류 로그 추가
+				},
+				complete: function () {
+					isLoading = false; // 로딩 상태 종료
+				}
+			});
+		}
+
+		$('#submitComment').on('click', function () {
+			const commentContent = $('#commentContent').val();
+			const boardNum = $('#boardnum').val();
+			const userId = loginUser;
+
+			if (!commentContent) {
+				alert("댓글 내용을 입력해주세요.");
+				return;
+			}
+
+			// AJAX 요청
+			$.ajax({
+				url: '/preply/regist',
+				method: 'POST',
+				data: {
+					replycontent: commentContent,
+					boardnum: boardNum,
+					replyuserid: userId
+				},
+				success: function (response) {
+					const newReply = response.reply;
+					alert("댓글 등록 완료");
+					// 새 댓글을 리스트의 가장 위에 추가
+					$('#commentList').prepend(`
+		                <li>
+		                    <div>
+		                        <strong>${newReply.replyuserid}</strong>
+		                        <p>${newReply.replycontent}</p>
+		                        <div>
+		                            <button class="modifyReply" data-replynum="${newReply.replynum}">수정</button>
+		                            <button class="deleteReply" data-replynum="${newReply.replynum}">삭제</button>
+		                        </div>
+		                    </div>
+		                    <hr>
+		                </li>
+		            `);
+					$('#commentContent').val(''); // 입력 필드 초기화
+
+					// 댓글 작성 후 최상단으로 스크롤
+					$('#commentSection').scrollTop(0);
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.error("댓글 등록 실패:", textStatus, errorThrown);
+					alert("댓글 등록에 실패했습니다.");
+				}
+			});
+		});
+
+		// 댓글 수정 버튼 클릭 이벤트
+		$('#commentList').on('click', '.modifyReply', function () {
+			const $replyItem = $(this).closest('li');
+			$replyItem.find('.replyContent').hide(); // 댓글 내용 숨기기
+			$replyItem.find('.editTextarea').show(); // 수정 입력란 보이기
+			$(this).hide(); // 수정 버튼 숨기기
+			$replyItem.find('.saveReply').show(); // 수정 완료 버튼 표시
+			$replyItem.find('.cancelEdit').show(); // 취소 버튼 표시
+			$replyItem.find('.deleteReply').hide(); // 삭제 버튼 숨기기
+
+			// 댓글 입력란 숨기기
+			$('#commentInputSection').hide();
+		});
+
+		// 수정 완료 버튼 클릭 이벤트
+		$('#commentList').on('click', '.saveReply', function () {
+			const $replyItem = $(this).closest('li');
+			const replyNum = $(this).data('replynum');
+			const replyContent = $replyItem.find('.editTextarea').val();
+
+			$.ajax({
+				url: '/preply/modify',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({replynum: replyNum, replycontent: replyContent}),
+				success: function (response) {
+					alert("등록완료");
+					$replyItem.find('.replyContent').text(replyContent).show(); // 수정된 댓글 내용 표시
+					$replyItem.find('.editTextarea').hide(); // 수정 입력란 숨기기
+					$(this).hide(); // 수정 완료 버튼 숨기기
+					$replyItem.find('.modifyReply').show(); // 수정 버튼 다시 보이기
+					$replyItem.find('.cancelEdit').hide(); // 취소 버튼 숨기기
+					$replyItem.find('.deleteReply').show(); // 삭제 버튼 다시 보이기
+
+					// 댓글 입력란 다시 보이기
+					$('#commentInputSection').show();
+				}.bind(this),
+				error: function (xhr) {
+					console.error(xhr);
+					alert("등록실패");
+				}
+			});
+		});
+
+		// 취소 버튼 클릭 이벤트
+		$('#commentList').on('click', '.cancelEdit', function () {
+			const $replyItem = $(this).closest('li');
+			$replyItem.find('.replyContent').show(); // 댓글 내용 다시 보이기
+			$replyItem.find('.editTextarea').hide(); // 수정 입력란 숨기기
+			$(this).hide(); // 취소 버튼 숨기기
+			$replyItem.find('.saveReply').hide(); // 수정 완료 버튼 숨기기
+			$replyItem.find('.modifyReply').show(); // 수정 버튼 다시 보이기
+			$replyItem.find('.deleteReply').show(); // 삭제 버튼 다시 보이기
+
+			// 댓글 입력란 다시 보이기
+			$('#commentInputSection').show();
+		});
+
+		// 삭제 버튼 클릭 이벤트
+		$('#commentList').on('click', '.deleteReply', function () {
+			const replyNum = $(this).data('replynum');
+			const $thisButton = $(this);
+
+			if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
+				$.ajax({
+					url: '/preply/remove',
+					type: 'POST',
+					data: {replynum: replyNum},
+					success: function (response) {
+						alert("삭제 완료");
+						$thisButton.closest('li').remove(); // 댓글 삭제
+					},
+					error: function (xhr) {
+						console.error(xhr);
+						alert("삭제 실패");
+					}
+				});
+			}
+		});
+
+
+
+		function updateLikeStatus(boardNum, newLikeCount, isLiked) {
+			// 부모 창의 좋아요 상태 업데이트
+			const likeCountElem = $(`.list${boardNum} .likecnt`);
+			likeCountElem.text(newLikeCount); // 새로운 좋아요 카운트 설정
+
+			// 이미지 업데이트
+			const likeImgElem = $(`.list${boardNum} .likeimg`);
+			if (isLiked) {
+				likeImgElem.attr('src', '/images/pimages/like.png'); // 좋아요 이미지로 변경
+			} else {
+				likeImgElem.attr('src', '/images/pimages/nomal.png'); // 일반 이미지로 변경
+			}
+		}
+
+		$('.board-likebtn').on('click', function (e) {
+			e.preventDefault();
+
+			const boardnum = $(this).data('boardnum');
+			const likeImg = $(this).find('.likeimg');
+			const likeCountElem = $(this).find('.likecnt');
+
+			$.ajax({
+				url: '/plikelist/checklike',
+				data: {boardnum: boardnum},
+				success: function (data) {
+					if (data == null) {
+						// 좋아요가 없는 상태
+						$.ajax({
+							url: '/plikelist/insert',
+							data: {boardnum: boardnum},
+							success: function () {
+								const currentCount = parseInt(likeCountElem.text());
+								const newCount = currentCount + 1;
+								likeCountElem.text(newCount);
+								likeImg.attr('src', '/images/pimages/like.png'); // 여기서 이미지 변경
+
+								// 부모 창의 좋아요 상태 업데이트
+								updateLikeStatus(boardnum, newCount, true);
+							},
+							error: function () {
+								alert('좋아요 추가 실패.');
+							}
+						});
+					} else {
+						// 좋아요가 있는 상태
+						$.ajax({
+							url: '/plikelist/delete',
+							data: {boardnum: boardnum},
+							success: function () {
+								const currentCount = parseInt(likeCountElem.text());
+								const newCount = currentCount - 1;
+								likeCountElem.text(newCount);
+								likeImg.attr('src', '/images/pimages/nomal.png'); // 여기서 이미지 변경
+
+								// 부모 창의 좋아요 상태 업데이트
+								updateLikeStatus(boardnum, newCount, false);
+							},
+							error: function () {
+								alert('좋아요 취소 실패.');
+							}
+						});
+					}
+				},
+				error: function () {
+					alert('좋아요 상태 확인 실패');
+				}
+			});
+		});
+
+	});
+</script>
+
+</html>
+<!--
+	혹시 수정 부분 오류 발생하면 이 코드 넣기
+	//del-item에서 삭제버튼을 누른 사진의 systemname을 저장하는 배열 선언
+		$(document).on('click', '.del-item button', function (e) {
+			e.preventDefault();
+
+			const fileName = $(this).closest('.del-item').find('.fpath').val();
+			console.log('삭제 파일 이름 : ', fileName);
+			deletedFiles.push(fileName);
+			$(this).closest('.del-item').remove();
+
+			// DataTransfer에서 해당 파일 제거
+			for (let i = 0; i < newDataTransfer.items.length; i++) {
+				const item = newDataTransfer.items[i].getAsFile();
+				if (item && item.name === fileName) {
+					newDataTransfer.items.remove(i);
+					break; // 파일을 찾으면 반복문 종료
+				}
+			}
+			checkFileList();
+			console.log('deletedFiles : ', deletedFiles);
+		});
+	-->
