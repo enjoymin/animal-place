@@ -1,0 +1,234 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+input:focus {
+	outline: none;
+}
+
+/* 메인 폰트 */
+@font-face {
+	font-family: 'TTLaundryGothicB';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+/* 서브 폰트 */
+@font-face {
+	font-family: 'NanumBarunpen';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 서브서브 폰트 */
+@font-face {
+	font-family: 'HakgyoansimSantteutdotumL';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+}
+
+ul,ol,li {list-style: none;}
+a {	text-decoration: none;}
+a:visited {color: black;}
+a:hover {cursor: pointer;}
+header {
+	height: 100px;
+	background-color: #FF9B9B;
+}
+
+footer {
+	height: 100px;
+}
+
+img {border: none;}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	font-size: inherit;
+}
+
+
+#wrap {
+	margin: 200px auto;
+	margin-top: 30px;
+	width: 1300px;
+}
+
+#wrap.all {
+	width: 1400px;
+	height: 1080px;
+	margin: 0 auto;
+	background-color: #ffeaea;
+	padding: 200px;
+}
+
+#wrap.login {
+	display: none;
+	width: 250px;
+	text-align: center;
+	margin: 200px auto;
+	animation: loginWrap 1.5s 1;
+	font-family: 'HakgyoansimSantteutdotumL';
+}
+
+#wrap.login+img {
+	display: block;
+	text-align: center;
+	margin: 200px auto;
+	position: relative;
+	animation: loginImage 1.5s 1;
+}
+
+body.login {
+	animation: loginBg 1.5s 1;
+}
+
+#joinform {
+	margin: 0 auto;
+	width: 500px;
+}
+#joinform table{
+	width: 500px;
+}
+#joinform th{
+	width:220px;
+}
+#joinform td{
+	width: 220px;
+}
+#joinform input::placeholder{
+	font-size: 11px;
+}
+.thumbnail{
+	width: 500px;
+	height: auto;
+	max-height: 500px;
+	object-fit: cover;
+}
+
+.warning{
+	color: red;
+	font-size: 12px;
+}
+.warning2{
+	color: rgb(49, 168, 108);
+	font-size: 12px;
+}
+
+.hdd {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+input{
+	padding: 5px;
+	height: 30px;
+	width: 220px;
+	
+}
+#lgd, #lgp{
+	width: 150px;
+}
+.btn{
+	width: 150px;
+	
+}
+@keyframes loginWrap {
+	from {
+		opacity: 0;
+		top: -50px;
+	}
+
+	30% {
+		opacity: 0;
+		top: -50px;
+	}
+
+	to {
+		opacity: 1;
+		top: 0;
+	}
+}
+
+@keyframes loginImage {
+	from {
+		opacity: 1;
+		top: 0;
+	}
+
+	30% {
+		opacity: 1;
+		top: 0;
+	}
+
+	to {
+		opacity: 0;
+		top: -50px;
+	}
+}
+
+@keyframes loginBg {
+	from {
+		background-color: #fff;
+	}
+
+	to {
+		background-color: rgb(245, 246, 247);
+	}
+}
+
+#contentstitle1 {
+	font-family: 'TTLaundryGothicB';
+	font-size: 40px;
+	margin: 15px;
+}
+
+.row {
+	display: flex;
+	vertical-align: middle;
+	align-items: center;
+}
+
+.row * {
+	width: 100%;
+}
+
+.row>div {
+	padding: 5px;
+	text-align: center;
+}
+
+.mycontents table {
+	margin: 0 auto;
+}
+#mycontents1 {
+	border: 0.5px solid #ffeaea;
+	border-radius: 20px;
+	padding: 15px;
+}
+
+.btn,
+.nowPage {
+	margin: 5px;
+}
+
+.row div:nth-child(1) {
+	width: 8%;
+}
+
+.row div:nth-child(2) {
+	width: 50%;
+}
+
+.row div:nth-child(3) {
+	width: 15%;
+}
+
+.row div:nth-child(4) {
+	width: 17%;
+}
