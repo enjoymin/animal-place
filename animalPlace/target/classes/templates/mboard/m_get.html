@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>모임 게시판 상세 페이지</title>
+	<link rel="stylesheet" href="/css/m_get.css">
+	<link rel="stylesheet" href="/css/footer.css">
+</head>
+
+<style>
+	.list_info {
+		display: block;
+		opacity: 1;
+	}
+</style>
+
+<body>
+	<th:block th:if="${w != null and w != ''}">
+		<script>
+			window.addEventListener('load', function () {
+				const joinButton = document.querySelector('.m_join_btn #m_join');
+				if (joinButton) {
+					addUser(joinButton);
+				}
+				alert("게시글 등록이 완료되었습니다!");
+			});
+		</script>
+	</th:block>
+	<th:block th:if="${s != null and s != ''}">
+		<script>
+			alert("게시글 수정이 완료되었습니다!");
+		</script>
+	</th:block>
+
+	<div class="full_wrap">
+		<input type="hidden" th:value="${session.loginUser}" class="loginUser">
+
+		<!-- 게시판 제목 -->
+		<div class="top_container">
+			<div class="page_title">
+				<p id="MF">모임 게시판</p>
+			</div>
+		</div>
+
+		<div class="inner_wrap">
+			<!-- 글 내용 컨테이너 -->
+			<div class="m_list_container">
+				<div class="m_list">
+					<div class="list_info" th:id="${m_board.boardnum}">
+
+						<div class="list_area_wrap">
+
+							<div class="list_area_1">
+								<!-- 리스트 제목 -->
+								<div class="list_title">[[${m_board.boardtitle}]]</div>
+
+								<!-- 작성자 및 작성일 -->
+								<div class="list_info_1">
+									<div class="profile">
+										<div class="profile_img_box">
+											<img src="/images/test강아지.jpg" alt="" class="profile_img">
+										</div>
+										<div class="userid">[[${m_board.userid}]]</div>
+									</div>
+									<div class="list_date">작성일 : [[${m_board.boarddatetime}]]</div>
+								</div>
+
+								<!-- 모임 정보 -->
+								<div class="list_info_2">
+									<div class="m_date">모임 날짜 : [[${m_board.setdate}]]</div>
+									<div class="m_location">모임 장소 : [[${m_board.place}]]</div>
+									<div class="m_num">인원수 : <span class="m_num">[[${m_board.mnum}]]</span></div>
+								</div>
+
+								<!-- 게시글 내용 -->
+								<div class="list_info_3">[[${m_board.boardcontent}]]</div>
+							</div> <!-- list_area div 닫기 -->
+
+							<div class="list_area_2">
+
+								<div class="list_area_2_box">
+
+									<div class="list_info_4">
+										<!-- 참여하기 누르면 인원 여기에 추가 -->
+									</div>
+
+									<!-- 참여 버튼 -->
+									<div class="m_join_btn">
+										<div id="m_join" onclick="addUser(this)">참여하기</div>
+										<div id="m_join" onclick="delUser(this)">참여취소</div>
+									</div>
+								</div>
+
+								<div class="replybox">
+									<div class="reply_count">
+										댓글 <span
+											th:text="${repliesByBoardNum[m_board.boardnum] != null ? repliesByBoardNum[m_board.boardnum].size() : 0}">0</span>
+										개
+									</div>
+
+									<div class="reply_write_box">
+										<textarea name="replycontent" id="replycontent"
+											placeholder="댓글을 작성해주세요"></textarea>
+
+										<div class="go_reply">
+											<p class="btn_go_reply" onclick="add_reply(this)">작성</p>
+										</div>
+									</div>
+
+									<!-- 댓글 리스트 -->
+									<div class="reply_area">
+
+										<div class="no_reply_list">
+											<div
+												th:if="${repliesByBoardNum[m_board.boardnum] == null or repliesByBoardNum[m_board.boardnum].size() == 0}">
+												등록된 댓글이 없습니다.
+											</div>
+										</div>
+
+										<div class="reply_list"
+											th:each="reply : ${repliesByBoardNum[m_board.boardnum]}">
+											<div hidden class="replynum">[[${reply.replynum}]]</div>
+
+
+											<div class="reply_info">
+												<div class="profile_img_box">
+													<img src="/images/test강아지.jpg" alt="" class="profile_img">
+												</div>
+
+												<div class="reply_text">
+													<div class="reply_username" th:text="${reply.replyuserid}"></div>
+
+													<div class="reply_con" th:text="${reply.replycontent}"></div>
+												</div>
+											</div>
+
+											<!-- 작성자인 경우만 보이게!!!! -->
+											<th:block th:if="${reply.replyuserid == session.loginUser}">
+												<div class="delete_reply" onclick="delete_reply(this)">
+													삭제
+												</div>
+											</th:block>
+										</div>
+									</div>
+
+									<!-- 이아래로 댓글 추가 -->
+								</div> <!-- reply_area div 닫기 -->
+							</div> <!-- 추가 div 닫기 -->
+
+						</div>
+
+					</div> <!-- list_info div 닫기 -->
+				</div> <!-- m_list div 닫기 -->
+
+				<!-- 버튼 영역 -->
+				<table class="form_btn_area">
+					<tbody>
+						<tr>
+							<td>
+								<th:block th:if="${m_board.userid == session.loginUser}">
+									<a class="btn" th:href="${'/board/m_modify?m_boardnum=' + m_board.boardnum}">수정</a>
+									<a class="btn" th:href="${'/board/m_remove?m_boardnum=' + m_board.boardnum}">삭제</a>
+								</th:block>
+								<a class="btn" th:href="${'/board/m_board'}">목록</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div> <!-- m_write_container div 닫기 -->
+		</div> <!-- inner_wrap div 닫기 -->
+	</div> <!-- full_wrap div 닫기 -->
+
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+	<script defer src="/js/script.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</body>
+</html>

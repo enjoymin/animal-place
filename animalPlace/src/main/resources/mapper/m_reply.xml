@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.M_ReplyMapper">
+
+	<insert id="put_reply">
+		insert into m_reply (replycontent, replyuserid, boardnum) 
+		values (#{replycontent}, #{replyuserid}, #{boardnum})
+	</insert>
+	
+	<select id="get_reply_list">
+		select * from m_reply
+	</select>
+	
+	<delete id="delete_reply">
+		delete from m_reply
+		where replynum=#{replynum}
+	</delete>
+	
+</mapper>
+
+
+
