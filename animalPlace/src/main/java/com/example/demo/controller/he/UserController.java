@@ -99,16 +99,18 @@ public class UserController {
 		}
 		return "redirect:/my/profile";
 	}
+
+	// 참가하기
 	@GetMapping("get_schedule")
 	public ResponseEntity<String> get_schedule(@RequestParam String userid) {
 		String schedule = service.getUserSchedule(userid).getSchedule();
 		return ResponseEntity.ok(schedule != null ? schedule : "");
 	}
-	
+
 	@PostMapping("update_schedule")
 	public ResponseEntity<String> update_schedule(@RequestBody UserDTO scheduleInfo) {
-	    service.update_schedule(scheduleInfo);
-	    return ResponseEntity.ok("일정 업데이트 완료");
+		service.update_schedule(scheduleInfo);
+		return ResponseEntity.ok("일정 업데이트 완료");
 	}
-	
+
 }
