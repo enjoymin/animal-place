@@ -15,4 +15,7 @@ public class UserDTO {
 	private String addretc;
 	private String userpet;
 	private String userschedule;
+	
+	private String useraddr;
+	private String schedule;
 }
