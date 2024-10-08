@@ -1,7 +1,7 @@
 .headimg {
 	width: 100%;
 	height: 600px;
-	background: url(../images/headerimg.jpg);
+	background: url(../../images/pimages/headerimg.jpg);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
