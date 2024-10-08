@@ -3,10 +3,13 @@ package com.example.demo.controller.he;
 import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -96,4 +99,16 @@ public class UserController {
 		}
 		return "redirect:/my/profile";
 	}
+	@GetMapping("get_schedule")
+	public ResponseEntity<String> get_schedule(@RequestParam String userid) {
+		String schedule = service.getUserSchedule(userid).getSchedule();
+		return ResponseEntity.ok(schedule != null ? schedule : "");
+	}
+	
+	@PostMapping("update_schedule")
+	public ResponseEntity<String> update_schedule(@RequestBody UserDTO scheduleInfo) {
+	    service.update_schedule(scheduleInfo);
+	    return ResponseEntity.ok("일정 업데이트 완료");
+	}
+	
 }
