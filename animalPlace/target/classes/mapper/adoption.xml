@@ -1,0 +1,9 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.adoption.AdoptionMapper">
+	<insert id="insertAdoption">
+		insert into adoption(title,contents,breed,type,region,gender,age,cost,adoptionOk,userid)
+		values(#{title},#{contents},#{breed},#{type},#{region},#{gender},#{age},#{cost},#{adoptionOk},#{userid})
+	</insert>
+</mapper>

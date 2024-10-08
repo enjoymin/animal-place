@@ -1,0 +1,280 @@
+/*메인 글꼴*/
+@font-face {
+    font-family: 'TTLaundryGothicB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/*서브 글꼴*/
+@font-face {
+    font-family: 'NanumBarunpen';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*서브서브 글꼴*/
+@font-face {
+    font-family: 'HakgyoansimSantteutdotumL';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+	
+	/*메인 글꼴*/
+	font-family: 'TTLaundryGothicB';
+}
+
+header {
+	width: 100%;
+    height: 100px;
+    background-color: #FF9B9B;
+	background: url(/images/KakaoTalk_20240925_093131856.png) no-repeat center,
+	rgba(255, 155, 155, 1.0);
+	background-size: 400px;	
+	min-width: 1425px;
+}
+footer {
+    height: 100px;
+    background-color: #FF9B9B;
+	clear: both;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+#main{
+	margin: 25px 0;
+}
+#wrap{
+    width: 1400px;
+	min-height: 636px;
+    margin: 0 auto;
+	position: relative;
+	user-select: none;
+}
+h1{
+    text-align: center;
+	margin-bottom: 15px;
+}
+a{
+	cursor: pointer;
+}
+.btn{
+	padding: 10px 15px;
+	font-size: 16px;
+	color: #000000; /* 글자 색상 */
+	background-color: #F7FFE5; /* 배경색 */
+	border: 2px solid #C2E8CE; /* 테두리 제거 */
+	border-radius: 10px; /* 모서리 둥글게 */
+	text-decoration: none; /* 밑줄 제거 */
+	cursor: pointer; /* 마우스 포인터 변경 */
+	transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+	transition: transform 0.2s;
+}
+.btn:hover{
+	background-color: #C2E8CE; /* 마우스 오버 시 배경색 변경 */
+	transform: scale(1.2);
+}
+.select_box{
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+select {
+    padding: 10px;
+	padding-right: 24px;
+	min-width: 94px;
+    font-size: 16px;
+    border: 2px solid #C2E8CE; /* 테두리 색상 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    appearance: none; /* 기본 드롭다운 화살표 제거 */
+    background-color: #ffffff; /* 배경색 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%23007bff" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 5.5a.5.5 0 0 1 .8-.4L8 9.5l5.7-4.4a.5.5 0 1 1 .6.8l-6 4.5a.5.5 0 0 1-.6 0l-6-4.5a.5.5 0 0 1-.1-.6z"/></svg>'); /* 드롭다운 화살표 */
+    background-repeat: no-repeat;
+    background-position: right 3px center; /* 화살표 위치 */
+    background-size: 16px; /* 화살표 크기 */
+    cursor: pointer; /* 마우스 포인터 변경 */
+	transition: transform 0.2s;
+}
+
+select:hover {
+	transform: scale(1.1);
+}
+
+.fbox, .sbox{
+	margin-right: 20px;
+}
+.fbox span, .sbox span{
+	margin-right: 15px;
+}
+.fbox div:first-child, .sbox div:first-child{
+	margin-bottom: 10px;
+}
+.fbox div{
+	width: 280px;
+}
+
+.row{
+	display: flex;
+	vertical-align: middle;
+	align-items: center;	
+}
+.table .row{
+	display: flex;
+	vertical-align: middle;
+	align-items: center;
+}
+.table .row *{
+	width:100%;
+}
+.tar{ text-align: right !important; }
+.tac{ text-align: center !important; }
+.tal{ text-align: left !important; }
+.w900{ width:900px !important; }
+
+.list.table > .thead > .row{
+	border-top:1px solid #384d75;
+}
+.list.table > .thead > .row > div{
+	padding:5px;
+	font-weight: bold;
+}
+.list.table > .tbody > .row{
+	border-top:1px solid #ccc;
+}
+.list.table > .tbody > .row:nth-child(2n+1) {
+	background-color: rgb(240, 255, 240);
+}
+.list.table > .tbody > .row:hover {
+	background-color: #C2E8CE;
+}
+.list.table > .tbody > .row:last-child{ border-bottom: 1px solid #ccc; }
+.list.table > .tbody > .row > div{
+	padding:5px; text-align: center;
+}
+.list .row div:nth-child(1){width:8%;}
+.list .row div:nth-child(2){width:8%;}
+.list .row div:nth-child(3){width:10%;}
+.list .row div:nth-child(4){width:41%;}
+.list .row div:nth-child(5){width:8%;}
+.list .row div:nth-child(6){width:10%;}
+.list .row div:nth-child(7){width:15%;}
+.list .row.no-list div{ width:100%; padding:10px !important; }
+.list.table #reply_cnt {
+	font-weight: 900;
+	color: red;
+}
+.list.table .tbody .row:hover{
+	transform:scale(1.05,1.1);
+	box-shadow:1px 1px 2px #444;
+	border-radius:5px;
+	transition: transform linear 0.05s;
+}
+
+.btn_table{
+	position: absolute;
+	top: 0;
+}
+
+/* write, modify */
+form{
+	float: left;
+}
+table{
+	width: 1000px;
+}
+#boardForm tr{
+	height:30px;
+}
+#boardForm tr:nth-child(3){
+	height:60px;
+}
+#boardForm tr:nth-child(3) input{
+	width: 175px;
+	border: 1px solid black;
+}
+#boardForm tr:nth-child(3) span{
+	padding: 0 5px;
+}
+#boardForm tr:nth-child(4){
+	height:300px;
+}
+#boardForm th{
+	text-align: center; vertical-align: middle;
+	width:150px;
+}
+#boardForm tr:nth-child(n+5){
+	height:50px;
+}
+#boardForm tr:nth-child(5) td,
+#boardForm tr:nth-child(6) td,
+#boardForm tr:nth-child(7) td{
+	padding-left: 5px;
+}
+#boardForm a{
+	padding:5px 10px;
+}
+#main input[type="text"],#main textarea,
+.modify input[type="text"],.modify textarea{
+	border:none;
+	padding:5px;
+	outline:none;
+}
+#main input[type="text"], .modify input[type="text"]{ width:500px; }
+#main textarea, .modify textarea{
+	resize:none;
+	width:100%; height:290px;
+}
+#main form [class*=cont] a.btn, .modify form [class*=cont] a.btn{
+	width:fit-content; height:fit-content;
+}
+
+img.thumbnail{
+	display: block;
+	width:200px;
+	clear:both;
+	transition: all 0.1s linear;
+	padding: 10px;
+}
+img.thumbnail:hover{
+	transform: scale(1.4);
+	box-shadow: 1px 1px 4px black;
+}
+#main .btn_area, .modify .btn_area{
+	justify-content: flex-end;	
+}
+[class*='cont'] div:nth-child(1){
+	float:left; padding-left: 10px;
+	padding: 15px 0 15px 10px;
+}
+[class*='cont'] div:nth-child(2){
+	float:right; margin-right:100px;
+	padding: 15px 0 0 0;
+}
+
+.btn_area{
+	padding-top: 25px;
+	clear: both;
+}
+
+
+.text_area{
+	border: 1px solid black;
+	width: 350px;
+	float: right;
+}
+.text_area p{
+	padding: 6px;
+}
+
+
+
+
