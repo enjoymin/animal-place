@@ -55,6 +55,7 @@ create table user(
     userpet varchar(300),
     userschedule varchar(300)
 );
+insert into user(userid, userpw, addrdetail) values('banana', '1234', '하아');
 
 select * from user;
 
@@ -133,6 +134,7 @@ replynum bigint auto_increment primary key,
 ################################## mboard end
 
 ############################# 규진님 완성되면 추가
+
 ###############################
 
 
