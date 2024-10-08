@@ -167,7 +167,6 @@
 				str += $("#lgd").val();
 				str += '&userpw=';
 				str += $("#lgp").val();
-				console.log(str);
 				$.getJSON(
 					`/user/isUser?userid=` + str,
 					function (data) {
