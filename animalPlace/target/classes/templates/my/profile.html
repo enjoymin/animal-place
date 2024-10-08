@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<th:block th:replace="~{layout/header::header}"></th:block>
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
 	<th:block th:if="${session.loginUser == null}">
 		<script>
 			alert("해당 페이지는 로그인 후에만 이용 가능합니다!")
@@ -106,7 +106,7 @@
 	</div>
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/user.js"></script>
+<script src="/js/KHE/user.js"></script>
 <script th:inline="javascript">
 	let iflag = $("#iflag").html();
 	let myphotosrc = $(".thumbnail").attr('src');
