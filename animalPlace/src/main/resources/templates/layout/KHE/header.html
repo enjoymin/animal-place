@@ -167,9 +167,10 @@
 				str += $("#lgd").val();
 				str += '&userpw=';
 				str += $("#lgp").val();
-				console.log(str);
+				
 				$.getJSON(
 					`/user/isUser?userid=` + str,
+
 					function (data) {
 						if (data) {
 							$("#loginForm").submit();
@@ -249,13 +250,13 @@
 		function usermenu(e) {
 			var x = e.pageX;
 			var y = e.pageY;
-			
-			
-			
+
+
+
 			// 팝업 위치 설정
 			$('#popup').css({
-				top: y -5 + 'px' ,
-				left: x -5 + 'px'
+				top: y - 5 + 'px',
+				left: x - 5 + 'px'
 			}).fadeIn(200);
 
 
