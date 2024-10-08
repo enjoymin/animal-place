@@ -56,6 +56,7 @@ header {
 	background-color: #FF9B9B;
 	position: fixed;
 	top: 0;
+	z-index: 1299;
 }
 
 #header {
@@ -98,6 +99,7 @@ h6 {
 	font-weight: 800;
 	font-size: 20px;
 	padding: 20px;
+	z-index: 1299;
 }
 
 #menulist {

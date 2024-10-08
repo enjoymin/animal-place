@@ -41,7 +41,8 @@
 					<div id="user_area">
 						<p th:text="${board.userid}">작성자</p>
 						<a href="#" class="board-likebtn" id="viewPostlike" th:data-boardnum="${board.boardnum}">
-							<img class="likeimg" th:src="${llist == null ? '/images/nomal.png' : '/images/like.png'}" />
+							<img class="likeimg"
+								th:src="${llist == null ? '/images/pimages/nomal.png' : '/images/pimages/like.png'}" />
 							<p class="likecnt" th:text="${board.boardlikecnt}"></p>
 						</a>
 					</div>
@@ -607,15 +608,20 @@
 			// 이미지 업데이트
 			const likeImgElem = $(`.list${boardNum} .likeimg`);
 			if (isLiked) {
-				likeImgElem.attr('src', '/images/like.png'); // 좋아요 이미지로 변경
+				likeImgElem.attr('src', '/images/pimages/like.png'); // 좋아요 이미지로 변경
 			} else {
-				likeImgElem.attr('src', '/images/nomal.png'); // 일반 이미지로 변경
+				likeImgElem.attr('src', '/images/pimages/nomal.png'); // 일반 이미지로 변경
 			}
 		}
 
 		$('.board-likebtn').on('click', function (e) {
 			e.preventDefault();
-
+			
+			if (loginUser == null || loginUser.length === 0) {
+				alert("로그인 해야 좋아요를 할 수 있습니다.");
+				return;
+			}
+			
 			const boardnum = $(this).data('boardnum');
 			const likeImg = $(this).find('.likeimg');
 			const likeCountElem = $(this).find('.likecnt');
@@ -633,7 +639,7 @@
 								const currentCount = parseInt(likeCountElem.text());
 								const newCount = currentCount + 1;
 								likeCountElem.text(newCount);
-								likeImg.attr('src', '/images/like.png'); // 여기서 이미지 변경
+								likeImg.attr('src', '/images/pimages/like.png'); // 여기서 이미지 변경
 
 								// 부모 창의 좋아요 상태 업데이트
 								updateLikeStatus(boardnum, newCount, true);
@@ -651,7 +657,7 @@
 								const currentCount = parseInt(likeCountElem.text());
 								const newCount = currentCount - 1;
 								likeCountElem.text(newCount);
-								likeImg.attr('src', '/images/nomal.png'); // 여기서 이미지 변경
+								likeImg.attr('src', '/images/pimages/nomal.png'); // 여기서 이미지 변경
 
 								// 부모 창의 좋아요 상태 업데이트
 								updateLikeStatus(boardnum, newCount, false);
