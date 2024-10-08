@@ -41,7 +41,6 @@ create table p_likelist(
 
 ###################### USER START
 
-
 create table user(
 	userid varchar(300) primary key,
     userpw varchar(300),
@@ -56,7 +55,9 @@ create table user(
     userschedule varchar(300)
 );
 
-select * from user;
+insert into  user(userid,userpw,username,addrdetail) values("apple","1234","김사과","중국산");
+
+insert into  user(userid,userpw,username,addrdetail) values("banana","1234","김사과","중국산");
 
 create table myphoto(
 	systemname varchar(1000),
@@ -133,6 +134,27 @@ replynum bigint auto_increment primary key,
 ################################## mboard end
 
 ############################# 규진님 완성되면 추가
+
+create table adoption(
+   adoptionnum bigint auto_increment primary key,
+    title varchar(300),
+    contents varchar(3000),
+    breed varchar(100),
+    type varchar(100),
+    region varchar(100),
+    gender varchar(100),
+    age varchar(100),
+    cost varchar(100),
+    adoptionOk varchar(100),
+    userid varchar(300)
+);
+
+create table adfile(
+   systemname varchar(3000),
+	orgname varchar(3000),
+    adoptionnum bigint
+);
+
 ###############################
 
 

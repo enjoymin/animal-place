@@ -26,14 +26,14 @@
 					<tr>
 						<th>작성자</th>
 						<td>
-							<input type="text" name="userid" maxlength="50" readonly value="apple">
+							<input type="text" name="userid" maxlength="50" readonly th:value="${session.loginUser}">
 						</td>
 					</tr>
 					<tr>
 						<th>동물정보</th>
 						<td>
 		                    <span>동물 선택</span>
-		                    <select id="breed" onchange="updateSecondSelect()">
+		                    <select id="breed" name="breed" onchange="updateSecondSelect()">
 		                        <option value="Dog">강아지</option>
 		                        <option value="Cat">고양이</option>
 		                        <option value="Hedgehog">고슴도치</option>
@@ -43,7 +43,7 @@
 		                        <option value="Etc">기타</option>
 		                    </select>
 		                    <span>품종 선택</span>
-		                    <select id="type">
+		                    <select id="type" name="type">
 								<option value = "goldendoodle">골든두들</option>
 								<option value = "goldenretriever">골든 리트리버</option>
 								<option value = "greatdane">그레이트 데인</option>
@@ -132,7 +132,7 @@
 								<option value = "Etc">기타</option>   
 		                    </select>
 							<span>성별 선택</span>
-							<select id="gender">
+							<select id="gender" name="gender">
 								<option value="Seoul">수컷</option>
 								<option value="Busan">암컷</option>
 							</select>
@@ -150,7 +150,7 @@
 						<th>분양 지역</th>
 						<td>
 							<span>지역 선택</span>
-							<select id="region">
+							<select id="region" name="region">
 								<option value="All">전국</option>
 								<option value="Seoul">서울</option>
 								<option value="Busan">부산</option>
@@ -175,22 +175,22 @@
 					<tr>
 						<th>무료분양 책임비</th>
 						<td>
-							<select id="cost">
+							<select id="cost" name="cost">
 								<option value="Free">무료</option>
-								<option value="1">1만원</option>
-								<option value="2">2만원</option>
-								<option value="3">3만원</option>
-								<option value="4">4만원</option>
-								<option value="5">5만원</option>
+								<option value="1만원">1만원</option>
+								<option value="2만원">2만원</option>
+								<option value="3만원">3만원</option>
+								<option value="4만원">4만원</option>
+								<option value="5만원">5만원</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<th>분양 여부</th>
 						<td>
-							<select id="adoptionOk">
-								<option value="true">분양중</option>
-								<option value="false">분양완료</option>
+							<select id="adoptionOk" name="adoptionOk">
+								<option value="분양중">분양중</option>
+								<option value="분양완료">분양완료</option>
 							</select>
 						</td>
 					</tr>

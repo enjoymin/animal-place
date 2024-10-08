@@ -191,35 +191,35 @@ form{
 table{
 	width: 1000px;
 }
-#boardForm tr{
+#adoptionForm tr{
 	height:30px;
 }
-#boardForm tr:nth-child(3){
+#adoptionForm tr:nth-child(3){
 	height:60px;
 }
-#boardForm tr:nth-child(3) input{
+#adoptionForm tr:nth-child(3) input{
 	width: 175px;
 	border: 1px solid black;
 }
-#boardForm tr:nth-child(3) span{
+#adoptionForm tr:nth-child(3) span{
 	padding: 0 5px;
 }
-#boardForm tr:nth-child(4){
+#adoptionForm tr:nth-child(4){
 	height:300px;
 }
-#boardForm th{
+#adoptionForm th{
 	text-align: center; vertical-align: middle;
 	width:150px;
 }
-#boardForm tr:nth-child(n+5){
+#adoptionForm tr:nth-child(n+5){
 	height:50px;
 }
-#boardForm tr:nth-child(5) td,
-#boardForm tr:nth-child(6) td,
-#boardForm tr:nth-child(7) td{
+#adoptionForm tr:nth-child(5) td,
+#adoptionForm tr:nth-child(6) td,
+#adoptionForm tr:nth-child(7) td{
 	padding-left: 5px;
 }
-#boardForm a{
+#adoptionForm a{
 	padding:5px 10px;
 }
 #main input[type="text"],#main textarea,
