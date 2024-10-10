@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>모임 게시판</title>
+	<link rel="stylesheet" href="/css/mboard/style.css">
+	<link rel="stylesheet" href="/css/mboard/footer.css">
+</head>
+
+<body>
+	<header>
+
+	</header>
+
+	<div class="full_wrap">
+		<input type="hidden" th:value="${session.loginUser}" class="loginUser">
+
+		<div class="inner_wrap">
+
+			<div class="top_container">
+				<div class="page_title">
+					<p id="MF">모임 게시판</p>
+				</div>
+
+				<div class="top_btn_area">
+					<div class="search_area">
+						<form name="search_form" id="search_form" action="/mboard/m_board_search">
+							<select name="type" id="type">
+								<option value="">검색</option>
+								<option value="T">제목</option>
+								<option value="C">내용</option>
+								<option value="W">작성자</option>
+								<option value="TC">제목 또는 내용</option>
+							</select>
+							<!-- 검색 창 -->
+							<input type="search" id="keyword" name="keyword">
+							<a class="search_btn" onclick="handle_search_btn()" id="MF">검색</a>
+						</form>
+					</div>
+
+					<!-- 글쓰기 버튼 -->
+					<div class="write_btn_area">
+
+						<div class="write_btn" id="MF" onclick="check_id()">글쓰기</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+
+				<div class="this_month_area">
+					<div class="this_month_txt">
+						<p id="MF">이달의 모임</p>
+					</div>
+
+					<div class="month_plan">
+
+						<div th:if="${this_m_list == null or this_m_list.size() == 0}">이번 달에는 모임이 없습니다.</div>
+
+						<div th:if="${this_m_list != null and this_m_list.size() > 0}">
+							<ul>
+								<li th:each="m_board, iterStat : ${this_m_list}">
+									<div class="month_list">
+										<!-- 프로필 사진 -->
+										<div class="mo_list_box">
+											<div class="profile_img_box">
+												<img src="/images/test강아지.jpg" alt="" class="profile_img">
+											</div>
+
+											<!-- 모임 내용 -->
+											<div class="mo_list_contents">
+
+												<div class="mo_list_writer">
+													<p>[[${m_board.userid}]]</p>
+												</div>
+
+												<div class="mo_list_title">
+													[[${m_board.boardtitle}]]
+												</div>
+											</div>
+										</div>
+
+										<!-- 모임 멤버수 -->
+										<div class="mo_list_members">
+											<p class="mo_list_boardnum" hidden>[[${m_board.boardnum}]]</p>
+											<p th:text="${member_cnt[iterStat.index]}"></p>
+											<p>/</p>
+											<!--총 인원수-->
+											<p>[[${m_board.mnum}]]</p>
+										</div>
+									</div>
+								</li>
+
+								<!-- 이달의 모임 추가되는곳 -->
+							</ul>
+						</div>
+					</div>
+
+					<div class="calendar_area" id="MF">
+
+						<!-- 달력 헤더 -->
+						<div class="calendar_header">
+							<div class="year-month"></div>
+							<div class="nav">
+								<button class="nav_btn go-prev" onclick="prevMonth()" id="MF">&lt;</button>
+								<button class="nav_btn go-today" onclick="goToday()" id="MF">Today</button>
+								<button class="nav_btn go-next" onclick="nextMonth()" id="MF">&gt;</button>
+							</div>
+						</div>
+
+						<!-- 달력 메인 -->
+						<div class="calendar_main">
+							<!-- 달력 요일 -->
+							<div class="days">
+								<div class="day">일</div>
+								<div class="day">월</div>
+								<div class="day">화</div>
+								<div class="day">수</div>
+								<div class="day">목</div>
+								<div class="day">금</div>
+								<div class="day">토</div>
+							</div>
+
+							<!-- 달력 날짜 -->
+							<div class="dates"></div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- 메인 보드 -->
+				<div class="board_area">
+
+					<div class="board_count">
+						검색된 글 개수 : <span th:text="${m_list.size()}"></span>
+						개
+					</div>
+
+					<div class="m_list_table">
+
+						<div class="row" id="thead">
+							<div>번호</div>
+							<div>조회수</div>
+							<div>제목</div>
+							<div>작성자</div>
+							<div>작성시간</div>
+						</div>
+
+						<div class="no_list">
+							<div th:if="${m_list == null or m_list.size() == 0}">검색된 게시글이 없습니다.</div>
+						</div>
+
+						<div class="m_list" style="display: none;" th:if="${m_list != null and m_list.size() > 0}"
+							th:each="m_board:${m_list}">
+							<div id="list" class="row">
+								<div>[[${m_board.boardnum}]]</div>
+								<div>[[${m_board.readcount}]]</div>
+								<div>[[${m_board.boardtitle}]]</div>
+								<div>[[${m_board.userid}]]</div>
+								<div class="plus_btn">
+									<div>[[${m_board.boarddatetime}]]</div>
+									<div class="plus_info">+</div>
+								</div>
+							</div>
+
+							<!-- 클릭 시 여기로 세부 페이지 띄워주기 -->
+							<div class="list_info" style="display: none;" th:id="${m_board.boardnum}">
+								<a class="more_info" th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">+</a>
+								<div class="close_info">⨉</div>
+
+								<div class="list_title">
+									[[${m_board.boardtitle}]]
+								</div>
+
+								<div class="list_info_1">
+									<div class="profile">
+										<div class="profile_img_box">
+											<img src="/images/test강아지.jpg" alt="" profile_img>
+										</div>
+										<div class="userid">[[${m_board.userid}]]</div>
+									</div>
+
+									<div class="list_date">
+										작성일 : [[${m_board.boarddatetime}]]
+									</div>
+								</div>
+
+								<div class="list_info_2">
+									<div class="m_date">
+										모임 날짜 : [[${m_board.setdate}]]
+									</div>
+
+									<div class="m_location">
+										모임 장소 : [[${m_board.place}]]
+									</div>
+
+									<div class="m_num">
+										인원수 : <span class="mnum">[[${m_board.mnum}]]</span>
+									</div>
+								</div>
+
+								<div class="list_info_3">
+									[[${m_board.boardcontent}]]
+								</div>
+
+								<div class="list_info_4">
+									<!-- 참여하기 누르면 인원 여기에 추가 -->
+
+								</div>
+
+								<div class="m_join_btn_area">
+									<div id="m_join" onclick="addUser(this)">참여하기</div>
+									<div id="m_join" onclick="delUser(this)">참여취소</div>
+								</div>
+
+								<!-- 작성자만 보여주게!!!! -->
+								<div class="edit_box">
+									<th:block th:if="${m_board.userid == session.loginUser}">
+										<a th:href="${'/mboard/m_modify?mboardnum=' + m_board.boardnum}">수정</a>
+										<a th:href="${'/mboard/m_remove?mboardnum=' + m_board.boardnum}">삭제</a>
+									</th:block>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+					<!--더보기-->
+					<div class="more_list_box">
+						<div class="more_list_btn" th:if="${m_list != null and m_list.size() > 7}">
+							더보기
+						</div>
+					</div>
+
+					<!-- 메인 게시판 돌아가기 -->
+					<div class="back_btn">
+						<a href="/mboard/m_board">돌아가기</a>
+					</div>
+
+				</div>
+
+				<div class="schedule_area">
+					<p id="MF">My Schedule</p>
+					<div class="schedulebox">
+						<div class="schedule_list">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 위로가기 버튼 -->
+			<div class="up_btn" onclick="up()">up</div>
+		</div>
+	</div>
+
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+
+</body>
+<script defer src="/js/mboard/script.js"></script>
+<script defer src="/js/mboard/cal.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</html>

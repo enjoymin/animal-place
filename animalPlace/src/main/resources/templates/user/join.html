@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+	<link rel="stylesheet" href="/css/KHE/style.css">
+</head>
+<body>
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
+    <div id="wrap">
+        <form id="joinform" action="/user/join" method="post" name="joinForm">
+            <table>
+                <tbody>
+					
+                    <tr>
+                        <th><label for="userid">아이디</label></th>
+                        <td><input type="text" name="userid" id="userid" placeholder="5~12자 아이디 입력">
+                            <!--<input type="button" value="중복확인" onclick="checkId()">-->
+                        </td>
+                    </tr>
+					<tr>
+						<th></th>
+						<td><div id="idwarning" class="warning"></div></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><div id="idwarning2" class="warning2"></div></td>
+					</tr>
+                    <tr>
+                        <th><label for="userpw">비밀번호</label></th>
+                        <td><input type="password" name="userpw" id="userpw" placeholder="8자이상 영대소문자, 숫자, 특수문자 혼용"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="userpw_re">비밀번호 확인</label></th>
+                        <td><input type="password" name="userpw_re" id="userpw_re"></td>
+                    </tr>
+					<tr>
+						<th></th>
+						<td><div id="pwwarning" class="warning"></div></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><div id="pwwarning2" class="warning2"></div></td>
+					</tr>
+                    <tr>
+                        <th><label for="username">이름</label></th>
+                        <td><input type="text" name="username" id="username"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="userphone">전화번호</label></th>
+                        <td><input type="text" name="userphone" id="userphone"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="useremail">이메일</label></th>
+                        <td><input type="text" name="useremail" id="useremail"></td>
+                    </tr>
+                    <tr class="zipcode_area">
+                        <th>우편번호</th>
+                        <td>
+                            <input type="text" name="zipcode" placeholder="우편번호" id="zipcode" readonly>
+                           <!-- <input type="button" value="우편번호 찾기" onclick="findAddr()">-->
+                        </td>
+                    </tr>
+                    <tr class="addr_area">
+                        <th>주소</th>
+                        <td><input type="text" name="addr" id="addr" placeholder="주소" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>상세주소</th>
+                        <td><input type="text" name="addrdetail" id="addrdetail" placeholder="상세주소"></td>
+                    </tr>
+                    <tr>
+                        <th>참고항목</th>
+                        <td><input type="text" name="addretc" id="addretc" placeholder="참고항목" readonly></td>
+                    </tr>
+					<tr>
+						<th><label for="userpet">애완동물</label></th>
+						<td><input type="text" name="userpet" id="userpet"></td>
+					</tr>
+                    <tr>
+                        <td colspan="2">
+                            <div style="text-align: center;">
+                                <input class="btn" type="button" value="가입완료" onclick="sendit()">
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/js/KHE/user.js"></script>
+<script>
+   
+</script>
+</html>
