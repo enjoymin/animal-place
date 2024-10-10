@@ -486,7 +486,7 @@
 			const a_boardnum = $('#boardnum');
 			const a_userid = $('#userid');
 			const a_title = $('#title');
-
+			
 
 			if (loginUser == null || loginUser.length === 0) {
 				alert("로그인 해야 댓글을 달 수 있습니다.");
@@ -508,7 +508,7 @@
 				data: {
 					replycontent: commentContent,
 					boardnum: boardNum,
-					replyuserid: userId
+					replyuserid: userId,
 				},
 				success: function (response) {
 					const newReply = response.reply;
