@@ -1,9 +1,12 @@
 package com.example.demo.service.adoption;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.adoption.AdoptionMapper;
+import com.example.demo.model.adoption.AdoptionCriteria;
 import com.example.demo.model.adoption.AdoptionDTO;
 
 @Service
@@ -18,6 +21,17 @@ public class AdoptionServiceImpl implements AdoptionService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public List<AdoptionDTO> getList(AdoptionCriteria adCri) {
+		List<AdoptionDTO> list = amapper.getList(adCri);
+		return list;
+	}
+
+	@Override
+	public long getTotal(AdoptionCriteria adCri) {
+		return amapper.getTotal(adCri);
 	}
 
 

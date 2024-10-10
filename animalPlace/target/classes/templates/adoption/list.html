@@ -16,61 +16,63 @@
         <div id="wrap">
             <h1>무료 동물 분양 게시판</h1>
             <div class="select_box">
-				<div class="fbox">				
-	                <div>
-	                    <span>동물 선택</span>
-	                    <select id="breed" onchange="updateSecondSelect()">
-	                        <option value="All">전체</option>
-	                        <option value="Dog">강아지</option>
-	                        <option value="Cat">고양이</option>
-	                        <option value="Hedgehog">고슴도치</option>
-	                        <option value="Pig">기니피그</option>
-	                        <option value="Rabbit">토끼</option>
-	                        <option value="Hamster">햄스터</option>
-	                        <option value="Etc">기타</option>
-	                    </select>
-	                </div>
-	                <div>
-	                    <span>품종 선택</span>
-	                    <select id="type">
-	                        <option value="All">전체</option>
-	                    </select>
-	                </div>
-				</div>
-				<div class="sbox">			
-					<div>
-						<span>지역 선택</span>
-						<select id="region">
-							<option value="All">전국</option>
-							<option value="Seoul">서울</option>
-							<option value="Busan">부산</option>
-							<option value="Daegu">대구</option>
-							<option value="Incheon">인천</option>
-							<option value="Gwangju">광주</option>
-							<option value="Daejeon">대전</option>
-							<option value="Ulsan">울산</option>
-							<option value="Gyeonggi">경기</option>
-							<option value="Gangwon">강원</option>
-							<option value="Chungbuk">충북</option>
-							<option value="Chungnam">충남</option>
-							<option value="Jeonbuk">전북</option>
-							<option value="Jeonnam">전남</option>
-							<option value="Gyeongbuk">경북</option>
-							<option value="Gyeongnam">경남</option>
-							<option value="Jeju">제주</option>
-							<option value="Sejong">세종</option>
-						</select>
+				<form name="searchForm" id="searchForm" action="/adoption/list">
+					<div class="fbox">				
+		                <div>
+		                    <span>동물 선택</span>
+		                    <select id="breed" onchange="updateSecondSelect()">
+		                        <option value="전체">전체</option>
+		                        <option value="강아지">강아지</option>
+		                        <option value="고양이">고양이</option>
+		                        <option value="고슴도치">고슴도치</option>
+		                        <option value="기니피그">기니피그</option>
+		                        <option value="토끼">토끼</option>
+		                        <option value="햄스터">햄스터</option>
+		                        <option value="기타">기타</option>
+		                    </select>
+		                </div>
+		                <div>
+		                    <span>품종 선택</span>
+		                    <select id="type">
+		                        <option value="전체">전체</option>
+		                    </select>
+		                </div>
 					</div>
-					<div>
-						<span>성별 선택</span>
-						<select id="gender">
-							<option value="All">전체</option>
-							<option value="Seoul">수컷</option>
-							<option value="Busan">암컷</option>
-						</select>
-					</div>
-	            </div>
-				<a class="btn">검색</a>
+					<div class="sbox">			
+						<div>
+							<span>지역 선택</span>
+							<select id="region">
+								<option value="전국">전국</option>
+								<option value="서울">서울</option>
+								<option value="부산">부산</option>
+								<option value="대구">대구</option>
+								<option value="인천">인천</option>
+								<option value="광주">광주</option>
+								<option value="대전">대전</option>
+								<option value="울산">울산</option>
+								<option value="경기">경기</option>
+								<option value="강원">강원</option>
+								<option value="충북">충북</option>
+								<option value="충남">충남</option>
+								<option value="전북">전북</option>
+								<option value="전남">전남</option>
+								<option value="경북">경북</option>
+								<option value="경남">경남</option>
+								<option value="제주">제주</option>
+								<option value="세종">세종</option>
+							</select>
+						</div>
+						<div>
+							<span>성별 선택</span>
+							<select id="gender">
+								<option value="전체">전체</option>
+								<option value="수컷">수컷</option>
+								<option value="암컷">암컷</option>
+							</select>
+						</div>
+		            </div>
+					<a class="btn search_btn" onclick="handleSearchBtn()">검색</a>
+				</form>
 			</div>
 			<div class="list table">
 				<div class="thead tac">
@@ -90,21 +92,37 @@
 						<div>등록된 게시글이 없습니다.</div>
 					</div>
 					<!-- 태그에 th:each="변수명:${반복자}" 속성을 달아 놓으면 반복자에서 꺼내오면서 반복되는 횟수만큼 태그를 생성한다. -->
-					<div class="row" th:if="${list != null and list.size() > 0}" th:each="board:${list}">
-						<div>[[${board.boardnum}]]</div>
+					<div class="row" th:if="${list != null and list.size() > 0}" th:each="adoption:${list}">
+						<div>사진예정</div>
+						<div>[[${adoption.breed}]]</div>
+						<div>[[${adoption.type}]]</div>
 						<div>
-							<a class="get" th:href="${board.boardnum}">
-								<sup class="new" th:if="${board.isNew}">New</sup>
-								<sup class="hot" th:if="${board.isHot}">Hot</sup>
-								[[${board.boardtitle}]]<span id="reply_cnt" th:text="${'[' + board.replyCnt + ']'}"></span>
+							<a class="get" th:href="${adoption.adoptionnum}">
+							[[${adoption.title}]]
 							</a>
 						</div>
-						<div>[[${board.userid}]]</div>
-						<div>[[${board.regdate}]]<th:block th:if="${board.regdate != board.updatedate}">(수정됨)</th:block></div>
-						<div>[[${board.readcount}]]</div>
+						<div>[[${adoption.gender}]]</div>
+						<div>[[${adoption.region}]]</div>
+						<div>[[${adoption.regdate}]]</div>
 					</div>
 				</div>
 			</div>
+			<!-- 페이징 처리하는 테이블 -->
+			<table class="pagination">
+				<tbody>
+					<tr>
+						<td>
+							<a th:if="${pageMaker.prev}" class="btn changePage" th:href="${pageMaker.startPage-1}">&lt;</a>
+							<!-- #numbers.sequence(1,7) : [1,2,3,4,5,6,7] -->
+							<th:block th:each="i:${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+								<a class="btn changePage" th:href="${i}" th:if="${pageMaker.adCri.pageNum != i}">[[${i}]]</a>
+								<span class="nowPage" th:if="${pageMaker.adCri.pageNum == i}">[[${i}]]</span>
+							</th:block>
+							<a th:if="${pageMaker.next}" class="btn changePage" th:href="${pageMaker.endPage+1}">&gt;</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 			<table class="btn_table">
 				<tbody>
 					<tr>
@@ -129,221 +147,223 @@
 	    secondSelect.innerHTML = "";
 	
 		// "기타" 선택 여부에 따라 처리
-		if (selectedAnimal === "Etc") {
+		if (selectedAnimal === "기타") {
 		    // "기타" 선택 시 "기타"만 추가
 		    const etcOption = document.createElement("option");
-		    etcOption.value = "Etc";
+		    etcOption.value = "기타";
 		    etcOption.textContent = "기타";
+			etcOption.setAttribute("th:selected", "${selectedType == '기타'}");
 		    secondSelect.appendChild(etcOption);
 		} else {
 		    // 첫 번째 옵션 추가
 		    const allOption = document.createElement("option");
-		    allOption.value = "All";
+		    allOption.value = "전체";
 		    allOption.textContent = "전체";
+			allOption.setAttribute("th:selected", "${selectedType == '전체'}");
 		    secondSelect.appendChild(allOption);
 		
 		    // 동물 선택에 따른 정보 설정
-		    if (selectedAnimal === "Dog") {
+		    if (selectedAnimal === "강아지") {
 		        const dogOptions = [
-		            { value: "goldendoodle", text: "골든두들" },
-		            { value: "goldenretriever", text: "골든 리트리버" },
-		            { value: "greatdane", text: "그레이트 데인" },
-					{ value: "greatpyrenees", text: "그레이트 피레니즈" },
-					{ value: "greyhound", text: "그레이하운드" },
-					{ value: "cotondetulear", text: "꼬똥 드 툴레아" },
-					{ value: "newfoundland", text: "뉴펀들랜드" },
-					{ value: "dachshund", text: "닥스훈트" },
-					{ value: "dalmatian", text: "달마시안" },
-					{ value: "dogoargentino", text: "도고 아르헨티노" },								
-					{ value: "dobermann", text: "도베르만" },
-					{ value: "labradorretriever", text: "래브라도 리트리버" },
-					{ value: "lhasaapso", text: "라사압소" },
-					{ value: "leica", text: "라이카" },
-					{ value: "rottweiler", text: "로트와일러" },
-					{ value: "malinois", text: "마리노이즈" },				
-					{ value: "mastiff", text: "마스티프" },
-					{ value: "maltese", text: "말티즈" },
-					{ value: "maltipoo", text: "말티푸" },
-					{ value: "molky", text: "몰키" },
-					{ value: "miniaturepinscher", text: "미니어처 핀셔" },
-					{ value: "basenji", text: "바센지" },								
-					{ value: "bassethound", text: "바셋 하운드" },
-					{ value: "weimaraner", text: "바이마라너" },
-					{ value: "bernesemountaindog", text: "버니즈 마운틴 독" },
-					{ value: "bedlingtonterrier", text: "베들링턴 테리어" },
-					{ value: "bordercollie", text: "보더 콜리" },
-					{ value: "bostonterrier", text: "보스턴 테리어" },	
-					{ value: "boxer", text: "복서" },
-					{ value: "balljoy", text: "볼조이" },
-					{ value: "firedog", text: "불개" },
-					{ value: "bulldog", text: "불독" },
-					{ value: "bullterrier", text: "불 테리어" },
-					{ value: "brusselsgriffon", text: "브뤼셀 그리펀" },								
-					{ value: "britney", text: "브리트니" },
-					{ value: "beagle", text: "비글" },
-					{ value: "bichonfrize", text: "비숑 프리제" },
-					{ value: "beardedcollie", text: "비어디드 콜리" },
-					{ value: "vizsla", text: "비즐라" },
-					{ value: "papillon", text: "파피용" },				
-					{ value: "samoyed", text: "사모예드" },
-					{ value: "sapsaree", text: "삽살개" },
-					{ value: "sharpei", text: "샤페이" },
-					{ value: "saintbernard", text: "세인트 버나드" },
-					{ value: "germanshepherd", text: "저먼 셰퍼드" },
-					{ value: "ShetlandSheepdog", text: "셰틀랜드 쉽독" },								
-					{ value: "schnauzer", text: "슈나우저" },
-					{ value: "Shiba", text: "시바견" },
-					{ value: "siberianhusky", text: "시베리안 허스키" },
-					{ value: "shihtzu", text: "시츄" },
-					{ value: "americancockerspaniel", text: "아메리칸 코커 스패니얼" },	
-					{ value: "irishsetter", text: "아이리시 세터" },
-					{ value: "akita", text: "아키타견" },
-					{ value: "afghanhound", text: "아프간 하운드" },
-					{ value: "alaskanmalamute", text: "알래스칸 맬러뮤트" },
-					{ value: "alaskankleekai", text: "알래스칸 클리 카이" },								
-					{ value: "airedaleterrier", text: "에어데일 테리어" },
-					{ value: "ovcharka", text: "오브차카" },
-					{ value: "oldenglishsheepdog", text: "올드 잉글리시 쉽독" },
-					{ value: "wirefoxterrier", text: "와이어 폭스 테리어" },
-					{ value: "yorkshireterrier", text: "요크셔 테리어" },
-					{ value: "welshcorgi", text: "웰시 코기" },				
-					{ value: "italiangreyhound", text: "이탈리안 그레이하운드" },
-					{ value: "englishcockerspaniel", text: "잉글리쉬 코카스파니엘" },
-					{ value: "jackrussellterrier", text: "잭 러셀 테리어" },
-					{ value: "japanesespitz", text: "재패니즈 스피츠" },
-					{ value: "Jindodog", text: "진돗개" },
-					{ value: "chowchow", text: "차우차우" },								
-					{ value: "chihuahua", text: "치와와" },
-					{ value: "chin", text: "친" },
-					{ value: "canecorso", text: "카네코르소" },
-					{ value: "colley", text: "콜리" },
-					{ value: "kingcharlesspaniel", text: "킹 찰스 스패니얼" },
-					{ value: "pug", text: "퍼그" },	
-					{ value: "pekingese", text: "페키니즈" },
-					{ value: "pembrokewelshcorgi", text: "펨브록 웰시 코기" },
-					{ value: "pomeranian", text: "포메라니안" },
-					{ value: "pointer", text: "포인터" },
-					{ value: "pomsky", text: "폼스키" },
-					{ value: "pompitz", text: "폼피츠" },								
-					{ value: "poodle", text: "푸들" },
-					{ value: "poongsandog", text: "풍산개" },
-					{ value: "frenchbulldog", text: "프렌치 불독" },
-					{ value: "pitbullterrier", text: "핏불 테리어" },
-					{ value: "white terrier", text: "화이트 테리어" },
-					{ value: "Etc", text: "기타" }
+				    { value: "골든두들", text: "골든두들", isSelected: "${selectedType == '골든두들'}" },
+				    { value: "골든 리트리버", text: "골든 리트리버", isSelected: "${selectedType == '골든 리트리버'}" },
+				    { value: "그레이트 데인", text: "그레이트 데인", isSelected: "${selectedType == '그레이트 데인'}" },
+					{ value: "그레이트 피레니즈", text: "그레이트 피레니즈", isSelected: "${selectedType == '그레이트 피레니즈'}" },
+					{ value: "그레이하운드", text: "그레이하운드", isSelected: "${selectedType == '그레이하운드'}" },
+					{ value: "꼬똥 드 툴레아", text: "꼬똥 드 툴레아", isSelected: "${selectedType == '꼬똥 드 툴레아'}" },
+					{ value: "뉴펀들랜드", text: "뉴펀들랜드", isSelected: "${selectedType == '뉴펀들랜드'}" },
+					{ value: "닥스훈트", text: "닥스훈트", isSelected: "${selectedType == '닥스훈트'}" },
+					{ value: "달마시안", text: "달마시안", isSelected: "${selectedType == '달마시안'}" },
+					{ value: "도고 아르헨티노", text: "도고 아르헨티노", isSelected: "${selectedType == '도고 아르헨티노'}" },								
+					{ value: "도베르만", text: "도베르만", isSelected: "${selectedType == '도베르만'}" },
+					{ value: "래브라도 리트리버", text: "래브라도 리트리버", isSelected: "${selectedType == '래브라도 리트리버'}" },
+					{ value: "라사압소", text: "라사압소", isSelected: "${selectedType == '라사압소'}" },
+					{ value: "라이카", text: "라이카", isSelected: "${selectedType == '라이카'}" },
+					{ value: "로트와일러", text: "로트와일러", isSelected: "${selectedType == '로트와일러'}" },
+					{ value: "마리노이즈", text: "마리노이즈", isSelected: "${selectedType == '마리노이즈'}" },				
+					{ value: "마스티프", text: "마스티프", isSelected: "${selectedType == '마스티프'}" },
+					{ value: "말티즈", text: "말티즈", isSelected: "${selectedType == '말티즈'}" },
+					{ value: "말티푸", text: "말티푸", isSelected: "${selectedType == '말티푸'}" },
+					{ value: "몰키", text: "몰키", isSelected: "${selectedType == '몰키'}" },
+					{ value: "미니어처 핀셔", text: "미니어처 핀셔", isSelected: "${selectedType == '미니어처 핀셔'}" },
+					{ value: "바센지", text: "바센지", isSelected: "${selectedType == '바센지'}" },
+					{ value: "바셋 하운드", text: "바셋 하운드", isSelected: "${selectedType == '바셋 하운드'}" },
+					{ value: "바이마라너", text: "바이마라너", isSelected: "${selectedType == '바이마라너'}" },
+					{ value: "버니즈 마운틴 독", text: "버니즈 마운틴 독", isSelected: "${selectedType == '버니즈 마운틴 독'}" },
+					{ value: "베들링턴 테리어", text: "베들링턴 테리어", isSelected: "${selectedType == '베들링턴 테리어'}" },
+					{ value: "보더 콜리", text: "보더 콜리", isSelected: "${selectedType == '보더 콜리'}" },
+					{ value: "보스턴 테리어", text: "보스턴 테리어", isSelected: "${selectedType == '보스턴 테리어'}" },	
+					{ value: "복서", text: "복서", isSelected: "${selectedType == '복서'}" },
+					{ value: "볼조이", text: "볼조이", isSelected: "${selectedType == '볼조이'}" },
+					{ value: "불개", text: "불개", isSelected: "${selectedType == '불개'}" },
+					{ value: "불독", text: "불독", isSelected: "${selectedType == '불독'}" },
+					{ value: "불 테리어", text: "불 테리어", isSelected: "${selectedType == '불 테리어'}" },
+					{ value: "브뤼셀 그리펀", text: "브뤼셀 그리펀", isSelected: "${selectedType == '브뤼셀 그리펀'}"},								
+					{ value: "브리트니", text: "브리트니", isSelected: "${selectedType == '브리트니'}" },
+					{ value: "비글", text: "비글", isSelected: "${selectedType == '비글'}" },
+					{ value: "비숑 프리제", text: "비숑 프리제", isSelected: "${selectedType == '비숑 프리제'}" },
+					{ value: "비어디드 콜리", text: "비어디드 콜리", isSelected: "${selectedType == '비어디드 콜리'}" },
+					{ value: "비즐라", text: "비즐라", isSelected: "${selectedType == '비즐라'}" },
+					{ value: "파피용", text: "파피용", isSelected: "${selectedType == '파피용'}" },
+					{ value: "사모예드", text: "사모예드", isSelected: "${selectedType == '사모예드'}" },
+					{ value: "삽살개", text: "삽살개", isSelected: "${selectedType == '삽살개'}" },
+					{ value: "샤페이", text: "샤페이", isSelected: "${selectedType == '샤페이'}" },
+					{ value: "세인트 버나드", text: "세인트 버나드", isSelected: "${selectedType == '세인트 버나드'}" },
+					{ value: "저먼 셰퍼드", text: "저먼 셰퍼드", isSelected: "${selectedType == '저먼 셰퍼드'}" },
+					{ value: "셰틀랜드 쉽독", text: "셰틀랜드 쉽독", isSelected: "${selectedType == '셰틀랜드 쉽독'}" },
+					{ value: "슈나우저", text: "슈나우저", isSelected: "${selectedType == '슈나우저'}" },
+					{ value: "시바견", text: "시바견", isSelected: "${selectedType == '시바견'}" },
+					{ value: "시베리안 허스키", text: "시베리안 허스키", isSelected: "${selectedType == '시베리안 허스키'}" },
+					{ value: "시츄", text: "시츄", isSelected: "${selectedType == '시츄'}" },
+					{ value: "아메리칸 코커 스패니얼", text: "아메리칸 코커 스패니얼", isSelected: "${selectedType == '아메리칸 코커 스패니얼'}" },	
+					{ value: "아이리시 세터", text: "아이리시 세터", isSelected: "${selectedType == '아이리시 세터'}" },
+					{ value: "아키타견", text: "아키타견", isSelected: "${selectedType == '아키타견'}" },
+					{ value: "아프간 하운드", text: "아프간 하운드", isSelected: "${selectedType == '아프간 하운드'}" },
+					{ value: "알래스칸 맬러뮤트", text: "알래스칸 맬러뮤트", isSelected: "${selectedType == '알래스칸 맬러뮤트'}" },
+					{ value: "알래스칸 클리 카이", text: "알래스칸 클리 카이", isSelected: "${selectedType == '알래스칸 클리 카이'}" },
+					{ value: "에어데일 테리어", text: "에어데일 테리어", isSelected: "${selectedType == '에어데일 테리어'}" },
+					{ value: "오브차카", text: "오브차카", isSelected: "${selectedType == '오브차카'}" },
+					{ value: "올드 잉글리시 쉽독", text: "올드 잉글리시 쉽독", isSelected: "${selectedType == '올드 잉글리시 쉽독'}" },
+					{ value: "와이어 폭스 테리어", text: "와이어 폭스 테리어", isSelected: "${selectedType == '와이어 폭스 테리어'}" },
+					{ value: "요크셔 테리어", text: "요크셔 테리어", isSelected: "${selectedType == '요크셔 테리어'}" },
+					{ value: "웰시 코기", text: "웰시 코기", isSelected: "${selectedType == '웰시 코기'}" },
+					{ value: "이탈리안 그레이하운드", text: "이탈리안 그레이하운드", isSelected: "${selectedType == '이탈리안 그레이하운드'}" },
+					{ value: "잉글리쉬 코카스파니엘", text: "잉글리쉬 코카스파니엘", isSelected: "${selectedType == '잉글리쉬 코카스파니엘'}" },
+					{ value: "잭 러셀 테리어", text: "잭 러셀 테리어", isSelected: "${selectedType == '잭 러셀 테리어'}" },
+					{ value: "재패니즈 스피츠", text: "재패니즈 스피츠", isSelected: "${selectedType == '재패니즈 스피츠'}" },
+					{ value: "진돗개", text: "진돗개", isSelected: "${selectedType == '진돗개'}" },
+					{ value: "차우차우", text: "차우차우", isSelected: "${selectedType == '차우차우'}" },
+					{ value: "치와와", text: "치와와", isSelected: "${selectedType == '치와와'}" },
+					{ value: "친", text: "친", isSelected: "${selectedType == '친'}" },
+					{ value: "카네코르소", text: "카네코르소", isSelected: "${selectedType == '카네코르소'}" },
+					{ value: "콜리", text: "콜리", isSelected: "${selectedType == '콜리'}" },
+					{ value: "킹 찰스 스패니얼", text: "킹 찰스 스패니얼", isSelected: "${selectedType == '킹 찰스 스패니얼'}" },
+					{ value: "퍼그", text: "퍼그", isSelected: "${selectedType == '퍼그'}" },	
+					{ value: "페키니즈", text: "페키니즈", isSelected: "${selectedType == '페키니즈'}" },
+					{ value: "펨브록 웰시 코기", text: "펨브록 웰시 코기", isSelected: "${selectedType == '펨브록 웰시 코기'}" },
+					{ value: "포메라니안", text: "포메라니안", isSelected: "${selectedType == '포메라니안'}" },
+					{ value: "포인터", text: "포인터", isSelected: "${selectedType == '포인터'}" },
+					{ value: "폼스키", text: "폼스키", isSelected: "${selectedType == '폼스키'}" },
+					{ value: "폼피츠", text: "폼피츠", isSelected: "${selectedType == '폼피츠'}" },
+					{ value: "푸들", text: "푸들", isSelected: "${selectedType == '푸들'}" },
+					{ value: "풍산개", text: "풍산개", isSelected: "${selectedType == '풍산개'}" },
+					{ value: "프렌치 불독", text: "프렌치 불독", isSelected: "${selectedType == '프렌치 불독'}" },
+					{ value: "핏불 테리어", text: "핏불 테리어", isSelected: "${selectedType == '핏불 테리어'}" },
+					{ value: "화이트 테리어", text: "화이트 테리어", isSelected: "${selectedType == '화이트 테리어'}" },
+					{ value: "기타", text: "기타", isSelected: "${selectedType == '기타'}" }
 		        ];
 		        addOptionsToSelect(dogOptions);
-		    } else if (selectedAnimal === "Cat") {
+		    } else if (selectedAnimal === "고양이") {
 		        const catOptions = [
-					{ value: "nevamasquerade", text: "네바 마스커레이드" },
-					{ value: "norwegianforestcat", text: "노르웨이 숲고양이" },
-					{ value: "devonrex", text: "데본렉스" },
-					{ value: "lapham", text: "라펌" },
-					{ value: "russianblue", text: "러시안 블루" },
-					{ value: "ragdoll", text: "랙돌" },
-					{ value: "menx", text: "망스" },
-					{ value: "manx", text: "맹크스" },
-					{ value: "munchkin", text: "먼치킨" },
-					{ value: "mainecoon", text: "메인쿤" },
-					{ value: "bengal", text: "벵갈" },
-					{ value: "birman", text: "버만" },				
-					{ value: "burmese", text: "버미즈" },
-					{ value: "burmilla", text: "버밀라" },
-					{ value: "bombay", text: "봄베이" },
-					{ value: "britishshorthair", text: "브리티시 쇼트헤어" },
-					{ value: "savannah", text: "사바나" },
-					{ value: "siamese", text: "샴" },								
-					{ value: "selkirkrex", text: "셀커크 렉스" },
-					{ value: "somali", text: "소말리" },
-					{ value: "snowshoes", text: "스노우슈" },
-					{ value: "scottishfold", text: "스코티시 폴드" },
-					{ value: "sphinx", text: "스핑크스" },
-					{ value: "singapura", text: "싱가푸라" },
-					{ value: "americanbobtail", text: "아메리칸 밥테일" },
-					{ value: "americanburmese", text: "아메리칸 버미즈" },
-					{ value: "americanshorthair", text: "아메리칸 쇼트헤어" },								
-					{ value: "americanwirehair", text: "아메리칸 와이어헤어" },
-					{ value: "americancurl", text: "아메리칸 컬" },
-					{ value: "abyssinian", text: "아비시니안" },
-					{ value: "exoticshorthair", text: "엑조틱 쇼트헤어" },
-					{ value: "orientallonghair", text: "오리엔탈 롱헤어" },				
-					{ value: "orientalshorthair", text: "오리엔탈 쇼트헤어" },
-					{ value: "europeanshorthair", text: "유러피안 숏헤어" },
-					{ value: "egyptianmau", text: "이집션 마우" },
-					{ value: "japanesebobtail", text: "재패니즈밥테일" },
-					{ value: "cornishrex", text: "코니시 렉스" },
-					{ value: "turkishvan", text: "터키시 밴" },								
-					{ value: "turkishangora", text: "터키시 앙고라" },
-					{ value: "tonkinese", text: "통키니즈" },								
-					{ value: "persian", text: "페르시안" },
-					{ value: "persianchinchilla", text: "페르시안 친칠라" },
-					{ value: "havana", text: "하바나" },
-					{ value: "havanabrown", text: "하바나 브라운" },								
-					{ value: "koreancat", text: "한국고양이" },
-					{ value: "himalayan", text: "히말라얀" },
-					{ value: "Etc", text: "기타" }
+					{ value: "네바 마스커레이드", text: "네바 마스커레이드", isSelected: "${selectedType == '네바 마스커레이드'}" },
+					{ value: "노르웨이 숲고양이", text: "노르웨이 숲고양이", isSelected: "${selectedType == '노르웨이 숲고양이'}" },
+					{ value: "데본렉스", text: "데본렉스", isSelected: "${selectedType == '데본렉스'}" },
+					{ value: "라펌", text: "라펌", isSelected: "${selectedType == '라펌'}" },
+					{ value: "러시안 블루", text: "러시안 블루", isSelected: "${selectedType == '러시안 블루'}" },
+					{ value: "랙돌", text: "랙돌", isSelected: "${selectedType == '랙돌'}" },
+					{ value: "망스", text: "망스", isSelected: "${selectedType == '망스'}" },
+					{ value: "맹크스", text: "맹크스", isSelected: "${selectedType == '맹크스'}" },
+					{ value: "먼치킨", text: "먼치킨", isSelected: "${selectedType == '먼치킨'}" },
+					{ value: "메인쿤", text: "메인쿤", isSelected: "${selectedType == '메인쿤'}" },
+					{ value: "벵갈", text: "벵갈", isSelected: "${selectedType == '벵갈'}" },
+					{ value: "버만", text: "버만", isSelected: "${selectedType == '버만'}" },
+					{ value: "버미즈", text: "버미즈", isSelected: "${selectedType == '버미즈'}" },
+					{ value: "버밀라", text: "버밀라", isSelected: "${selectedType == '버밀라'}" },
+					{ value: "봄베이", text: "봄베이", isSelected: "${selectedType == '봄베이'}" },
+					{ value: "브리티시 쇼트헤어", text: "브리티시 쇼트헤어", isSelected: "${selectedType == '브리티시 쇼트헤어'}" },
+					{ value: "사바나", text: "사바나", isSelected: "${selectedType == '사바나'}" },
+					{ value: "샴", text: "샴", isSelected: "${selectedType == '샴'}" },
+					{ value: "셀커크 렉스", text: "셀커크 렉스", isSelected: "${selectedType == '셀커크 렉스'}" },
+					{ value: "소말리", text: "소말리", isSelected: "${selectedType == '소말리'}" },
+					{ value: "스노우슈", text: "스노우슈", isSelected: "${selectedType == '스노우슈'}" },
+					{ value: "스코티시 폴드", text: "스코티시 폴드", isSelected: "${selectedType == '스코티시 폴드'}" },
+					{ value: "스핑크스", text: "스핑크스", isSelected: "${selectedType == '스핑크스'}" },
+					{ value: "싱가푸라", text: "싱가푸라", isSelected: "${selectedType == '싱가푸라'}" },
+					{ value: "아메리칸 밥테일", text: "아메리칸 밥테일", isSelected: "${selectedType == '아메리칸 밥테일'}" },
+					{ value: "아메리칸 버미즈", text: "아메리칸 버미즈", isSelected: "${selectedType == '아메리칸 버미즈'}" },
+					{ value: "아메리칸 쇼트헤어", text: "아메리칸 쇼트헤어", isSelected: "${selectedType == '아메리칸 쇼트헤어'}" },
+					{ value: "아메리칸 와이어헤어", text: "아메리칸 와이어헤어", isSelected: "${selectedType == '아메리칸 와이어헤어'}" },
+					{ value: "아메리칸 컬", text: "아메리칸 컬", isSelected: "${selectedType == '아메리칸 컬'}" },
+					{ value: "아비시니안", text: "아비시니안", isSelected: "${selectedType == '아비시니안'}" },
+					{ value: "엑조틱 쇼트헤어", text: "엑조틱 쇼트헤어", isSelected: "${selectedType == '엑조틱 쇼트헤어'}" },
+					{ value: "오리엔탈 롱헤어", text: "오리엔탈 롱헤어", isSelected: "${selectedType == '오리엔탈 롱헤어'}" },				
+					{ value: "오리엔탈 쇼트헤어", text: "오리엔탈 쇼트헤어", isSelected: "${selectedType == '오리엔탈 쇼트헤어'}" },
+					{ value: "유러피안 숏헤어", text: "유러피안 숏헤어", isSelected: "${selectedType == '유러피안 숏헤어'}" },
+					{ value: "이집션 마우", text: "이집션 마우", isSelected: "${selectedType == '이집션 마우'}" },
+					{ value: "재패니즈밥테일", text: "재패니즈밥테일", isSelected: "${selectedType == '재패니즈밥테일'}" },
+					{ value: "코니시 렉스", text: "코니시 렉스", isSelected: "${selectedType == '코니시 렉스'}" },
+					{ value: "터키시 밴", text: "터키시 밴", isSelected: "${selectedType == '터키시 밴'}" },
+					{ value: "터키시 앙고라", text: "터키시 앙고라", isSelected: "${selectedType == '터키시 앙고라'}" },
+					{ value: "통키니즈", text: "통키니즈", isSelected: "${selectedType == '통키니즈'}" },
+					{ value: "페르시안", text: "페르시안", isSelected: "${selectedType == '페르시안'}" },
+					{ value: "페르시안 친칠라", text: "페르시안 친칠라", isSelected: "${selectedType == '페르시안 친칠라'}" },
+					{ value: "하바나", text: "하바나", isSelected: "${selectedType == '하바나'}" },
+					{ value: "하바나 브라운", text: "하바나 브라운", isSelected: "${selectedType == '하바나 브라운'}" },
+					{ value: "한국고양이", text: "한국고양이", isSelected: "${selectedType == '한국고양이'}" },
+					{ value: "히말라얀", text: "히말라얀", isSelected: "${selectedType == '히말라얀'}" },
+					{ value: "기타", text: "기타", isSelected: "${selectedType == '기타'}" }
 		        ];
 		        addOptionsToSelect(catOptions);
-		    } else if (selectedAnimal === "Hedgehog") {
+		    } else if (selectedAnimal === "고슴도치") {
 		        const hedgehogOptions = [
-					{ value: "snowchampagne", text: "스노우샴페인" },				
-					{ value: "standard", text: "스탠다드" },
-					{ value: "cinnamon", text: "시나몬" },
-					{ value: "silvercharcoal", text: "실버챠콜" },
-					{ value: "apricotwhitechocolate", text: "아프리콧 화이트초코" },
-					{ value: "albino", text: "알비노" },
-					{ value: "zebrapinto", text: "얼룩말핀토" },								
-					{ value: "chocolate", text: "초콜릿" },
-					{ value: "cream", text: "크림" },
-					{ value: "platina", text: "플라티나" },
-					{ value: "pinto", text: "핀토" },
-					{ value: "whitechampagne", text: "화이트샴페인" },
-					{ value: "whitechocolate", text: "화이트초코" },								
-					{ value: "Etc", text: "기타" }
+					{ value: "스노우샴페인", text: "스노우샴페인", isSelected: "${selectedType == '스노우샴페인'}" },
+					{ value: "스탠다드", text: "스탠다드", isSelected: "${selectedType == '스탠다드'}" },
+					{ value: "시나몬", text: "시나몬", isSelected: "${selectedType == '시나몬'}" },
+					{ value: "실버챠콜", text: "실버챠콜", isSelected: "${selectedType == '실버챠콜'}" },
+					{ value: "아프리콧 화이트초코", text: "아프리콧 화이트초코", isSelected: "${selectedType == '아프리콧 화이트초코'}" },
+					{ value: "알비노", text: "알비노", isSelected: "${selectedType == '알비노'}" },
+					{ value: "얼룩말핀토", text: "얼룩말핀토", isSelected: "${selectedType == '얼룩말핀토'}" },
+					{ value: "초콜릿", text: "초콜릿", isSelected: "${selectedType == '초콜릿'}" },
+					{ value: "크림", text: "크림", isSelected: "${selectedType == '크림'}" },
+					{ value: "플라티나", text: "플라티나", isSelected: "${selectedType == '플라티나'}" },
+					{ value: "핀토", text: "핀토", isSelected: "${selectedType == '핀토'}" },
+					{ value: "화이트샴페인", text: "화이트샴페인", isSelected: "${selectedType == '화이트샴페인'}" },
+					{ value: "화이트초코", text: "화이트초코", isSelected: "${selectedType == '화이트초코'}" },
+					{ value: "기타", text: "기타", isSelected: "${selectedType == '기타'}" }
 		        ];
 		        addOptionsToSelect(hedgehogOptions);
-		    } else if (selectedAnimal === "Pig") {
+		    } else if (selectedAnimal === "기니피그") {
 		        const pigOptions = [
-					{ value: "skinny", text: "스키니" },
-					{ value: "silky", text: "실키" },
-					{ value: "american", text: "아메리칸" },								
-					{ value: "abyssinian", text: "아비시니안" },
-					{ value: "coronet", text: "코로넷" },
-					{ value: "crested", text: "크레스티드" },
-					{ value: "teddy", text: "테디" },
-					{ value: "texel", text: "텍셀" },
-					{ value: "peruvian", text: "페루비안" },								
-					{ value: "Etc", text: "기타" }
+					{ value: "스키니", text: "스키니", isSelected: "${selectedType == '스키니'}" },
+					{ value: "실키", text: "실키", isSelected: "${selectedType == '실키'}" },
+					{ value: "아메리칸", text: "아메리칸", isSelected: "${selectedType == '아메리칸'}" },
+					{ value: "아비시니안", text: "아비시니안", isSelected: "${selectedType == '아비시니안'}" },
+					{ value: "코로넷", text: "코로넷", isSelected: "${selectedType == '코로넷'}" },
+					{ value: "크레스티드", text: "크레스티드", isSelected: "${selectedType == '크레스티드'}" },
+					{ value: "테디", text: "테디", isSelected: "${selectedType == '테디'}" },
+					{ value: "텍셀", text: "텍셀", isSelected: "${selectedType == '텍셀'}" },
+					{ value: "페루비안", text: "페루비안", isSelected: "${selectedType == '페루비안'}" },								
+					{ value: "기타", text: "기타", isSelected: "${selectedType == '기타'}" }
 		        ];
 		        addOptionsToSelect(pigOptions);
-		    } else if (selectedAnimal === "Rabbit") {
+		    } else if (selectedAnimal === "토끼") {
 		        const rabbitOptions = [
-		            { value: "newzealandwhite", text: "뉴질랜드 화이트" },
-					{ value: "dutch", text: "더치" },
-					{ value: "dwarf", text: "드워프" },
-					{ value: "lionhead", text: "라이언헤드" },								
-					{ value: "rex", text: "렉스" },
-					{ value: "robyear", text: "롭이어" },
-					{ value: "angora", text: "앙고라" },
-					{ value: "chinchilla", text: "친칠라" },
-					{ value: "harlequin", text: "할리퀸" },
-					{ value: "himalayas", text: "히말라야" },								
-					{ value: "Etc", text: "기타" }
+					{ value: "뉴질랜드 화이트", text: "뉴질랜드 화이트", isSelected: "${selectedType == '뉴질랜드 화이트'}" },
+					{ value: "더치", text: "더치", isSelected: "${selectedType == '더치'}" },
+					{ value: "드워프", text: "드워프", isSelected: "${selectedType == '드워프'}" },
+					{ value: "라이언헤드", text: "라이언헤드", isSelected: "${selectedType == '라이언헤드'}" },
+					{ value: "렉스", text: "렉스", isSelected: "${selectedType == '렉스'}" },
+					{ value: "롭이어", text: "롭이어", isSelected: "${selectedType == '롭이어'}" },
+					{ value: "앙고라", text: "앙고라", isSelected: "${selectedType == '앙고라'}" },
+					{ value: "친칠라", text: "친칠라", isSelected: "${selectedType == '친칠라'}" },
+					{ value: "할리퀸", text: "할리퀸", isSelected: "${selectedType == '할리퀸'}" },
+					{ value: "히말라야", text: "히말라야", isSelected: "${selectedType == '히말라야'}" },
+					{ value: "기타", text: "기타", isSelected: "${selectedType == '기타'}" }
 		        ];
 		        addOptionsToSelect(rabbitOptions);
-		    }  else if (selectedAnimal === "Hamster") {
+		    }  else if (selectedAnimal === "햄스터") {
 		        const hamsterOptions = [
-					{ value: "roborovski", text: "로보로브스키" },
-					{ value: "bluesapphire", text: "블루사파이어" },
-					{ value: "snowwhite", text: "스노우화이트" },
-					{ value: "junglian", text: "정글리안" },								
-					{ value: "creamsapphire", text: "크림사파이어" },
-					{ value: "pearl", text: "펄" },
-					{ value: "pearljjang", text: "펄짱" },
-					{ value: "pudding", text: "푸딩" },
-					{ value: "hetergray", text: "헤테르 그레이" },
-					{ value: "whiteroborovski", text: "화이트로보로브스키" },								
-					{ value: "Etc", text: "기타" }
+					{ value: "로보로브스키", text: "로보로브스키", isSelected: "${selectedType == '로보로브스키'}" },
+					{ value: "블루사파이어", text: "블루사파이어", isSelected: "${selectedType == '블루사파이어'}" },
+					{ value: "스노우화이트", text: "스노우화이트", isSelected: "${selectedType == '스노우화이트'}" },
+					{ value: "정글리안", text: "정글리안", isSelected: "${selectedType == '정글리안'}" },
+					{ value: "크림사파이어", text: "크림사파이어", isSelected: "${selectedType == '크림사파이어'}" },
+					{ value: "펄", text: "펄", isSelected: "${selectedType == '펄'}" },
+					{ value: "펄짱", text: "펄짱", isSelected: "${selectedType == '펄짱'}" },
+					{ value: "푸딩", text: "푸딩", isSelected: "${selectedType == '푸딩'}" },
+					{ value: "헤테르 그레이", text: "헤테르 그레이", isSelected: "${selectedType == '헤테르 그레이'}" },
+					{ value: "화이트로보로브스키", text: "화이트로보로브스키", isSelected: "${selectedType == '화이트로보로브스키'}"},								
+					{ value: "기타", text: "기타", isSelected: "${selectedType == '기타'}" }
 		        ];
 		        addOptionsToSelect(hamsterOptions);
 		    } 
@@ -359,5 +379,12 @@
 	        document.getElementById("type").appendChild(newOption);
 	    });
 	}
+	
+	function handleSearchBtn(){
+			const form = document.searchForm;
+			//유효성 검사
+			form.pageNum.value = 1;
+			form.submit();
+		}
 </script>
 </html>
