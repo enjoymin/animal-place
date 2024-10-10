@@ -52,8 +52,8 @@ public class AlarmServiceImpl implements AlarmService {
 	}
 
 	@Override
-	public boolean deleteAlarmByPath(String path) {
-		if(amapper.deleteAlarmByPath(path) !=0) {
+	public boolean deleteAlarmByPath(String userid, String path) {
+		if(amapper.deleteAlarmByPath(userid, path) !=0) {
 			return true;
 		}
 		else {

@@ -119,8 +119,11 @@ public class M_BoardController {
 	            .collect(Collectors.groupingBy(M_ReplyDTO::getBoardnum));
 	        
 	    model.addAttribute("repliesByBoardNum", repliesByBoardNum);
+	    
+	    HttpSession session = req.getSession();
+		String userid =  (String) session.getAttribute("loginUser");
 	    String path = "/mboard/m_get?mboardnum="+mboardnum;
-	    alservice.deleteAlarmByPath(path);
+	    alservice.deleteAlarmByPath(userid, path);
 
 	    
 		return "/mboard/m_get";
