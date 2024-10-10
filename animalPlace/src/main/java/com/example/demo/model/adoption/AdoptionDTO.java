@@ -14,7 +14,7 @@ public class AdoptionDTO {
 	private String gender;
 	private String age;
 	private String cost;
-	private boolean adoptionOk;
+	private String adoptionOk;
 	private String userid;
 	
 }
