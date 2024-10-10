@@ -223,6 +223,14 @@ public class M_BoardController {
 	    }
 	}
 	
+	@PostMapping("modify_reply")
+	public ResponseEntity<String> modify_reply(@RequestBody M_ReplyDTO replyDTO) {
+		if(re_service.modify_reply(replyDTO)) {
+			return ResponseEntity.ok("댓글 수정 완료!");
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 수정 실패");
+	}
+	
 	@PostMapping("delete_reply")
 	public ResponseEntity<String> delete_reply(@RequestBody M_ReplyDTO replyDTO) {
 		if(re_service.delete_reply(replyDTO)) {

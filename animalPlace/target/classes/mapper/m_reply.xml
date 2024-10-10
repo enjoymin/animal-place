@@ -17,6 +17,12 @@
 		where replynum=#{replynum}
 	</delete>
 	
+	<update id="modify_reply">
+		update m_reply
+		set replycontent=#{replycontent}
+		where replynum=#{replynum}
+	</update>
+	
 </mapper>
 
 
