@@ -101,6 +101,27 @@
 	const fileList = $('#fileList');
 	let dataTransfer = new DataTransfer(); // DataTransfer 객체 초기화
 
+	
+	$(document).ready(function() {
+	    const urlParams = new URLSearchParams(window.location.search);
+	    const boardnum = urlParams.get('boardnum');
+
+	    if (boardnum) {
+	        // AJAX 요청을 통해 게시글 내용을 가져옴
+	        $.ajax({
+	            url: '/pboard/get',
+	            data: { boardnum: boardnum },
+	            success: function(data) {
+	                // 모달 내용을 업데이트
+	                $('#viewPostModal .modal_content').html(data); // 응답으로 받은 HTML을 모달에 넣기
+	                $('#viewPostModal').css('display', 'flex'); // 모달 표시
+	            },
+	            error: function() {
+	                alert('게시글을 불러오는 데 실패했습니다.');
+	            }
+	        });
+	    }
+	});
 
 
 	// 파일 추가 버튼 클릭 시 파일 입력 클릭
@@ -307,10 +328,15 @@
 					// 좋아요가 없는 상태
 					$.ajax({
 						url: '/plikelist/insert',
+						type:'POST',
 						data: {boardnum: boardnum},
-						success: function () {
+						success: function (response) {
 							const currentCount = parseInt(likeCountElem.text());
 							const newCount = currentCount + 1;
+							console.log(response);
+							const a_userid = response.alarm.userid;
+							const a_title = response.alarm.boardtitle;
+							
 							likeCountElem.text(newCount);
 							likeImg.attr('src', '/images/pimages/like.png'); // 이미지 변경
 						},
