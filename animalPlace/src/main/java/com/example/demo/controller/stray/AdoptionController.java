@@ -22,6 +22,7 @@ public class AdoptionController {
 	
 	@GetMapping(value = {"list"})
 	public void list(AdoptionCriteria adCri, Model model) {
+		System.out.println(adCri);
 		List<AdoptionDTO> list = adservice.getList(adCri);
 		model.addAttribute("pageMaker", new AdoptionPageDTO(adservice.getTotal(adCri), adCri));
 		model.addAttribute("list",list);
