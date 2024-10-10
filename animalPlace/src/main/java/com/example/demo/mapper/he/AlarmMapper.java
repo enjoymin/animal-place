@@ -13,4 +13,5 @@ public interface AlarmMapper {
 	void insertAlarmReply(String userid, String boardtitle, String contentpath, String flag);
 	void insertAlarmAmeeting(String userid, String boardtitle, String contentpath);
 	void insertAlarmDmeeting(String userid, String boardtitle, String contentpath);
+	int deleteAlarmByPath(String path);
 }

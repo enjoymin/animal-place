@@ -9,6 +9,9 @@
 	<delete id="deleteAlarm">
 		delete from alarm where alarmnum =#{num}
 	</delete>
+	<delete id="deleteAlarmByPath">
+		delete from alarm where contentpath =#{path}
+	</delete>
 	<insert id="insertAlarmReply">
 		insert into alarm(userid, boardtitle, contentpath, reply) values(#{userid},#{boardtitle},#{contentpath}, 1)
 	</insert>

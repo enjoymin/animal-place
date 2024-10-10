@@ -81,6 +81,7 @@ public class PBoardServiceImpl implements PBoardService {
 				pfdto.setSystemname(systemname);
 				pfdto.setBoardnum(boardnum);
 				if(pfmapper.insertFile(pfdto) < 0) {
+					pbmapper.delete(boardnum);
 					return false;
 				}
 				
