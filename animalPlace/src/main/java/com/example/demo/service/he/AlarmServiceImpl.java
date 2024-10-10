@@ -41,7 +41,6 @@ public class AlarmServiceImpl implements AlarmService {
 	@Override
 	public void insertAlarm(String userid, String boardtitle, String contentpath, String flag) {
 		if(flag.equals("reply")) {
-			System.out.println("check5");
 			amapper.insertAlarmReply(userid, boardtitle, contentpath, flag);
 		}
 		else if(flag.equals("ameeting")) {
@@ -49,6 +48,9 @@ public class AlarmServiceImpl implements AlarmService {
 		}
 		else if(flag.equals("dmeeting")) {
 			amapper.insertAlarmDmeeting(userid, boardtitle, contentpath);
+		}
+		else if(flag.equals("plike")) {
+			amapper.insertAlarmPlike(userid, boardtitle, contentpath);
 		}
 	}
 

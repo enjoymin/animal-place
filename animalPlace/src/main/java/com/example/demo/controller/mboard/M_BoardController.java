@@ -140,23 +140,13 @@ public class M_BoardController {
 		// 댓글 받아오기
 	    List<M_ReplyDTO> reply_list = re_service.get_reply_list();	    
 	    Map<Integer, List<M_ReplyDTO>> repliesByBoardNum = reply_list.stream()
-<<<<<<< HEAD
 	            .collect(Collectors.groupingBy(M_ReplyDTO::getBoardnum));
 	        
 	    model.addAttribute("repliesByBoardNum", repliesByBoardNum);
-	    
-	    HttpSession session = req.getSession();
+
 		String userid =  (String) session.getAttribute("loginUser");
 	    String path = "/mboard/m_get?mboardnum="+mboardnum;
 	    alservice.deleteAlarmByPath(userid, path);
-
-=======
-	            .collect(Collectors.groupingBy(M_ReplyDTO::getBoardnum));	        
-	    model.addAttribute("repliesByBoardNum", repliesByBoardNum);	    
-	    
-	    String path = "/mboard/m_get?mboardnum="+mboardnum;
-	    alservice.deleteAlarmByPath(path);
->>>>>>> 2c5505a928a7a10c38543b588af3c7cdefdd7f56
 	    
 		return "/mboard/m_get";
 	}

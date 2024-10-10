@@ -21,5 +21,8 @@
 	<insert id="insertAlarmDmeeting">
 		insert into alarm(userid, boardtitle, contentpath, dmeeting) values(#{userid},#{boardtitle},#{contentpath}, 1)
 	</insert>
+	<insert id="insertAlarmPlike">
+		insert into alarm(userid, boardtitle, contentpath, plike) values(#{userid},#{boardtitle},#{contentpath}, 1)
+	</insert>
 	
 </mapper>
