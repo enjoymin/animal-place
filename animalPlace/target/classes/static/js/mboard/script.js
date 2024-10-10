@@ -258,8 +258,6 @@ function addUser(element) {
 // 5-4) 이달의 모임 : 멤버수 감소
 // 5-5) my schedule 위젯 : 내 스케줄 제거
 function delUser(element) {
-
-
 	const loginUser = $(".loginUser").val();
 	const listInfo = $(element).closest(".m_list").find(".list_info");
 	const mboardnum = listInfo.attr("id");
@@ -273,6 +271,11 @@ function delUser(element) {
 	if (!loginUser) {
 		alert("로그인 후 이용해주세요!");
 		location.replace("/");
+		return;
+	}
+	
+	if(writer==loginUser){
+		alert("본인 모임에는 참가를 취소하실 수 없습니다!");
 		return;
 	}
 
@@ -490,6 +493,11 @@ function delUser_scheduleBox(mboardnum) {
 	if (!loginUser) {
 		alert("로그인 후 이용해주세요!");
 		location.replace("/");
+		return;
+	}
+	
+	if(writer==loginUser){
+		alert("본인 모임에는 참가를 취소하실 수 없습니다!");
 		return;
 	}
 
