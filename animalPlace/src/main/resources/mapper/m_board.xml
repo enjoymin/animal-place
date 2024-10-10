@@ -1,0 +1,73 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.mboard.M_BoardMapper">
+
+	<select id="getList">
+		select * from m_board order by boardnum desc
+	</select>
+	
+	<insert id="insertBoard">
+		insert into m_board (boardtitle, userid, setdate, dDay, place, mnum, boardcontent) 
+		values (#{boardtitle}, #{userid}, #{setdate}, #{dDay}, #{place}, #{mnum}, #{boardcontent})
+	</insert>
+
+	<update id="updateBoard">
+		update m_board
+		set boardtitle = #{boardtitle}, boardcontent = #{boardcontent}, setdate = #{setdate},
+		dDay = #{dDay}, place = #{place}, mnum = #{mnum}
+		where boardnum = #{boardnum}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete from m_board where boardnum=#{boardnum}
+	</delete>
+	
+	<select id="getBoardByBoardNum">
+		select * from m_board where boardnum=#{boardnum}
+	</select>
+	
+	<select id="getTotal">
+		select count(*) from m_board
+	</select>
+	
+	<select id="getLastNum">
+		select max(boardnum) from m_board where userid=#{userid}
+	</select>
+	
+	<select id="getMembers">
+		select member from m_board where boardnum=#{boardnum}
+	</select>
+	
+	<update id="updateMember">
+		update m_board
+		set member = #{member}
+		where boardnum = #{boardnum}
+	</update>
+	
+	<select id="getListByTitle">
+		select * from m_board where boardtitle like concat('%', #{keyword}, '%')
+	</select>
+	
+	<select id="getListByContent">
+		select * from m_board where boardcontent like concat('%', #{keyword}, '%')
+	</select>
+	
+	<select id="getListByWriter">
+		select * from m_board where userid like concat('%', #{keyword}, '%')
+	</select>
+	
+	<select id="getListBySetdate">
+		select * from m_board where getListBySetdate = #{keyword}
+	</select>
+	
+	<select id="getListByTitle_Content">
+		select * from m_board where
+		boardtitle like concat('%', #{keyword}, '%') or
+		boardcontent like concat('%', #{keyword}, '%')
+	</select>
+
+</mapper>
+
+
+

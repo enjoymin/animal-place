@@ -54,10 +54,10 @@ create table user(
     userpet varchar(300),
     userschedule varchar(300)
 );
-
+select *from user;
+drop table user;
 insert into  user(userid,userpw,username,addrdetail) values("apple","1234","김사과","중국산");
-
-insert into  user(userid,userpw,username,addrdetail) values("banana","1234","김사과","중국산");
+insert into  user(userid,userpw,username,addrdetail) values("doori","1234","김사과","중국산");
 
 create table myphoto(
 	systemname varchar(1000),
@@ -122,7 +122,8 @@ boardnum int auto_increment primary key,
 
     member varchar(3000)
 );
-
+drop table m_board;
+drop table m_reply;
 create table m_reply(
 replynum bigint auto_increment primary key,
     replycontent varchar(3000),
@@ -156,6 +157,13 @@ create table adfile(
 );
 
 ###############################
+
+create table search_history(
+	id serial primary key,
+    keyword varchar(300) not null,
+    search_count int default 1,
+    created_at timestamp default current_timestamp
+);
 
 
 #따로 넣어줘야하는거
