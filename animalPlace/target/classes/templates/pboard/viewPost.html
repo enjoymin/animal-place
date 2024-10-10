@@ -677,7 +677,7 @@
 							url: '/plikelist/insert',
 							type: 'POST',
 							data: {boardnum: boardnum}, // 여기다 변수 추가하시면 됩니다 - 알람
-							success: function () {
+							success: function (response) {
 								const currentCount = parseInt(likeCountElem.text());
 								const newCount = currentCount + 1;
 
