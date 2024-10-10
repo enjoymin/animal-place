@@ -38,4 +38,28 @@ public class AlarmServiceImpl implements AlarmService {
 		}
 	}
 
+	@Override
+	public void insertAlarm(String userid, String boardtitle, String contentpath, String flag) {
+		if(flag.equals("reply")) {
+			amapper.insertAlarmReply(userid, boardtitle, contentpath, flag);
+		}
+		else if(flag.equals("ameeting")) {
+			amapper.insertAlarmAmeeting(userid, boardtitle, contentpath);
+		}
+		else if(flag.equals("dmeeting")) {
+			amapper.insertAlarmDmeeting(userid, boardtitle, contentpath);
+		}
+	}
+
+	@Override
+	public boolean deleteAlarmByPath(String path) {
+		if(amapper.deleteAlarmByPath(path) !=0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	
+	}
+
 }
