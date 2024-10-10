@@ -92,16 +92,15 @@ public class UserServiceImpl implements UserService {
 		return fmapper.getProfile(userid);
 	}
 
+	// 참가하기
 	@Override
-	public UserDTO getUserSchedule(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean update_schedule(UserDTO user) {
+		return umapper.update_schedule(user);		
 	}
 
 	@Override
-	public void update_schedule(UserDTO scheduleInfo) {
-		// TODO Auto-generated method stub
-		
+	public UserDTO getUserSchedule(String userid) {
+		return umapper.getUserByUserid(userid);
 	}
 
 }

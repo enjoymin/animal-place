@@ -13,6 +13,7 @@ public interface UserService {
 	UserDTO getUser(String userid);
 	boolean updateUser(UserDTO user, MultipartFile file);
 	ProfileDTO getprofile(String userid);
+	// 참가하기
 	UserDTO getUserSchedule(String userid);
-	void update_schedule(UserDTO scheduleInfo);
+	boolean update_schedule(UserDTO user);
 }

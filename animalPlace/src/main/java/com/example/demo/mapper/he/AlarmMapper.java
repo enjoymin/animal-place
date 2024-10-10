@@ -10,4 +10,5 @@ import com.example.demo.domain.he.AlarmDTO;
 public interface AlarmMapper {
 	List<AlarmDTO> getAlarm(String userid);
 	int deleteAlarm(long num);
+	void insertAlarmReply(String userid, String boardtitle, String contentpath, String flag);
 }

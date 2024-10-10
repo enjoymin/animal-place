@@ -8,4 +8,5 @@ public interface AlarmService {
 	List<AlarmDTO> getAlarm(String userid);
 	boolean extAlarm(String userid);
 	boolean deleteAlarm(long num);
+	void insertAlarm(String userid, String boardtitle, String contentpath, String flag);
 }

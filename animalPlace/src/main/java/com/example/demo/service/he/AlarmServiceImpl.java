@@ -38,4 +38,11 @@ public class AlarmServiceImpl implements AlarmService {
 		}
 	}
 
+	@Override
+	public void insertAlarm(String userid, String boardtitle, String contentpath, String flag) {
+		if(flag.equals("reply")) {
+			amapper.insertAlarmReply(userid, boardtitle, contentpath, flag);
+		}
+	}
+
 }

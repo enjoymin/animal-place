@@ -12,7 +12,13 @@
 	<update id="updateUser">
 		update user
 		set userpw=#{userpw}, zipcode=#{zipcode}, addr=#{addr},
-		addrdetail=#{addrdetail}, addretc=#{addretc}, userpet=#{userpet}
+		addrdetail=#{addrdetail}, addretc=#{addretc}, userpet=#{userpet}, schedule=#{schedule}
 		where userid=#{userid}
 	</update>
+	<update id="update_schedule">
+		update user
+		set schedule=#{schedule}
+		where userid=#{userid}
+	</update>
+	
 </mapper>
