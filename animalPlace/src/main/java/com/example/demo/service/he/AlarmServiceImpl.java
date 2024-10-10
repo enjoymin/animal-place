@@ -62,7 +62,5 @@ public class AlarmServiceImpl implements AlarmService {
 		else {
 			return false;
 		}
-	
 	}
-
 }
