@@ -165,7 +165,7 @@ create table search_history(
     created_at timestamp default current_timestamp
 );
 
-
+select * from search_history;
 #따로 넣어줘야하는거
 
 #-----강아지 데이터 

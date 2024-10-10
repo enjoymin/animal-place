@@ -14,5 +14,7 @@ public interface M_ReplyMapper {
 	List<M_ReplyDTO> get_reply_list();
 
 	int delete_reply(M_ReplyDTO replyDTO);
+
+	int modify_reply(M_ReplyDTO replyDTO);
 	
 }
