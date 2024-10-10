@@ -496,6 +496,10 @@
 				return;
 			}
 
+			console.log(boardNum);
+
+
+
 			// AJAX 요청
 			$.ajax({
 				url: '/preply/regist',
@@ -677,9 +681,8 @@
 							url: '/plikelist/insert',
 							type: 'POST',
 							data: {
-								boardnum: boardnum, ctuserid: a_userid, boardtitle: a_title,
-								contentpath: path
-							}, // 여기다 변수 추가하시면 됩니다 - 알람
+								boardnum: boardnum
+							}, 
 							success: function (response) {
 								const currentCount = parseInt(likeCountElem.text());
 								const newCount = currentCount + 1;
