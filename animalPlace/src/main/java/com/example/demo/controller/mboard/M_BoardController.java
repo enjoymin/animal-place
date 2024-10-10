@@ -95,6 +95,9 @@ public class M_BoardController {
 
 	@GetMapping("m_get")
 	public String m_get(int mboardnum, Model model, HttpServletRequest req, HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+		String loginUser = (String)session.getAttribute("loginUser");
+		
 		Cookie[] cookies = req.getCookies();
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
@@ -111,17 +114,37 @@ public class M_BoardController {
 			}
 		}
 		M_BoardDTO mboard = service.getDetail(mboardnum);
-		model.addAttribute("m_board",mboard);		
+		model.addAttribute("m_board",mboard);
+		
+		// 조회수(쿠키 3분)
+		if(!mboard.getUserid().equals(loginUser)) {
+			Cookie[] read_cookies = req.getCookies();
+			Cookie read_board = null;
+			if(read_cookies != null) {
+				for(Cookie cookie : read_cookies) {
+					if(cookie.getName().equals("read_board"+mboardnum)) {
+						read_board = cookie;
+						break;
+					}
+				}
+			}			
+			if(read_board == null) {				
+				service.increase_readcount(mboardnum);
+				Cookie read_cookie = new Cookie("read_board"+mboardnum, "r");
+				read_cookie.setPath("/");
+				read_cookie.setMaxAge(180);
+				resp.addCookie(read_cookie);
+			}			
+		}
+		
 		// 댓글 받아오기
-	    List<M_ReplyDTO> reply_list = re_service.get_reply_list();
-	    
+	    List<M_ReplyDTO> reply_list = re_service.get_reply_list();	    
 	    Map<Integer, List<M_ReplyDTO>> repliesByBoardNum = reply_list.stream()
-	            .collect(Collectors.groupingBy(M_ReplyDTO::getBoardnum));
-	        
-	    model.addAttribute("repliesByBoardNum", repliesByBoardNum);
+	            .collect(Collectors.groupingBy(M_ReplyDTO::getBoardnum));	        
+	    model.addAttribute("repliesByBoardNum", repliesByBoardNum);	    
+	    
 	    String path = "/mboard/m_get?mboardnum="+mboardnum;
 	    alservice.deleteAlarmByPath(path);
-
 	    
 		return "/mboard/m_get";
 	}
@@ -229,12 +252,16 @@ public class M_BoardController {
 
 	@PostMapping("put_reply")
 	public ResponseEntity<String> put_reply(@RequestBody M_ReplyDTO replyDTO) {
+		System.out.println("check1");
 		if (re_service.put_reply(replyDTO)) {
 			String flag = "reply";
+			System.out.println("check2");
 			if (!replyDTO.getReplyuserid().equals(replyDTO.getCtuserid())) {
+				System.out.println("check4");
 				alservice.insertAlarm(replyDTO.getCtuserid(), replyDTO.getBoardtitle(), replyDTO.getContentpath(),
 						flag);
 			}
+			System.out.println("check3");
 			return ResponseEntity.ok("댓글 추가 완료!");
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 추가 실패");

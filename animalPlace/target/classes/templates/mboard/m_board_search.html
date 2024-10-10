@@ -142,6 +142,7 @@
 
 						<div class="row" id="thead">
 							<div>번호</div>
+							<div>조회수</div>
 							<div>제목</div>
 							<div>작성자</div>
 							<div>작성시간</div>
@@ -155,6 +156,7 @@
 							th:each="m_board:${m_list}">
 							<div id="list" class="row">
 								<div>[[${m_board.boardnum}]]</div>
+								<div>[[${m_board.readcount}]]</div>
 								<div>[[${m_board.boardtitle}]]</div>
 								<div>[[${m_board.userid}]]</div>
 								<div class="plus_btn">
