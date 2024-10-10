@@ -226,7 +226,7 @@ public class M_BoardController {
 
 	@PostMapping("put_member")
 	@ResponseBody
-	public void put_member(@RequestBody Map<String, Object> memInfo) {
+	public void put_member(@RequestBody Map<String, Object> memInfo, HttpSession session) {
 		// memInfo에서 member랑 boardnum문자열 추출
 		String member = (String) memInfo.get("member");
 		String boardnumStr = (String) memInfo.get("boardnum"); // 문자열 숫자로
@@ -234,8 +234,12 @@ public class M_BoardController {
 		String boardtitle = (String) memInfo.get("boardtitle");
 		String contentpath = (String) memInfo.get("contentpath");
 		String flag = (String) memInfo.get("flag");
-
-		alservice.insertAlarm(userid, boardtitle, contentpath, flag);
+		String loginUser = (String) session.getAttribute("loginUser");
+		
+		if(!loginUser.equals(userid)) {
+			alservice.insertAlarm(userid, boardtitle, contentpath, flag);
+			
+		}
 
 		int boardnum = Integer.parseInt(boardnumStr);
 
