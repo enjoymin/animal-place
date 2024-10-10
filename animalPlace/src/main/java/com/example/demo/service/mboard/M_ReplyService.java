@@ -12,4 +12,6 @@ public interface M_ReplyService {
 
 	boolean delete_reply(M_ReplyDTO replyDTO);
 
+	boolean modify_reply(M_ReplyDTO replyDTO);
+
 }

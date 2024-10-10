@@ -150,7 +150,11 @@ function addUser(element) {
     const loginUser = $(".loginUser").val();
     const listInfo = $(element).closest(".m_list").find(".list_info");
 	// listInfo의 아이디 == 해당 boardnum
-    const mboardnum = listInfo.attr("id");
+    const mboardnum = listInfo.attr("id");	
+	// listInfo의 제목
+	const mboardtitle = listInfo.find(".list_title").text().trim();
+	// listInfo의 아이디
+	const writer = listInfo.find(".userid").text().trim();
 
 	// *유효성 - 비로그인 걸러내기
     if (!loginUser) {
@@ -250,6 +254,8 @@ function delUser(element) {
     const loginUser = $(".loginUser").val();
     const listInfo = $(element).closest(".m_list").find(".list_info");
     const mboardnum = listInfo.attr("id");
+	const mboardtitle = listInfo.find(".list_title").text().trim();
+	const writer = listInfo.find(".userid").text().trim();
 	
 	// *유효성 - 비로그인 걸러내기
     if (!loginUser) {
@@ -494,6 +500,7 @@ function delUser_scheduleBox(mboardnum) {
 				removeUserSchedule(mboardnum);
 				updateMemberCount(mboardnum);
 				updateMySchedule();
+				member_view(mboardnum);
 			},
 			error: function(xhr) {
 				console.error('오류:', xhr.statusText);
@@ -543,6 +550,58 @@ function add_reply(button) {
 	            console.error("오류 발생:", xhr.statusText, error);
 	        }
 	    });
+}
+
+let replynum;
+
+// 댓글 수정
+function modify_reply(button) {
+	// 댓글 번호 가져오기
+	const reply_list = $(button).closest(".reply_list");
+	replynum = reply_list.find(".replynum").text();
+	
+	// 댓글 수정환경 구축
+	const reply_content = reply_list.find(".reply_con").text();	
+	const reply_con = reply_list.find(".reply_con");
+	reply_con.empty();
+	reply_con.append(`<textarea id="modify_replycontent"
+					>${reply_content}</textarea>`);
+	
+	const reply_btn = reply_list.find(".reply_btn");
+	reply_btn.empty();
+	reply_btn.append(`<div class="go_modify_reply" onclick="go_modify_reply(${replynum})">수정완료</div>`);
+	reply_btn.append(`<div class="stop_modify_reply" onclick="stop_modify_reply()">수정취소</div>`);
+	
+}
+
+// 댓글 수정 취소
+function stop_modify_reply() {
+	location.reload();
+}
+
+// 댓글 수정 완료	
+function go_modify_reply(replynum){
+	const replycontent = $("#modify_replycontent").val(); 
+	console.log(replycontent);
+	
+	// ★ 수정된 댓글 DB로 보내는 Ajax
+	$.ajax({
+		type: "POST",
+		url: "/mboard/modify_reply",
+		contentType: "application/json",
+		data: JSON.stringify({
+			replynum: replynum,
+			replycontent: replycontent,
+		}),
+		success: function(response) {
+			alert("댓글 수정 완료!");
+			// 페이지 새로고침
+			location.reload();
+		},
+		error: function(xhr, status, error) {
+			console.error("오류 발생:", xhr.statusText, error);
+		}
+	});
 }
 
 // 댓글 삭제

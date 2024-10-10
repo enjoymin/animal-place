@@ -27,10 +27,12 @@ public class M_ReplyServiceImpl implements M_ReplyService{
 
 	@Override
 	public boolean delete_reply(M_ReplyDTO replyDTO) {
-		System.out.println("받은 replynum: " + replyDTO.getReplynum());
-		int result = rmapper.delete_reply(replyDTO);
-		System.out.println("삭제 결과: " + result);
-		return result == 1;
+		return rmapper.delete_reply(replyDTO)==1;
+	}
+
+	@Override
+	public boolean modify_reply(M_ReplyDTO replyDTO) {
+		return rmapper.modify_reply(replyDTO)==1;
 	}
 
 }
