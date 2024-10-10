@@ -49,17 +49,18 @@ public class AlarmServiceImpl implements AlarmService {
 		else if(flag.equals("dmeeting")) {
 			amapper.insertAlarmDmeeting(userid, boardtitle, contentpath);
 		}
+		else if(flag.equals("plike")) {
+			amapper.insertAlarmPlike(userid, boardtitle, contentpath);
+		}
 	}
 
 	@Override
-	public boolean deleteAlarmByPath(String path) {
-		if(amapper.deleteAlarmByPath(path) !=0) {
+	public boolean deleteAlarmByPath(String userid, String path) {
+		if(amapper.deleteAlarmByPath(userid, path) !=0) {
 			return true;
 		}
 		else {
 			return false;
 		}
-	
 	}
-
 }

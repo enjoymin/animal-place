@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.model.pboard.PBoardDTO;
 import com.example.demo.model.pboard.PLikelistDTO;
 import com.example.demo.model.pboard.PReplyDTO;
+import com.example.demo.service.he.AlarmService;
 import com.example.demo.service.pboard.PBoardService;
 import com.example.demo.service.pboard.PFileService;
 import com.example.demo.service.pboard.PLikelistService;
@@ -43,6 +44,9 @@ public class PBoardController {
 	
 	@Autowired
 	private PLikelistService plservice;
+	
+	@Autowired
+	private AlarmService alservice;
 	
 
 	@GetMapping("list")
@@ -100,6 +104,10 @@ public class PBoardController {
 	public String getBoard(@RequestParam("boardnum") Long boardnum, Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");
+		String contentpath = "/pboard/list?boardnum="+boardnum;
+		System.out.println(contentpath);
+		
+		alservice.deleteAlarmByPath(loginUser, contentpath);
 		
 		List<PReplyDTO> replies = prservice.getReply(boardnum);
 		
