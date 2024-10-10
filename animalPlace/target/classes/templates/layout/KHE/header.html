@@ -69,10 +69,10 @@
 	<div id="menubar" style="right: -400px">
 		<ul id="menulist">
 			<h3 style="font-size: 30px;">메뉴</h3>
-			<li><a id="b1">분양게시판</a></li>
+			<li><a href="/stray/list" id="b1">분양게시판</a></li>
 			<li><a href="/board/disease" id="b2">질병정보</a></li>
-			<li><a id="b3">병원위치</a></li>
-			<li><a id="b4">모임게시판</a></li>
+			<li><a href="/map/map" id="b3">병원위치</a></li>
+			<li><a href="/mboard/m_board" id="b4">모임게시판</a></li>
 			<li><a href="/pboard/list" id="b5">SNS</a></li>
 			<li id="mypage" style="color: rgb(50,50,50);">마이페이지</li>
 		</ul>
@@ -218,8 +218,18 @@
 					let str = "";
 					for (let i = 0; i < data.length; i++) {
 						const content = data[i];
-						str += `<div class="alarmtable"><div><a href="${content.contentpath}">${content.boardtitle} </a>글에 댓글이 달렸습니다!</div>
+						if (content.reply == 1) {
+							str += `<div class="alarmtable"><div><a href="${content.contentpath}">${content.boardtitle} </a>글에 댓글이 달렸습니다!</div>
 						<div><a onclick="alcheck(${content.alarmnum})">확인</a></div></div>`;
+						}
+						else if(content.ameeting == 1){
+							str += `<div class="alarmtable"><div><a href="${content.contentpath}">${content.boardtitle} </a>글에 새로운 사람이 참여했습니다!</div>
+													<div><a onclick="alcheck(${content.alarmnum})">확인</a></div></div>`;
+						}
+						else if(content.dmeeting == 1){
+							str += `<div class="alarmtable"><div><a href="${content.contentpath}">${content.boardtitle} </a>글에 참여를 취소한 사람이 있습니다!</div>
+													<div><a onclick="alcheck(${content.alarmnum})">확인</a></div></div>`;
+						}
 					}
 					$("#alarmpage").html(str);
 				}

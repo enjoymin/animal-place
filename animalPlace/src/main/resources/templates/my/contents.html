@@ -97,7 +97,7 @@
 					for (let i = 0; i < list.length; i++) {
 						const board = list[i];
 						str += `<div class="row"><div>${board.boardnum}</div>
-									<div><a class="get" href="${board.boardnum}">${board.boardtitle}</a></div>
+									<div><a class="get" href="/mboard/m_get?mboardnum=${board.boardnum}">${board.boardtitle}</a></div>
 									<div><a class="usermenu">${board.userid}</a></div>
 									<div>${board.boarddatetime}</div></div>`;
 					}

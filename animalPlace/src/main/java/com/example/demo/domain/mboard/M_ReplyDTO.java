@@ -9,4 +9,7 @@ public class M_ReplyDTO {
 	private String replyuserid;
 	private String replydatetime;
 	private int boardnum;
+	private String ctuserid;
+	private String contentpath;
+	private String boardtitle;
 }

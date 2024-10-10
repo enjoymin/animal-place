@@ -1,79 +1,79 @@
 /* 모든 plus_info와 close_info에 대해 이벤트 리스너 설정 */
 document.querySelectorAll(".plus_info").forEach(button => {
-    button.addEventListener("click", function () {
+	button.addEventListener("click", function() {
 		// 현재 m_list 내에서 list_info 찾기
-        const list_info = this.closest(".m_list").querySelector(".list_info");
+		const list_info = this.closest(".m_list").querySelector(".list_info");
 		// 현재 row 찾기
-        const list = this.closest(".row");
+		const list = this.closest(".row");
 
 		// 클릭 시 효과
-        list.classList.add("active");
+		list.classList.add("active");
 
-        // 리스트 보여주기
-        list_info.style.display = "block";
-        list_info.style.opacity = "0";
-        list_info.style.transform = "translateY(20px)";
+		// 리스트 보여주기
+		list_info.style.display = "block";
+		list_info.style.opacity = "0";
+		list_info.style.transform = "translateY(20px)";
 
-        // 요청 애니메이션 프레임
-        requestAnimationFrame(() => {
+		// 요청 애니메이션 프레임
+		requestAnimationFrame(() => {
 			// 두 번 호출하여 부드러운 애니메이션 효과 추가
-            requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
 				// 불투명도 설정
-                list_info.style.opacity = "1";
+				list_info.style.opacity = "1";
 				// 원래 위치로 이동
-                list_info.style.transform = "translateY(0)";
-            });
-        });
-    });
+				list_info.style.transform = "translateY(0)";
+			});
+		});
+	});
 });
 
 document.querySelectorAll(".close_info").forEach(button => {
-    button.addEventListener("click", function () {
-        const list_info = this.closest(".list_info");
-        const list = list_info.closest(".m_list").querySelector(".row");
+	button.addEventListener("click", function() {
+		const list_info = this.closest(".list_info");
+		const list = list_info.closest(".m_list").querySelector(".row");
 
-        list.classList.remove("active");
+		list.classList.remove("active");
 
-        list_info.style.opacity = "0";
-        list_info.style.transform = "translateY(20px)";
-        setTimeout(() => {
-            list_info.style.display = "none";
-        }, 500); // 애니메이션 시간과 맞추기
-    });
+		list_info.style.opacity = "0";
+		list_info.style.transform = "translateY(20px)";
+		setTimeout(() => {
+			list_info.style.display = "none";
+		}, 500); // 애니메이션 시간과 맞추기
+	});
 });
 
 /* 글쓰기 이동시 아이디 확인 */
 function check_id() {
-    const loginUser = $(".loginUser").val();
-    console.log(loginUser);
-    if (!loginUser) {
-        alert("로그인 후 이용해주세요!");
-        location.replace("/");
-    } else {
-        location.replace("/mboard/m_write");
-    }
+	const loginUser = $(".loginUser").val();
+	console.log(loginUser);
+	if (!loginUser) {
+		alert("로그인 후 이용해주세요!");
+		location.replace("/");
+	} else {
+		location.replace("/mboard/m_write");
+	}
 }
 
 /* 더보기 구현 */
 $(function() {
 	// 처음 7개씩 list 요소를 보여줌
-    $(".m_list").slice(0, 7).show();
+	$(".m_list").slice(0, 7).show();
 
-    $(".more_list_btn").click(function() {
-        $(".m_list:hidden").slice(0, 7).fadeIn(400);	
-        
-        if ($(".m_list:hidden").length == 0) {
-            $(".more_list_btn").hide();
-        }
-    });
+	$(".more_list_btn").click(function() {
+		$(".m_list:hidden").slice(0, 7).fadeIn(400);
+
+		if ($(".m_list:hidden").length == 0) {
+			$(".more_list_btn").hide();
+		}
+	});
 });
 
 /* 위로가기 버튼 구현 */
-function up(){
+function up() {
 	window.scrollTo({
-	        top: 0,
-	        behavior: "smooth"
-	    });
+		top: 0,
+		behavior: "smooth"
+	});
 }
 
 /* ------------------------------------------------------------------------------------- */
@@ -83,61 +83,61 @@ function up(){
 // 참가목록 받아오기 파트! (단지 받아와서 보여주기)--------------------------------------------------------
 // 1) 참가자 목록 서버에서 가져오기
 function getmembers(mboardnum, callback) {
-    // ★ 멤버 배열 받아오는 Ajax
-    $.ajax({
-        type: "GET",
+	// ★ 멤버 배열 받아오는 Ajax
+	$.ajax({
+		type: "GET",
 		// 보드넘버 넘겨주면서
-        url: `/mboard/get_members?boardnum=${mboardnum}`,
-        success: function(response) {
+		url: `/mboard/get_members?boardnum=${mboardnum}`,
+		success: function(response) {
 			// arUser 배열에 담음
-            const arUser = JSON.parse(response);
+			const arUser = JSON.parse(response);
 			// 콜백을 호출해야만 받아온 arUser를 가지고 있는 getmembers 함수를 사용 할 수 있음
-            callback(arUser);
-        },
-        error: function(xhr, status, error) {
-            console.error("getmembers(참가자 목록 서버에서 가져오기) Error:", error);
-        }
-    });
+			callback(arUser);
+		},
+		error: function(xhr, status, error) {
+			console.error("getmembers(참가자 목록 서버에서 가져오기) Error:", error);
+		}
+	});
 }
 
 // 2) 모든 게시판 참가자 목록을 초기화 및 보여주기
 function member_view() {
-    // 모든 listInfo 다 찾고 each 메소드로 각 listinfo에 대해 반복작업
-    $(".list_info").each(function() {
-        // 현재 listInfo를 가져오기
-        const listInfo = $(this);
-        // id 가져오기 == 보드넘버 받아오기
-        const mboardnum = listInfo.attr("id");
+	// 모든 listInfo 다 찾고 each 메소드로 각 listinfo에 대해 반복작업
+	$(".list_info").each(function() {
+		// 현재 listInfo를 가져오기
+		const listInfo = $(this);
+		// id 가져오기 == 보드넘버 받아오기
+		const mboardnum = listInfo.attr("id");
 
-        // 1) 참가자 목록 받아온 함수 호출
-        getmembers(mboardnum, function(arUser) {
-            // **에러 대비 - 혹시 있을 빈 문자열 제거 후 멤버 배열에 담아주기
-            let members = arUser.filter(user => user.trim() !== "");
+		// 1) 참가자 목록 받아온 함수 호출
+		getmembers(mboardnum, function(arUser) {
+			// **에러 대비 - 혹시 있을 빈 문자열 제거 후 멤버 배열에 담아주기
+			let members = arUser.filter(user => user.trim() !== "");
 
-            // 멤버 추가할 list_info_4를 찾아!(listInfo 안의 멤버박스)
-            const membersBox = listInfo.find(".list_info_4");
-            // 새로운 참가자 목록을 다시 삽입하기 위해 비워주고 아래에서 다시 삽입(==초기화)
-            membersBox.empty();
-            if (members.length === 0) {
-                // 참가자가 아무도 없으면(배열에 아무도 없음) 메세지 표시!
-                membersBox.append("<div>참가 인원이 없습니다</div>");
-            } else {
-                // 참가자가 있는 경우(배열에 멤버들이 들어감) 이제 각각의 참여자들을 div로 묶어서 넣어주기
-                members.forEach(user => {
-                    const newMember = $("<div></div>")
-                        .addClass("m_list_members") // 만들어둔 속성 추가
-                        .text(user); // 안에 받아온 아이디 추가
+			// 멤버 추가할 list_info_4를 찾아!(listInfo 안의 멤버박스)
+			const membersBox = listInfo.find(".list_info_4");
+			// 새로운 참가자 목록을 다시 삽입하기 위해 비워주고 아래에서 다시 삽입(==초기화)
+			membersBox.empty();
+			if (members.length === 0) {
+				// 참가자가 아무도 없으면(배열에 아무도 없음) 메세지 표시!
+				membersBox.append("<div>참가 인원이 없습니다</div>");
+			} else {
+				// 참가자가 있는 경우(배열에 멤버들이 들어감) 이제 각각의 참여자들을 div로 묶어서 넣어주기
+				members.forEach(user => {
+					const newMember = $("<div></div>")
+						.addClass("m_list_members") // 만들어둔 속성 추가
+						.text(user); // 안에 받아온 아이디 추가
 					// 새로운 멤버는 list_info_4 의 다음 요소로 추가
-                    membersBox.append(newMember);
-                });
-            }
-        });
-    });
+					membersBox.append(newMember);
+				});
+			}
+		});
+	});
 }
 
 // 3) 페이지 로드될때마다 참가자 목록 불러오기
 $(document).ready(function() {
-    member_view();
+	member_view();
 });
 
 // 4) 참가하기 : 참가목록에 추가하기 파트 (Ajax 2개 + 추가 5개 실행)--------------------------------------------------
@@ -147,38 +147,42 @@ $(document).ready(function() {
 // 		4-4) 이달의 모임 : 멤버수 증가
 // 		4-5) my schedule 위젯 : 내 스케줄 추가
 function addUser(element) {
-    const loginUser = $(".loginUser").val();
-    const listInfo = $(element).closest(".m_list").find(".list_info");
+	const loginUser = $(".loginUser").val();
+	const listInfo = $(element).closest(".m_list").find(".list_info");
 	// listInfo의 아이디 == 해당 boardnum
-    const mboardnum = listInfo.attr("id");	
+	const mboardnum = listInfo.attr("id");
 	// listInfo의 제목
 	const mboardtitle = listInfo.find(".list_title").text().trim();
 	// listInfo의 아이디
 	const writer = listInfo.find(".userid").text().trim();
+	const flag = 'ameeting';
+	let path = '/mboard/m_get?mboardnum=';
+	path += mboardnum;
+	console.log(path);
 
 	// *유효성 - 비로그인 걸러내기
-    if (!loginUser) {
-        alert("로그인 후 이용해주세요!");
-        location.replace("/");
-        return;
-    }
+	if (!loginUser) {
+		alert("로그인 후 이용해주세요!");
+		location.replace("/");
+		return;
+	}
 
 	// 1) 참가자 목록 서버에서 받아온 함수 호출 > 새 참가자 추가해야하니까
-    getmembers(mboardnum, function(arUser) {
-        let members = arUser.filter(user => user.trim() !== ""); // 혹시 있을 공백 제거
+	getmembers(mboardnum, function(arUser) {
+		let members = arUser.filter(user => user.trim() !== ""); // 혹시 있을 공백 제거
 
 		// *유효성 - 멤버배열에 로그인유저가 있다면
-        if (members.includes(loginUser)) {
-            alert("이미 참여하셨습니다!");
-            return;
-        }
+		if (members.includes(loginUser)) {
+			alert("이미 참여하셨습니다!");
+			return;
+		}
 
 		// 최대 인원수 찾고 숫자로 바꿔주기
-        const m_num = parseInt(listInfo.find('.m_num').text(), 10);
+		const m_num = parseInt(listInfo.find('.m_num').text(), 10);
 		// *유효성 - 인원수 초과
-        if (members.length >= m_num) {
-            alert("인원수를 초과하였습니다!");
-            return;
+		if (members.length >= m_num) {
+			alert("인원수를 초과하였습니다!");
+			return;
 		}
 
 		// ★ 유저스케줄 받아오는 Ajax(유효성 검사 위해)
@@ -220,7 +224,10 @@ function addUser(element) {
 					url: '/mboard/put_member',
 					method: "POST",
 					contentType: 'application/json',
-					data: JSON.stringify({ member: member, boardnum: mboardnum }),
+					data: JSON.stringify({
+						member: member, boardnum: mboardnum
+						, userid: writer, contentpath: path, boardtitle: mboardtitle, flag: flag
+					}),
 					success: function() {
 						// 멤버 넣은 후 처리하기!!
 						// 4-3) user 테이블 : 날짜 추가(DB)
@@ -251,34 +258,39 @@ function addUser(element) {
 // 5-4) 이달의 모임 : 멤버수 감소
 // 5-5) my schedule 위젯 : 내 스케줄 제거
 function delUser(element) {
-    const loginUser = $(".loginUser").val();
-    const listInfo = $(element).closest(".m_list").find(".list_info");
-    const mboardnum = listInfo.attr("id");
+
+
+	const loginUser = $(".loginUser").val();
+	const listInfo = $(element).closest(".m_list").find(".list_info");
+	const mboardnum = listInfo.attr("id");
 	const mboardtitle = listInfo.find(".list_title").text().trim();
 	const writer = listInfo.find(".userid").text().trim();
-	
+	const flag = 'dmeeting';
+	let path = '/mboard/m_get?mboardnum=';
+	path += mboardnum;
+
 	// *유효성 - 비로그인 걸러내기
-    if (!loginUser) {
-        alert("로그인 후 이용해주세요!");
-        location.replace("/");
-        return;
-    }
+	if (!loginUser) {
+		alert("로그인 후 이용해주세요!");
+		location.replace("/");
+		return;
+	}
 
 	// 1) 참가자 목록 서버에서 받아온 함수 호출 > 유저 제거하고 남은 참가자들 추가해야하니까
-    getmembers(mboardnum, function(arUser) {
-        let members = arUser.filter(user => user.trim() !== "");
+	getmembers(mboardnum, function(arUser) {
+		let members = arUser.filter(user => user.trim() !== "");
 
 		// *유효성 - 로그인유저가 members 배열에 포함되었는지?
-        if (!members.includes(loginUser)) {
-            alert("이 모임에 참여하지 않은 상태입니다!");
-            return;
-        }
+		if (!members.includes(loginUser)) {
+			alert("이 모임에 참여하지 않은 상태입니다!");
+			return;
+		}
 
-        // 로그인유저가 members 배열에 포함되었다면 > 참가자 목록에서 로그인 유저를 제거
+		// 로그인유저가 members 배열에 포함되었다면 > 참가자 목록에서 로그인 유저를 제거
 		// 로그인유저가 아닌 멤버들만 새로운 배열로 만들어 members에 포함시킴
 		// 참여 취소를 누름 == 누른사람(로그인 유저)만 빼고
-        members = members.filter(user => user !== loginUser);
-       	const membersBox = listInfo.find(".list_info_4");	
+		members = members.filter(user => user !== loginUser);
+		const membersBox = listInfo.find(".list_info_4");
 		// 기존 참가자 목록 지우고
 		membersBox.empty();
 		// 5-1) html에서 멤버 제거
@@ -294,7 +306,10 @@ function delUser(element) {
 			type: "POST",
 			url: '/mboard/put_member',
 			contentType: 'application/json',
-			data: JSON.stringify({ member: member, boardnum: mboardnum }),
+			data: JSON.stringify({
+				member: member, boardnum: mboardnum
+				, userid: writer, contentpath: path, boardtitle: mboardtitle, flag: flag
+			}),
 			success: function(response) {
 				// 5-3) user 테이블 날짜 제거(DB)
 				removeUserSchedule(mboardnum);
@@ -353,7 +368,7 @@ function updateUserSchedule(mboardnum) {
 function removeUserSchedule(mboardnum) {
 	const loginUser = $(".loginUser").val();
 	const setdate = $(`.list_info[id="${mboardnum}"] .m_date`).text().replace('모임 날짜 : ', '').trim();
-	
+
 	// ★ 로그인 유저에 맞는 스케줄 가져오는 Ajax
 	$.ajax({
 		type: "GET",
@@ -396,7 +411,7 @@ function updateMemberCount(mboardnum) {
 
 			// 여기부터는 숨겨놓은 모든 이달의모임 보드번호를 받아와서 현재 참여/참여취소한 모임의 보드넘버와 비교한 후
 			// 해당하는 이달의모임 멤버수 변수를 변경하는 과정
-			
+
 			// .mo_list_boardnum 클래스가 있는 모든 p 요소를 찾아 반복문 돌림(모든 이달의 모임 보드넘버)
 			$(".mo_list_boardnum").each(function() {
 				const $mo_list_boardnum = $(this);
@@ -465,6 +480,11 @@ function updateMySchedule() {
 function delUser_scheduleBox(mboardnum) {
 	const loginUser = $(".loginUser").val();
 	const $listInfo = $(`.list_info[id="${mboardnum}"]`);
+	const mboardtitle = $listInfo.find(".list_title").text().trim();
+	const writer = $listInfo.find(".userid").text().trim();
+	const flag = 'dmeeting';
+	let path = '/mboard/m_get?mboardnum=';
+	path += mboardnum;
 
 	// *유효성 - 비로그인 걸러내기
 	if (!loginUser) {
@@ -495,7 +515,10 @@ function delUser_scheduleBox(mboardnum) {
 			type: "POST",
 			url: '/mboard/put_member',
 			contentType: 'application/json',
-			data: JSON.stringify({ member: member, boardnum: mboardnum }),
+			data: JSON.stringify({
+				member: member, boardnum: mboardnum
+				, userid: writer, contentpath: path, boardtitle: mboardtitle, flag: flag
+			}),
 			success: function(response) {
 				removeUserSchedule(mboardnum);
 				updateMemberCount(mboardnum);
@@ -519,37 +542,45 @@ $(document).ready(function() {
 
 // 댓글 추가
 function add_reply(button) {
-    // 현재 list의 boardnum 가져오기
-    const boardnum = $(button).closest(".list_info").attr("id");
-    const replycontent = $(button).closest(".reply_write_box").find("textarea").val();
-    const userid = $(".loginUser").val();   
-    
-    // * 유효성 - 비로그인 걸러내기
-    if (!userid) {
-        alert("로그인 후 이용해주세요!");
-        location.replace('/');
-        return;
-    } 
-    
+	// 현재 list의 boardnum 가져오기
+	const boardnum = $(button).closest(".list_info").attr("id");
+	const replycontent = $(button).closest(".reply_write_box").find("textarea").val();
+	const userid = $(".loginUser").val();
+	const ctuserid = $(".userid").html();
+	const boardtitle = $(".list_title").html();
+	let path = window.location.pathname;
+	path += '?mboardnum=';
+	path += boardnum;
+
+	// * 유효성 - 비로그인 걸러내기
+	if (!userid) {
+		alert("로그인 후 이용해주세요!");
+		location.replace('/');
+		return;
+	}
+
 	// ★ 댓글 DB로 보내는 Ajax
-	    $.ajax({
-	        type: "POST",
-	        url: "/mboard/put_reply",
-	        contentType: "application/json",
-	        data: JSON.stringify({ 
-	            boardnum: boardnum, 
-	            replycontent: replycontent, 
-	            replyuserid: userid 
-	        }),
-	        success: function(response) {
-	            alert("댓글 작성 완료!");
-				// 페이지 새로고침
-	            location.reload();
-	        },
-	        error: function(xhr, status, error) {
-	            console.error("오류 발생:", xhr.statusText, error);
-	        }
-	    });
+	$.ajax({
+		type: "POST",
+		url: "/mboard/put_reply",
+		contentType: "application/json",
+		data: JSON.stringify({
+			boardnum: boardnum,
+			replycontent: replycontent,
+			replyuserid: userid,
+			ctuserid: ctuserid,
+			contentpath: path,
+			boardtitle: boardtitle
+		}),
+		success: function(response) {
+			alert("댓글 작성 완료!");
+			// 페이지 새로고침
+			location.reload();
+		},
+		error: function(xhr, status, error) {
+			console.error("오류 발생:", xhr.statusText, error);
+		}
+	});
 }
 
 let replynum;
@@ -559,19 +590,19 @@ function modify_reply(button) {
 	// 댓글 번호 가져오기
 	const reply_list = $(button).closest(".reply_list");
 	replynum = reply_list.find(".replynum").text();
-	
+
 	// 댓글 수정환경 구축
-	const reply_content = reply_list.find(".reply_con").text();	
+	const reply_content = reply_list.find(".reply_con").text();
 	const reply_con = reply_list.find(".reply_con");
 	reply_con.empty();
 	reply_con.append(`<textarea id="modify_replycontent"
 					>${reply_content}</textarea>`);
-	
+
 	const reply_btn = reply_list.find(".reply_btn");
 	reply_btn.empty();
 	reply_btn.append(`<div class="go_modify_reply" onclick="go_modify_reply(${replynum})">수정완료</div>`);
 	reply_btn.append(`<div class="stop_modify_reply" onclick="stop_modify_reply()">수정취소</div>`);
-	
+
 }
 
 // 댓글 수정 취소
@@ -580,10 +611,10 @@ function stop_modify_reply() {
 }
 
 // 댓글 수정 완료	
-function go_modify_reply(replynum){
-	const replycontent = $("#modify_replycontent").val(); 
+function go_modify_reply(replynum) {
+	const replycontent = $("#modify_replycontent").val();
 	console.log(replycontent);
-	
+
 	// ★ 수정된 댓글 DB로 보내는 Ajax
 	$.ajax({
 		type: "POST",
@@ -609,29 +640,29 @@ function delete_reply(button) {
 	// 댓글 정보를 가져오기
 	const reply_list = $(button).closest(".reply_list");
 	const replynum = reply_list.find(".replynum").text();
-	
+
 	if (confirm("정말로 댓글을 삭제하시겠습니까?")) {
 		// ★ 댓글 DB에서 삭제 요청보내는 Ajax
 		$.ajax({
-			type : "POST",
-			url : "/mboard/delete_reply",
-			contentType : "application/json",
-			data : JSON.stringify({
-				replynum : replynum
+			type: "POST",
+			url: "/mboard/delete_reply",
+			contentType: "application/json",
+			data: JSON.stringify({
+				replynum: replynum
 			}),
-			success : function(response){
+			success: function(response) {
 				alert("댓글 삭제 완료!")
 				location.reload();
 			},
 			error: function(xhr, status, error) {
-				            console.error("오류 발생:", xhr.statusText, error);
+				console.error("오류 발생:", xhr.statusText, error);
 			}
 		});
-    }
+	}
 }
 
 /* 검색하기 구현 */
-function handle_search_btn(){
+function handle_search_btn() {
 	const form = document.search_form;
 	const type = $("#type").val();
 	const keyword = $("#keyword").val();
@@ -640,6 +671,6 @@ function handle_search_btn(){
 		alert("검색 조건과 키워드를 입력하세요.");
 		return;
 	}
-		
+
 	form.submit();
 }

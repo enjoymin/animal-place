@@ -1,4 +1,7 @@
 create database project;
+use project;
+
+create database project;
 
 use project;
 
@@ -52,12 +55,12 @@ create table user(
     addrdetail varchar(2000) not null,
     addretc varchar(300),
     userpet varchar(300),
-    userschedule varchar(300)
+    schedule varchar(300)
 );
-select *from user;
 drop table user;
 insert into  user(userid,userpw,username,addrdetail) values("apple","1234","김사과","중국산");
-insert into  user(userid,userpw,username,addrdetail) values("doori","1234","김사과","중국산");
+
+insert into  user(userid,userpw,username,addrdetail) values("banana","1234","반하나","중국산");
 
 create table myphoto(
 	systemname varchar(1000),
@@ -69,10 +72,13 @@ create table alarm(
     userid varchar(300) not null,
     boardtitle varchar(1000) not null,
     contentpath varchar(3000) not null,
-    reply boolean,
-    meeting boolean,
-    plike boolean
+    reply boolean default false,
+    ameeting boolean default false,
+    dmeeting boolean default false,
+    plike boolean default false
 );
+select * from alarm;
+drop table alarm;
 
 ############################ USER END
 
@@ -109,7 +115,6 @@ create table m_board(
 boardnum int auto_increment primary key,
     boardtitle varchar(300),
     userid varchar(300),
-    constraint userid foreign key(userid) references user(userid),
     
     setdate date,
     dDay int,
@@ -122,8 +127,10 @@ boardnum int auto_increment primary key,
 
     member varchar(3000)
 );
+select * from m_board;
 drop table m_board;
-drop table m_reply;
+
+
 create table m_reply(
 replynum bigint auto_increment primary key,
     replycontent varchar(3000),
@@ -132,6 +139,8 @@ replynum bigint auto_increment primary key,
     boardnum int,
     constraint boardnum foreign key(boardnum) references m_board(boardnum)
 );
+
+drop table m_reply;
 ################################## mboard end
 
 ############################# 규진님 완성되면 추가
@@ -146,7 +155,7 @@ create table adoption(
     gender varchar(100),
     age varchar(100),
     cost varchar(100),
-    adoptionOk boolean,
+    adoptionOk varchar(100),
     userid varchar(300)
 );
 
@@ -158,14 +167,7 @@ create table adfile(
 
 ###############################
 
-create table search_history(
-	id serial primary key,
-    keyword varchar(300) not null,
-    search_count int default 1,
-    created_at timestamp default current_timestamp
-);
 
-select * from search_history;
 #따로 넣어줘야하는거
 
 #-----강아지 데이터 
