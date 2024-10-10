@@ -37,36 +37,39 @@
 			<div id="contentSection">
 				<input id="boardnum" type="hidden" th:value="${board.boardnum}" />
 				<h2 th:text="${board.boardtitle}">제목</h2>
-				<th:block>
-					<div id="user_area">
-						<p th:text="${board.userid}">작성자</p>
-						<a href="#" class="board-likebtn" id="viewPostlike" th:data-boardnum="${board.boardnum}">
-							<img class="likeimg"
-								th:src="${llist == null ? '/images/pimages/nomal.png' : '/images/pimages/like.png'}" />
-							<p class="likecnt" th:text="${board.boardlikecnt}"></p>
-						</a>
-					</div>
+
+
+				<div id="user_area">
+					<p th:text="${board.userid}">작성자</p>
+					<a href="#" class="board-likebtn" id="viewPostlike" th:data-boardnum="${board.boardnum}">
+						<img class="likeimg"
+							th:src="${llist == null ? '/images/pimages/nomal.png' : '/images/pimages/like.png'}" />
+						<p class="likecnt" th:text="${board.boardlikecnt}"></p>
+					</a>
+				</div>
+
+				<div class="text_area">
+					<p th:text="${board.boardcontents}">내용</p>
+
 					<div class="md_btn" th:if="${board.userid == session.loginUser}">
 						<a class="modify" href="#">수정</a>
 						<a class="delete" href="#">삭제</a>
 					</div>
-				</th:block>
-				<p th:text="${board.boardcontents}">내용</p>
-
+				</div>
 			</div>
+			<hr>
 			<!-- 댓글은 추후에 -->
 			<div id="commentSection" style="max-height: 300px; overflow-y: auto;">
 				<input type="hidden" id="lastReplyNum" th:value="${lastReplynum}" />
-				<div th:if="${rlist == null or rlist.size() == 0}">
-					<p>등록된 댓글이 없습니다.</p>
-				</div>
+				<p id="noCommentsMessage" style="display: none;">등록된 댓글이 없습니다.</p>
 				<ul id="commentList" class="list_unstyled">
 					<li th:each="reply : ${rlist}">
-						<div>
-							<strong th:text="${reply.replyuserid}">작성자</strong>
+						<div class="reply">
+							<strong class="userID" th:text="${reply.replyuserid}">작성자</strong>
 							<p class="replyContent" th:text="${reply.replycontent}">댓글 내용</p>
 							<textarea class="editTextarea" style="display: none;"
 								th:text="${reply.replycontent}"></textarea>
+
 							<div class="buttonGroup">
 								<button class="modifyReply" th:data-replynum="${reply.replynum}"
 									th:style="${session.loginUser != reply.replyuserid} ? 'display: none;' : ''">수정</button>
@@ -76,6 +79,7 @@
 									완료</button>
 								<button class="cancelEdit" style="display: none;">취소</button>
 							</div>
+
 						</div>
 						<hr>
 					</li>
@@ -440,16 +444,16 @@
 						data.forEach(reply => {
 							$('#commentList').append(`
 					            <li>
-					                <div>
-					                    <strong th:text="${reply.replyuserid}">${reply.replyuserid}</strong>
+					                <div class="reply">
+					                    <strong class="userID" th:text="${reply.replyuserid}">${reply.replyuserid}</strong>
 					                    <p class="replyContent" th:text="${reply.replycontent}">${reply.replycontent}</p>
 					                    <textarea class="editTextarea" style="display: none;" th:text="${reply.replycontent}">${reply.replycontent}</textarea>
-					                    <div class="buttonGroup" style="display: ${reply.replyuserid === loginUser ? 'block' : 'none'};">
-					                        <button class="modifyReply" data-replynum="${reply.replynum}">수정</button>
-					                        <button class="deleteReply" data-replynum="${reply.replynum}">삭제</button>
-					                        <button class="saveReply" data-replynum="${reply.replynum}" style="display: none;">수정 완료</button>
-					                        <button class="cancelEdit" style="display: none;">취소</button>
-					                    </div>
+										<div class="buttonGroup" style="display: ${reply.replyuserid === loginUser ? 'block' : 'none'};">
+	   				                    	<button class="modifyReply" data-replynum="${reply.replynum}">수정</button>
+						   					<button class="deleteReply" data-replynum="${reply.replynum}">삭제</button>
+								            <button class="saveReply" data-replynum="${reply.replynum}" style="display: none;">수정 완료</button>
+						                    <button class="cancelEdit" style="display: none;">취소</button>
+										</div>
 					                </div>
 					                <hr>
 					            </li>
@@ -475,10 +479,18 @@
 			const boardNum = $('#boardnum').val();
 			const userId = loginUser;
 
+			if (loginUser == null || loginUser.length === 0) {
+				alert("로그인 해야 댓글을 달 수 있습니다.");
+				return;
+			}
+
 			if (!commentContent) {
 				alert("댓글 내용을 입력해주세요.");
 				return;
 			}
+
+
+
 
 			// AJAX 요청
 			$.ajax({
@@ -492,20 +504,23 @@
 				success: function (response) {
 					const newReply = response.reply;
 					alert("댓글 등록 완료");
-					$('#commentSection p').hide(); // 메시지 숨기기
+					$('#noCommentsMessage').hide(); // 메시지 숨기기
 					// 새 댓글을 리스트의 가장 위에 추가
 					$('#commentList').prepend(`
-		                <li>
-		                    <div>
-		                        <strong>${newReply.replyuserid}</strong>
-		                        <p>${newReply.replycontent}</p>
-		                        <div>
-		                            <button class="modifyReply" data-replynum="${newReply.replynum}">수정</button>
-		                            <button class="deleteReply" data-replynum="${newReply.replynum}">삭제</button>
-		                        </div>
-		                    </div>
-		                    <hr>
-		                </li>
+						<li>
+							<div class="reply">
+								<strong class="userID" th:text="${newReply.replyuserid}">${newReply.replyuserid}</strong>
+									<p class="replyContent" th:text="${newReply.replycontent}">${newReply.replycontent}</p>
+									<textarea class="editTextarea" style="display: none;" th:text="${newReply.replycontent}">${newReply.replycontent}</textarea>
+									<div class="buttonGroup" style="display: ${newReply.replyuserid === loginUser ? 'block' : 'none'};">
+					   				    <button class="modifyReply" data-replynum="${newReply.replynum}">수정</button>
+										<button class="deleteReply" data-replynum="${newReply.replynum}">삭제</button>
+										<button class="saveReply" data-replynum="${newReply.replynum}" style="display: none;">수정 완료</button>
+										<button class="cancelEdit" style="display: none;">취소</button>
+									</div>
+							</div>
+							<hr>
+						</li>
 		            `);
 					$('#commentContent').val(''); // 입력 필드 초기화
 
@@ -577,6 +592,12 @@
 			$('#commentInputSection').show();
 		});
 
+		if ($('#commentList li').length === 0) {
+			$('#noCommentsMessage').show(); // 메시지 보이기
+		} else {
+			$('#noCommentsMessage').hide(); // 댓글이 있으면 메시지 숨기기
+		}
+
 		// 삭제 버튼 클릭 이벤트
 		$('#commentList').on('click', '.deleteReply', function () {
 			const replyNum = $(this).data('replynum');
@@ -591,7 +612,9 @@
 						alert("삭제 완료");
 						$thisButton.closest('li').remove(); // 댓글 삭제
 						if ($('#commentList li').length === 0) {
-							$('#commentSection p').show(); // 메시지 보이기
+							$('#noCommentsMessage').show(); // 메시지 보이기
+						} else {
+							$('#noCommentsMessage').hide(); // 댓글이 남아있으면 메시지 숨기기
 						}
 					},
 					error: function (xhr) {

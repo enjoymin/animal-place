@@ -1,3 +1,12 @@
+/* 기타 스타일링 */
+a {
+	display: flex;
+	text-decoration: none;
+	color: black;
+}
+
+
+
 .headimg {
 	width: 100%;
 	height: 600px;
@@ -12,7 +21,8 @@
 	height: 250px;
 	object-fit: cover
 }
-.likeimg{
+
+.likeimg {
 	width: 30px;
 	height: 30px;
 	object-fit: cover;
@@ -43,20 +53,34 @@
 	/* 세로 정렬 */
 }
 
+.likebtn {
+	text-decoration: none;
+	color: black;
+}
 
 .likecnt {
 	margin-left: 10px;
+	padding-top: 3px;
 }
 
 .id {
 	margin-right: auto;
+	font-weight: bold;
 }
 
 .like {
 	display: flex;
 	justify-content: flex-start;
-	background-color:#FFEAEA;
+	background-color: #FFEAEA;
 	height: 48px;
+	align-items: center;
+	padding: 0 10px;
+}
+
+
+.board-likebtn {
+	text-decoration: none;
+	color: black;
 }
 
 /* 모달 */
@@ -94,11 +118,39 @@
 	transition: 0.3s;
 }
 
-.md_btn{
-	display: flex;	
-}
-#user_area{
+
+.text_area {
 	display: flex;
+}
+
+.text_area p {
+	margin-left: 30px;
+}
+
+.md_btn {
+	display: flex;
+	margin-left: auto;
+	margin-right: 30px;
+}
+
+.md_btn a {
+	margin-right: 15px;
+	text-decoration: none;
+}
+
+#user_area {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 0 30px;
+}
+
+#user_area p:first-child {
+	font-weight: bold;
+}
+
+#user_area a {
+	margin-left: 30px;
 }
 
 .close:hover,
@@ -154,11 +206,6 @@
 	justify-content: center;
 }
 
-/* 기타 스타일링 */
-a {
-	display: flex;
-	text-decoration: none;
-}
 
 /* <li> 요소의 기본 점 제거 */
 ul {
@@ -170,9 +217,14 @@ ul {
 	/* 마진 제거 */
 }
 
+.write {
+	float: right;
+}
+
 #warningMessage p {
 	color: red;
 }
+
 #warningText p {
 	color: red;
 }
@@ -194,125 +246,225 @@ ul {
 }
 
 /*로딩*/
-#loadingmodify{
+#loadingmodify {
 	display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    position: fixed; /* 고정 위치 */
-	    top: 0; /* 상단에 위치 */
-	    left: 0; /* 왼쪽에 위치 */
-	    width: 100%; /* 전체 너비 */
-	    height: 100%; /* 전체 높이 */
-	    background-color: rgba(0, 0, 0, 0.5); /* 검은색 배경, 투명도 50% */
-	    z-index: 1000; /* 다른 요소들 위에 나타나도록 */
-	    display: none; /* 기본적으로 숨김 */
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	/* 고정 위치 */
+	top: 0;
+	/* 상단에 위치 */
+	left: 0;
+	/* 왼쪽에 위치 */
+	width: 100%;
+	/* 전체 너비 */
+	height: 100%;
+	/* 전체 높이 */
+	background-color: rgba(0, 0, 0, 0.5);
+	/* 검은색 배경, 투명도 50% */
+	z-index: 1000;
+	/* 다른 요소들 위에 나타나도록 */
+	display: none;
+	/* 기본적으로 숨김 */
 }
+
 #loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed; /* 고정 위치 */
-    top: 0; /* 상단에 위치 */
-    left: 0; /* 왼쪽에 위치 */
-    width: 100%; /* 전체 너비 */
-    height: 100%; /* 전체 높이 */
-    background-color: rgba(0, 0, 0, 0.5); /* 검은색 배경, 투명도 50% */
-    z-index: 1000; /* 다른 요소들 위에 나타나도록 */
-    display: none; /* 기본적으로 숨김 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	/* 고정 위치 */
+	top: 0;
+	/* 상단에 위치 */
+	left: 0;
+	/* 왼쪽에 위치 */
+	width: 100%;
+	/* 전체 너비 */
+	height: 100%;
+	/* 전체 높이 */
+	background-color: rgba(0, 0, 0, 0.5);
+	/* 검은색 배경, 투명도 50% */
+	z-index: 1000;
+	/* 다른 요소들 위에 나타나도록 */
+	display: none;
+	/* 기본적으로 숨김 */
 }
 
 .loader {
-    display: flex;
-    flex-direction: column; /* 세로 방향으로 정렬 */
-    align-items: center; /* 중앙 정렬 */
-    z-index: 1001; /* 로딩 애니메이션이 배경 위에 나타나도록 */
-    transform: translate(-50%, -50%); /* 중앙 정렬 */
-    position: absolute; /* 절대 위치 설정 */
-    top: 50%; /* 수직 중앙 */
-    left: 50%; /* 수평 중앙 */
+	display: flex;
+	flex-direction: column;
+	/* 세로 방향으로 정렬 */
+	align-items: center;
+	/* 중앙 정렬 */
+	z-index: 1001;
+	/* 로딩 애니메이션이 배경 위에 나타나도록 */
+	transform: translate(-50%, -50%);
+	/* 중앙 정렬 */
+	position: absolute;
+	/* 절대 위치 설정 */
+	top: 50%;
+	/* 수직 중앙 */
+	left: 50%;
+	/* 수평 중앙 */
 }
 
 .dots {
-    display: flex; /* 점들을 가로로 정렬 */
-    justify-content: center; /* 중앙 정렬 */
+	display: flex;
+	/* 점들을 가로로 정렬 */
+	justify-content: center;
+	/* 중앙 정렬 */
 }
 
 .dot {
-    width: 15px; /* 점 크기 감소 */
-    height: 15px; /* 점 크기 감소 */
-    margin: 0 5px;
-    background-color:#FF9B9B; /* 점 색상 */
-    border-radius: 50%; /* 원형으로 만들기 */
-    animation: loading 1s infinite ease-in-out;
+	width: 15px;
+	/* 점 크기 감소 */
+	height: 15px;
+	/* 점 크기 감소 */
+	margin: 0 5px;
+	background-color: #FF9B9B;
+	/* 점 색상 */
+	border-radius: 50%;
+	/* 원형으로 만들기 */
+	animation: loading 1s infinite ease-in-out;
 }
 
 @keyframes loading {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2); /* 크기 변화를 반으로 줄임 */
-    }
-    100% {
-        transform: scale(1); /* 원래 크기로 돌아옴 */
-    }
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.2);
+		/* 크기 변화를 반으로 줄임 */
+	}
+
+	100% {
+		transform: scale(1);
+		/* 원래 크기로 돌아옴 */
+	}
 }
 
 .dot:nth-child(1) {
-    animation-delay: 0s;
+	animation-delay: 0s;
 }
 
 .dot:nth-child(2) {
-    animation-delay: 0.2s;
+	animation-delay: 0.2s;
 }
 
 .dot:nth-child(3) {
-    animation-delay: 0.4s;
+	animation-delay: 0.4s;
 }
 
 
 /* 스크롤 */
 .no-scroll {
-    overflow: hidden; /* 스크롤 숨기기 */
+	overflow: hidden;
+	/* 스크롤 숨기기 */
 }
 
 /* 댓글 */
 #commentSection {
-    border: 1px solid #ccc;
+	border: 1px solid #ccc;
 	height: 200px;
 	overflow: hidden;
-	border-radius: 25px; /* 타원 형태 만들기 */
-	padding-top: 10px
+	border-radius: 25px;
+	/* 타원 형태 만들기 */
+	padding-top: 10px;
+	display: flex;
+	flex-direction: column;
 }
 
-.btn{
-	width: 100px; height: 30px;
+.btn {
+	width: 100px;
+	height: 30px;
 }
-.btn a{
+
+.btn a {
 	display: flex;
 	text-decoration: none;
-
+	color: black;
+	border: 1px solid #FF9B9B;
+	background-color: #FF9B9B;
+	border-radius: 25px;
+	justify-content: center;
+	font-weight: bold;
 }
 
 
-/* 댓글 입력 영역 스타일 */
+.reply {
+	display: flex;
+
+}
+
+.userID {
+	width: 60px;
+}
+
+
+.replyContent {
+	margin-left: 30px;
+	/* 가운데 정렬 (선택 사항) */
+}
+
+#modify button {
+	border: none;
+	/* 테두리 제거 */
+	border-radius: 25px;
+	/* 테두리 없애기 */
+	background-color: #FF9B9B;
+}
+
+.buttonGroup {
+	margin-left: auto;
+	margin-right: 30px;
+
+}
+
+.buttonGroup button {
+	border: none;
+	/* 테두리 제거 */
+	border-radius: 25px;
+	/* 테두리 없애기 */
+	background: transparent;
+
+}
+
+button {
+	border: none;
+	/* 테두리 제거 */
+	border-radius: 25px;
+	/* 테두리 없애기 */
+	background-color: #FF9B9B;
+	padding: 10px;
+	/* 원하는 패딩 설정 */
+}
+
+
 #commentInputSection {
-    margin-top: 10px;
+	position: sticky;
+	bottom: 0;
+	background-color: #FFEAEA;
+	/* 배경색 변경 */
+	padding: 10px;
+	z-index: 10;
+	/* 다른 요소 위에 표시되도록 함 */
+	margin-top: auto;
+	display: flex;
 }
 
-#commentInputSection {
-    position: sticky;
-    bottom: 0;
-    background-color:  #FFEAEA; /* 배경색 변경 */
-    padding: 10px;
-    z-index: 10; /* 다른 요소 위에 표시되도록 함 */
-}
 
-
-#commentContent{
-	width: 90%;
+#commentContent {
+	width: 85%;
 	height: 50px;
+	margin-right: 30px;
 	border-radius: 25px;
 	padding: 10px;
-	resize: none; /* 크기 조정을 비활성화 */
+	resize: none;
+	/* 크기 조정을 비활성화 */
+}
+
+#submitComment {
+	border-radius: 25px;
+	background: #FF9B9B;
 }
