@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.pboard.PBoardDTO;
 import com.example.demo.model.pboard.PLikelistDTO;
+import com.example.demo.service.he.AlarmService;
 import com.example.demo.service.pboard.PBoardService;
 import com.example.demo.service.pboard.PLikelistService;
 
@@ -29,6 +30,9 @@ public class PLikelistController {
     
     @Autowired
     private PBoardService pbservice;
+    
+    @Autowired
+    private AlarmService alservice;
 
     @GetMapping("checklike")
     public ResponseEntity<PLikelistDTO> checkLike(@RequestParam Long boardnum, HttpServletRequest req) {
@@ -45,7 +49,6 @@ public class PLikelistController {
 
     @PostMapping("insert")
     public ResponseEntity<Map<String, Object>> insert(@RequestParam Long boardnum, HttpServletRequest req) {
-
         HttpSession session = req.getSession();
         String loginUser = (String) session.getAttribute("loginUser");
         boolean success = plservice.insertLike(boardnum, loginUser);
