@@ -253,7 +253,23 @@ header {
     font-weight: 400;
 }
 
+.reply_btn{
+	display: flex;
+}
+
+.modify_reply {
+	font-size: 14px;
+	font-family: 'MinSans-Regular';
+	font-weight: 400;
+	align-self: baseline;
+	cursor: pointer;
+	padding: 3px;
+	border: 2px solid #f2f2f2;
+	border-radius: 5px;
+}
+
 .delete_reply{
+	margin-left: 5px;
     font-size: 14px;
     font-family: 'MinSans-Regular';
     font-weight: 400;
@@ -262,6 +278,29 @@ header {
     padding: 3px;
     border: 2px solid #f2f2f2;
     border-radius: 5px;
+}
+
+.go_modify_reply {
+	font-size: 14px;
+	font-family: 'MinSans-Regular';
+	font-weight: 400;
+	align-self: baseline;
+	cursor: pointer;
+	padding: 3px;
+	border: 2px solid #f2f2f2;
+	border-radius: 5px;
+}
+
+.stop_modify_reply {
+	margin-left: 5px;
+	font-size: 14px;
+	font-family: 'MinSans-Regular';
+	font-weight: 400;
+	align-self: baseline;
+	cursor: pointer;
+	padding: 3px;
+	border: 2px solid #f2f2f2;
+	border-radius: 5px;
 }
 
 .no_reply_list{

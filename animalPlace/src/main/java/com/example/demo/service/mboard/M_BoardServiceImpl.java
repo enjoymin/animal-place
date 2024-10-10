@@ -139,7 +139,7 @@ public class M_BoardServiceImpl  implements M_BoardService{
                 String pre_schedules = user.getSchedule();
                 
                 // 새로 만들어줄 유저의 스케줄
-                String new_schedules = "";
+                StringBuilder new_schedules = new StringBuilder();
                 
                 String[] scheduleArray = pre_schedules.split("\\\\");
                 for(int i=0; i<scheduleArray.length; i++) {
@@ -151,14 +151,14 @@ public class M_BoardServiceImpl  implements M_BoardService{
                 	}
                 	
                 	// 다를경우 그냥 추가해
-                	new_schedules += pre_schedule;
+                	new_schedules.append(pre_schedule);
                 	
                 	// 마지막 요소가 아니라면 \\빼고 추가해
                 	if (i < scheduleArray.length - 1) {
-                        new_schedules += "\\";
+                		new_schedules.append("\\");
                     }
                 }                
-                user.setSchedule(new_schedules);
+                user.setSchedule(new_schedules.toString());
                 umapper.update_schedule(user);
             }
         }
@@ -181,22 +181,22 @@ public class M_BoardServiceImpl  implements M_BoardService{
                 String pre_schedules = user.getSchedule();
                 
                 // 새로 만들어줄 유저의 스케줄
-                String new_schedules = "";
+                StringBuilder new_schedules = new StringBuilder();
                 
                 String[] scheduleArray = pre_schedules.split("\\\\");
                 for(int i=0; i<scheduleArray.length; i++) {
                 	String pre_schedule = scheduleArray[i].trim();
                 	// 날짜를 분리해서 받아오고, 해당 날짜가 변경 전 날짜랑 같지 않다==추가해야할 날짜다
                 	if(!(pre_schedule.trim().equals(oldDate.trim()))) {
-                		new_schedules += pre_schedule;                	
+                		new_schedules.append(pre_schedule);        	
                 	
                 	// 마지막 요소가 아니라면 \\빼고 추가해
                 	if (i < scheduleArray.length - 1) {
-                        new_schedules += "\\";
+                		 new_schedules.append("\\");
                     }
                 	}    	
                 }                
-                user.setSchedule(new_schedules);
+                user.setSchedule(new_schedules.toString());
                 umapper.update_schedule(user);
             }
         }
