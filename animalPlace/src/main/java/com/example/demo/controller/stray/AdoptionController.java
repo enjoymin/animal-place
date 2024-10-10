@@ -1,16 +1,19 @@
 package com.example.demo.controller.stray;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.adoption.AdoptionDTO;
+import com.example.demo.service.adoption.AdoptionService;
 
 @Controller
 @RequestMapping("/adoption/*")
 public class AdoptionController {
-	final static String serviceKey = "pmF9%2BcvRwKXr%2B8J4llELzWtgxz8zqVTR7VWXuJiRRLMc7ifXlCqRf%2B%2BQeiVrQbNKMezOthWu%2FhmzU7bDNYmGKA%3D%3D";
+	@Autowired
+	private AdoptionService adservice;
 	
 	@GetMapping(value = {"list"})
 	public void list() {}
@@ -20,7 +23,8 @@ public class AdoptionController {
 	
 	@PostMapping("write")
 	public void writeOk(AdoptionDTO adoption) {
-		
+		System.out.println(adoption);
+		adservice.regist(adoption);
 	}
 }
 
