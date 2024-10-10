@@ -38,7 +38,6 @@
 	<select id="getMembers">
 		select member from m_board where boardnum=#{boardnum}
 	</select>
-	
 	<update id="updateMember">
 		update m_board
 		set member = #{member}
