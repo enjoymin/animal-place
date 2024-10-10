@@ -95,6 +95,9 @@ public class M_BoardController {
 
 	@GetMapping("m_get")
 	public String m_get(int mboardnum, Model model, HttpServletRequest req, HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+		String loginUser = (String)session.getAttribute("loginUser");
+		
 		Cookie[] cookies = req.getCookies();
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
@@ -111,17 +114,39 @@ public class M_BoardController {
 			}
 		}
 		M_BoardDTO mboard = service.getDetail(mboardnum);
-		model.addAttribute("m_board",mboard);		
+		model.addAttribute("m_board",mboard);
+		
+		// 조회수(쿠키 3분)
+		if(!mboard.getUserid().equals(loginUser)) {
+			Cookie[] read_cookies = req.getCookies();
+			Cookie read_board = null;
+			if(read_cookies != null) {
+				for(Cookie cookie : read_cookies) {
+					if(cookie.getName().equals("read_board"+mboardnum)) {
+						read_board = cookie;
+						break;
+					}
+				}
+			}			
+			if(read_board == null) {				
+				service.increase_readcount(mboardnum);
+				Cookie read_cookie = new Cookie("read_board"+mboardnum, "r");
+				read_cookie.setPath("/");
+				read_cookie.setMaxAge(180);
+				resp.addCookie(read_cookie);
+			}			
+		}
+		
 		// 댓글 받아오기
-	    List<M_ReplyDTO> reply_list = re_service.get_reply_list();
-	    
+	    List<M_ReplyDTO> reply_list = re_service.get_reply_list();	    
 	    Map<Integer, List<M_ReplyDTO>> repliesByBoardNum = reply_list.stream()
 	            .collect(Collectors.groupingBy(M_ReplyDTO::getBoardnum));
 	        
 	    model.addAttribute("repliesByBoardNum", repliesByBoardNum);
-	    String path = "/mboard/m_get?mboardnum="+mboardnum;
-	    alservice.deleteAlarmByPath(path);
 
+		String userid =  (String) session.getAttribute("loginUser");
+	    String path = "/mboard/m_get?mboardnum="+mboardnum;
+	    alservice.deleteAlarmByPath(userid, path);
 	    
 		return "/mboard/m_get";
 	}

@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>유기동물 / 분양정보</title>
-<link rel="stylesheet" href="/css/stray/stray.css">
-<link rel="stylesheet" href="/css/footer.css">
-<style>
-</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>유기동물 / 분양정보</title>
+	<link rel="stylesheet" href="/css/stray/stray.css">
+	<link rel="stylesheet" href="/css/footer.css">
+	<style>
+	</style>
 </head>
+
 <body>
 	<!--<th:block th:replace="~{layout/header::header}"></th:block>-->
 	<header></header>
-    <div id="wrap">
-        <h1>유기동물 / 분양정보</h1>
+	<div id="wrap">
+		<h1>유기동물 / 분양정보</h1>
 		<!-- table이 생성되는 동안 보여지는 loading 화면 -->
 		<div id="loading">
 			<div class="loader">
 				<div class="dots">
 					<div class="dot"></div>
 					<div class="dot"></div>
-					<div class="dot"></div>		
+					<div class="dot"></div>
 				</div>
 				<div class="comment">
 					로딩중...<br>
@@ -40,10 +42,10 @@
 		</div>
 		<!-- 메인 사진 및 정보 -->
 		<table>
-	        <tbody id="result">
-				
-	        </tbody>
-	    </table>
+			<tbody id="result">
+
+			</tbody>
+		</table>
 		<!-- 지역, 종류별로 검색 -->
 		<div id="select">
 			<select name="type" class="type" id="region">
@@ -72,52 +74,17 @@
 				<option value="_Cat">고양이</option>
 				<option value="_Etc">기타 품종</option>
 			</select>
-			<a id="search-btn" class="changeSelect">검색</a>		
+			<a id="search-btn" class="changeSelect">검색</a>
 		</div>
-		
-		
+
+
 		<!-- pagination -->
 		<ul class="pagination" id="pagination"></ul>
-    </div>
-    <th:block th:replace="~{layout/footer::footer}"></th:block>
-    
+	</div>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/stray/stray.js"></script>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

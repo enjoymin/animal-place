@@ -377,7 +377,11 @@ button:hover {
 }
 
 .row div:nth-child(2){
-    width: 320px;
+    width: 80px;
+}
+
+.row div:nth-child(3){
+    width: 220px;
 }
 
 .plus_info{
@@ -413,13 +417,13 @@ button:hover {
 	cursor: pointer;
 }
 
-.row div:nth-child(3){
+.row div:nth-child(4){
     width: 110px;
 	margin-left: 10px;
 }
 
 /* 작성시간 */
-.row div:nth-child(4){
+.row div:nth-child(5){
     width: 200px;
 }
 
