@@ -254,16 +254,12 @@ public class M_BoardController {
 
 	@PostMapping("put_reply")
 	public ResponseEntity<String> put_reply(@RequestBody M_ReplyDTO replyDTO) {
-		System.out.println("check1");
 		if (re_service.put_reply(replyDTO)) {
 			String flag = "reply";
-			System.out.println("check2");
 			if (!replyDTO.getReplyuserid().equals(replyDTO.getCtuserid())) {
-				System.out.println("check4");
 				alservice.insertAlarm(replyDTO.getCtuserid(), replyDTO.getBoardtitle(), replyDTO.getContentpath(),
 						flag);
 			}
-			System.out.println("check3");
 			return ResponseEntity.ok("댓글 추가 완료!");
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 추가 실패");

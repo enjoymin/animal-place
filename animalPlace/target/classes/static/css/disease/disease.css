@@ -125,142 +125,142 @@ table button:hover {
 
 /* 각 버튼 위치는 사용자가 설정했던 값 유지 */
 .anihead {
-	left: 700px;
-	bottom: 710px;
+    left: 700px;
+    bottom: 616px; /* 710px - 94px */
 }
 
 .anibody {
-	left: 900px;
-	bottom: 600px;
+    left: 900px;
+    bottom: 506px; /* 600px - 94px */
 }
 
 .leg {
-	left: 780px;
-	bottom: 250px;
+    left: 780px;
+    bottom: 156px; /* 250px - 94px */
 }
 
 .neck {
-	left: 670px;
-	bottom: 560px;
+    left: 670px;
+    bottom: 466px; /* 560px - 94px */
 }
 
 .tal {
-	left: 1280px;
-	bottom: 350px;
+    left: 1280px;
+    bottom: 256px; /* 350px - 94px */
 }
 
 .show-animal.dog .anihead {
-	left: 700px;
-	bottom: 710px;
+    left: 700px;
+    bottom: 616px; /* 710px - 94px */
 }
 
 .show-animal.dog .anibody {
-	left: 900px;
-	bottom: 600px;
+    left: 900px;
+    bottom: 506px; /* 600px - 94px */
 }
 
 /* 고양이 */
 .show-animal.cat .anihead {
-	left: 700px;
-	bottom: 580px;
+    left: 700px;
+    bottom: 486px; /* 580px - 94px */
 }
 
 .show-animal.cat .anibody {
-	left: 900px;
-	bottom: 500px;
+    left: 900px;
+    bottom: 406px; /* 500px - 94px */
 }
 
 .show-animal.cat .leg {
-	left: 700px;
-	bottom: 250px;
+    left: 700px;
+    bottom: 156px; /* 250px - 94px */
 }
 
 .show-animal.cat .neck {
-	left: 670px;
-	bottom: 450px;
+    left: 670px;
+    bottom: 356px; /* 450px - 94px */
 }
 
 .show-animal.cat .tal {
-	left: 1200px;
-	bottom: 600px;
+    left: 1200px;
+    bottom: 506px; /* 600px - 94px */
 }
 
 /* 새 */
 .show-animal.bird .anihead {
-	left: 700px;
-	bottom: 650px;
+    left: 700px;
+    bottom: 556px; /* 650px - 94px */
 }
 
 .show-animal.bird .anibody {
-	left: 900px;
-	bottom: 500px;
+    left: 900px;
+    bottom: 406px; /* 500px - 94px */
 }
 
 .show-animal.bird .leg {
-	left: 800px;
-	bottom: 200px;
+    left: 800px;
+    bottom: 106px; /* 200px - 94px */
 }
 
 .show-animal.bird .neck {
-	left: 670px;
-	bottom: 550px;
+    left: 670px;
+    bottom: 456px; /* 550px - 94px */
 }
 
 .show-animal.bird .tal {
-	left: 1200px;
-	bottom: 250px;
+    left: 1200px;
+    bottom: 156px; /* 250px - 94px */
 }
 
 /* 햄스터 */
 .show-animal.hamster .anihead {
-	left: 700px;
-	bottom: 700px;
+    left: 700px;
+    bottom: 606px; /* 700px - 94px */
 }
 
 .show-animal.hamster .anibody {
-	left: 1000px;
-	bottom: 500px;
+    left: 1000px;
+    bottom: 406px; /* 500px - 94px */
 }
 
 .show-animal.hamster .leg {
-	left: 800px;
-	bottom: 200px;
+    left: 800px;
+    bottom: 106px; /* 200px - 94px */
 }
 
 .show-animal.hamster .neck {
-	left: 670px;
-	bottom: 450px;
+    left: 670px;
+    bottom: 356px; /* 450px - 94px */
 }
 
 .show-animal.hamster .tal {
-	left: 1200px;
-	bottom: 250px;
+    left: 1200px;
+    bottom: 156px; /* 250px - 94px */
 }
 
 /* 토끼 */
 .show-animal.rabbit .anihead {
-	left: 600px;
-	bottom: 500px;
+    left: 600px;
+    bottom: 406px; /* 500px - 94px */
 }
 
 .show-animal.rabbit .anibody {
-	left: 1000px;
-	bottom: 500px;
+    left: 1000px;
+    bottom: 406px; /* 500px - 94px */
 }
 
 .show-animal.rabbit .leg {
-	left: 800px;
-	bottom: 200px;
+    left: 800px;
+    bottom: 106px; /* 200px - 94px */
 }
 
 .show-animal.rabbit .neck {
-	left: 670px;
-	bottom: 400px;
+    left: 670px;
+    bottom: 306px; /* 400px - 94px */
 }
 
 .show-animal.rabbit .tal {
-	left: 1300px;
-	bottom: 250px;
+    left: 1300px;
+    bottom: 156px; /* 250px - 94px */
 }
 
 fieldset {

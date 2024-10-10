@@ -85,7 +85,7 @@ function up() {
 function getmembers(mboardnum, callback) {
 	// ★ 멤버 배열 받아오는 Ajax
 	$.ajax({
-		type: "GET",
+		method: "GET",
 		// 보드넘버 넘겨주면서
 		url: `/mboard/get_members?boardnum=${mboardnum}`,
 		success: function(response) {
@@ -306,7 +306,7 @@ function delUser(element) {
 		// ★ 서버에 새로운 참가자들 보내서 업데이트하는 Ajax
 		const member = members.join("\\");
 		$.ajax({
-			type: "POST",
+			method: "POST",
 			url: '/mboard/put_member',
 			contentType: 'application/json',
 			data: JSON.stringify({
@@ -339,7 +339,7 @@ function updateUserSchedule(mboardnum) {
 
 	// ★ 로그인 유저에 맞는 스케줄 가져오는 Ajax
 	$.ajax({
-		type: "GET",
+		method: "GET",
 		url: `/user/get_schedule?userid=${loginUser}`,
 		success: function(currentSchedule) {
 			// 기존 스케줄과 합쳐서 data 만들기
@@ -348,7 +348,7 @@ function updateUserSchedule(mboardnum) {
 
 			// ★ 스케줄 업데이트 요청하는 Ajax
 			$.ajax({
-				type: "POST",
+				method: "POST",
 				url: '/user/update_schedule',
 				contentType: 'application/json',
 				data: data,
@@ -374,7 +374,7 @@ function removeUserSchedule(mboardnum) {
 
 	// ★ 로그인 유저에 맞는 스케줄 가져오는 Ajax
 	$.ajax({
-		type: "GET",
+		method: "GET",
 		url: `/user/get_schedule?userid=${loginUser}`,
 		success: function(currentSchedule) {
 			// 현재 스케줄에서 삭제할 날짜 제외한 새로운 스케줄 생성하고 data로 보내기
@@ -384,7 +384,7 @@ function removeUserSchedule(mboardnum) {
 
 			// ★ 스케줄 업데이트 요청하는 Ajax
 			$.ajax({
-				type: "POST",
+				method: "POST",
 				url: '/user/update_schedule',
 				contentType: 'application/json',
 				data: data,
@@ -405,7 +405,7 @@ function removeUserSchedule(mboardnum) {
 function updateMemberCount(mboardnum) {
 	// ★ 멤버 수 받아오는 Ajax
 	$.ajax({
-		type: "GET",
+		method: "GET",
 		url: `/mboard/get_members?boardnum=${mboardnum}`,
 		success: function(response) {
 			// 서버에서 받아온 멤버 목록을 배열에 넣어서 개수로 세어주기
@@ -442,7 +442,7 @@ function updateMySchedule() {
 	const loginUser = $(".loginUser").val();
 	// 서버에서 사용자 스케줄 가져오기
 	$.ajax({
-		type: "GET",
+		method: "GET",
 		url: `/mboard/get_my_schedule?userid=${loginUser}`,
 		success: function(response) {
 			// 받아온 boardDTO 타입의 리스트들
@@ -520,7 +520,7 @@ function delUser_scheduleBox(mboardnum) {
 
 		const member = members.join("\\");
 		$.ajax({
-			type: "POST",
+			method: "POST",
 			url: '/mboard/put_member',
 			contentType: 'application/json',
 			data: JSON.stringify({
@@ -569,7 +569,7 @@ function add_reply(button) {
 
 	// ★ 댓글 DB로 보내는 Ajax
 	$.ajax({
-		type: "POST",
+		method: "POST",
 		url: "/mboard/put_reply",
 		contentType: "application/json",
 		data: JSON.stringify({
@@ -625,7 +625,7 @@ function go_modify_reply(replynum) {
 
 	// ★ 수정된 댓글 DB로 보내는 Ajax
 	$.ajax({
-		type: "POST",
+		method: "POST",
 		url: "/mboard/modify_reply",
 		contentType: "application/json",
 		data: JSON.stringify({
@@ -652,7 +652,7 @@ function delete_reply(button) {
 	if (confirm("정말로 댓글을 삭제하시겠습니까?")) {
 		// ★ 댓글 DB에서 삭제 요청보내는 Ajax
 		$.ajax({
-			type: "POST",
+			method: "POST",
 			url: "/mboard/delete_reply",
 			contentType: "application/json",
 			data: JSON.stringify({
