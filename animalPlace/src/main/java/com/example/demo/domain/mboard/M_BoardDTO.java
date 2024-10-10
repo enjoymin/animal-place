@@ -17,6 +17,7 @@ public class M_BoardDTO {
 	private String boardcontent;
 	private String boarddatetime;
 	private boolean boardflag;
+	private int readcount;
 	private String member;
 	
     public void make_dDay() {

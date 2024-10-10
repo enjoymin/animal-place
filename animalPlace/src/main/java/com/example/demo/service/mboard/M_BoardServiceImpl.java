@@ -231,7 +231,10 @@ public class M_BoardServiceImpl  implements M_BoardService{
 		return null;
 	}
 
-
-	
+	@Override
+	public void increase_readcount(int mboardnum) {
+		M_BoardDTO mboard = bmapper.getBoardByBoardNum(mboardnum);
+		bmapper.update_readcount(mboardnum, mboard.getReadcount()+1);
+	}
 
 }
