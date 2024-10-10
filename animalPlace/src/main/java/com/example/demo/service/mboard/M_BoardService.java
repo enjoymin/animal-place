@@ -41,4 +41,6 @@ public interface M_BoardService {
 
 	List<M_BoardDTO> searchBoards(String type, String keyword);
 
+	void increase_readcount(int mboardnum);
+
 }

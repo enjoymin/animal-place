@@ -66,6 +66,12 @@
 		boardtitle like concat('%', #{keyword}, '%') or
 		boardcontent like concat('%', #{keyword}, '%')
 	</select>
+	
+	<update id="update_readcount">
+		update m_board
+		set readcount = #{readcount}
+		where boardnum = #{boardnum}
+	</update>
 
 </mapper>
 
