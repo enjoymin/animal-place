@@ -123,7 +123,6 @@
 											th:each="reply : ${repliesByBoardNum[m_board.boardnum]}">
 											<div hidden class="replynum">[[${reply.replynum}]]</div>
 
-
 											<div class="reply_info">
 												<div class="profile_img_box">
 													<img src="/images/test강아지.jpg" alt="" class="profile_img">
@@ -135,15 +134,19 @@
 													<div class="reply_con" th:text="${reply.replycontent}"></div>
 												</div>
 											</div>
-
 											<!-- 작성자인 경우만 보이게!!!! -->
 											<th:block th:if="${reply.replyuserid == session.loginUser}">
-												<div class="delete_reply" onclick="delete_reply(this)">
-													삭제
+												<div class="reply_btn">										
+													<div class="modify_reply" onclick="modify_reply(this)">
+														수정
+													</div>
+													<div class="delete_reply" onclick="delete_reply(this)">
+														삭제
+													</div>
 												</div>
 											</th:block>
-										</div>
-									</div>
+											</div>
+											</div>
 
 									<!-- 이아래로 댓글 추가 -->
 								</div> <!-- reply_area div 닫기 -->
@@ -178,4 +181,5 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 </body>
+
 </html>

@@ -151,12 +151,15 @@ function addUser(element) {
 	const listInfo = $(element).closest(".m_list").find(".list_info");
 	// listInfo의 아이디 == 해당 boardnum
 	const mboardnum = listInfo.attr("id");
+	// listInfo의 제목
 	const mboardtitle = listInfo.find(".list_title").text().trim();
 	// listInfo의 아이디
 	const writer = listInfo.find(".userid").text().trim();
-	console.log(writer);
-	console.log(mboardtitle);
-	
+	const flag = 'ameeting';
+	let path = '/mboard/m_get?mboardnum=';
+	path += mboardnum;
+	console.log(path);
+
 	// *유효성 - 비로그인 걸러내기
 	if (!loginUser) {
 		alert("로그인 후 이용해주세요!");
@@ -221,7 +224,10 @@ function addUser(element) {
 					url: '/mboard/put_member',
 					method: "POST",
 					contentType: 'application/json',
-					data: JSON.stringify({ member: member, boardnum: mboardnum }),
+					data: JSON.stringify({
+						member: member, boardnum: mboardnum
+						, userid: writer, contentpath: path, boardtitle: mboardtitle, flag: flag
+					}),
 					success: function() {
 						// 멤버 넣은 후 처리하기!!
 						// 4-3) user 테이블 : 날짜 추가(DB)
@@ -252,9 +258,16 @@ function addUser(element) {
 // 5-4) 이달의 모임 : 멤버수 감소
 // 5-5) my schedule 위젯 : 내 스케줄 제거
 function delUser(element) {
+
+
 	const loginUser = $(".loginUser").val();
 	const listInfo = $(element).closest(".m_list").find(".list_info");
 	const mboardnum = listInfo.attr("id");
+	const mboardtitle = listInfo.find(".list_title").text().trim();
+	const writer = listInfo.find(".userid").text().trim();
+	const flag = 'dmeeting';
+	let path = '/mboard/m_get?mboardnum=';
+	path += mboardnum;
 
 	// *유효성 - 비로그인 걸러내기
 	if (!loginUser) {
@@ -293,7 +306,10 @@ function delUser(element) {
 			type: "POST",
 			url: '/mboard/put_member',
 			contentType: 'application/json',
-			data: JSON.stringify({ member: member, boardnum: mboardnum }),
+			data: JSON.stringify({
+				member: member, boardnum: mboardnum
+				, userid: writer, contentpath: path, boardtitle: mboardtitle, flag: flag
+			}),
 			success: function(response) {
 				// 5-3) user 테이블 날짜 제거(DB)
 				removeUserSchedule(mboardnum);
@@ -464,6 +480,11 @@ function updateMySchedule() {
 function delUser_scheduleBox(mboardnum) {
 	const loginUser = $(".loginUser").val();
 	const $listInfo = $(`.list_info[id="${mboardnum}"]`);
+	const mboardtitle = $listInfo.find(".list_title").text().trim();
+	const writer = $listInfo.find(".userid").text().trim();
+	const flag = 'dmeeting';
+	let path = '/mboard/m_get?mboardnum=';
+	path += mboardnum;
 
 	// *유효성 - 비로그인 걸러내기
 	if (!loginUser) {
@@ -494,11 +515,15 @@ function delUser_scheduleBox(mboardnum) {
 			type: "POST",
 			url: '/mboard/put_member',
 			contentType: 'application/json',
-			data: JSON.stringify({ member: member, boardnum: mboardnum }),
+			data: JSON.stringify({
+				member: member, boardnum: mboardnum
+				, userid: writer, contentpath: path, boardtitle: mboardtitle, flag: flag
+			}),
 			success: function(response) {
 				removeUserSchedule(mboardnum);
 				updateMemberCount(mboardnum);
 				updateMySchedule();
+				member_view(mboardnum);
 			},
 			error: function(xhr) {
 				console.error('오류:', xhr.statusText);
@@ -526,9 +551,6 @@ function add_reply(button) {
 	let path = window.location.pathname;
 	path += '?mboardnum=';
 	path += boardnum;
-	console.log(boardtitle);
-	console.log(path);
-	console.log(ctuserid);
 
 	// * 유효성 - 비로그인 걸러내기
 	if (!userid) {
@@ -552,6 +574,58 @@ function add_reply(button) {
 		}),
 		success: function(response) {
 			alert("댓글 작성 완료!");
+			// 페이지 새로고침
+			location.reload();
+		},
+		error: function(xhr, status, error) {
+			console.error("오류 발생:", xhr.statusText, error);
+		}
+	});
+}
+
+let replynum;
+
+// 댓글 수정
+function modify_reply(button) {
+	// 댓글 번호 가져오기
+	const reply_list = $(button).closest(".reply_list");
+	replynum = reply_list.find(".replynum").text();
+
+	// 댓글 수정환경 구축
+	const reply_content = reply_list.find(".reply_con").text();
+	const reply_con = reply_list.find(".reply_con");
+	reply_con.empty();
+	reply_con.append(`<textarea id="modify_replycontent"
+					>${reply_content}</textarea>`);
+
+	const reply_btn = reply_list.find(".reply_btn");
+	reply_btn.empty();
+	reply_btn.append(`<div class="go_modify_reply" onclick="go_modify_reply(${replynum})">수정완료</div>`);
+	reply_btn.append(`<div class="stop_modify_reply" onclick="stop_modify_reply()">수정취소</div>`);
+
+}
+
+// 댓글 수정 취소
+function stop_modify_reply() {
+	location.reload();
+}
+
+// 댓글 수정 완료	
+function go_modify_reply(replynum) {
+	const replycontent = $("#modify_replycontent").val();
+	console.log(replycontent);
+
+	// ★ 수정된 댓글 DB로 보내는 Ajax
+	$.ajax({
+		type: "POST",
+		url: "/mboard/modify_reply",
+		contentType: "application/json",
+		data: JSON.stringify({
+			replynum: replynum,
+			replycontent: replycontent,
+		}),
+		success: function(response) {
+			alert("댓글 수정 완료!");
 			// 페이지 새로고침
 			location.reload();
 		},

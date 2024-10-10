@@ -203,6 +203,13 @@ public class M_BoardController {
 		// memInfo에서 member랑 boardnum문자열 추출
 		String member = (String) memInfo.get("member");
 	    String boardnumStr = (String)memInfo.get("boardnum"); // 문자열 숫자로
+	    String userid = (String) memInfo.get("userid");
+	    String boardtitle = (String) memInfo.get("boardtitle");
+	    String contentpath = (String) memInfo.get("contentpath");
+	    String flag = (String) memInfo.get("flag");
+	    
+	    alservice.insertAlarm(userid, boardtitle, contentpath, flag);
+	    
 	    int boardnum = Integer.parseInt(boardnumStr);
 	    
 		M_BoardDTO mboard = new M_BoardDTO();
@@ -229,6 +236,14 @@ public class M_BoardController {
 	    } else {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 추가 실패");
 	    }
+	}
+	
+	@PostMapping("modify_reply")
+	public ResponseEntity<String> modify_reply(@RequestBody M_ReplyDTO replyDTO) {
+		if(re_service.modify_reply(replyDTO)) {
+			return ResponseEntity.ok("댓글 수정 완료!");
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 수정 실패");
 	}
 	
 	@PostMapping("delete_reply")

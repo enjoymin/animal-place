@@ -43,6 +43,12 @@ public class AlarmServiceImpl implements AlarmService {
 		if(flag.equals("reply")) {
 			amapper.insertAlarmReply(userid, boardtitle, contentpath, flag);
 		}
+		else if(flag.equals("ameeting")) {
+			amapper.insertAlarmAmeeting(userid, boardtitle, contentpath);
+		}
+		else if(flag.equals("dmeeting")) {
+			amapper.insertAlarmDmeeting(userid, boardtitle, contentpath);
+		}
 	}
 
 }

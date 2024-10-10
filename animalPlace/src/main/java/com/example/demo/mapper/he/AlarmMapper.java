@@ -11,4 +11,6 @@ public interface AlarmMapper {
 	List<AlarmDTO> getAlarm(String userid);
 	int deleteAlarm(long num);
 	void insertAlarmReply(String userid, String boardtitle, String contentpath, String flag);
+	void insertAlarmAmeeting(String userid, String boardtitle, String contentpath);
+	void insertAlarmDmeeting(String userid, String boardtitle, String contentpath);
 }
