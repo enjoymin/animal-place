@@ -27,7 +27,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class MapBoardController {
 
 
-	@GetMapping(value = { "map", "maptest", "header", "footer" , "mblist"})
+	@GetMapping(value = { "map"})
 	public void replace() {
 
 	}
