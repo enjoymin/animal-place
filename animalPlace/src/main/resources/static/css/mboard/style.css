@@ -30,7 +30,7 @@
     padding: 0;
     font-family: 'HakgyoansimSantteutdotumL';
     font-weight: 600;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 ul,
@@ -39,13 +39,8 @@ li {
 }
 
 a {
-    color: inherit;
+    color: #363636;
     text-decoration: none;
-}
-
-header {
-    height: 100px;
-    background-color: #FF9B9B;
 }
 
 .full_wrap{
@@ -61,18 +56,23 @@ header {
 .top_container {
     width: 100%;
     height: 100%;
-    /* border: 1px solid red; */
 }
 
 .page_title {
     display: flex;
     justify-content: center;
-    /* border: 1px solid saddlebrown; */
+	align-items: center;
     padding: 10px;
+	background-color: #54965a;
 }
 
 .page_title p{
+    color: #FFFFFF;
     font-size: 60px;
+}
+
+.page_title img{
+	width: 100px;
 }
 
 .top_btn_area {
@@ -80,8 +80,7 @@ header {
     justify-content: right;
     align-items: center;
     margin-top: 30px;
-    border: 3px dashed #FF9B9B;
-    border-radius: 30px;
+    border: 1px solid #e5e7eb;
     padding: 13px;
 }
 
@@ -92,14 +91,14 @@ header {
 
 #type{
     width: 230px;
-    border-radius: 5px;
     padding: 2px;
     font-size: 14px;
+    border: 1px #e5e7eb;
 }
 
 input[type="search"]{
     margin: 0 5px;
-    border-radius: 5px;
+    border: 1px solid #e5e7eb;
 }
 
 #keyword{
@@ -107,13 +106,18 @@ input[type="search"]{
     height: 25px;
 }
 
+#keyword:focus{
+	border: 1px solid #4f4f4f;
+	outline: none;
+}
+
 .write_btn_area{
     width: 80px;
     height: 30px;
     margin: 0px 20px;
-    background-color: #FF9B9B;
+    background-color: #54965a;
     color: #FFFFFF;
-    border-radius: 5px;
+    border-radius: 30px;
     padding: 5px;
     text-align: center;
 }
@@ -129,7 +133,7 @@ input[type="search"]{
 
 /* 본문 시작 */
 .container {
-    margin-top: 100px;
+    margin-top: 50px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -140,36 +144,36 @@ input[type="search"]{
 .this_month_area {
     width: 400px;
     height: 100%;
-    padding: 40px 0px 20px 0px;
+    padding: 0px 0px 20px 0px;
 	position: sticky;
 	top: 100px;
 }
 
 .this_month_txt {
+	position: relative;
     text-align: center;
-    position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.this_month_txt img{
+	position: absolute;
+	width: 100px;
+	right: 20px;
 }
 
 .this_month_txt p {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -120%);
-    width: 200px;
-    height: 60px;
-    background-color: #FF9B9B;
-    color: #FFFFFF;
-    border-radius: 20px;
-    font-size: 30px;
-    padding: 15px;
+	color: #54965a;
+	font-size: 30px;
 }
 
 .month_plan {
     width: 100%;
     height: 100%;
-    padding: 15px;
-    border: 2px solid #f2f2f2;
-    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+	margin-top: 15px;
 }
 
 .month_plan ul li{
@@ -203,7 +207,7 @@ input[type="search"]{
 }
 
 .mo_list_writer p{
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .mo_list_contents div{
@@ -213,15 +217,13 @@ input[type="search"]{
 }
 
 .mo_list_contents a{
-    margin: 5px;
     margin-left: 10px;
     width: 225px;
 }
 
 .mo_list_title{
-    background-color: #f2f2f2;
-    padding: 5px;
-    border-radius: 5px;
+    background-color: rgba(54,54,54,0.05);
+    padding: 10px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -247,6 +249,7 @@ input[type="search"]{
     font-weight: 700;
     font-style: bold;
     margin-left: 20px;
+	color: #363636;
 }
 
 .nav {
@@ -257,9 +260,8 @@ input[type="search"]{
 .nav button{
     width: 30px;
     height: 30px;
-    background-color: #F2CA7E;
+	background-color: #54965a;
     border: 1px solid #FFFFFF;
-    border-radius: 5px;
     margin: 2px;
     color: #FFFFFF;
 }
@@ -289,6 +291,7 @@ button:hover {
 .days {
     display: flex;
     margin: 25px 0 5px;
+	color: #363636;
 }
   
 .day {
@@ -305,6 +308,7 @@ button:hover {
     width: calc(100% / 7);
     padding: 6px;
     text-align: center;
+	color: #363636;
 }
 
 .day:nth-child(7n + 1),
@@ -334,7 +338,7 @@ button:hover {
     display: block;
     width: 30px;
     height: 30px;
-    background-color: #F2CA7E;
+    background-color: #54965a;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     content: '';
@@ -359,6 +363,10 @@ button:hover {
     padding: 10px;
 }
 
+.row div{
+    font-size: 14px;
+}
+
 .m_list{
     margin-top: 20px;
 }
@@ -368,7 +376,6 @@ button:hover {
 }
 
 .row > div {
-    /* flex-grow: 1; */
     min-width: 0;
 }
 
@@ -386,35 +393,37 @@ button:hover {
 
 .plus_info{
     width: 20px !important;
-    background-color: #C4D0F2;
-    color: #FFFFFF;
-    border-radius: 5px;
+    height: 20px !important;
+    background-color: #54965a;
+    color: #FFFFFF !important;
+    border-radius: 50%;
     padding: 3px;
     text-align: center;
-    line-height: 20px;
+    line-height: 16.5px;
     cursor: pointer;
 }
 
 .more_info{
-	width: 20px !important;
-	   background-color: #C4D0F2;
+	width: 100px !important;
+    height: 25px;
+	   background-color: #54965a;
 	   color: #FFFFFF;
-	   border-radius: 5px;
+       border-radius: 30px;
 	   padding: 3px;
 	   text-align: center;
-	   line-height: 20px;
 	   cursor: pointer;
 }
 
 .close_info{
-	width: 20px !important;
-	background-color: #C4D0F2;
-	color: #FFFFFF;
-	border-radius: 5px;
-	padding: 3px;
-	text-align: center;
-	line-height: 20px;
-	cursor: pointer;
+    margin-left: 50px;
+	width: 50px !important;
+    height: 25px;
+	   background-color: #54965a;
+	   color: #FFFFFF;
+       border-radius: 30px;
+	   padding: 3px;
+	   text-align: center;
+	   cursor: pointer;
 }
 
 .row div:nth-child(4){
@@ -433,22 +442,23 @@ button:hover {
 }
 
 #thead{
-    background-color: #f2f2f2;
+    border-top: 1px solid rgba(33, 33, 33, 0.15);
+    border-bottom: 1px solid rgba(33, 33, 33, 0.15);
 }
 
 #list{
-    border-bottom: 2px solid #A7D9C1;
+    border-bottom: 1px solid #4f4f4f;
 }
 
 #list:hover{
-    background-color: rgba(255, 155, 155, 0.2);
-    box-shadow: 2px 4px 0 rgba(51, 51, 51, 0.2);
+    background-color: rgba(54,54,54,0.03);
+    /* box-shadow: 2px 4px 0 rgba(51, 51, 51, 0.2); */
     transform: scale(1.05);
     border-bottom: none;
 }
 
 #list.active{
-    background-color: rgba(255, 155, 155, 0.2);
+    background-color: rgba(54,54,54,0.03);
     box-shadow: 2px 4px 0 rgba(51, 51, 51, 0.2);
     transform: scale(1.05);
     border-bottom: none;
@@ -461,18 +471,18 @@ button:hover {
 }
 
 .plus_info:hover{
-    box-shadow: 0 1px 0 rgba(51, 51, 51, 0.2);
+    box-shadow: 2px 4px 0 rgba(51, 51, 51, 0.2);
     transform: scale(1.40);
 }
 
 .more_info:hover{
-	box-shadow: 0 1px 0 rgba(51, 51, 51, 0.2);
-	    transform: scale(1.40);
+	box-shadow: 2px 4px 0 rgba(51, 51, 51, 0.2);
+	    transform: scale(1.10);
 }
 
 .close_info:hover{
-	box-shadow: 0 1px 0 rgba(51, 51, 51, 0.2);
-	transform: scale(1.40);
+	box-shadow: 2px 4px 0 rgba(51, 51, 51, 0.2);
+	transform: scale(1.10);
 }
 
 /* 클릭 시 세부페이지 */
@@ -486,8 +496,7 @@ button:hover {
 .list_info{
     padding: 20px;
     margin-top: 20px;
-    text-align: center;
-    border: 2px solid lightgray;
+    border: 1px solid #e5e7eb;
     position: relative;
 }
 
@@ -502,22 +511,22 @@ button:hover {
 	position: absolute;
 	cursor: pointer;
 	top: 15px;
-	right: 50px;
+	right: 80px;
 }
 
 .list_title{
     padding: 10px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
     font-size: 30px;
     display: inline-block;
 }
 
 .list_info_1{
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 10px;
+    border-top: 1px solid rgba(33, 33, 33, 0.15);
 }
 
 .profile{
@@ -530,10 +539,11 @@ button:hover {
 }
 
 .list_info_2{
-    margin-top: 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 10px;
+	background-color: rgba(54,54,54,0.05);
 }
 
 .list_info_3{
@@ -545,8 +555,8 @@ button:hover {
 
 .list_info_4 {
     margin-top: 20px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
+    background-color: rgba(54,54,54,0.05);
+    /* border-radius: 5px; */
     display: flex;
 	justify-content: center;
     flex-direction: row;
@@ -579,9 +589,9 @@ button:hover {
 #m_join{
     width: 100px;
     height: 40px;
-    background-color: #C4D0F2;
+    background-color: #54965a;
     color: #FFFFFF;
-    border-radius: 5px;
+    border-radius: 30px;
     padding: 3px;
     text-align: center;
     line-height: 33px;
@@ -602,22 +612,11 @@ button:hover {
 .edit_box a{
     margin-right: 10px;
     padding: 3px;
-    border: 2px solid #f2f2f2;
+    border: 1px solid #e5e7eb;
     border-radius: 5px;
     font-size: 14px;
     font-family: 'MinSans-Regular';
     font-weight: 400;
-}
-
-.edit_box div{
-    margin-right: 10px;
-    padding: 3px;
-    border: 2px solid #f2f2f2;
-    border-radius: 5px;
-    font-size: 14px;
-    font-family: 'MinSans-Regular';
-    font-weight: 400;
-    cursor: pointer;
 }
 
 /* 더보기 구성 */
@@ -629,8 +628,11 @@ button:hover {
 
 .more_list_btn{
 	padding: 5px;
-	border: 1px solid #f2f2f2;
+	border: 1px solid #e5e7eb;
 	border-radius: 5px;
+	font-size: 14px;
+	font-family: 'MinSans-Regular';
+	font-weight: 400;
 	cursor: pointer;
 }
 
@@ -644,17 +646,17 @@ button:hover {
 }
 
 .schedule_area p{
-    margin: 20px 0;
+    margin-bottom: 10px;
     font-size: 20px;
     text-align: center;
+	color: #54965a;
 }
 
 .schedulebox{
     width: 100%;
-    height: 300px;
+	height: 100%;
     padding: 15px;
-    background-color: #F2CA7E;
-    border-radius: 20px;
+	border: 1px solid #e5e7eb;
 }
 
 .s_title{
@@ -665,13 +667,34 @@ button:hover {
     font-size: 14px;
 }
 
-.schedule_list{
-    padding: 5px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
+.schedule_item{
+	color: #363636;
+    margin: 10px 0 10px 0;
+	padding-top: 10px;
+	border-top: 1px solid rgba(33, 33, 33, 0.15);
 }
 
+.schedule_item:first-child {
+    border-top: none !important; /* 마지막 요소의 border 없애기 */
+}
+
+.d-day_box{
+	margin-top: 5px;
+}
+
+.del_btn{
+	text-align: center;
+	padding: 5px;
+	margin-top: 5px;
+	cursor: pointer;
+	background-color: #f9d686;
+	border-radius: 30px;
+}
+
+/* 삭제할수도 */
+
 .no_join_div{
+	text-align: center;
 	font-size: 13px;
 }
 
@@ -686,10 +709,10 @@ button:hover {
 }
 
 .up_btn{
-	background-color: #FF9B9B;
+	background-color: #54965a;
 	padding: 10px;
 	color: #FFFFFF;
-	border-radius: 20px;
+	border-radius: 30px;
 	position: fixed;
 	bottom: 50px; /* 화면 하단에서 20px 떨어진 위치 */
 	right: 50px;  /* 화면 오른쪽에서 20px 떨어진 위치 */
@@ -697,9 +720,8 @@ button:hover {
 	cursor: pointer;
 }
 
-.del_btn{
-	cursor: pointer;
-	border: 1px solid #FF9B9B;
+.up_btn:hover{
+	background-color: #f9d686;
 }
 
 /* 글쓰기 페이지 시작-------------------------------------- */
@@ -707,8 +729,7 @@ button:hover {
 .m_board_form_table {
     margin-top: 40px;
     width: 100%;
-    border: 2px solid #A7D9C1;
-    border-radius: 5px;
+    border: 1px solid #e5e7eb;
     padding: 10px;
     border-collapse: separate;
     border-spacing: 10px;
@@ -716,7 +737,7 @@ button:hover {
 
 .m_board_form_table tr th{
     width: 100px;
-    background-color: #A7D9C1;
+    background-color: rgba(54,54,54,0.05);
     border-radius: 5px;
 }
 
@@ -726,6 +747,12 @@ button:hover {
     width: calc(100% - 20px);
     margin-left: 20px;
     padding: 10px;
+	border: 1px solid #e5e7eb;
+}
+
+.m_board_form_table tr td input:focus{
+	border: 1px solid #4f4f4f;
+	outline: none;
 }
 
 .m_board_form_table tr td textarea{
@@ -735,6 +762,12 @@ button:hover {
     width: calc(100% - 20px);
     height: 200px;
     padding: 10px;
+	border: 1px solid #e5e7eb;
+}
+
+.m_board_form_table tr td textarea:focus{
+	border: 1px solid #4f4f4f;
+	outline: none;
 }
 
 .m_board_form_table td{
@@ -775,7 +808,7 @@ button:hover {
 }
 
 .form_btn_area a{
-    background-color: #A7D9C1;
+    background-color: rgba(54,54,54,0.05);
     padding: 20px;
     border-radius: 5px;
     margin-left: 10px;
