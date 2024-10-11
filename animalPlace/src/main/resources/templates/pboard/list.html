@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/KHE/header.css">
 	<link rel="stylesheet" href="/css/pboard/pboard.css">
 	<link rel="stylesheet" href="/css/mboard/style.css">
 	<link rel="stylesheet" href="/css/mboard/footer.css">
@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	<th:block th:replace="~{layout/header::header}"></th:block>
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
 
 	<div id="wrap">
 		<div class="headimg"></div>
@@ -54,7 +54,7 @@
 		<div class="modal_content">
 			<h2>게시물 등록</h2>
 			<form id="postForm" method="post" action="/pboard/write" enctype="multipart/form-data">
-				<input type="text" name="boardtitle" placeholder="제목" required /><br /><br />
+				<input type="text" class="title-input" name="boardtitle" placeholder="제목" required /><br /><br />
 				<input type="file" id="fileInput" name="files" style="display: none;" multiple
 					accept=".jpg,.jpeg,.png,.webp,.gif" required />
 				<button type="button" id="addFileButton">사진 추가하기</button>
@@ -62,10 +62,12 @@
 					<p>사진을 추가해야 게시글을 작성할 수 있습니다.</p> <!-- 경고 메시지 -->
 				</div>
 				<ul id="fileList"></ul> <!-- 선택된 파일 리스트를 보기 위한 태그 -->
-				<textarea name="boardcontents" placeholder="내용" required></textarea><br /><br />
-				<input type="text" name="userid" th:value="${session.loginUser}" readonly />
-				<button type="submit">등록</button>
-				<button type="button" id="closeModal">닫기</button>
+				<textarea class="content-textarea" name="boardcontents" placeholder="내용을 입력해주세요!" required></textarea><br /><br />
+				<input type="text" class="userid-input" name="userid" th:value="${session.loginUser}" readonly />
+				<div class="postForm_btn">
+					<button type="submit">등록</button>
+					<button type="button" id="closeModal">닫기</button>
+				</div>
 			</form>
 			<div id="loading">
 				<div class="loader">

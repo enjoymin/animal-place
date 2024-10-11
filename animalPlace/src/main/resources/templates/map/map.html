@@ -5,12 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 <link rel="stylesheet" href="/css/map/map.css">
-<link rel="stylesheet" href="/css/map/footer.css">
-<link rel="stylesheet" href="/css/map/style.css">
+<link rel="stylesheet" href="/css/KHE/footer.css">
+<link rel="stylesheet" href="/css/KHE/header.css">
 </head>
 
 <body>
-	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
+	<th:block th:replace="~{layout/header::header}"></th:block>
 	<div class="wrap">
 		<!-- 검색하기 -->
 		<div class="option">
@@ -35,7 +35,13 @@
 			    </div>
 			</div>
 		</div>
-
+		<!--검색어 순위-->
+		<div class="search-rankings">
+		            <h3>검색어 순위</h3>
+					<div class="rank">
+		          	  <ul id="rankingsList"></ul>
+					</div>
+		        </div>
 		<!-- 검색한 정보 띄우기-->
 		<div class="info">
 			<div id="search_detail" style="overflow: hidden;">
@@ -48,10 +54,9 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4f7c0c8aa82a9371fcefcaadecf3e2d9&libraries=services"></script>
 <script src="/js/map/map.js"></script>
 <script src="/js/map/jquery.min.js"></script>
-<script src="/js/map/browser.min.js"></script>
-<script src="/js/map/breakpoints.min.js"></script>
-<script src="/js/map/util.js"></script>
-
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
 
 
 </html>

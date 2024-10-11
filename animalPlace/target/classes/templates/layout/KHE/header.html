@@ -167,8 +167,10 @@
 				str += $("#lgd").val();
 				str += '&userpw=';
 				str += $("#lgp").val();
+
 				$.getJSON(
 					`/user/isUser?userid=` + str,
+
 					function (data) {
 						if (data) {
 							$("#loginForm").submit();
