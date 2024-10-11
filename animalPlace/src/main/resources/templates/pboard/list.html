@@ -81,6 +81,7 @@
 			</div>
 		</div>
 	</div>
+	<button id="scrollToTop">Top</button>
 
 	<div id="viewPostModal" class="modal" style="display:none;">
 		<span class="close">&times;</span>
@@ -251,6 +252,24 @@
 			});
 		}
 	});
+
+	$(document).ready(function () {
+		// 스크롤 이벤트
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#scrollToTop').fadeIn();
+			} else {
+				$('#scrollToTop').fadeOut();
+			}
+		});
+
+		// 버튼 클릭 시 최상단으로 부드럽게 스크롤
+		$('#scrollToTop').on('click', function () {
+			$('html, body').animate({scrollTop: 0}, 600);
+		});
+	});
+
+
 	$(document).on('click', '.viewPost', function (e) {
 		e.preventDefault(); // 기본 링크 동작 방지
 
@@ -264,6 +283,9 @@
 				// 모달 내용을 업데이트
 				$('#viewPostModal .modal_content').html(data); // 응답으로 받은 HTML을 모달에 넣기
 				$('#viewPostModal').css('display', 'flex'); // 모달 표시
+
+				// 모달 열릴 때 Top 버튼 숨기기
+				$('#scrollToTop').hide();
 			},
 			error: function () {
 				alert('게시글을 불러오는 데 실패했습니다.');
@@ -271,12 +293,14 @@
 		});
 	});
 
-
-
 	// 모달 닫기 기능
 	$('.close').on('click', function () {
 		$('#viewPostModal').hide(); // 모달 숨기기
+		$('#modal').hide(); // 모달 숨기기
 		$('body').removeClass('no-scroll'); // 스크롤 활성화
+
+		// 모달 닫힐 때 Top 버튼 보이기
+		$('#scrollToTop').fadeIn();
 	});
 
 	// 게시글 작성모달 열기
@@ -293,6 +317,9 @@
 		dataTransfer = new DataTransfer(); // 새로 초기화
 		$('#fileList').empty(); // 파일 리스트 비우기
 		$('#warningMessage').css('visibility', 'visible'); // 경고 메시지 표시
+
+		// 모달 열릴 때 Top 버튼 숨기기
+		$('#scrollToTop').hide();
 	});
 
 	// 모달 닫기
@@ -312,6 +339,9 @@
 		dataTransfer = new DataTransfer(); // 파일 리스트 초기화
 
 		$('body').removeClass('no-scroll'); // 스크롤 활성화
+
+		// 모달 닫힐 때 Top 버튼 보이기
+		$('#scrollToTop').fadeIn();
 	});
 
 	// 모달 외부 클릭 시 모달 닫기
@@ -332,10 +362,16 @@
 			dataTransfer = new DataTransfer(); // 파일 리스트 초기화
 
 			$('body').removeClass('no-scroll'); // 스크롤 활성화
+
+			// 모달 닫힐 때 Top 버튼 보이기
+			$('#scrollToTop').fadeIn();
 		}
 		if (event.target === document.getElementById('viewPostModal')) {
 			$('#viewPostModal').hide();
 			$('body').removeClass('no-scroll'); // 스크롤 활성화
+
+			// 모달 닫힐 때 Top 버튼 보이기
+			$('#scrollToTop').fadeIn();
 		}
 	});
 

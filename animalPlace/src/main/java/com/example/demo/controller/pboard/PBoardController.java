@@ -108,7 +108,6 @@ public class PBoardController {
 		HttpSession session = req.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");
 		String contentpath = "/pboard/list?boardnum="+boardnum;
-		System.out.println(contentpath);
 		
 		alservice.deleteAlarmByPath(loginUser, contentpath);
 		

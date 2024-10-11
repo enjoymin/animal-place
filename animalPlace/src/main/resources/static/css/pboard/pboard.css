@@ -591,6 +591,7 @@ button {
 	margin: 10px auto;
 	/* 가운데 정렬 */
 }
+
 .board_file::-webkit-scrollbar {
 	width: 8px;
 	/* 스크롤바 너비 */
@@ -728,4 +729,20 @@ button {
 	background: #579956;
 	color: white;
 	width: 100px;
+}
+
+#scrollToTop {
+	font-family: 'TTLaundryGothicB';
+	background-color: #f9d686;
+	color: #F26363;
+	border: none;
+	border-radius: 25px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	display: none;
+	position: fixed;
+	bottom: 70px;
+	right: 70px;
+	z-index: 1000;
 }
