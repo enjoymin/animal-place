@@ -750,7 +750,7 @@ button {
 
 #loadingImage {
     position: fixed;
-    bottom: 200px; /* 원하는 위치 */
+    bottom: 150px; /* 원하는 위치 */
     left: 50%;
     transform: translateX(-50%);
     opacity: 0; /* 초기 상태에서 보이지 않도록 설정 */
