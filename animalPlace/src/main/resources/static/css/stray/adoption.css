@@ -109,8 +109,13 @@ select:hover {
 	transform: scale(1.1);
 }
 
-.fbox, .sbox{
+.fbox {
+    margin-right: 20px;
+    float: left;
+}
+.sbox{
 	margin-right: 20px;
+	float: right;
 }
 .fbox span, .sbox span{
 	margin-right: 15px;
@@ -120,6 +125,10 @@ select:hover {
 }
 .fbox div{
 	width: 280px;
+}
+
+.search_btn{
+	clear: both;
 }
 
 .row{
@@ -181,11 +190,22 @@ select:hover {
 
 .btn_table{
 	position: absolute;
-	top: 0;
+	top: 8px;
+	right: -744px;
+}
+.btn_table .stray {
+    position: absolute;
+    top: -12px;
+    left: -190px;
+}
+#searchForm {
+    width: 500px;
+    height: 125px;
+    line-height: 40px;
 }
 
 /* write, modify */
-form{
+#adoptionForm{
 	float: left;
 }
 table{
@@ -274,6 +294,95 @@ img.thumbnail:hover{
 .text_area p{
 	padding: 6px;
 }
+
+
+.pagination, .pagination+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 840px;
+}
+
+.pagination{
+	margin-top:20px;
+}
+.pagination tr{
+	text-align: center;
+	vertical-align: middle;
+}
+.pagination .nowPage{ margin-right:5px; }
+.pagination a {
+	padding: 5px;
+	width: 30px;
+	height: 30px;
+	margin-right:5px;
+}
+
+.pagination a:hover {
+	background-color: rgb(198, 175, 245);
+}
+
+.nowPage {
+	padding: 5px;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	border-radius: 3px;
+	background-color: rgb(198, 175, 245);
+	color: #fff;
+	font-weight: bold;
+}
+
+/* get */
+.adoption_area{
+	float: left;
+}
+.adoption_area #userid, .adoption_area #adoptionOk{
+	padding-left: 140px;
+}
+.adoption_area #breed, .adoption_area #type, .adoption_area #gender,
+.adoption_area #age, .adoption_area #cost, .adoption_area #region{
+	text-align: center;
+	width: 300px;
+}
+.adoption_area tr{
+	height: 30px;
+}
+.adoption_area #contents{
+	padding: 5px;
+	height: 300px;
+	white-space: pre-wrap;
+}
+.adoption_area th{
+	width: 150px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
