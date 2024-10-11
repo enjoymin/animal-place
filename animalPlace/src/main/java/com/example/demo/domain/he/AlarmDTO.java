@@ -9,5 +9,7 @@ public class AlarmDTO {
 	private String boardtitle;
 	private String contentpath;
 	private boolean reply;
-	private boolean meeting;
+	private boolean ameeting;
+	private boolean dmeeting;
+	private boolean plike;
 }

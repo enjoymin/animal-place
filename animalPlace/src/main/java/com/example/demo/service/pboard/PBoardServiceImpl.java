@@ -59,6 +59,8 @@ public class PBoardServiceImpl implements PBoardService {
 				return false;
 			}
 			
+			System.err.println(saveFolder);
+			
 			for (int i = 0; i < files.length; i++) {
 				MultipartFile file = files[i];
 				String orgname = file.getOriginalFilename();
@@ -79,6 +81,7 @@ public class PBoardServiceImpl implements PBoardService {
 				pfdto.setSystemname(systemname);
 				pfdto.setBoardnum(boardnum);
 				if(pfmapper.insertFile(pfdto) < 0) {
+					pbmapper.delete(boardnum);
 					return false;
 				}
 				
