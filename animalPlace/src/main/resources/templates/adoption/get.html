@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무료 분양동물</title>
+<link rel="stylesheet" href="/css/stray/adoption.css">
+<link rel="stylesheet" href="/css/footer.css">
+<style>
+</style>
+</head>
+<body class="get">
+	<th:block th:if="${w != null and w != ''}">
+		<script>
+			alert("게시글 등록 성공!");
+		</script>
+	</th:block>
+	<!--<th:block th:replace="~{layout/header::header}"></th:block>-->
+	<header></header>
+	<div id="wrap" class="get">
+		<br>
+		<h1>[[${adoption.title}]]</h1>
+		<table border="1" class="adoption_area">
+			</tr>
+				<tr>
+					<th>작성자</th>
+					<td colspan="3" id="userid">[[${user.username}]]</td>
+				</tr>
+				<tr>
+					<th>동물 - 구분</th>
+					<td id="breed">[[${adoption.breed}]]</td>
+					<th>동물 - 품종</th>
+					<td id="type">[[${adoption.type}]]</td>
+				</tr>
+				<tr>
+					<th>성별</th>
+					<td id="gender">[[${adoption.gender}]]</td>
+					<th>나이</th>
+					<td id="age">[[${adoption.age}]]</td>
+				</tr>
+				<tr>
+					<th>책임비</th>
+					<td id="cost">[[${adoption.cost}]]</td>
+					<th>분양 지역</th>
+					<td id="region">[[${adoption.region}]]</td>					
+				</tr>
+				<tr>
+					<th>분양 여부</th>
+					<td colspan="3" id="adoptionOk">[[${adoption.adoptionOk}]]</td>
+				</tr>
+				<tr>
+					<th>내 용</th>
+					<td colspan="3" id="contents">[[${adoption.contents}]]</td>
+				</tr>
+				<tr th:if="${files == null or files.size() == 0}" class="no-file">
+					<td colspan="4">사진이 없습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="text_area">
+						<p>책임비는 분양인이 입양인에게 책임있게 키워달라는 의미로 받는 금액입니다.
+						<br><br>
+						그냥 무료로 분양하게될 경우, <br>
+						너무 부담없이 인계받아, 생명을 가볍게 여기는 심리가 발생할 수도 있기때문에 책정하는 성의표시 금액으로, <br>
+						<br>
+						완전 무료부터, 만원단위로 최대 5만원까지 책정할 수 있습니다.
+						<br><br>
+						상업적인 유료분양글은 따로 운영하고 있지 않습니다.
+						<br>
+						무료분양글만 등록하셔야만 합니다~
+						</p>
+					</div>
+		<table class="btn_area">
+			<tbody>
+				<tr>
+					<td>
+						<th:block th:if="${adoption.userid == session.loginUser}">
+							<a class="btn" th:href="${'/adoption/modify'+adCri.listLink+'&adoptionnum='+adoption.adoptionnum}">수정</a>
+							<a class="btn" th:href="${'/adoption/remove'+adCri.listLink+'&adoptionnum='+adoption.adoptionnum}">삭제</a>
+						</th:block>
+						<a class="btn" th:href="${'/adoption/list'}">목록</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
