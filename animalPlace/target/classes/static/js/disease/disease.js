@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	animalButtons.forEach(button => {
 		button.addEventListener('click', function() {
 			selectedAnimal = this.getAttribute('data-animal');
-			animalImage.src = `/images/disease/${selectedAnimal}.png`;
+			animalImage.src = `/images/disease/${selectedAnimal}1.png`;
 
 			switch (selectedAnimal) {
 				case '강아지':

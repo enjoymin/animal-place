@@ -2,6 +2,8 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	font-family: 'TTLaundryGothicB';
+		
 }
 
 input:focus {
@@ -28,8 +30,8 @@ input:focus {
 @font-face {
 	font-family: 'HakgyoansimSantteutdotumL';
 	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
-	font-weight: 600;
-	font-style: normal;
+	font-weight: 700;
+	font-style: oblique;
 }
 
 ul,
@@ -41,7 +43,9 @@ li {
 a {
 	text-decoration: none;
 }
-
+a:link{
+	color: black;
+}
 a:visited {
 	color: black;
 }
@@ -95,6 +99,7 @@ h6 {
 	margin: 200px auto;
 	animation: loginWrap 1.5s 1;
 	font-family: 'HakgyoansimSantteutdotumL';
+	
 }
 
 #wrap.login+img {
@@ -112,12 +117,16 @@ body.login {
 #joinform {
 	margin: 0 auto;
 	width: 500px;
+	
 }
 
 #joinform table {
 	width: 500px;
+	height: 500px;
 }
-
+#joinform tr{
+	margin-bottom: 10px;
+}
 #joinform th {
 	width: 220px;
 }
@@ -125,7 +134,9 @@ body.login {
 #joinform td {
 	width: 220px;
 }
-
+.war{
+	font-family: 'HakgyoansimSantteutdotumL';
+}
 #joinform input::placeholder {
 	font-size: 11px;
 }
@@ -156,7 +167,6 @@ input {
 	padding: 5px;
 	height: 30px;
 	width: 220px;
-
 }
 
 #lgd,
@@ -165,8 +175,7 @@ input {
 }
 
 .btn {
-	width: 150px;
-
+	width: 130px;
 }
 
 @keyframes loginWrap {
@@ -238,23 +247,31 @@ input {
 	margin: 0 auto;
 }
 
-#mycontents1 {
-	border: 0.5px solid #ffeaea;
+.mycontents {
+	border: 0.5px solid #f9d686;
 	border-radius: 20px;
 	padding: 15px;
+	background-color: rgb(251, 251, 251);
+	margin-bottom: 40px;
 }
-
+.rowt{
+	background-color: rgb(240, 240, 240);
+}
 .btn,
 .nowPage {
 	margin: 5px;
 }
-
+.rows:hover{
+	background-color: rgb(188, 252, 193);
+	transform: scale(1.01);
+	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
 .row div:nth-child(1) {
-	width: 8%;
+	width: 10%;
 }
 
 .row div:nth-child(2) {
-	width: 50%;
+	width: 52%;
 }
 
 .row div:nth-child(3) {
@@ -262,7 +279,7 @@ input {
 }
 
 .row div:nth-child(4) {
-	width: 17%;
+	width: 20%;
 }
 .tbody2{
 	display: flex;
@@ -270,7 +287,7 @@ input {
 }
 
 .prow{
-	width: 19.5%;
+	width: 20%;
 }
 .prow .c_thumbnail{
 	width: 100%;
@@ -278,4 +295,41 @@ input {
 	height: 200px;
 	max-height: 200px;
 	object-fit: cover;
+}
+.c_thumbnail:hover{
+	transform: scale(1.2);
+}
+
+.tbody2{
+	padding: 25px;
+	padding-top: 15px;
+}
+.tar{
+	margin-left: 85%;
+	margin-bottom: 10px;
+}
+
+input[type=button]{
+	background-color: rgba(87,153,86,0.95);
+	border-radius: 5px;
+	border: none;
+	color: white;
+	font-family: 'TTLaundryGothicB';
+		src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+		font-weight: 700;
+		font-style: normal;
+}
+input[type=button]:hover{
+	cursor: pointer;
+	background-color: rgba(87,153,86,1);
+}
+.more{
+	color: rgb(128, 128, 128);
+}
+.more:hover{
+	transform: scale(1.1);
+	color: rgb(192, 192, 192);
+}
+.nowPage{
+	color: #f9d686;
 }
