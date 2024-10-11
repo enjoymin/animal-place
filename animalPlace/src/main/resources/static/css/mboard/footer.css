@@ -23,17 +23,26 @@
 /* 푸터 */
 footer {
     height: 300px;
-    background-color: #C4D0F2;
 }
 
 .footer_area{
 	margin-top: 50px;
-    width: 100%;
-    height: 100%;
-    padding: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer_rayout{
+	width: 100%;
+	background-color: #54965a;	
+	padding: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer_logo{
+	text-align: center;
 }
 
 .footer_logo img{
@@ -41,7 +50,7 @@ footer {
 }
 
 .footer_logo div{
-    color: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
     font-size: 12px;
 }
 
@@ -65,12 +74,13 @@ footer {
     width: calc(33.33% - 20px); /* 세 개씩 나누기 */
     box-sizing: border-box; /* 패딩과 보더를 포함 */
     font-size: 13px;
-    color: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
 }
 
 .team_name a{
     font-size: 13px;
     margin: 10px;
+	color: #FFFFFF;
 }
 
 .Team_Notion{
@@ -88,7 +98,7 @@ footer {
 }
 
 .Team_Notion a{
-    color: #F2CA7E;
+    color: #f9d686;
     font-size: 25px !important;
 }
 

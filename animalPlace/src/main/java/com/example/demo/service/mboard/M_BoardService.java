@@ -2,6 +2,7 @@ package com.example.demo.service.mboard;
 
 import java.util.List;
 
+import com.example.demo.domain.mboard.Criteria;
 import com.example.demo.domain.mboard.M_BoardDTO;
 
 public interface M_BoardService {
