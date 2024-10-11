@@ -2,7 +2,6 @@ package com.example.demo.entity.map;
 
 import java.time.LocalDateTime;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,5 +21,4 @@ public class MapSearchHistory {
     private LocalDateTime searchTime;
     
     private int searchCount; // 검색 횟수
-
 }
