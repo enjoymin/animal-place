@@ -74,9 +74,17 @@ if (loginUser != "" && loginUser != null) {
 
 function checkId() {
 	const userid = $("#userid").val();
+	const reg = /^(?!.*[가-힣])(?=.*?[a-zA-Z]).{5,}$/
 	if (userid.length < 5 || userid.length > 12) {
 		$("#idwarning2").html("");
 		idwrn.html("아이디는 5~12자로 만들어 주세요")
+		idflag = 0;
+		return;
+	}
+	if (!reg.test(userid)){
+		console.log(userid);
+		$("#idwarning2").html("");
+		idwrn.html("아이디 조건에 부합하지 않습니다!")
 		idflag = 0;
 		return;
 	}
@@ -98,7 +106,7 @@ function checkId() {
 }
 function checkPw() {
 	const userpw = $("#userpw").val();
-	const reg = /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[~!?-@#$%^&*]).{4,}$/
+	const reg = /^(?!.*[가-힣])(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[~!?-@#$%^&*]).{4,}$/
 	if (userpw == "") {
 		$("#pwwarning2").html("");
 		pwwrn.html("비밀번호를 입력해 주세요!");

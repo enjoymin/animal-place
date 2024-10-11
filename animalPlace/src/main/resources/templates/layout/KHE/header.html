@@ -11,7 +11,11 @@
 		<span id="alarm2" class="alarm2" style="display:none; ">
 			<img src="/images/KHE/alarm.png" style="height: 30px;">
 		</span>
-		<div id="alarmpage" style="display: none;"></div>
+		<div id="alarmpage" style="display: none;">
+			<table class ="alarmP">
+				
+			</table>
+		</div>
 		<div id="alarmpagetri" class="alarmwindow" style="display: none;"></div>
 		<div id="alarmnotice" style="display:none">게시글에 확인하지 않은 내역이 있습니다!</div>
 		<span id="login" class="alarm" style="display:none">
@@ -219,20 +223,20 @@
 					for (let i = 0; i < data.length; i++) {
 						const content = data[i];
 						if (content.reply == 1) {
-							str += `<div class="alarmtable"><div><a href="${content.contentpath}">${content.boardtitle} </a>글에 댓글이 달렸습니다!</div>
-						<div><a onclick="alcheck(${content.alarmnum})">확인</a></div></div>`;
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 댓글이 달렸습니다!</td>
+						<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 						else if (content.ameeting == 1) {
-							str += `<div class="alarmtable"><div><a href="${content.contentpath}">${content.boardtitle} </a>글에 새로운 사람이 참여했습니다!</div>
-													<div><a onclick="alcheck(${content.alarmnum})">확인</a></div></div>`;
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 새로운 사람이 참여했습니다!</td>
+													<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 						else if (content.dmeeting == 1) {
-							str += `<div class="alarmtable"><div><a href="${content.contentpath}">${content.boardtitle} </a>글에 참여를 취소한 사람이 있습니다!</div>
-													<div><a onclick="alcheck(${content.alarmnum})">확인</a></div></div>`;
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 참여를 취소한 사람이 있습니다!</td>
+													<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 						else if (content.plike == 1) {
-							str += `<div class="alarmtable"><div><a href="${content.contentpath}">${content.boardtitle} </a>글에 좋아요가 늘어났어요!</div>
-																				<div><a onclick="alcheck(${content.alarmnum})">확인</a></div></div>`;
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 좋아요가 늘어났어요!</td>
+																				<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 					}
 					$("#alarmpage").html(str);

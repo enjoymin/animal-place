@@ -52,8 +52,6 @@ public class MyController {
 		cri.setAmount(5);
 		HttpSession session = req.getSession();
 		String userid =  (String) session.getAttribute("loginUser");
-//		List<MBoardDTO> mlist = service.getMBList(cri, userid);
-//		model.addAttribute("mlist", mlist);
 		model.addAttribute("mtotal", service.getMBtotal(userid));
 		model.addAttribute("ptotal", service.getPBtotal(userid));
 	}
