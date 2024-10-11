@@ -6,13 +6,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/disease/disease.css">
-	<link rel="stylesheet" href="/css/disease/style.css">
+	<link rel="stylesheet" href="/css/mboard/footer.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<title>disease</title>
 </head>
 
 <body>
-	<th:block th:replace="~{layout/header::header}"></th:block>
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
 
 	<div class="wrap">
 		<div class="disease-title">
@@ -101,9 +101,10 @@
 			</div>
 		</div>
 
-		<link rel="stylesheet" href="/css/disease/footer.css">
-		<th:block th:replace="~{layout/footer::footer}"></th:block>
+		
+	
 	</div>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
 
 	<script src="/js/disease/disease.js"></script>
 </body>
