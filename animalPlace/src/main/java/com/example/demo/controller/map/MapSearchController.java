@@ -20,9 +20,11 @@ public class MapSearchController {
 	private MapSearchService searchService;
 	
 	@PostMapping("/record")
-    public void recordSearch(@RequestBody MapSearchHistoryDTO keywordDTO) {
-        searchService.recordSearch(keywordDTO);
-    }
+	public void recordSearch(@RequestBody MapSearchHistoryDTO keywordDTO) {
+	    System.out.println("Received keyword: " + keywordDTO.getKeyword()); // 키워드 확인
+	    searchService.recordSearch(keywordDTO);
+	}
+
     
     @GetMapping("/rankings")
     public List<MapSearchHistoryDTO> getSearchRankings() {

@@ -54,20 +54,19 @@ h6 {
 	clear: both;
 	height: 2000px;
 	padding-top: 10em;
-	margin: 0 5%;
+	margin: 40px 5%;
 }
 
 
 .option {
 	width: 70%;
 	text-align: center;
-	padding-bottom: 2em;
 	margin: 0 auto;
 }
 
 #keyword {
-	width: 50%;
-	padding-left: 2%;
+	width: 30%;
+	padding-left: 5%;
 	border-radius: 20px;
 	height: 36px;
 }
@@ -91,8 +90,7 @@ h6 {
 .info {
 	margin: 10px auto;
 	width: 80%;
-	margin-top: 64%;
-	pointer-events: none;
+	margin-top: 10px;
 }
 
 .info h5 {
@@ -143,27 +141,52 @@ button {
 }
 
 .map_wrap {
+	/*1011수정*/
 	position: relative;
+	/*display: grid;*/
+	grid-template-columns: 0 1fr;
 	width: 90%;
 	height: 480px;
 	border: none;
 	border-radius: 10px;
 	margin: 0 auto;
+	/*position: relative;
+	display: flex;
+	width: 90%;
+	height: 480px;
+	border: none;
+	border-radius: 10px;
+	margin: 0 auto;*/
 }
 
 .map_wrap #map {
+	/*1011수정*/
+	height: 100%;
+	overflow: hidden;
+	transition: width 0.3s;
 	border: none;
 	border-radius: 20px;
 }
+
 
 .menu_container {
 	align-items: flex-start;
 	/* 버튼과 리스트를 수직 정렬 */
 	height: 550px;
 	width: 300px;
-	position: relative;
+	/*1011수정*/
+	position: absolute;
+	/*position: relative;*/
 	top: -5%;
 	overflow: hidden;
+}
+/* 열릴 때와 닫힐 때 스타일 */
+.menu_closed {
+    right: -300px; /* 닫힐 때 위치 */
+}
+
+.menu_opened {
+    right: 0; /* 열릴 때 위치 */
 }
 
 .hidden {
@@ -179,20 +202,20 @@ button {
 	transform: translateX(0);
 	position: absolute;
 	/* 절대 위치 설정 */
-	top: 25px;
+	/*top: 25px;*/
 	left: 0;
 	/* 초기 위치 */
 	width: 300px;
 	/* 리스트 너비 */
 	height: 500px;
 	/* 전체 높이에서 여백 뺀 값 */
-	background: rgba(236, 210, 210, 0.6);
+	background:#f9d6869a;
 	/* 배경색 */
 	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 	transition: trans 0.3s;
 	/* 애니메이션 */
 	overflow-y: auto;
-	z-index: 1;
+	z-index: 10;
 	font-size: 12px;
 	border-radius: 10px;
 }
@@ -277,9 +300,12 @@ button {
 	padding-left: 26px;
 	background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
 }
+.info>span {
+    color: #579956;
+}
 
 #placesList .info .tel {
-	color: #009900;
+	color: #F26363;
 }
 
 #placesList .item .markerbg {
@@ -369,11 +395,9 @@ button {
 
 .place_map {
 	width: 280px;
-	height: 90px;
-	border-radius: 23%;
 	text-align: center;
-	background-color: #E9FFC2;
 	line-height: 1.5;
+	background-color: #f9d686;
 }
 
 .place_map h4 {
@@ -382,7 +406,7 @@ button {
 }
 
 .place_map p {
-	font-family: 'HakgyoansimSantteutdotumL';
+	font-family: 'TTLaundryGothicB';
 	display: 600;
 	font-size: 15px;
 }
@@ -451,31 +475,45 @@ img#list_img {
     }
 }
 .search-rankings {
-	box-sizing: border-box;
-	    position: relative;
-	    margin-left: 72%;
-	    margin-top: -565px;
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 72%;
+    margin-top: -630px;
+    font-family: TTLaundryGothicB;
+    background-image: url(/images/map/search_back.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    width: 300px;
+    height: 138px;
+}
+.search-rankings > h3{
+	color: #579956;
+	padding-top: 10px;
+	font-size: 20px;
 }
 .rank{
     height: 20px;
     overflow: hidden;
+	margin-left: 30px;
+	margin-top: 40px;
 }
 
 #rankingsList {
     animation: reveal 30s infinite;
     overflow: hidden;
 	}
-	#rankingsList {
-		display: block;
-	    list-style-type: none;
-	    padding: 0;
+#rankingsList {
+	display: block;
+    list-style-type: none;
+	   padding: 0;
 	}
-	.rank-item {
-		display: block;
-	    transition: opacity 0.5s ease, transform 0.5s ease;
-	    opacity: 0;
+.rank-item {
+	display: block;
+	transition: opacity 0.5s ease, transform 0.5s ease;
+	opacity: 0;
 	}
-	.rank-up {
+.rank-up {
 	    color: green; /* 상승 시 색상 */
 	}
 	.rank-down {
@@ -484,3 +522,25 @@ img#list_img {
 	.rank-stay {
 	    color: gray; /* 변동 없음 색상 */
 	}
+	
+	/*img모음*/
+img#mapimg {
+    position: relative;
+	z-index: 2;
+	margin-left: 99%;
+	margin-top: 280px;
+}
+img#mapimg2 {
+    position: absolute;
+    z-index: 2;
+    margin-left: -14%;
+    margin-top: -573px;
+    width: 50px;
+}
+img#mapimg3 {
+    position: absolute;
+    z-index: 1;
+    margin-left: -15%;
+    margin-top: -619px;
+    width: 70px;
+}
