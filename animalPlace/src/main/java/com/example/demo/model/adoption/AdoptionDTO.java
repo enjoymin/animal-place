@@ -13,6 +13,7 @@ public class AdoptionDTO {
 	private String region;
 	private String gender;
 	private String age;
+	private String regdate;
 	private String cost;
 	private String adoptionOk;
 	private String userid;

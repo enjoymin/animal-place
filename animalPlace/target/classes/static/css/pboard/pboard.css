@@ -63,7 +63,7 @@ p {
 	background-repeat: no-repeat;
 	border-bottom: 1px solid #579956;
 	margin-bottom: 20px;
-	margin-top:100px;
+	margin-top: 100px;
 }
 
 .boardimg {
@@ -746,4 +746,35 @@ button {
 	bottom: 70px;
 	right: 70px;
 	z-index: 1000;
+}
+
+#loadingImage {
+    position: fixed;
+    bottom: 200px; /* 원하는 위치 */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0; /* 초기 상태에서 보이지 않도록 설정 */
+    animation: none; /* 초기 애니메이션 없음 */
+	z-index: 1000;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, 100%); /* 좀 더 낮은 위치에서 올라옴 */
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1; /* 올라올 때 보이도록 설정 */
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translate(-50%, 0);
+        opacity: 1; /* 보인 상태에서 시작 */
+    }
+    to {
+        transform: translate(-50%, 250px); /* 올라갔다가 아래로 사라짐 */
+        opacity: 0; /* 사라질 때 보이지 않도록 설정 */
+    }
 }
