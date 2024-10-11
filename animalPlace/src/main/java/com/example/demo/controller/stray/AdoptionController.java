@@ -34,7 +34,6 @@ public class AdoptionController {
 		System.out.println(adoption);
 		adservice.regist(adoption);
 	}
-	
 	@GetMapping("get")
 	public String get(AdoptionCriteria adCri, long adoptionnum, HttpServletRequest req, HttpServletResponse resp, Model model) {
 		//list 에서 보던 곳으로 돌아가기 위한 cri 세팅
