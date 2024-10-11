@@ -84,7 +84,6 @@ public class AdoptionController {
 		return "redirect:/adoption/get"+adCri.getListLink()+"&adoptionnum="+adoption.getAdoptionnum();
 	}
 	
-	
 	@GetMapping("remove")
 	public String remove(AdoptionCriteria adCri, long adoptionnum, HttpServletRequest req) {
 		String loginUser = (String)req.getSession().getAttribute("loginUser");
