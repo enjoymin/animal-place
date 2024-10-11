@@ -31,6 +31,62 @@ button {
 	font-weight: 600;
 }
 
+.disease-title p {
+	font-size: 60px;
+}
+
+.disease-title {
+	text-align: center;
+	margin: 0 auto;
+	width: 1160px;
+	height: 100px;
+	line-height: 100px;
+	background-color: #579956;
+	color: white;
+	border-radius: 10px;
+	margin-top: 30px;
+	display: flex;
+	position: relative;
+	justify-content: center;
+}
+
+.disease-title div img {
+	width: 100px;
+}
+
+.main-title {
+	margin: 0 auto;
+	width: 700px;
+	justify-content: center;
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 15px;
+	position: relative;
+	height: 80px;
+}
+
+.title-dog img {
+	position: absolute;
+	width: 90px;
+	bottom: -30px;
+	left: 480px;
+}
+
+.main-title div h3:hover {
+	color: #f9d686;
+}
+
+.main-title img {
+	margin-bottom: 50px;
+}
+
+.table table {
+	/* background-color: green */
+	height: 518px;
+	border-radius: 20px;
+
+}
+
 header {
 	height: 100px;
 	background-color: #FF9B9B;
@@ -41,20 +97,33 @@ header {
 	padding: 30px;
 }
 
+
+.wrap-main {
+	display: flex;
+	width: 1200px;
+	margin: 0 auto;
+	/* border: 1px solid pink; */
+	border-radius: 20px;
+	/* margin-top: 50px; */
+	padding: 20px;
+	line-height: 50%;
+}
+
 /* 동물들의 신체구조가 보이는 구간 */
 .img {
-	width: auto;
+	width: 900px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 80vh;
-	background-color: #EAEAEA;
+	border: 1px solid #579956;
+	margin: 0 auto;
+	border-radius: 20px;
+	height: 505px;
+	position: relative;
 }
 
 .img img {
-	width: 100%;
-	max-width: 700px;
-	height: auto;
+	width: 500px;
 }
 
 
@@ -70,12 +139,12 @@ header {
 
 /* 신체 구조의 버튼들 위치 조정 */
 .animal-btn {
-	width: 60px;
-	height: 60px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	position: absolute;
 	z-index: 10;
-	border: 1px solid #FF9B9B;
+	border: 1px solid #f9d686;
 	background-color: white;
 	cursor: pointer;
 }
@@ -92,175 +161,204 @@ button {
 /* 아우라 효과 내깅 */
 .animal-btn.active {
 	/* box-shadow: 0 0 15px rgba(236, 3, 3, 0.7); */
-	background-color: #FF9B9B;
-	color: white;
+	background-color: #f9d686;
+	color: black;
 }
 
 .animal-btn:hover {
-	background-color: #FF9B9B;
-	color: white;
+	background-color: #f9d686;
+	color: black;
 }
 
 table button {
-	width: 198px;
-	height: 50px;
-	background-color: white;
-	border: 1px solid #FF9B9B;
+	width: 230px;
+	/* height: 50px; */
+	background-color: #f7f7f7;
+	border: 1px solid #579956;
 	border-radius: 15px;
 	margin-left: 20px;
 	margin-right: 20px;
+	margin-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .table {
 	display: flex;
 	justify-content: center;
-	margin: 20px 0;
+
+	height: 500px;
 	/* 여백 추가 (선택 사항) */
+
 }
 
-table button:hover {
-	background-color: #FF9B9B;
-	color: white;
+table button img {
+	transition: transform 0.3s ease;
+	/* 부드러운 
+    애니메이션을 추가 */
+	width: 60px;
+}
+
+table button:hover img {
+	transform: scale(1.2);
+	/* 이미지 확대 비율 설정 */
 }
 
 /* 각 버튼 위치는 사용자가 설정했던 값 유지 */
 .anihead {
-    left: 700px;
-    bottom: 616px; /* 710px - 94px */
+	left: 190px;
+	bottom: 400px;
+	/* 710px - 94px */
 }
 
 .anibody {
-    left: 900px;
-    bottom: 506px; /* 600px - 94px */
+	left: 500px;
+	bottom: 306px;
+	/* 600px - 94px */
 }
 
 .leg {
-    left: 780px;
-    bottom: 156px; /* 250px - 94px */
+	left: 350px;
+	bottom: 150px;
+	/* 250px - 94px */
 }
 
 .neck {
-    left: 670px;
-    bottom: 466px; /* 560px - 94px */
+	left: 300px;
+	bottom: 350px;
+	/* 560px - 94px */
 }
 
 .tal {
-    left: 1280px;
-    bottom: 256px; /* 350px - 94px */
+	left: 650px;
+	bottom: 140px;
+	/* 350px - 94px */
 }
 
-.show-animal.dog .anihead {
-    left: 700px;
-    bottom: 616px; /* 710px - 94px */
-}
 
-.show-animal.dog .anibody {
-    left: 900px;
-    bottom: 506px; /* 600px - 94px */
-}
 
 /* 고양이 */
 .show-animal.cat .anihead {
-    left: 700px;
-    bottom: 486px; /* 580px - 94px */
+	left: 200px;
+	bottom: 300px;
+	/* 580px - 94px */
 }
 
 .show-animal.cat .anibody {
-    left: 900px;
-    bottom: 406px; /* 500px - 94px */
+	left: 450px;
+	bottom: 236px;
+	/* 500px - 94px */
 }
 
 .show-animal.cat .leg {
-    left: 700px;
-    bottom: 156px; /* 250px - 94px */
+	left: 500px;
+	bottom: 116px;
+	/* 250px - 94px */
 }
 
 .show-animal.cat .neck {
-    left: 670px;
-    bottom: 356px; /* 450px - 94px */
+	left: 270px;
+	bottom: 245px;
+	/* 450px - 94px */
 }
 
 .show-animal.cat .tal {
-    left: 1200px;
-    bottom: 506px; /* 600px - 94px */
+	left: 630px;
+	bottom: 356px;
+	/* 600px - 94px */
 }
 
 /* 새 */
 .show-animal.bird .anihead {
-    left: 700px;
-    bottom: 556px; /* 650px - 94px */
+	left: 250px;
+	bottom: 386px;
+	/* 650px - 94px */
 }
 
 .show-animal.bird .anibody {
-    left: 900px;
-    bottom: 406px; /* 500px - 94px */
+	left: 300px;
+	bottom: 206px;
+	/* 500px - 94px */
 }
 
 .show-animal.bird .leg {
-    left: 800px;
-    bottom: 106px; /* 200px - 94px */
+	left: 300px;
+	bottom: 95px;
+	/* 200px - 94px */
 }
 
 .show-animal.bird .neck {
-    left: 670px;
-    bottom: 456px; /* 550px - 94px */
+	left: 300px;
+	bottom: 280px;
+	/* 550px - 94px */
 }
 
 .show-animal.bird .tal {
-    left: 1200px;
-    bottom: 156px; /* 250px - 94px */
+	left: 500px;
+	bottom: 200px;
+	/* 250px - 94px */
 }
 
 /* 햄스터 */
 .show-animal.hamster .anihead {
-    left: 700px;
-    bottom: 606px; /* 700px - 94px */
+	left: 300px;
+	bottom: 400px;
+	/* 700px - 94px */
 }
 
 .show-animal.hamster .anibody {
-    left: 1000px;
-    bottom: 406px; /* 500px - 94px */
+	left: 500px;
+	bottom: 256px;
+	/* 500px - 94px */
 }
 
 .show-animal.hamster .leg {
-    left: 800px;
-    bottom: 106px; /* 200px - 94px */
+	left: 300px;
+	bottom: 106px;
+	/* 200px - 94px */
 }
 
 .show-animal.hamster .neck {
-    left: 670px;
-    bottom: 356px; /* 450px - 94px */
+	left: 400px;
+	bottom: 306px;
+	/* 450px - 94px */
 }
 
 .show-animal.hamster .tal {
-    left: 1200px;
-    bottom: 156px; /* 250px - 94px */
+	left: 550px;
+	bottom: 180px;
+	/* 250px - 94px */
 }
 
 /* 토끼 */
 .show-animal.rabbit .anihead {
-    left: 600px;
-    bottom: 406px; /* 500px - 94px */
+	left: 205px;
+	bottom: 300px;
+	/* 500px - 94px */
 }
 
 .show-animal.rabbit .anibody {
-    left: 1000px;
-    bottom: 406px; /* 500px - 94px */
+	left: 400px;
+	bottom: 205px;
+	/* 500px - 94px */
 }
 
 .show-animal.rabbit .leg {
-    left: 800px;
-    bottom: 106px; /* 200px - 94px */
+	left: 300px;
+	bottom: 100px;
+	/* 200px - 94px */
 }
 
 .show-animal.rabbit .neck {
-    left: 670px;
-    bottom: 306px; /* 400px - 94px */
+	left: 300px;
+	bottom: 252px;
+	/* 400px - 94px */
 }
 
 .show-animal.rabbit .tal {
-    left: 1300px;
-    bottom: 156px; /* 250px - 94px */
+	left: 650px;
+	bottom: 100px;
+	/* 250px - 94px */
 }
 
 fieldset {
@@ -277,13 +375,13 @@ fieldset div button {
 	height: 69px;
 	border-radius: 50%;
 	padding: 5px;
+	border: 1px solid #f9d686;
 	background-color: white;
-	border: 1px solid #FF9B9B;
 }
 
 fieldset div button:hover {
-	background-color: #FF9B9B;
-	color: white;
+	background-color: #f9d686;
+	color: black;
 }
 
 .item-btn {
@@ -316,8 +414,8 @@ fieldset div button:hover {
 .disease-item {
 	display: flex;
 	margin-bottom: 35px;
-	border: 1px solid white;
-	background-color: #FFEAEA;
+	border: 1px solid #579956;
+	background-color: #f7f7f7;
 	padding: 20px;
 	border-radius: 36px;
 	/* justify-content: space-around; */
@@ -369,6 +467,10 @@ fieldset div button:hover {
 	margin-top: 10px;
 }
 
+.item-symptoms p {
+	width: 500px;
+}
+
 .left-item img {
 	width: 100%;
 	height: 100%;
@@ -382,7 +484,7 @@ fieldset div button:hover {
 	display: block;
 	width: 30px;
 	height: 5px;
-	background-color: #FF9B9B;
+	background-color: #579956;
 	margin-top: 20px;
 }
 
@@ -468,7 +570,7 @@ fieldset div button:hover {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	/* 중앙 정렬 */
-	background-color: #FFEAEA;
+	background-color: #f7f7f7;
 	/* 핑크색 배경 */
 	padding: 20px;
 	/* 패딩 추가 */
@@ -479,8 +581,8 @@ fieldset div button:hover {
 	z-index: 1000;
 	/* 배경보다 위에 위치 */
 	height: 550px;
+	border: 1px solid #579956;
 }
-
 
 
 .detail-img {
@@ -518,7 +620,7 @@ fieldset div button:hover {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	border: 1px solid #FF9B9B;
+	border: 1px solid #f9d686;
 	background-color: white;
 	cursor: pointer;
 	margin-top: 10px;
@@ -526,8 +628,8 @@ fieldset div button:hover {
 }
 
 .detail-btn button:hover {
-	background-color: #FF9B9B;
-	color: white;
+	background-color: #f9d686;
+	color: black;
 }
 
 /* -------------------------------------- */
@@ -591,35 +693,39 @@ fieldset div button:hover {
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 	/* 클릭 시 그림자 줄이기 */
 }
+
 .disease-item {
-  cursor: pointer; /* 마우스를 올렸을 때 커서가 포인터로 변경 */
-  transition: 0.3s ease-in-out; /* 부드러운 전환 효과 */
+	cursor: pointer;
+	/* 마우스를 올렸을 때 커서가 포인터로 변경 */
+	transition: 0.3s ease-in-out;
+	/* 부드러운 전환 효과 */
 }
 
 .disease-item:hover {
-  transform: scale(1.05); /* hover 시 살짝 확대 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* hover 시 그림자 추가 */
-  background-color: #f0f0f0; /* hover 시 배경색 변경 */
-}
-/* 기본 상태 */
-.animal-btn2 {
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
+	transform: scale(1.05);
+	/* hover 시 살짝 확대 */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	/* hover 시 그림자 추가 */
+	background-color: #f0f0f0;
+	/* hover 시 배경색 변경 */
 }
 
-/* Hover 시 확대 효과 */
-.animal-btn2:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* 기본 상태 */
+.animal-btn2 {
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
 }
+
 
 /* 클릭 시 활성화된 상태 (active 클래스 추가 시) */
 .animal-btn2.active {
-  background-color: #FF9B9B;
-  transform: scale(1.05); /* 클릭한 버튼도 확대된 상태 유지 */
-  transition: 0.3s ease-in-out;
-  color: white;
+
+	transform: scale(1.05);
+	/* 클릭한 버튼도 확대된 상태 유지 */
+	transition: 0.3s ease-in-out;
+	color: black;
 }
+
 /**/
 footer {
 	height: 100px;
