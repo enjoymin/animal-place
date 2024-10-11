@@ -153,12 +153,13 @@ h6 {
 	position: absolute;
 	border-radius: 20px;
 	right: 120px;
-	height: 700px;
+	max-height: 400px;
 	top: 94px;
 	width: 350px;
 	z-index: 900;
 	overflow-y: auto;
 	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+	padding: 20px
 }
 
 #alarmpagetri {
@@ -178,11 +179,30 @@ h6 {
 
 .alarmtable {
 	display: flex;
-	margin: 10px;
+	
 }
 
-.alarmtable div {
-	margin: 10px;
+.alarmtable td {
+	margin: 5px;
+}
+.alarmtable td:nth-child(1){
+	width: 83%;
+}
+
+.atitle a{
+	color: #f9d686;
+}
+.atitle a:hover{
+	color: rgb(247, 200, 89);
+}
+.acheck{
+	text-align: center;
+}
+.acheck a{
+	color:rgb(128, 128, 128);
+}
+.acheck a:hover{
+	color: rgb(192, 192, 192);
 }
 
 #alarmnotice {

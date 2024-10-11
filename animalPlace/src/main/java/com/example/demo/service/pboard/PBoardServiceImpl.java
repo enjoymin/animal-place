@@ -52,14 +52,12 @@ public class PBoardServiceImpl implements PBoardService {
 
 	@Override
 	public boolean regist(PBoardDTO pbdto, MultipartFile[] files) throws Exception {
+		if (files == null || files.length == 0) {
+			return false;
+		}
+		
 		if (pbmapper.insertBoard(pbdto)) {
 			long boardnum = pbmapper.getBoardnum();
-
-			if (files == null || files.length == 0) {
-				return false;
-			}
-			
-			System.err.println(saveFolder);
 			
 			for (int i = 0; i < files.length; i++) {
 				MultipartFile file = files[i];
