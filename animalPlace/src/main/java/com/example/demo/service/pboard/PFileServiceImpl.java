@@ -103,4 +103,12 @@ public class PFileServiceImpl implements PFileService {
 		return true; // 모든 처리 후 true 반환
 	}
 
+	@Override
+	public ArrayList<String> getBestImage() {
+		System.out.println(pfmapper.getBestImage());
+		
+		//수정 해야함
+		return pfmapper.getBestImage();
+	}
+
 }

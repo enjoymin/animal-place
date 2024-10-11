@@ -19,5 +19,5 @@ public interface PFileMapper {
 
 	String getImg(long boardnum);
 
-	boolean delete(Long boardnum);
+	ArrayList<String> getBestImage();
 }

@@ -114,10 +114,6 @@ public class PBoardServiceImpl implements PBoardService {
 		if(!pbmapper.delete(boardnum)) {
 			return false;
 		}
-		if(!pfmapper.delete(boardnum)) {
-			return false;
-		}
-		
 
 		for (int i = 0; i < files.length; i++) {
 			String systemname = files[i];
