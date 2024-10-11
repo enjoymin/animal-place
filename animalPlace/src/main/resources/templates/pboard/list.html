@@ -15,7 +15,7 @@
 </head>
 
 <body>
-
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
 
 	<div id="wrap">
 		<div class="headimg"></div>
@@ -95,7 +95,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script th:inline="javascript">
-	const loginUser = /*[[${session.loginUser}]]*/'';
+	
 
 	let lastBoardnum = document.getElementById("lastBoardnum").value;
 	let loading = false;

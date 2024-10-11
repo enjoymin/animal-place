@@ -53,12 +53,6 @@ a:visited {
 a:hover {
 	cursor: pointer;
 }
-
-header {
-	height: 100px;
-	background-color: #FF9B9B;
-}
-
 footer {
 	height: 100px;
 }
