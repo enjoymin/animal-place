@@ -34,7 +34,7 @@
 						<div>날짜</div>
 					</div>
 				</div>
-				<div class="tbody">
+				<div class="tbody1">
 				</div>
 			</div>
 			<table>
@@ -47,11 +47,26 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="mycontents2">
+		<div id="mycontents2" class="mycontents">
 			<span style="font-size: 24px;">SNS</span>
 			<span><a id="more2">더 보기</a></span>
 			<span><a id="back2" style="display: none;">돌아가기</a></span>
+			<div class="tar w900">작성글 개수 : [[${ptotal}]]</div>
+			<div class="plist">
+				<div class="tbody2">
+				</div>
+			</div>
+			<table>
+				<tbody>
+					<tr>
+						<td id="pageP">
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
+
 		<!-- 페이징 처리하는 테이블 -->
 
 	</div>
@@ -66,6 +81,7 @@
 
 	window.onload = function () {
 		showListM();
+		showListP();
 	};
 
 	more1.click(function (e) {
@@ -78,9 +94,8 @@
 		showListM();
 	})
 	$("#back2").click(function (e) {
-		$(this).hide();
-		more2.show();
-		$("#mycontents1").show();
+
+		showListP();
 	})
 	function showListM() {
 		$("#back1").hide();
@@ -102,16 +117,34 @@
 									<div>${board.boarddatetime}</div></div>`;
 					}
 				}
-				$(".tbody").html(str);
+				$(".tbody1").html(str);
 				$("#pageM").html("");
 			})
 	}
-
-	function moreListP() {
-		$("#mycontents1").hide();
-		more2.hide();
-		$("#back2").show();
+	function showListP() {
+		$("#back2").hide();
+		more2.show();
+		$("#mycontents1").show();
+		myServiceP.selectprv(
+			function (list) {
+				let str = "";
+				if (list.length == 0) {
+					str += `<div class="row no-list"><div></div><div>등록된 게시글이 없습니다.</div></div>`
+					$("#more2").hide();
+				}
+				else {
+					for (let i = 0; i < list.length; i++) {
+						const board = list[i];
+						str += `<div class="prow">
+									<div><a class="c_thumbnail2" href="/pboard/list?boardnum=${board.boardnum}">
+										<img class="c_thumbnail" src="/images/pimages/${board.systemname}"></a></div></div>`;
+					}
+				}
+				$(".tbody2").html(str);
+				$("#pageP").html("");
+			})
 	}
+
 	function moreListM() {
 		$("#mycontents2").hide();
 		more1.hide();
@@ -122,12 +155,32 @@
 				for (let i = 0; i < cList.length; i++) {
 					const board = cList[i];
 					str += `<div class="row"><div>${board.boardnum}</div>
-			<div><a class="get" href="${board.boardnum}">${board.boardtitle}</a></div>
+			<div><a class="get" href="/mboard/m_get?mboardnum=${board.boardnum}">${board.boardtitle}</a></div>
 			<div>${board.userid}</div>
 			<div>${board.boarddatetime}</div></div>`;
 				}
-				$(".tbody").html(str);
+				$(".tbody1").html(str);
 				showPage(pageMaker);
+			}
+		)
+	}
+	function moreListP() {
+		$("#mycontents1").hide();
+		more2.hide();
+		$("#back2").show();
+		myServiceP.selectAll(nowpageP,
+			function (cList, pageMaker) {
+				let str = "";
+				let flag = -1;
+				for (let i = 0; i < cList.length; i++) {
+					const board = cList[i];
+					
+					str += `<div class="prow"><div><a class="c_thumbnail2" href="/pboard/list?boardnum=${board.boardnum}">
+							<img class="c_thumbnail" src="/images/pimages/${board.systemname}"></a></div></div>`;
+					flag = board.boardnum;
+				}
+				$(".tbody2").html(str);
+				showPage2(pageMaker);
 			}
 		)
 	}
@@ -155,7 +208,32 @@
 			moreListM();
 		})
 	}
-	
+	function showPage2(pageMaker) {
+		let str = "";
+		if (pageMaker.prev) {
+			str += `<span><a class="changePage btn" href="${pageMaker.startPage - 1}">&lt;</a></span>`
+		}
+		for (let i = pageMaker.startPage; i <= pageMaker.endPage; i++) {
+			if (i == nowpageP) {
+				str += `<span class="nowPage">${i}</span>`
+			}
+			else {
+				str += `<span><a class="changePage btn" href="${i}">${i}</a></span>`
+			}
+		}
+		if (pageMaker.next) {
+			str += `<span><a class="changePage btn" href="${pageMaker.endPage + 1}">&gt;</a></span>`
+		}
+		$("#pageP").html(str);
+
+		$(".changePage").click(function (e) {
+			e.preventDefault();
+			nowpageP = e.target.getAttribute("href");
+			console.log(nowpageP);
+			moreListP();
+		})
+	}
+
 </script>
 
 </html>
