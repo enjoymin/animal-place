@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.mboard.Criteria;
 import com.example.demo.domain.mboard.M_BoardDTO;
 import com.example.demo.domain.he.UserDTO;
 import com.example.demo.mapper.mboard.M_BoardMapper;

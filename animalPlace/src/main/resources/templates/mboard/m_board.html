@@ -27,12 +27,13 @@
 
 			<div class="top_container">
 				<div class="page_title">
+					<img src="/images/mimages/65457f8ac9851.png">
 					<p id="MF">모임 게시판</p>
 				</div>
 
 				<div class="top_btn_area">
 					<div class="search_area">
-						<form name="search_form" method="get" id="search_form" action="/mboard/m_board_search">
+						<form name="search_form" method="get" id="search_form" action="/mboard/m_board">
 							<select name="type" id="type">
 								<option value="">검색</option>
 								<option value="T">제목</option>
@@ -59,11 +60,12 @@
 				<div class="this_month_area">
 					<div class="this_month_txt">
 						<p id="MF">이달의 모임</p>
+						<img src="/images/mimages/792603f2d3e95.png">
 					</div>
 
 					<!-- 이달의 모임 보이는 구역 -->
 					<div class="month_plan">
-						<div th:if="${this_m_list == null or this_m_list.size() == 0}">이번 달에는 모임이 없습니다.</div>
+						<div th:if="${this_m_list == null or this_m_list.size() == 0}" style="text-align: center;">이번 달에는 모임이 없습니다.</div>
 						
 						<div th:if="${this_m_list != null and this_m_list.size() > 0}">
 							<ul>
@@ -172,14 +174,14 @@
 
 							<!-- 클릭 시 여기로 세부 페이지 띄워주기 -->
 							<div class="list_info" style="display: none;" th:id="${m_board.boardnum}">
-								<a class="more_info" th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">+</a>
-								<div class="close_info">⨉</div>
+								<a class="more_info" th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">more info</a>
+								<div class="close_info">close</div>
 
 								<div class="list_title">
 									[[${m_board.boardtitle}]]
 								</div>
 
-								<!-- 프로필, 작성일 -->
+								<!-- 프로필, 조회수, 작성일 -->
 								<div class="list_info_1">
 									<div class="profile">
 										<div class="profile_img_box">
@@ -188,6 +190,10 @@
 										<div class="userid">[[${m_board.userid}]]</div>
 									</div>
 
+									<div class="list_date">
+										조회수 : [[${m_board.readcount}]]
+									</div>
+									
 									<div class="list_date">
 										작성일 : [[${m_board.boarddatetime}]]
 									</div>
@@ -245,16 +251,15 @@
 				</div>
 
 				<div class="schedule_area">
-					<p id="MF">My Schedule</p>
 					<div class="schedulebox">
-						<div class="schedule_list">
-						</div>
+					<p id="MF">My Schedule</p>
+						<div class="schedule_list"></div>
 					</div>
 				</div>
 			</div>
 			
 			<!-- 위로가기 버튼 -->
-			<div class="up_btn" onclick="up()">up</div>
+			<div class="up_btn" onclick="up()">Top</div>
 		</div>
 	</div>
 
