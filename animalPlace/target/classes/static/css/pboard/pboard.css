@@ -1,34 +1,52 @@
 /* 메인 폰트 */
 @font-face {
-    font-family: 'TTLaundryGothicB';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
+	font-family: 'TTLaundryGothicB';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
 }
+
 /* 서브 폰트 */
 @font-face {
-    font-family: 'HakgyoansimSantteutdotumL';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
+	font-family: 'HakgyoansimSantteutdotumL';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
 }
+
 /* 서브서브 폰트 */
 @font-face {
-    font-family: 'MinSans-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'MinSans-Regular';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
+[type=button] {
+	font-family: 'TTLaundryGothicB';
+	color: white;
+	border-radius: 5px;
+}
 
+[type=submit] {
+	font-family: 'TTLaundryGothicB';
+	color: white;
+	border-radius: 5px;
+}
 
 /* 기타 스타일링 */
+
+h2 {
+	font-family: 'TTLaundryGothicB';
+}
+
 a {
 	font-family: 'TTLaundryGothicB';
 	display: flex;
 	text-decoration: none;
-	color: black;
+	color: white;
 }
+
 p {
 	font-family: 'TTLaundryGothicB';
 }
@@ -38,10 +56,14 @@ p {
 .headimg {
 	width: 100%;
 	height: 600px;
-	background: url(../../images/pimages/headerimg.jpg);
-	background-size: cover;
+	background: url(../../images/headerimg.jpg);
+	background-size: contain;
+	/* 이미지를 비율에 맞게 조정 */
 	background-position: center;
 	background-repeat: no-repeat;
+	border-bottom: 1px solid #579956;
+	margin-bottom: 20px;
+	margin-top:100px;
 }
 
 .boardimg {
@@ -71,6 +93,7 @@ p {
 
 .imglist {
 	border: 1px solid black;
+	border-radius: 5px;
 	margin: 50px;
 	/* 간격을 좁힘 */
 	width: 300px;
@@ -78,20 +101,29 @@ p {
 	height: 300px;
 	display: flex;
 	flex-direction: column;
+	z-index: 10;
 	/* 세로 정렬 */
 }
 
+
 .likebtn {
 	text-decoration: none;
-	color: black;
+	color: white;
+	margin-top: -3px;
 }
 
 .likecnt {
 	margin-left: 10px;
 	padding-top: 3px;
+	color: white;
+}
+
+.board-likebtn .likecnt {
+	color: black;
 }
 
 .id {
+	color: white;
 	margin-right: auto;
 	font-weight: bold;
 }
@@ -99,16 +131,15 @@ p {
 .like {
 	display: flex;
 	justify-content: flex-start;
-	background-color: #FFEAEA;
+	background-color: #579956;
 	height: 48px;
 	align-items: center;
-	padding: 0 10px;
+	padding: 20px 18px 0 18px;
 }
 
 
 .board-likebtn {
 	text-decoration: none;
-	color: black;
 }
 
 /* 모달 */
@@ -128,7 +159,7 @@ p {
 }
 
 .modal_content {
-	background-color: #FFEAEA !important;
+	background-color: white !important;
 	padding: 20px !important;
 	border-radius: 5px !important;
 	width: 1000px !important;
@@ -162,8 +193,14 @@ p {
 }
 
 .md_btn a {
-	margin-right: 15px;
+	margin-right: 10px;
 	text-decoration: none;
+	color: black;
+}
+
+.md_btn a:first-child::after {
+	margin-left: 10px;
+	content: '  |';
 }
 
 #user_area {
@@ -219,19 +256,12 @@ p {
 
 
 
-/* 리스트 아이템 스타일 */
-.file_item {
-	display: flex;
-	/* 플렉스 박스를 사용하여 정렬 */
-	align-items: center;
-	/* 세로 중앙 정렬 */
-	justify-content: center;
-}
 
 .del_item {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-bottom: 10px;
 }
 
 
@@ -247,6 +277,8 @@ ul {
 
 .write {
 	float: right;
+	width: 100px;
+	height: 30px;
 }
 
 #warningMessage p {
@@ -349,7 +381,7 @@ ul {
 	height: 15px;
 	/* 점 크기 감소 */
 	margin: 0 5px;
-	background-color: #FF9B9B;
+	background-color: #579956;
 	/* 점 색상 */
 	border-radius: 50%;
 	/* 원형으로 만들기 */
@@ -396,27 +428,46 @@ ul {
 	border: 1px solid #ccc;
 	height: 200px;
 	overflow: hidden;
-	border-radius: 25px;
+	border-radius: 5px;
 	/* 타원 형태 만들기 */
 	padding-top: 10px;
 	display: flex;
 	flex-direction: column;
 }
 
-.btn {
-	width: 100px;
-	height: 30px;
+/* 스크롤바 스타일 */
+#commentSection::-webkit-scrollbar {
+	width: 8px;
+	/* 스크롤바 너비 */
 }
+
+#commentSection::-webkit-scrollbar-track {
+	background: rgba(241, 241, 241, 0);
+	/* 완전 투명 */
+}
+
+#commentSection::-webkit-scrollbar-thumb {
+	background: #579956;
+	/* 스크롤바 색상 */
+	border-radius: 4px;
+	/* 둥글게 만들기 */
+}
+
+
 
 .btn a {
 	display: flex;
 	text-decoration: none;
-	color: black;
-	border: 1px solid #FF9B9B;
-	background-color: #FF9B9B;
+	color: white;
+	background-color: #579956;
 	border-radius: 25px;
 	justify-content: center;
 	font-weight: bold;
+}
+
+.btn a:focus {
+	outline: none;
+	/* 포커스 시 아웃라인 제거 */
 }
 
 
@@ -438,9 +489,10 @@ ul {
 #modify button {
 	border: none;
 	/* 테두리 제거 */
-	border-radius: 25px;
+	border-radius: 5px;
 	/* 테두리 없애기 */
-	background-color: #FF9B9B;
+	background-color: #579956;
+	font-family: 'TTLaundryGothicB';
 }
 
 .buttonGroup {
@@ -450,31 +502,209 @@ ul {
 }
 
 .buttonGroup button {
-	font-family: 'HakgyoansimSantteutdotumL';
+	font-family: 'TTLaundryGothicB';
 	border: none;
-	/* 테두리 제거 */
-	border-radius: 25px;
+
 	/* 테두리 없애기 */
 	background: transparent;
 
 }
 
+.modifyReply {
+	font-family: 'TTLaundryGothicB';
+}
+
+.deleteReply {
+	font-family: 'TTLaundryGothicB';
+}
+
+.buttonGroup button:first-child::after {
+	content: '|';
+	margin-left: 10px;
+}
+
 button {
-	font-family: 'HakgyoansimSantteutdotumL';
+	font-family: 'TTLaundryGothicB';
 	border: none;
 	/* 테두리 제거 */
 	border-radius: 25px;
 	/* 테두리 없애기 */
-	background-color: #FF9B9B;
-	padding: 10px;
-	/* 원하는 패딩 설정 */
+	background-color: #579956;
 }
 
+#addFileButton {
+	width: 150px;
+	height: 30px;
+	margin-bottom: 20px;
+	color: white;
+	border-radius: 5px;
+}
+
+#newFileButton {
+	width: 150px;
+	height: 30px;
+	margin-bottom: 20px;
+	color: white;
+	border-radius: 5px;
+}
+
+.postForm_btn {
+	margin-top: 20px;
+}
+
+.postForm_btn button {
+	width: 50px;
+	height: 30px;
+	border-radius: 5px;
+	color: white;
+}
+
+#fileList {
+	overflow: hidden;
+	width: 500px;
+	/* 원하는 너비 */
+	height: 300px;
+	overflow-y: auto;
+	/* 세로 스크롤 활성화 */
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 5px;
+	/* 내부 여백 */
+	list-style: none;
+	/* 기본 리스트 스타일 제거 */
+	margin: 10px auto;
+	/* 가운데 정렬 */
+}
+
+.board_file {
+	overflow: hidden;
+	width: 500px;
+	/* 원하는 너비 */
+	height: 300px;
+	overflow-y: auto;
+	/* 세로 스크롤 활성화 */
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 5px;
+	/* 내부 여백 */
+	list-style: none;
+	/* 기본 리스트 스타일 제거 */
+	margin: 10px auto;
+	/* 가운데 정렬 */
+}
+
+.board_file::-webkit-scrollbar {
+	width: 8px;
+	/* 스크롤바 너비 */
+}
+
+.board_file::-webkit-scrollbar-track {
+	background: rgba(241, 241, 241, 0);
+	/* 완전 투명 */
+}
+
+.board_file::-webkit-scrollbar-thumb {
+	background: #579956;
+	/* 스크롤바 색상 */
+	border-radius: 4px;
+	/* 둥글게 만들기 */
+}
+
+
+
+#fileList::-webkit-scrollbar {
+	width: 8px;
+	/* 스크롤바 너비 */
+}
+
+#fileList::-webkit-scrollbar-track {
+	background: rgba(241, 241, 241, 0);
+	/* 완전 투명 */
+}
+
+#fileList::-webkit-scrollbar-thumb {
+	background: #579956;
+	/* 스크롤바 색상 */
+	border-radius: 4px;
+	/* 둥글게 만들기 */
+}
+
+
+.title-input {
+	border: 1px solid #ccc;
+	/* 테두리 색상 */
+	border-radius: 5px;
+	/* 둥글게 만들기 */
+	width: 200px;
+	/* 제목의 너비 */
+	height: 30px;
+	/* 고정 높이 (필요 시 조정) */
+	box-sizing: border-box;
+	/* 패딩과 테두리를 포함한 크기 계산 */
+}
+
+.userid-input {
+	border: 1px solid #ccc;
+	/* 테두리 색상 */
+	border-radius: 5px;
+	/* 둥글게 만들기 */
+	width: 100px;
+	/* 사용자 ID의 너비 */
+	height: 30px;
+	/* 고정 높이 (필요 시 조정) */
+	box-sizing: border-box;
+	/* 패딩과 테두리를 포함한 크기 계산 */
+	text-align: center;
+}
+
+.content-textarea {
+	border: 1px solid #ccc;
+	/* 테두리 색상 */
+	border-radius: 5px;
+	/* 둥글게 만들기 */
+	width: 500px;
+	/* 텍스트 영역의 너비 */
+	height: 100px;
+	/* 고정 높이 (필요 시 조정) */
+	resize: none;
+	/* 사이즈 조정 비활성화 */
+	box-sizing: border-box;
+	/* 패딩과 테두리를 포함한 크기 계산 */
+}
+
+
+.file_item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.file_item button {
+	font-family: 'TTLaundryGothicB';
+	width: 50px;
+	height: 30px;
+	border-radius: 5px;
+	color: white;
+}
+
+.newFile_btn {
+	margin-top: 10px;
+}
+
+
+.del_item button {
+	font-family: 'TTLaundryGothicB';
+	width: 50px;
+	height: 30px;
+	border-radius: 5px;
+	color: white;
+}
 
 #commentInputSection {
 	position: sticky;
 	bottom: 0;
-	background-color: #FFEAEA;
+	background-color: white;
 	/* 배경색 변경 */
 	padding: 10px;
 	z-index: 10;
@@ -495,6 +725,25 @@ button {
 }
 
 #submitComment {
+	font-family: 'TTLaundryGothicB';
 	border-radius: 25px;
-	background: #FF9B9B;
+	background: #579956;
+	color: white;
+	width: 100px;
+}
+
+#scrollToTop {
+	font-family: 'TTLaundryGothicB';
+	background-color: #f9d686;
+	color: #F26363;
+	border: none;
+	border-radius: 25px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	display: none;
+	position: fixed;
+	bottom: 70px;
+	right: 70px;
+	z-index: 1000;
 }

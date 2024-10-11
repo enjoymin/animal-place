@@ -58,7 +58,7 @@ public class M_BoardController {
 			}
 		}
 		// 모든 게시글 추가해주기
-		List<M_BoardDTO> m_list = service.getList(cri);
+		List<M_BoardDTO> m_list = service.getList();
 		model.addAttribute("m_list", m_list);
 		// 글 개수 추가해주기
 		model.addAttribute("list_cnt", service.getTotal());

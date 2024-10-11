@@ -8,7 +8,7 @@ import com.example.demo.domain.mboard.M_BoardDTO;
 public interface M_BoardService {
 
 	// 글 긁어오기
-	List<M_BoardDTO> getList(Criteria cri);
+	List<M_BoardDTO> getList();
 	
 	// 글 작성
 	boolean regist(M_BoardDTO mboard);
@@ -40,7 +40,7 @@ public interface M_BoardService {
 
 	boolean updateUser_remove(M_BoardDTO mboard, String oldDate);
 
-//	List<M_BoardDTO> searchBoards(String type, String keyword);
+	List<M_BoardDTO> searchBoards(String type, String keyword);
 
 	void increase_readcount(int mboardnum);
 

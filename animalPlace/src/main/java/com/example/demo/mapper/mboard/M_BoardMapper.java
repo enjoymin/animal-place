@@ -8,9 +8,7 @@ import com.example.demo.domain.mboard.Criteria;
 import com.example.demo.domain.mboard.M_BoardDTO;
 
 @Mapper
-public interface M_BoardMapper {
-	List<M_BoardDTO> getList(Criteria cri);
-	
+public interface M_BoardMapper {	
 	List<M_BoardDTO> getList();
 	
 	int insertBoard(M_BoardDTO board);	

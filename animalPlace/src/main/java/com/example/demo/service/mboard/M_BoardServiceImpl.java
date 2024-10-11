@@ -24,8 +24,8 @@ public class M_BoardServiceImpl  implements M_BoardService{
 	private UserMapper umapper;
 	
 	@Override
-	public List<M_BoardDTO> getList(Criteria cri) {
-		return bmapper.getList(cri);
+	public List<M_BoardDTO> getList() {
+		return bmapper.getList();
 	}
 
 	@Override
@@ -206,31 +206,31 @@ public class M_BoardServiceImpl  implements M_BoardService{
 		return true;
 	}
 
-//	@Override
-//	public List<M_BoardDTO> searchBoards(String type, String keyword) {
-//		switch (type) {
-//		// 제목일때 검색
-//		case "T" :
-//			return bmapper.getListByTitle(keyword);			
-//		// 내용일때 검색
-//		case "C" :
-//			return bmapper.getListByContent(keyword);	
-//			
-//		// 작성자일때 검색
-//		case "W" :
-//			return bmapper.getListByWriter(keyword);	
-//			
-//		// 제목 또는 내용일때 검색
-//		case "TC" :
-//			return bmapper.getListByTitle_Content(keyword);
-//			
-//		// 날짜일때 검색
-//		case "S" :
-//			return bmapper.getListBySetdate(keyword);	
-//		}
-//
-//		return null;
-//	}
+	@Override
+	public List<M_BoardDTO> searchBoards(String type, String keyword) {
+		switch (type) {
+		// 제목일때 검색
+		case "T" :
+			return bmapper.getListByTitle(keyword);			
+		// 내용일때 검색
+		case "C" :
+			return bmapper.getListByContent(keyword);	
+			
+		// 작성자일때 검색
+		case "W" :
+			return bmapper.getListByWriter(keyword);	
+			
+		// 제목 또는 내용일때 검색
+		case "TC" :
+			return bmapper.getListByTitle_Content(keyword);
+			
+		// 날짜일때 검색
+		case "S" :
+			return bmapper.getListBySetdate(keyword);	
+		}
+
+		return null;
+	}
 
 	@Override
 	public void increase_readcount(int mboardnum) {

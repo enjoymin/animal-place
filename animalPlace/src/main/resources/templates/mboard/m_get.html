@@ -37,14 +37,17 @@
 	<div class="full_wrap">
 		<input type="hidden" th:value="${session.loginUser}" class="loginUser">
 
-		<!-- 게시판 제목 -->
-		<div class="top_container">
-			<div class="page_title">
-				<p id="MF">모임 게시판</p>
-			</div>
-		</div>
-
 		<div class="inner_wrap">
+
+			<!-- 게시판 제목 -->
+			<div class="top_container">
+				<div class="page_title">
+					<img src="/images/mimages/65457f8ac9851.png">
+					<p id="MF">모임 게시판</p>
+				</div>
+			</div>
+
+
 			<!-- 글 내용 컨테이너 -->
 			<div class="m_list_container">
 				<div class="m_list">
@@ -63,6 +66,9 @@
 											<img src="/images/test강아지.jpg" alt="" class="profile_img">
 										</div>
 										<div class="userid">[[${m_board.userid}]]</div>
+									</div>
+									<div class="list_date">
+										조회수 : [[${m_board.readcount}]]
 									</div>
 									<div class="list_date">작성일 : [[${m_board.boarddatetime}]]</div>
 								</div>
@@ -136,7 +142,7 @@
 											</div>
 											<!-- 작성자인 경우만 보이게!!!! -->
 											<th:block th:if="${reply.replyuserid == session.loginUser}">
-												<div class="reply_btn">										
+												<div class="reply_btn">
 													<div class="modify_reply" onclick="modify_reply(this)">
 														수정
 													</div>
@@ -145,8 +151,8 @@
 													</div>
 												</div>
 											</th:block>
-											</div>
-											</div>
+										</div>
+									</div>
 
 									<!-- 이아래로 댓글 추가 -->
 								</div> <!-- reply_area div 닫기 -->

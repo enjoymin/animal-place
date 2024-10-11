@@ -15,31 +15,73 @@
 	<th:block th:replace="~{layout/header::header}"></th:block>
 
 	<div class="wrap">
-		<div class="table">
+		<div class="disease-title">
+			<div><img src="/images/disease/공 굴러가유.png" alt=""></div>
+			<div>
+				<p>
+					반려동물 질병 확인
+				</p>
+			</div>
+
+		</div>
+		<div class="main-title">
+			
+			<div>
+				<h3>버튼을 눌러 증상을 확인해보세요!</h3>
+			</div>
+			<div class="title-dog"><img src="/images/disease/강아지 누워있기.png" alt=""></div>
+		</div>
+		<div class="wrap-main">
+			<div class="table">
 				<table>
 					<tr>
-						<td><button class="animal-btn2 aniaml-start" data-animal="강아지">강아지</button></td>
-						<td><button class="animal-btn2" data-animal="고양이">고양이</button></td>
-						<td><button class="animal-btn2" data-animal="새">새</button></td>
-						<td><button class="animal-btn2" data-animal="햄스터">햄스터</button></td>
-						<td><button class="animal-btn2" data-animal="토끼">토끼</button></td>
+						<td><button class="animal-btn2" data-animal="강아지"><img src="/images/disease/강아지버튼.png" alt="">
+								<p>
+									강아지
+								</p>
+							</button>
+						</td>
+					</tr>
+					<tr>
+						<td><button class="animal-btn2" data-animal="고양이"><img src="/images/disease/고양이 버튼.png" alt="">
+								<div>고양이</div>
+							</button></td>
+					</tr>
+					<tr>
+						<td><button class="animal-btn2" data-animal="새"><img src="/images/disease/새 버튼.png" alt="">
+								<div>새
+
+								</div>
+							</button></td>
+					</tr>
+					<tr>
+						<td><button class="animal-btn2" data-animal="햄스터"><img src="/images/disease/햄스터 버튼.png" alt="">
+								<div>햄스터</div>
+							</button>
+						</td>
+					</tr>
+					<tr>
+						<td><button class="animal-btn2" data-animal="토끼"><img src="/images/disease/토끼 버튼.png" alt="">
+								<div>토끼</div>
+							</button>
+						</td>
 					</tr>
 				</table>
 			</div>
-		<div class="img">
+			<div class="img">
+				<div class="show-animal">
+					<button class="anihead animal-btn body-part-btn" data-body-part="머리" id="btn1">머리</button>
+					<button class="neck animal-btn body-part-btn" data-body-part="목" id="btn2">목</button>
+					<button class="leg animal-btn body-part-btn" data-body-part="다리" id="btn3">다리</button>
+					<button class="anibody animal-btn body-part-btn" data-body-part="몸통" id="btn4">몸통</button>
+					<button class="tal animal-btn body-part-btn" data-body-part="털" id="btn5">털</button>
+					<img id="animal-image" src="/images/disease/강아지1.png" alt="">
 
-			<div class="show-animal">
-				<button class="anihead animal-btn body-part-btn" data-body-part="머리" id="btn1">머리</button>
-				<button class="neck animal-btn body-part-btn" data-body-part="목" id="btn2">목</button>
-				<button class="leg animal-btn body-part-btn" data-body-part="다리" id="btn3">다리</button>
-				<button class="anibody animal-btn body-part-btn" data-body-part="몸통" id="btn4">몸통</button>
-				<button class="tal animal-btn body-part-btn" data-body-part="털" id="btn5">털</button>
-				<img id="animal-image" src="/images/disease/강아지.png" alt="">
+				</div>
+
 			</div>
 		</div>
 
-		
-	
 
 		<div class="disease-list">
 			<!-- AJAX로 채워질 질병 정보 -->
