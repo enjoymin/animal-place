@@ -12,11 +12,22 @@
 </head>
 
 <body>
-	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
+	<th:block th:replace="~{layout/header::header}"></th:block>
 
 	<div class="wrap">
+		<div class="table">
+				<table>
+					<tr>
+						<td><button class="animal-btn2 aniaml-start" data-animal="강아지">강아지</button></td>
+						<td><button class="animal-btn2" data-animal="고양이">고양이</button></td>
+						<td><button class="animal-btn2" data-animal="새">새</button></td>
+						<td><button class="animal-btn2" data-animal="햄스터">햄스터</button></td>
+						<td><button class="animal-btn2" data-animal="토끼">토끼</button></td>
+					</tr>
+				</table>
+			</div>
 		<div class="img">
-			
+
 			<div class="show-animal">
 				<button class="anihead animal-btn body-part-btn" data-body-part="머리" id="btn1">머리</button>
 				<button class="neck animal-btn body-part-btn" data-body-part="목" id="btn2">목</button>
@@ -28,17 +39,7 @@
 		</div>
 
 		
-		<div class="table">
-			<table>
-				<tr>
-					<td><button class="animal-btn2 aniaml-start" data-animal="강아지">강아지</button></td>
-					<td><button class="animal-btn2" data-animal="고양이">고양이</button></td>
-					<td><button class="animal-btn2" data-animal="새">새</button></td>
-					<td><button class="animal-btn2" data-animal="햄스터">햄스터</button></td>
-					<td><button class="animal-btn2" data-animal="토끼">토끼</button></td>
-				</tr>
-			</table>
-		</div>
+	
 
 		<div class="disease-list">
 			<!-- AJAX로 채워질 질병 정보 -->

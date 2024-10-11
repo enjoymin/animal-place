@@ -337,8 +337,6 @@
 				console.log('파일 추가:', newDataTransfer.files[i].name);
 			}
 
-
-
 			$.ajax({
 				url: '/pboard/modify',
 				method: 'POST',
@@ -483,10 +481,10 @@
 
 
 			//알람 사용 변수
-			const a_boardnum = $('#boardnum');
-			const a_userid = $('#userid');
-			const a_title = $('#title');
-
+			const a_boardnum = $('#boardnum').html();
+			const a_userid = $('#userid').html();
+			const a_title = $('#title').html();
+			let path = '/pboard/list?boardnum=' + boardNum;
 
 			if (loginUser == null || loginUser.length === 0) {
 				alert("로그인 해야 댓글을 달 수 있습니다.");
@@ -498,6 +496,7 @@
 				return;
 			}
 
+			console.log(boardNum);
 
 
 
@@ -508,7 +507,10 @@
 				data: {
 					replycontent: commentContent,
 					boardnum: boardNum,
-					replyuserid: userId
+					replyuserid: userId,
+					ctuserid: a_userid,
+					boardtitle: a_title,
+					contentpath: path
 				},
 				success: function (response) {
 					const newReply = response.reply;
@@ -664,8 +666,10 @@
 			const likeCountElem = $(this).find('.likecnt');
 
 			//알람 사용 변수 [24-10-10] : 한얼님 알람 추가
-			const a_userid = $('#userid');
-			const a_title = $('#title');
+			const a_userid = $('#userid').html();
+			const a_title = $('#title').html();
+			let path = '/pboard/list?boardnum=' + boardnum;
+			
 
 			$.ajax({
 				url: '/plikelist/checklike',
@@ -676,7 +680,9 @@
 						$.ajax({
 							url: '/plikelist/insert',
 							type: 'POST',
-							data: {boardnum: boardnum}, // 여기다 변수 추가하시면 됩니다 - 알람
+							data: {
+								boardnum: boardnum
+							}, 
 							success: function (response) {
 								const currentCount = parseInt(likeCountElem.text());
 								const newCount = currentCount + 1;
@@ -685,11 +691,19 @@
 								const a_userid = response.alarm.userid;
 								const a_title = response.alarm.boardtitle;
 
+								$.ajax({
+									url: '/my/insertAlarmByLike',
+									type: 'POST',
+									data: {
+										boardnum: boardnum, ctuserid: a_userid, boardtitle: a_title,
+										contentpath: path
+									},
+									success:function(){},
+									error: function(){}
+								})
 
 								likeCountElem.text(newCount);
 								likeImg.attr('src', '/images/pimages/like.png'); // 여기서 이미지 변경
-
-
 
 								// 부모 창의 좋아요 상태 업데이트
 								updateLikeStatus(boardnum, newCount, true);

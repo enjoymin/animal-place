@@ -141,11 +141,13 @@ public class M_BoardController {
 		// 댓글 받아오기
 	    List<M_ReplyDTO> reply_list = re_service.get_reply_list();	    
 	    Map<Integer, List<M_ReplyDTO>> repliesByBoardNum = reply_list.stream()
-	            .collect(Collectors.groupingBy(M_ReplyDTO::getBoardnum));	        
-	    model.addAttribute("repliesByBoardNum", repliesByBoardNum);	    
-	    
+	            .collect(Collectors.groupingBy(M_ReplyDTO::getBoardnum));
+	        
+	    model.addAttribute("repliesByBoardNum", repliesByBoardNum);
+
+		String userid =  (String) session.getAttribute("loginUser");
 	    String path = "/mboard/m_get?mboardnum="+mboardnum;
-	    alservice.deleteAlarmByPath(path);
+	    alservice.deleteAlarmByPath(userid, path);
 	    
 		return "/mboard/m_get";
 	}
@@ -225,7 +227,7 @@ public class M_BoardController {
 
 	@PostMapping("put_member")
 	@ResponseBody
-	public void put_member(@RequestBody Map<String, Object> memInfo) {
+	public void put_member(@RequestBody Map<String, Object> memInfo, HttpSession session) {
 		// memInfo에서 member랑 boardnum문자열 추출
 		String member = (String) memInfo.get("member");
 		String boardnumStr = (String) memInfo.get("boardnum"); // 문자열 숫자로
@@ -233,8 +235,12 @@ public class M_BoardController {
 		String boardtitle = (String) memInfo.get("boardtitle");
 		String contentpath = (String) memInfo.get("contentpath");
 		String flag = (String) memInfo.get("flag");
-
-		alservice.insertAlarm(userid, boardtitle, contentpath, flag);
+		String loginUser = (String) session.getAttribute("loginUser");
+		
+		if(!loginUser.equals(userid)) {
+			alservice.insertAlarm(userid, boardtitle, contentpath, flag);
+			
+		}
 
 		int boardnum = Integer.parseInt(boardnumStr);
 
@@ -253,16 +259,12 @@ public class M_BoardController {
 
 	@PostMapping("put_reply")
 	public ResponseEntity<String> put_reply(@RequestBody M_ReplyDTO replyDTO) {
-		System.out.println("check1");
 		if (re_service.put_reply(replyDTO)) {
 			String flag = "reply";
-			System.out.println("check2");
 			if (!replyDTO.getReplyuserid().equals(replyDTO.getCtuserid())) {
-				System.out.println("check4");
 				alservice.insertAlarm(replyDTO.getCtuserid(), replyDTO.getBoardtitle(), replyDTO.getContentpath(),
 						flag);
 			}
-			System.out.println("check3");
 			return ResponseEntity.ok("댓글 추가 완료!");
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 추가 실패");
