@@ -447,7 +447,7 @@ div:nth-child(even) {
 .adoption {
 	display: none;
     position: absolute;
-    top: 16px;
+    top: 5px;
     right: 20px;
 }
 

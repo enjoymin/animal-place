@@ -1,11 +1,14 @@
 package com.example.demo.service.adoption;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.he.UserDTO;
 import com.example.demo.mapper.adoption.AdoptionMapper;
+import com.example.demo.mapper.he.UserMapper;
 import com.example.demo.model.adoption.AdoptionCriteria;
 import com.example.demo.model.adoption.AdoptionDTO;
 
@@ -14,6 +17,8 @@ public class AdoptionServiceImpl implements AdoptionService {
 	
 	@Autowired
 	private AdoptionMapper amapper;
+	@Autowired
+	private UserMapper umapper;
 	
 	@Override
 	public boolean regist(AdoptionDTO adoption) {
@@ -37,6 +42,20 @@ public class AdoptionServiceImpl implements AdoptionService {
 	@Override
 	public AdoptionDTO getDetail(long adoptionnum) {
 		return amapper.getAdoptionByAdoptinnum(adoptionnum);
+	}
+
+	@Override
+	public UserDTO getUserDetail(String userid) {
+		UserDTO user = umapper.getUserByUserid(userid);
+		return user;
+	}
+
+	@Override
+	public boolean remove(long adoptionnum) {
+		if(amapper.deleteAdoption(adoptionnum) == 1) {
+			return true;
+		}
+		return false;
 	}
 
 

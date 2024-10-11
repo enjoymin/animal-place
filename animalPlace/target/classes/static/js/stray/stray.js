@@ -363,7 +363,7 @@ function paginatio(status, region, breed){
 	renderPagination(region, breed);
 	nottingContainer();
 	selectContainer();
-
+	adoptionContainer()
 }
 	
 function loadingRemove(){

@@ -332,3 +332,58 @@ img.thumbnail:hover{
 	font-weight: bold;
 }
 
+/* get */
+.adoption_area{
+	float: left;
+}
+.adoption_area #userid, .adoption_area #adoptionOk{
+	padding-left: 140px;
+}
+.adoption_area #breed, .adoption_area #type, .adoption_area #gender,
+.adoption_area #age, .adoption_area #cost, .adoption_area #region{
+	text-align: center;
+	width: 300px;
+}
+.adoption_area tr{
+	height: 30px;
+}
+.adoption_area #contents{
+	padding: 5px;
+	height: 300px;
+	white-space: pre-wrap;
+}
+.adoption_area th{
+	width: 150px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

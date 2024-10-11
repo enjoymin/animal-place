@@ -14,5 +14,6 @@ public interface AdoptionMapper {
 	List<AdoptionDTO> getList(AdoptionCriteria adCri);
 	long getTotal(AdoptionCriteria adCri);
 	AdoptionDTO getAdoptionByAdoptinnum(long adoptionnum);
+	int deleteAdoption(long adoptionnum);
 
 }

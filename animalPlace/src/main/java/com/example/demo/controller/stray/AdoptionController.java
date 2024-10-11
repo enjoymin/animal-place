@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.domain.he.UserDTO;
 import com.example.demo.model.adoption.AdoptionCriteria;
 import com.example.demo.model.adoption.AdoptionDTO;
 import com.example.demo.model.adoption.AdoptionPageDTO;
@@ -52,7 +53,8 @@ public class AdoptionController {
 		String loginUser = (String)session.getAttribute("loginUser");
 		//넘겨진 adoptionnum에 해당하는 게시글 데이터 검색
 		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
-		
+		UserDTO user = adservice.getUserDetail(adoption.getUserid());
+		System.out.println(adoption);
 		
 		Cookie[] cookies = req.getCookies();
 		if(cookies != null) {
@@ -65,8 +67,21 @@ public class AdoptionController {
 			}
 		}
 		
+		model.addAttribute("user", user);
 		model.addAttribute("adoption",adoption);
 		return "/adoption/get";
+	}
+	
+	@GetMapping("remove")
+	public String remove(AdoptionCriteria adCri, long adoptionnum, HttpServletRequest req) {
+		String loginUser = (String)req.getSession().getAttribute("loginUser");
+		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
+		if(adoption.getUserid().equals(loginUser)) {
+			if(adservice.remove(adoptionnum)) {
+				return "redirect:/adoption/list"+adCri.getListLink();
+			}
+		}
+		return "redirect:/adoption/get"+adCri.getListLink()+"&adoptionnum="+adoptionnum;
 	}
 }
 

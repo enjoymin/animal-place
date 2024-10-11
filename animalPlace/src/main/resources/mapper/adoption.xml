@@ -36,4 +36,7 @@
 	<select id="getAdoptionByAdoptinnum">
 		select * from adoption where adoptionnum = #{adoptionnum}
 	</select>
+	<delete id="deleteAdoption">
+		delete from adoption where adoptionnum=#{adoptionnum}
+	</delete>
 </mapper>
