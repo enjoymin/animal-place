@@ -122,7 +122,16 @@ h6 {
 	font-weight: normal;
 	font-size: inherit;
 }
-
+#login{
+	position: absolute;
+	right: 50px;
+	width: 100px;
+	top: 0px;
+}
+#login img{
+	width: 80px;
+	height: 80px;
+}
 #menu {
 	position: absolute;
 	right: 10px;
@@ -130,7 +139,8 @@ h6 {
 
 #menubar {
 	/*background-color: #ffeaea;*/
-	background-color: #579956;
+	background-color: #f7f7f7;
+	border: 1px solid #f4f4f4;
 	position: fixed;
 	top: 100px;
 	width: 400px;
