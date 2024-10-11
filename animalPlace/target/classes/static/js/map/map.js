@@ -265,20 +265,60 @@ function displayInfowindow(marker, place) {
             </div>
         </div>
     `;
-    
+
     infowindow.setContent(content);
     infowindow.open(map, marker);
     
-    // 클릭 이벤트 추가
+    // 인포윈도우 클릭 이벤트 추가
     const placeMapDiv = document.querySelector('.place_map');
     if (placeMapDiv) {
         placeMapDiv.onclick = function() {
-            const iframe = document.getElementById('iframeElement'); // iframe의 ID
+            const iframe = document.getElementById('iframeElement');
             iframe.src = place.place_url; // 웹사이트 URL 설정
             const search_detail = document.getElementById('search_detail');
             search_detail.scrollIntoView({ behavior: 'smooth' }); // 스크롤 애니메이션
         };
     }
+}
+
+// 마커 클릭 이벤트
+function addMarker(position, idx, place) {
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png',
+        imageSize = new kakao.maps.Size(36, 37),
+        imgOptions = {
+            spriteSize: new kakao.maps.Size(36, 691),
+            spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10),
+            offset: new kakao.maps.Point(13, 37)
+        },
+        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+        marker = new kakao.maps.Marker({
+            position: position,
+            image: markerImage
+        });
+
+    marker.setMap(map);
+    markers.push(marker);
+
+    // 마커 클릭 이벤트
+    kakao.maps.event.addListener(marker, 'click', function() {
+        displayInfowindow(marker, place);
+        const iframe = document.getElementById('iframeElement'); // iframe의 ID
+        iframe.src = place.place_url; // 웹사이트 URL 설정
+        const search_detail = document.getElementById('search_detail');
+        search_detail.scrollIntoView({ behavior: 'smooth' }); // 스크롤 애니메이션
+    });
+
+    // 마우스 오버 이벤트
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+        displayInfowindow(marker, place);
+    });
+
+    // 마우스 아웃 이벤트
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        infowindow.close();
+    });
+
+    return marker;
 }
 
 function addMarker(position, idx, place) {
