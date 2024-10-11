@@ -388,6 +388,11 @@ function selectContainer(){
 	
 	select.style.display = 'flex';
 }
+function adoptionContainer(){
+	const adoption = document.getElementById('adoption');
+	
+	adoption.style.display = 'flex';
+}
 
 $(".changeSelect").click(function(e){
 		//e(이벤트)의 기본 작동 막기

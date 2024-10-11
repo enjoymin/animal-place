@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무료 분양동물</title>
+<link rel="stylesheet" href="/css/stray/adoption.css">
+<link rel="stylesheet" href="/css/footer.css">
+<style>
+</style>
+</head>
+<body class="get">
+	<th:block th:if="${w != null and w != ''}">
+		<script>
+			alert("게시글 등록 성공!");
+		</script>
+	</th:block>
+	<!--<th:block th:replace="~{layout/header::header}"></th:block>-->
+	<header></header>
+	<div id="wrap" class="get">
+		<table border="1" class="adoption_area">
+			<tbody>
+				<tr>
+					<th>제목</th>
+					<td id="title">[[${adoption.title}]]</td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td id="userid">[[${adoption.userid}]]</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td id="contents">[[${adoption.contents}]]</td>
+				</tr>
+				<tr th:if="${files == null or files.size() == 0}" class="no-file">
+					<td colspan="2">사진이 없습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="btn_area">
+			<tbody>
+				<tr>
+					<td>
+						<th:block th:if="${adoption.userid == session.loginUser}">
+							<a class="btn" th:href="${'/adoption/modify'+adCri.listLink+'&adoptionnum='+adoption.adoptionnum}">수정</a>
+							<a class="btn" th:href="${'/adoption/remove'+adCri.listLink+'&adoptionnum='+adoption.adoptionnum}">삭제</a>
+						</th:block>
+						<a class="btn" th:href="${'/adoption/list'+adCri.listLink}">목록</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

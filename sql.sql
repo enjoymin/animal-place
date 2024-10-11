@@ -95,6 +95,15 @@ readcount int default 0,
 userid varchar(300)
 );
 
+create table map_search_history(
+	id serial primary key,
+    keyword varchar(300) not null,
+    search_count int default 1,
+    search_time timestamp default current_timestamp
+);
+drop table map_search_history;
+select * from map_search_history;
+
 ################################## MAP END
 
 ################################## DISEASE START
@@ -115,16 +124,15 @@ create table m_board(
 boardnum int auto_increment primary key,
     boardtitle varchar(300),
     userid varchar(300),
-    
+    constraint userid foreign key(userid) references user(userid),
     setdate date,
     dDay int,
     place varchar(3000),
     mnum int,
     boardcontent varchar(3000),
-    
     boarddatetime datetime default now(),
     boardflag boolean default false,
-
+	readcount int default 0,
     member varchar(3000)
 );
 select * from m_board;

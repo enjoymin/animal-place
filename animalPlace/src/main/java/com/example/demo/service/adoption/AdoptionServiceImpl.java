@@ -34,6 +34,11 @@ public class AdoptionServiceImpl implements AdoptionService {
 		return amapper.getTotal(adCri);
 	}
 
+	@Override
+	public AdoptionDTO getDetail(long adoptionnum) {
+		return amapper.getAdoptionByAdoptinnum(adoptionnum);
+	}
+
 
     
 }

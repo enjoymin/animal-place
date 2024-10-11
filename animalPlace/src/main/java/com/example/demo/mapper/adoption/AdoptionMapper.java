@@ -13,5 +13,6 @@ public interface AdoptionMapper {
 	int insertAdoption(AdoptionDTO adoption);
 	List<AdoptionDTO> getList(AdoptionCriteria adCri);
 	long getTotal(AdoptionCriteria adCri);
+	AdoptionDTO getAdoptionByAdoptinnum(long adoptionnum);
 
 }

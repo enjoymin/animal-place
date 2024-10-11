@@ -8,6 +8,6 @@ public interface AlarmService {
 	List<AlarmDTO> getAlarm(String userid);
 	boolean extAlarm(String userid);
 	boolean deleteAlarm(long num);
-	boolean deleteAlarmByPath(String path);
+	boolean deleteAlarmByPath(String userid, String path);
 	void insertAlarm(String userid, String boardtitle, String contentpath, String flag);
 }

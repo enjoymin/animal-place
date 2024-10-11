@@ -350,6 +350,11 @@
 				<tbody>
 					<tr>
 						<td>
+							<a class="stray btn" href="/stray/list">유기동물 게시판 이동</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<a class="write btn" href="/adoption/write">글쓰기</a>
 						</td>
 					</tr>
@@ -360,7 +365,7 @@
     <th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
+<script th:inline="javascript">
 	function updateSecondSelect() {
 	    const firstSelect = document.getElementById("breed");
 	    const secondSelect = document.getElementById("type");
@@ -612,6 +617,14 @@
 		//유효성 검사
 		form.pageNum.value = 1;
 		form.submit();
-		}
+	}
+	
+	$(".get").click(function(e){
+		e.preventDefault();
+		let adoptionnum = e.target.getAttribute("href");
+		let listLink = /*[[${pageMaker.adCri.listLink}]]*/'';
+		// /board/get?pagenum=4&amount=10&type=T&keyword=지우개&boardnum=99
+		location.href = '/adoption/get'+listLink+"&adoptionnum="+adoptionnum;
+	})
 </script>
 </html>

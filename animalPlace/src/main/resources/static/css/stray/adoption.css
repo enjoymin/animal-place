@@ -190,7 +190,13 @@ select:hover {
 
 .btn_table{
 	position: absolute;
-	top: 0;
+	top: 8px;
+	right: -744px;
+}
+.btn_table .stray {
+    position: absolute;
+    top: -12px;
+    left: -190px;
 }
 #searchForm {
     width: 500px;

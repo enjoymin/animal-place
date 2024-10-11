@@ -10,7 +10,7 @@
 		delete from alarm where alarmnum =#{num}
 	</delete>
 	<delete id="deleteAlarmByPath">
-		delete from alarm where contentpath =#{path}
+		delete from alarm where userid = #{userid} and contentpath =#{path}
 	</delete>
 	<insert id="insertAlarmReply">
 		insert into alarm(userid, boardtitle, contentpath, reply) values(#{userid},#{boardtitle},#{contentpath}, 1)
@@ -21,4 +21,8 @@
 	<insert id="insertAlarmDmeeting">
 		insert into alarm(userid, boardtitle, contentpath, dmeeting) values(#{userid},#{boardtitle},#{contentpath}, 1)
 	</insert>
+	<insert id="insertAlarmPlike">
+		insert into alarm(userid, boardtitle, contentpath, plike) values(#{userid},#{boardtitle},#{contentpath}, 1)
+	</insert>
+	
 </mapper>

@@ -10,4 +10,5 @@ public interface AdoptionService {
 	boolean regist(AdoptionDTO adoption);
 	List<AdoptionDTO> getList(AdoptionCriteria adCri);
 	long getTotal(AdoptionCriteria adCri);
+	AdoptionDTO getDetail(long adoptionnum);
 }

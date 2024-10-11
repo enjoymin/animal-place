@@ -14,6 +14,11 @@ import com.example.demo.model.adoption.AdoptionDTO;
 import com.example.demo.model.adoption.AdoptionPageDTO;
 import com.example.demo.service.adoption.AdoptionService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/adoption/*")
 public class AdoptionController {
@@ -36,6 +41,32 @@ public class AdoptionController {
 		System.out.println(adoption);
 		adservice.regist(adoption);
 		return "redirect:/adoption/list";
+	}
+	
+	@GetMapping("get")
+	public String get(AdoptionCriteria adCri, long adoptionnum, HttpServletRequest req, HttpServletResponse resp, Model model) {
+		//list 에서 보던 곳으로 돌아가기 위한 cri 세팅
+		model.addAttribute("adCri",adCri);
+		HttpSession session = req.getSession();
+		//현재 로그인 된 사람의 아이디
+		String loginUser = (String)session.getAttribute("loginUser");
+		//넘겨진 adoptionnum에 해당하는 게시글 데이터 검색
+		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
+		
+		
+		Cookie[] cookies = req.getCookies();
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				//get으로 넘어온 때가 작성 완료 후 넘어왔다면, 알럿을 띄워주기 위한 w 쿠키 검사 후 모델에 추가
+				if(cookie.getName().equals("w")) {
+					model.addAttribute("w",cookie.getValue());
+					break;
+				}
+			}
+		}
+		
+		model.addAttribute("adoption",adoption);
+		return "/adoption/get";
 	}
 }
 
