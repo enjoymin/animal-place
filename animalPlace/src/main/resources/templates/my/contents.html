@@ -22,12 +22,12 @@
 		<div id="contentstitle1">등록한 글</div>
 		<div id="mycontents1" class="mycontents">
 			<span style="font-size: 24px;">모임게시판</span>
-			<span><a id="more1">더 보기</a></span>
-			<span><a id="back1" style="display: none;">돌아가기</a></span>
+			<span><a id="more1" class="more">더 보기</a></span>
+			<span><a id="back1" class="more" style="display: none;">돌아가기</a></span>
 			<div class="tar w900">작성글 개수 : [[${mtotal}]]</div>
 			<div class="list table">
 				<div class="thead tac">
-					<div class="row">
+					<div class="row rowt">
 						<div>번호</div>
 						<div>제목</div>
 						<div>작성자</div>
@@ -49,8 +49,8 @@
 		</div>
 		<div id="mycontents2" class="mycontents">
 			<span style="font-size: 24px;">SNS</span>
-			<span><a id="more2">더 보기</a></span>
-			<span><a id="back2" style="display: none;">돌아가기</a></span>
+			<span><a id="more2" class="more">더 보기</a></span>
+			<span><a id="back2" class="more" style="display: none;">돌아가기</a></span>
 			<div class="tar w900">작성글 개수 : [[${ptotal}]]</div>
 			<div class="plist">
 				<div class="tbody2">
@@ -111,7 +111,7 @@
 				else {
 					for (let i = 0; i < list.length; i++) {
 						const board = list[i];
-						str += `<div class="row"><div>${board.boardnum}</div>
+						str += `<div class="row rows"><div>${board.boardnum}</div>
 									<div><a class="get" href="/mboard/m_get?mboardnum=${board.boardnum}">${board.boardtitle}</a></div>
 									<div><a class="usermenu">${board.userid}</a></div>
 									<div>${board.boarddatetime}</div></div>`;
@@ -154,7 +154,7 @@
 				let str = "";
 				for (let i = 0; i < cList.length; i++) {
 					const board = cList[i];
-					str += `<div class="row"><div>${board.boardnum}</div>
+					str += `<div class="row rows"><div>${board.boardnum}</div>
 			<div><a class="get" href="/mboard/m_get?mboardnum=${board.boardnum}">${board.boardtitle}</a></div>
 			<div>${board.userid}</div>
 			<div>${board.boarddatetime}</div></div>`;
