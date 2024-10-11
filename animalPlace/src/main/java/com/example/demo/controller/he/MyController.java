@@ -20,6 +20,7 @@ import com.example.demo.domain.he.AlarmDTO;
 import com.example.demo.domain.he.Criteria;
 import com.example.demo.domain.he.MBoardDTO;
 import com.example.demo.domain.he.PageDTO;
+import com.example.demo.model.pboard.PFileDTO;
 import com.example.demo.service.he.AlarmService;
 import com.example.demo.service.he.MyService;
 import com.example.demo.service.he.UserService;
@@ -51,9 +52,10 @@ public class MyController {
 		cri.setAmount(5);
 		HttpSession session = req.getSession();
 		String userid =  (String) session.getAttribute("loginUser");
-		List<MBoardDTO> mlist = service.getMBList(cri, userid);
+//		List<MBoardDTO> mlist = service.getMBList(cri, userid);
 //		model.addAttribute("mlist", mlist);
 		model.addAttribute("mtotal", service.getMBtotal(userid));
+		model.addAttribute("ptotal", service.getPBtotal(userid));
 	}
 	
 	@ResponseBody
@@ -77,6 +79,29 @@ public class MyController {
 		String userid =  (String) session.getAttribute("loginUser");
 		List<MBoardDTO> list = service.getMBList(cri, userid);
 		return list;
+	}
+	@GetMapping("contentsPBprv")
+	@ResponseBody
+	public List<PFileDTO> contentsPBprv(HttpServletRequest req, Criteria cri){
+		cri.setPagenum(1);
+		cri.setAmount(5);
+		HttpSession session = req.getSession();
+		String userid =  (String) session.getAttribute("loginUser");
+		List<PFileDTO> list = service.getPFile(cri, userid);
+		System.out.println(list);
+		return list;
+	}
+	@ResponseBody
+	@GetMapping("contentsPB")
+	public Map<String, Object> contentsPB(HttpServletRequest req, int pagenum) {
+		Criteria cri = new Criteria(pagenum, 15);
+		HttpSession session = req.getSession();
+		String userid =  (String) session.getAttribute("loginUser");
+		List<PFileDTO> list = service.getPFile(cri, userid);
+		Map<String, Object> response = new HashMap<>();
+		response.put("list", list);
+		response.put("pageMaker",new PageDTO(service.getPBtotal(userid), cri));
+		return response;
 	}
 	@GetMapping("alarm")
 	@ResponseBody

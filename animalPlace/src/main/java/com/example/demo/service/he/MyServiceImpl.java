@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.domain.he.Criteria;
 import com.example.demo.domain.he.MBoardDTO;
 import com.example.demo.mapper.he.MyMapper;
+import com.example.demo.model.pboard.PFileDTO;
 
 @Service
 public class MyServiceImpl implements MyService {
@@ -27,6 +28,15 @@ public class MyServiceImpl implements MyService {
 		return list;
 	}
 
+	@Override
+	public List<PFileDTO> getPFile(Criteria cri, String userid) {
+		List<PFileDTO> list = mmapper.getPFileByUserid(cri, userid);
+		return list;
+	}
 
-
+	@Override
+	public long getPBtotal(String userid) {
+		long total = mmapper.getPBtotal(userid);
+		return total;
+	}
 }

@@ -17,3 +17,21 @@ const myServiceM = {
 		)
 	}
 }
+const myServiceP = {
+	selectprv : function(callback){
+		$.getJSON(
+			`/my/contentsPBprv`,
+			function(data){
+				callback(data);
+			}
+		)
+	},
+	selectAll: function(pagenum, callback){
+		$.getJSON(
+			`/my/contentsPB?pagenum=${pagenum}`,
+			function(data){
+				callback(data.list,data.pageMaker);
+			}
+		)
+	}
+}

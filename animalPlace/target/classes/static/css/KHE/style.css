@@ -32,10 +32,24 @@ input:focus {
 	font-style: normal;
 }
 
-ul,ol,li {list-style: none;}
-a {	text-decoration: none;}
-a:visited {color: black;}
-a:hover {cursor: pointer;}
+ul,
+ol,
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: black;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
 header {
 	height: 100px;
 	background-color: #FF9B9B;
@@ -45,9 +59,16 @@ footer {
 	height: 100px;
 }
 
-img {border: none;}
+img {
+	border: none;
+}
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-weight: normal;
 	font-size: inherit;
 }
@@ -92,30 +113,36 @@ body.login {
 	margin: 0 auto;
 	width: 500px;
 }
-#joinform table{
+
+#joinform table {
 	width: 500px;
 }
-#joinform th{
-	width:220px;
-}
-#joinform td{
+
+#joinform th {
 	width: 220px;
 }
-#joinform input::placeholder{
+
+#joinform td {
+	width: 220px;
+}
+
+#joinform input::placeholder {
 	font-size: 11px;
 }
-.thumbnail{
+
+.thumbnail {
 	width: 500px;
 	height: auto;
 	max-height: 500px;
 	object-fit: cover;
 }
 
-.warning{
+.warning {
 	color: red;
 	font-size: 12px;
 }
-.warning2{
+
+.warning2 {
 	color: rgb(49, 168, 108);
 	font-size: 12px;
 }
@@ -125,19 +152,23 @@ body.login {
 	visibility: hidden !important;
 }
 
-input{
+input {
 	padding: 5px;
 	height: 30px;
 	width: 220px;
-	
+
 }
-#lgd, #lgp{
+
+#lgd,
+#lgp {
 	width: 150px;
 }
-.btn{
+
+.btn {
 	width: 150px;
-	
+
 }
+
 @keyframes loginWrap {
 	from {
 		opacity: 0;
@@ -206,6 +237,7 @@ input{
 .mycontents table {
 	margin: 0 auto;
 }
+
 #mycontents1 {
 	border: 0.5px solid #ffeaea;
 	border-radius: 20px;
@@ -231,4 +263,18 @@ input{
 
 .row div:nth-child(4) {
 	width: 17%;
+}
+.tbody2{
+	display: flex;
+	flex-wrap: wrap;
+}
+.prow{
+	width: 19.5%;
+}
+.prow .c_thumbnail{
+	width: 100%;
+	
+	height: 200px;
+	max-height: 200px;
+	object-fit: cover;
 }
