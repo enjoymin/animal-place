@@ -16,8 +16,6 @@
 <body>
 	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
 
-
-
 	<div id="wrap">
 		<div class="headimg"></div>
 		<input type="hidden" id="lastBoardnum" th:value="${lastBoardnum}" />
@@ -107,7 +105,6 @@
 	const fileInput = $('#fileInput')[0];
 	const fileList = $('#fileList');
 	let dataTransfer = new DataTransfer(); // DataTransfer 객체 초기화
-
 
 	$(document).ready(function () {
 		const urlParams = new URLSearchParams(window.location.search);
