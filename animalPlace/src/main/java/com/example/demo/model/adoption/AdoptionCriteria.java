@@ -13,6 +13,9 @@ public class AdoptionCriteria {
     private String type;
     private String region;
     private String gender;
+    private String age;
+	private String cost;
+	private String adoptionOk;
     private int startRow; // 시작 행
     private int endRow;   // 끝 행
 	
@@ -46,7 +49,10 @@ public class AdoptionCriteria {
                 .queryParam("breed", this.breed)
                 .queryParam("type", this.type)
                 .queryParam("region", this.region)
-        		.queryParam("gender", this.gender);
+                .queryParam("gender", this.gender)
+                .queryParam("age", this.age)
+                .queryParam("cost", this.cost)
+                .queryParam("adoptionOk", this.adoptionOk);
         return builder.toUriString(); // ?pagenum=4&amount=10&... 형식
     }
 

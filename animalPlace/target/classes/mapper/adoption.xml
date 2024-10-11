@@ -20,6 +20,16 @@
 		insert into adoption(title,contents,breed,type,region,gender,age,cost,adoptionOk,userid)
 		values(#{title},#{contents},#{breed},#{type},#{region},#{gender},#{age},#{cost},#{adoptionOk},#{userid})
 	</insert>
+	<update id="updateAdoption">
+		update adoption
+		set title = #{title}, contents = #{contents}, breed = #{breed},
+		type = #{type}, region = #{region}, gender = #{gender}, age = #{age}, 
+		cost = #{cost}, adoptionOk = #{adoptionOk}
+		where adoptionnum = #{adoptionnum}
+	</update>
+	<delete id="deleteAdoption">
+		delete from adoption where adoptionnum=#{adoptionnum}
+	</delete>
 	<select id="getList">
 	    select *
 	    from adoption
@@ -36,7 +46,4 @@
 	<select id="getAdoptionByAdoptinnum">
 		select * from adoption where adoptionnum = #{adoptionnum}
 	</select>
-	<delete id="deleteAdoption">
-		delete from adoption where adoptionnum=#{adoptionnum}
-	</delete>
 </mapper>

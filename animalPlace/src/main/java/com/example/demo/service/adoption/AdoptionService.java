@@ -14,4 +14,5 @@ public interface AdoptionService {
 	AdoptionDTO getDetail(long adoptionnum);
 	UserDTO getUserDetail(String userid);
 	boolean remove(long adoptionnum);
+	boolean modify(AdoptionDTO adoption);
 }

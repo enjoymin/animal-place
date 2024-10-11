@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.he.UserDTO;
 import com.example.demo.mapper.adoption.AdoptionMapper;
@@ -56,6 +57,14 @@ public class AdoptionServiceImpl implements AdoptionService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean modify(AdoptionDTO adoption) {
+		if(amapper.updateAdoption(adoption) != 1) {
+			return false;
+		}
+		return true;
 	}
 
 

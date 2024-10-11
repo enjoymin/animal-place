@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.he.UserDTO;
 import com.example.demo.model.adoption.AdoptionCriteria;
@@ -28,7 +29,6 @@ public class AdoptionController {
 	
 	@GetMapping(value = {"list"})
 	public void list(AdoptionCriteria adCri, Model model) {
-		System.out.println(adCri);
 		List<AdoptionDTO> list = adservice.getList(adCri);
 		model.addAttribute("pageMaker", new AdoptionPageDTO(adservice.getTotal(adCri), adCri));
 		model.addAttribute("list",list);
@@ -39,7 +39,6 @@ public class AdoptionController {
 	
 	@PostMapping("write")
 	public String write(AdoptionDTO adoption) {
-		System.out.println(adoption);
 		adservice.regist(adoption);
 		return "redirect:/adoption/list";
 	}
@@ -47,15 +46,12 @@ public class AdoptionController {
 	@GetMapping("get")
 	public String get(AdoptionCriteria adCri, long adoptionnum, HttpServletRequest req, HttpServletResponse resp, Model model) {
 		//list 에서 보던 곳으로 돌아가기 위한 cri 세팅
-		model.addAttribute("adCri",adCri);
 		HttpSession session = req.getSession();
 		//현재 로그인 된 사람의 아이디
 		String loginUser = (String)session.getAttribute("loginUser");
 		//넘겨진 adoptionnum에 해당하는 게시글 데이터 검색
 		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
 		UserDTO user = adservice.getUserDetail(adoption.getUserid());
-		System.out.println(adoption);
-		
 		Cookie[] cookies = req.getCookies();
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
@@ -67,8 +63,15 @@ public class AdoptionController {
 			}
 		}
 		
+		adCri.setBreed(adoption.getBreed()); adCri.setType(adoption.getType());
+		adCri.setRegion(adoption.getRegion()); adCri.setGender(adoption.getGender());
+		adCri.setAge(adoption.getAge()); adCri.setCost(adoption.getCost());
+		adCri.setAdoptionOk(adoption.getAdoptionOk());
+		 
+		
 		model.addAttribute("user", user);
 		model.addAttribute("adoption",adoption);
+		model.addAttribute("adCri",adCri);
 		return "/adoption/get";
 	}
 	
@@ -77,28 +80,17 @@ public class AdoptionController {
 		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
 		model.addAttribute("adoption", adoption);
 		model.addAttribute("adCri",adCri);
-		System.out.println(adoption);
-		System.out.println(adCri);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@PostMapping("modify")
+	public String modify(AdoptionDTO adoption, AdoptionCriteria adCri) throws Exception{
+		System.out.println(adoption);
+		System.out.println(adCri);
+		if(adservice.modify(adoption)) {
+			return "redirect:/adoption/get"+adCri.getListLink()+"&adoptionnum="+adoption.getAdoptionnum();			
+		}
+		return "redirect:/adoption/get"+adCri.getListLink()+"&adoptionnum="+adoption.getAdoptionnum();
+	}
 	
 	@GetMapping("remove")
 	public String remove(AdoptionCriteria adCri, long adoptionnum, HttpServletRequest req) {
