@@ -12,7 +12,7 @@
 		select *
 		from p_file
 		where boardnum=#{list.boardnum}
-		limit 
+		limit 1
 	</select>
 	<select id="getImg">
 		select systemname from p_file
