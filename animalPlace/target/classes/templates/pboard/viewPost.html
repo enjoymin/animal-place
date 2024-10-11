@@ -96,8 +96,8 @@
 			<h2>게시물 수정</h2>
 			<form id="modifyForm" method="post" action="/pboard/modify" enctype="multipart/form-data">
 				<input type="hidden" class="boardnum" th:value="${board.boardnum}" />
-				<input type="text"  class="title-input" name="newboardtitle" th:value="${board.boardtitle}" placeholder="제목"
-					required /><br /><br />
+				<input type="text" class="title-input" name="newboardtitle" th:value="${board.boardtitle}"
+					placeholder="제목" required /><br /><br />
 
 				<input type="file" id="newFileInput" name="newfiles" style="display: none;" multiple
 					accept=".jpg,.jpeg,.png,.webp,.gif" />
@@ -120,7 +120,8 @@
 
 				<ul id="newFileList"></ul> <!--선택된 파일 리스트를 보기 위한 태그-->
 
-				<textarea name="newboardcontents" class="content-textarea" required>[[${board.boardcontents}]]</textarea><br /><br />
+				<textarea name="newboardcontents" class="content-textarea"
+					required>[[${board.boardcontents}]]</textarea><br /><br />
 				<input type="text" name="userid" class="userid-input" th:value="${session.loginUser}" readonly />
 				<div class="newFile_btn">
 					<button type="submit">등록</button>
@@ -183,23 +184,26 @@
 			});
 			console.log("Board Number:", boardNum); // 확인용
 			// 서버에 삭제 요청 전송
-			$.ajax({
-				url: '/pboard/remove', // 게시물 삭제 API URL
-				method: 'POST',
-				data: {
-					boardnum: boardNum,
-					files: filePaths // 현재 등록된 파일 주소
-				},
-				traditional: true, // 배열을 URL 인코딩할 때 필요
-				success: function (response) {
-					alert("게시물 삭제를 완료했습니다.");
-					window.location.href = '/pboard/list'; // 성공 시 리다이렉트
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					console.error('삭제 요청 실패:', textStatus, errorThrown);
-					alert("게시물 삭제에 실패했습니다.");
-				}
-			});
+			if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
+				$.ajax({
+					url: '/pboard/remove', // 게시물 삭제 API URL
+					method: 'POST',
+					data: {
+						boardnum: boardNum,
+						files: filePaths // 현재 등록된 파일 주소
+					},
+					traditional: true, // 배열을 URL 인코딩할 때 필요
+					success: function (response) {
+						alert("게시물 삭제를 완료했습니다.");
+						window.location.href = '/pboard/list'; // 성공 시 리다이렉트
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						console.error('삭제 요청 실패:', textStatus, errorThrown);
+						alert("게시물 삭제에 실패했습니다.");
+					}
+				});
+			}
+
 		});
 
 		// 수정 폼에서 취소 버튼 클릭 시 이벤트
@@ -476,7 +480,6 @@
 			});
 		}
 
-		//댓글 쓰기 [24-10-10] : 한얼님 추가할 부분
 		$('#submitComment').on('click', function () {
 			const commentContent = $('#commentContent').val();
 			const boardNum = $('#boardnum').val();
