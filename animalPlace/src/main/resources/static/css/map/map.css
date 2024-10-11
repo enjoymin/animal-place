@@ -22,13 +22,8 @@
 
 /* 서브서브 폰트 */
 
-/* 헤더 */
-
-
-footer {
-	height: 100px;
-	border: 1px solid #000;
-	clear: both;
+body{
+	z-index: 1;
 }
 
 img {
@@ -57,8 +52,8 @@ h6 {
 
 .wrap {
 	clear: both;
-	height: 100%;
-	padding-top: 2em;
+	height: 2000px;
+	padding-top: 10em;
 	margin: 0 5%;
 }
 
@@ -96,7 +91,8 @@ h6 {
 .info {
 	margin: 10px auto;
 	width: 80%;
-	margin-top: 50px;
+	margin-top: 64%;
+	pointer-events: none;
 }
 
 .info h5 {
@@ -419,3 +415,72 @@ img#list_img {
 	top: 0;
 	transition: top 0.3s ease;
 }
+@keyframes reveal{
+    0%{
+        transform: translateY(0%);
+    }
+    10%{
+        transform: translateY(-10%);
+    }
+    20%{
+        transform: translateY(-20%);
+    }
+    30%{
+        transform: translateY(-30%);
+    }
+    40%{
+        transform: translateY(-40%);
+    }
+    50%{
+        transform: translateY(-50%);
+    }
+    60%{
+        transform: translateY(-60%);
+    }
+    70%{
+        transform: translateY(-70%);
+    }
+    80%{
+        transform: translateY(-80%);
+    }
+    90%{
+        transform: translateY(-90%);
+    }
+    100%{
+        transform: translateY(-100%);
+    }
+}
+.search-rankings {
+	box-sizing: border-box;
+	    position: relative;
+	    margin-left: 72%;
+	    margin-top: -565px;
+}
+.rank{
+    height: 20px;
+    overflow: hidden;
+}
+
+#rankingsList {
+    animation: reveal 30s infinite;
+    overflow: hidden;
+	}
+	#rankingsList {
+		display: block;
+	    list-style-type: none;
+	    padding: 0;
+	}
+	.rank-item {
+		display: block;
+	    transition: opacity 0.5s ease, transform 0.5s ease;
+	    opacity: 0;
+	}
+	.rank-up {
+	    color: green; /* 상승 시 색상 */
+	}
+	.rank-down {
+	    color: red; /* 하락 시 색상 */
+	}
+	.rank-stay {
+	    color: gray; /* 변동 없음 색상 */
+	}
