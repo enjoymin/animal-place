@@ -9,4 +9,12 @@
 		select * from m_board where userid=#{userid}
 		order by boardnum desc limit #{cri.startrow}, #{cri.amount}
 	</select>
+	<select id="getPBtotal">
+		select count(*) from p_board where userid =#{userid}
+	</select>
+	<select id="getPFileByUserid">
+		select f.boardnum, MIN(f.systemname) AS systemname from `p_file` f
+		join p_board using(boardnum) where userid=#{userid} group by boardnum
+		order by boardnum desc limit #{cri.startrow}, #{cri.amount}
+	</select>
 </mapper>

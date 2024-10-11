@@ -72,6 +72,32 @@ public class AdoptionController {
 		return "/adoption/get";
 	}
 	
+	@GetMapping("modify")
+	public void modify(AdoptionCriteria adCri, long adoptionnum, Model model) {
+		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
+		model.addAttribute("adoption", adoption);
+		model.addAttribute("adCri",adCri);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("remove")
 	public String remove(AdoptionCriteria adCri, long adoptionnum, HttpServletRequest req) {
 		String loginUser = (String)req.getSession().getAttribute("loginUser");
