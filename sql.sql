@@ -103,6 +103,7 @@ create table map_search_history(
 );
 drop table map_search_history;
 select * from map_search_history;
+delete from map_search_history where id = 10;
 
 ################################## MAP END
 
