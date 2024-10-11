@@ -623,7 +623,6 @@
 		e.preventDefault();
 		let adoptionnum = e.target.getAttribute("href");
 		let listLink = /*[[${pageMaker.adCri.listLink}]]*/'';
-		// /board/get?pagenum=4&amount=10&type=T&keyword=지우개&boardnum=99
 		location.href = '/adoption/get'+listLink+"&adoptionnum="+adoptionnum;
 	})
 </script>

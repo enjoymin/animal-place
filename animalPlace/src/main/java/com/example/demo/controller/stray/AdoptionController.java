@@ -77,6 +77,8 @@ public class AdoptionController {
 		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
 		model.addAttribute("adoption", adoption);
 		model.addAttribute("adCri",adCri);
+		System.out.println(adoption);
+		System.out.println(adCri);
 	}
 	
 	

@@ -16,7 +16,9 @@
         <div id="wrap">
             <h1>무료 동물 분양 등록</h1>
 			<form id="adoptionForm" method="post" name="adoptionForm" action="/adoption/modify" enctype="multipart/form-data">
-				
+				<input type="hidden" name="adoptiondnum" th:value="${adoption.adoptionnum}">
+				<input type="hidden" name="pageNum" th:value="${adCri.pageNum}">
+				<input type="hidden" name="pageSize" th:value="${adCri.pageSize}">
 				<table border="1">
 					<tr>
 						<th>제목</th>
@@ -369,6 +371,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script th:inline="javascript">
+	let breed = document.getElementsByName('breed');
+	console.log(breed);
 	function updateSecondSelect() {
 	    const firstSelect = document.getElementById("breed");
 	    const secondSelect = document.getElementById("type");

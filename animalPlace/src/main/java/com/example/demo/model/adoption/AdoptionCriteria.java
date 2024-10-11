@@ -41,8 +41,8 @@ public class AdoptionCriteria {
     // URI 생성 메서드
     public String getListLink() {
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
-                .queryParam("pagenum", this.pageNum)
-                .queryParam("amount", this.pageSize)
+                .queryParam("pageNum", this.pageNum)
+                .queryParam("pageSize", this.pageSize)
                 .queryParam("breed", this.breed)
                 .queryParam("type", this.type)
                 .queryParam("region", this.region)
