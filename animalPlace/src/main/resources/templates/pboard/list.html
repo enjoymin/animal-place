@@ -15,6 +15,8 @@
 </head>
 
 <body>
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
+
 
 
 	<div id="wrap">
@@ -95,10 +97,10 @@
 	</div>
 
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
+	
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script th:inline="javascript">
-	const loginUser = /*[[${session.loginUser}]]*/'';
 
 	let lastBoardnum = document.getElementById("lastBoardnum").value;
 	let loading = false;
@@ -204,24 +206,24 @@
 	});
 
 	$(window).scroll(function () {
-	    if ($(window).scrollTop() + $(window).height() >= $(document).height() && !loading) {
-	        loading = true; // 로딩 상태 업데이트
-	        $("#loadingmore").show();
-	        $("#loadingImage").css("opacity", 1).show(); // 강아지 이미지 보이기
+		if ($(window).scrollTop() + $(window).height() >= $(document).height() && !loading) {
+			loading = true; // 로딩 상태 업데이트
+			$("#loadingmore").show();
+			$("#loadingImage").css("opacity", 1).show(); // 강아지 이미지 보이기
 
-	        $.ajax({
-	            url: '/pboard/loadMore',
-	            data: { lastBoardnum: lastBoardnum },
-	            success: function (data) {
-	                const boardList = data.boardList;
-	                const likeList = data.likeList;
+			$.ajax({
+				url: '/pboard/loadMore',
+				data: {lastBoardnum: lastBoardnum},
+				success: function (data) {
+					const boardList = data.boardList;
+					const likeList = data.likeList;
 
-	                if (boardList.length > 0) {
-	                    boardList.forEach((list, index) => {
-	                        const imageUrl = list.file ? '/images/pimages/' + list.file : '/images/pimages/test-image.jpg';
-	                        const userLike = likeList[index];
+					if (boardList.length > 0) {
+						boardList.forEach((list, index) => {
+							const imageUrl = list.file ? '/images/pimages/' + list.file : '/images/pimages/test-image.jpg';
+							const userLike = likeList[index];
 
-	                        $('.boardlist').append(`
+							$('.boardlist').append(`
 	                            <div class="imglist">
 	                                <div class="list${list.boardnum}">
 	                                    <a class="viewPost" href="#" data-boardnum="${list.boardnum}">
@@ -237,29 +239,29 @@
 	                                </div>
 	                            </div>
 	                        `);
-	                        lastBoardnum = list.boardnum; // 마지막 ID 업데이트
-	                    });
+							lastBoardnum = list.boardnum; // 마지막 ID 업데이트
+						});
 
-	                    if (boardList.length < 12) {
-	                        $(window).off("scroll");
-	                    }
-	                } else {
-	                    $(window).off("scroll");
-	                }
-	            },
-	            error: function () {
-	                alert('데이터 로드 실패');
-	            },
-				complete: function () {
-				    loading = false; // 로딩 상태 업데이트
-				    $("#loadingmore").hide(); // 로딩 표시 숨기기
-				    $("#loadingImage").css("animation", "slideOut 0.5s forwards"); // slideOut 애니메이션 추가
-				    setTimeout(function() {
-				        $("#loadingImage").hide(); // 애니메이션이 끝난 후 숨기기
-				    }, 3000); // 애니메이션 시간에 맞춰 조정
+						if (boardList.length < 12) {
+							$(window).off("scroll");
+						}
+					} else {
+						$(window).off("scroll");
+					}
+				},
+				error: function () {
+					alert('데이터 로드 실패');
+				}, complete: function () {
+					loading = false; // 로딩 상태 업데이트
+					$("#loadingmore").hide(); // 로딩 표시 숨기기
+					$("#loadingImage").css("animation", "slideOut 3s forwards"); // slideOut 애니메이션 추가
+					setTimeout(function () {
+						$("#loadingImage").hide(); // 애니메이션이 끝난 후 숨기기
+					}, 1500); // 애니메이션 시간에 맞춰 조정
 				}
-	        });
-	    }
+
+			});
+		}
 	});
 
 	$(document).ready(function () {
