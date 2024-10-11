@@ -95,15 +95,6 @@ readcount int default 0,
 userid varchar(300)
 );
 
-create table map_search_history(
-	id serial primary key,
-    keyword varchar(300) not null,
-    search_count int default 1,
-    search_time timestamp default current_timestamp
-);
-drop table map_search_history;
-select * from map_search_history;
-
 ################################## MAP END
 
 ################################## DISEASE START
