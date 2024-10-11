@@ -81,6 +81,9 @@ public class PBoardController {
 	    String loginUser = (String) session.getAttribute("loginUser");
 	    
 	    Long startBoardnum = pbservice.getNextBoardnum(lastBoardnum);
+	    if(startBoardnum == null) {
+	    	startBoardnum = 0L;
+	    }
 	    ArrayList<PBoardDTO> boardList = pbservice.getList(lastBoardnum != null ? startBoardnum : 0L, 12);
 	    
 	    // llist를 가져옵니다.
