@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.service.mboard.M_BoardService;
 import com.example.demo.service.pboard.PFileService;
 
 import jakarta.servlet.http.Cookie;
@@ -15,6 +16,9 @@ public class HomeController {
 	
 	@Autowired
 	private PFileService pfservice;
+	
+	@Autowired
+	private M_BoardService mservice;
 	
 	@GetMapping("/")
 	public String Home(HttpServletRequest req, Model model) {
@@ -28,7 +32,9 @@ public class HomeController {
 				}
 			}
 		}
+		
 		model.addAttribute("mlist", mservice.getRecentList());
+		
 		model.addAttribute("flist",pfservice.getBestImage());
 		return "index";
 	}

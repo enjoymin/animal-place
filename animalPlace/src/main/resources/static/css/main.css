@@ -221,7 +221,7 @@ strong {
 }
 
 .go_mboard a{
-    color: #FFF;
+    color: #FFF !important;
     text-decoration: none;
     border: 1px solid #FFF;
     border-radius: 30px;
@@ -270,24 +270,27 @@ strong {
     transition: .8s;
 }
 
-.lists div{
+.lists a{
+   color: #FFF !important;
     padding: 15px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.lists div:nth-child(1){
+.lists a:nth-child(1){
     width: 300px;
 }
 
-.lists div:nth-child(2){
+.lists a:nth-child(2){
     width: 150px;
 }
 
-.lists div:nth-child(3){
+.lists a:nth-child(3){
     width: 200px;
 }
+
+
 .map{
 	position: relative;
 	font-family: 'TTLaundryGothicB';
