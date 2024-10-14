@@ -28,6 +28,7 @@ public class HomeController {
 				}
 			}
 		}
+		model.addAttribute("mlist", mservice.getRecentList());
 		model.addAttribute("flist",pfservice.getBestImage());
 		return "index";
 	}
