@@ -122,15 +122,29 @@ h6 {
 	font-weight: normal;
 	font-size: inherit;
 }
-
+#login{
+	position: absolute;
+	right: 36px;
+	width: 100px;
+	top: 4.5px;
+}
+#login img{
+	width: 65px;
+	height: 65px;
+}
 #menu {
 	position: absolute;
-	right: 10px;
+	right: 15px;
+	top: 14px;
+}
+#menu img{
+	width: 75px;
 }
 
 #menubar {
 	/*background-color: #ffeaea;*/
-	background-color: #579956;
+	background-color: #f7f7f7;
+	border: 1px solid #f4f4f4;
 	position: fixed;
 	top: 100px;
 	width: 400px;
@@ -181,13 +195,13 @@ h6 {
 
 .alarm {
 	position: absolute;
-	right: 120px;
+	right: 110px;
 	margin: 10px;
 }
 
 .alarm2 {
 	position: absolute;
-	right: 120px;
+	right: 110px;
 	margin: 10px;
 }
 
