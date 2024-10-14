@@ -353,6 +353,7 @@ h6 {
 	width: 100%;
 	/* 테이블의 너비를 100%로 설정 */
 	user-select: none;
+	height: 75px;
 }
 
 .close-header {
