@@ -5,14 +5,35 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>메인</title>
+	<link href="/css/main.css" rel="stylesheet">
 	<link href="/css/KHE/style.css" rel="stylesheet">
 </head>
 
 <body>
 	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
-	메인 페이지
+	<div id="wrap">
+		<div class="main main-pboard">
+			<div class="pboard-text">
+				<Strong>사랑스러운 반려동물의 사진을 공유해봐요</Strong>
+				<a href="../pboard/list">더보기</a>
+			</div>
+			<div th:if="${flist == null or flist.size() == 0}" class="no_list">
+				<div>등록된 게시글이 없습니다.</div>
+			</div>
+			<div class="pboard-list">
+				<div th:if="${flist != null or flist.size() != 0}">
+					<p>좋아요를 많이 받은 게시글</p>
+					<ul class="pboard-imgs">
+						<li class="pboard-img" th:each="img : ${flist}">
+							<img th:src="${'/images/pimages/' + img}">
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 </body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src=" https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 </script>
+
 </html>

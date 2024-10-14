@@ -1,6 +1,4 @@
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.pboard.PBoardMapper">
 	<select id="getList">
 		select * from p_board
@@ -24,18 +22,23 @@
 		order by boardnum desc
 		limit 1
 	</select>
-	
+
 	<insert id="insertBoard">
-		insert into p_board(boardtitle,boardcontents,userid) values(#{boardtitle},#{boardcontents},#{userid})
+		insert into p_board(boardtitle,boardcontents,userid)
+		values(#{boardtitle},#{boardcontents},#{userid})
 	</insert>
 	<update id="updateBoard">
 		update p_board
-		set boardtitle=#{boardtitle}, boardcontents=#{boardcontents},updatedate=now()
+		set boardtitle=#{boardtitle},
+		boardcontents=#{boardcontents},updatedate=now()
 		where boardnum = #{boardnum}
 	</update>
 	<delete id="delete">
-		delete from p_board
-		where boardnum = #{boardnum}
+		delete b, f, l
+		from p_board b
+		left join p_file f on b.boardnum = f.boardnum
+		left join p_likelist l on b.boardnum = l.pboardnum
+		where b.boardnum = #{boardnum};
 	</delete>
 </mapper>
 

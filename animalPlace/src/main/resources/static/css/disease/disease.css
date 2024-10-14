@@ -87,10 +87,6 @@ button {
 
 }
 
-header {
-	height: 100px;
-	background-color: #FF9B9B;
-}
 
 .title2 {
 	background-color: #EAEAEA;
@@ -726,8 +722,3 @@ fieldset div button:hover {
 	color: black;
 }
 
-/**/
-footer {
-	height: 100px;
-	background-color: #FF9B9B;
-}
