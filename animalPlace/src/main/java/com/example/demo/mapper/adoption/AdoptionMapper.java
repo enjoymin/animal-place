@@ -16,5 +16,6 @@ public interface AdoptionMapper {
 	AdoptionDTO getAdoptionByAdoptinnum(long adoptionnum);
 	int deleteAdoption(long adoptionnum);
 	int updateAdoption(AdoptionDTO adoption);
+	long getLastNum(String userid);
 
 }

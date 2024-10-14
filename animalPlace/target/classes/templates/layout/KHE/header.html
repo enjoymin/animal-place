@@ -24,9 +24,9 @@
 		<span id="menu">
 			<a href="" class="menu"><img src="/images/KHE/menu.svg"></a>
 		</span>
-		<div id="loginmodal" class="modal" style="display: none;">
-			<div class="modal-content" id="modal-image">
-				<span class="close">&times;</span>
+		<div id="loginmodal" class="modal-header" style="display: none;">
+			<div class="modal-content-header" id="modal-image">
+				<span class="close-header">&times;</span>
 				<form id="loginForm" action="/user/login" method="post" name="loginForm">
 					<input id="path" type="hidden" name="path" th:value="${path}">
 					<table id="modal_login">
@@ -46,8 +46,8 @@
 							<tr>
 								<td colspan="2">
 									<div>
-										<input class="btn" id="submitlogin" type="button" value="로그인">
-										<input class="btn" type="button" value="회원가입"
+										<input class="btn-header" id="submitlogin" type="button" value="로그인">
+										<input class="btn-header" type="button" value="회원가입"
 											onclick="location.href = '/user/join'">
 									</div>
 								</td>
@@ -104,13 +104,21 @@
 		$(document).on('click', '.menu', function (e) {
 			e.preventDefault(); // 기본 동작 방지
 			if (menu.style.right === "-400px") {
-				menu.style.right = "0px"; // 메뉴 열기
+				window.setTimeout(function () {
+					menu.style.right = "0px"; // 메뉴 열기
+				}, 10)
 			} else {
-				menu.style.right = "-400px"; // 메뉴 닫기
+				window.setTimeout(function () {
+					menu.style.right = "-400px"; // 메뉴 닫기
+				}, 10)
 			}
-
 		});
-
+		$(document).on('click', function (e) {
+			// 메뉴가 열린 상태에서만 외부 클릭 시 메뉴를 닫음
+			if (menu.style.right !== '-400px' && !$(e.target).closest('#menubar').length) {
+				menu.style.right = "-400px";
+			}
+		});
 
 		$(window).on('load', function () {
 			window.setTimeout(function () {
@@ -151,7 +159,7 @@
 			$("#lgd").val("");
 			$("#lgp").val("");
 		});
-		$('.close').on('click', function () {
+		$('.close-header').on('click', function () {
 			$('#loginmodal').fadeOut(200); // 모달 숨기기
 		})
 		$(window).on('click', function (event) {
@@ -236,11 +244,11 @@
 						<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 						else if (content.ameeting == 1) {
-							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 새로운 사람이 참여했습니다!</td>
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>모임에 새로운 사람이 참여했습니다!</td>
 													<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 						else if (content.dmeeting == 1) {
-							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 참여를 취소한 사람이 있습니다!</td>
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>모임에 참여를 취소한 사람이 있습니다!</td>
 													<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 						else if (content.plike == 1) {
@@ -278,8 +286,6 @@
 			var x = e.pageX;
 			var y = e.pageY;
 
-
-
 			// 팝업 위치 설정
 			$('#popup').css({
 				top: y - 5 + 'px',
@@ -293,7 +299,6 @@
 			$(this).fadeOut(200);
 		});
 		$(document).on('click', function (event) {
-
 			if (!$(event.target).closest('#popup').length && !$(event.target).is('.usermenu')) {
 				$('#popup').fadeOut(200);
 			}
