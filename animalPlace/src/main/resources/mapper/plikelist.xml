@@ -12,6 +12,12 @@
 		from p_likelist
 		where pboardnum = #{boardnum}
 	</select>
+	<select id="bestLike">
+		select pboardnum
+		from p_likelist
+		group by pboardnum
+		order by count(*) desc limit 4
+	</select>
 	<insert id="insertLike">
 		insert into p_likelist(userid,pboardnum) values(#{loginUser},#{boardnum})
 	</insert>
