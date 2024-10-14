@@ -19,7 +19,7 @@
 		<div id="alarmpagetri" class="alarmwindow" style="display: none;"></div>
 		<div id="alarmnotice" style="display:none">게시글에 확인하지 않은 내역이 있습니다!</div>
 		<span id="login" class="alarm" style="display:none">
-			<a href="" id="login">로그인</a>
+			<a href="" id="login"><img src="/images/KHE/login.png"></a>
 		</span>
 		<span id="menu">
 			<a href="" class="menu"><img src="/images/KHE/menu.svg"></a>
@@ -113,9 +113,12 @@
 
 
 		$(window).on('load', function () {
-			if (loginUser != null) {
-				alex();
-			}
+			window.setTimeout(function () {
+				if (loginUser != null) {
+					alex();
+				}
+
+			}, 300)
 		});
 
 
@@ -139,7 +142,7 @@
 			$("#alarmnotice").fadeOut(200);
 
 		})
-		$(document).on('click', '#login', function (e){
+		$(document).on('click', '#login', function (e) {
 			e.preventDefault();
 			const path = window.location.pathname;
 			$("#loginmodal").fadeIn(200);

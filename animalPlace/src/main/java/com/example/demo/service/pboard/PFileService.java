@@ -15,4 +15,6 @@ public interface PFileService {
 	boolean insert(Long boardnum, MultipartFile[] files) throws Exception;
 
 	boolean delete(Long boardnum, String[] delete);
+	
+	ArrayList<String> getBestImage();
 }
