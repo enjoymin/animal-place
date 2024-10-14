@@ -52,6 +52,9 @@ public class AlarmServiceImpl implements AlarmService {
 		else if(flag.equals("plike")) {
 			amapper.insertAlarmPlike(userid, boardtitle, contentpath);
 		}
+		else if(flag.equals("note")) {
+			amapper.insertAlarmNote(userid, boardtitle, contentpath);
+		}
 	}
 
 	@Override

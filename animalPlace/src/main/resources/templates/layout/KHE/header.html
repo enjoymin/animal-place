@@ -3,7 +3,7 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<header>
 		<span style="margin-left: 50px;">
-			<a href="/board/list"><img src="/images/KHE/aplogo.png" style="height: 100px;"></a>
+			<a href="/"><img src="/images/KHE/aplogo.png" style="height: 100px;"></a>
 		</span>
 		<span id="alarm" class="alarm alarmwindow">
 			<a href=""><img src="/images/KHE/bell1.png" style="height: 80px;"></a>
@@ -17,7 +17,8 @@
 			</table>
 		</div>
 		<div id="alarmpagetri" class="alarmwindow" style="display: none;"></div>
-		<div id="alarmnotice" style="display:none">게시글에 확인하지 않은 내역이 있습니다!</div>
+		<div id="alarmnotice" style="display:none; font-family: 'HakgyoansimSantteutdotumL';">게시글에 확인하지 않은 내역이 있습니다!
+		</div>
 		<span id="login" class="alarm" style="display:none">
 			<a href="" id="login"><img src="/images/KHE/login.png"></a>
 		</span>
@@ -61,10 +62,10 @@
 		<div id="popup" style="display: none;">
 			<table>
 				<tr>
-					<td><a>회원정보</a></td>
+					<td><a id="userprofile">회원정보</a></td>
 				</tr>
 				<tr>
-					<td><a>쪽지보내기</a></td>
+					<td><a id="writeNote">쪽지보내기</a></td>
 				</tr>
 			</table>
 		</div>
@@ -72,19 +73,20 @@
 	<div id="header"></div>
 	<div id="menubar" style="right: -400px">
 		<ul id="menulist">
-			<h3 style="font-size: 30px;">메뉴</h3>
+			<h3 style="font-size:30px; font-family: 'TTLaundryGothicB' !important;">메뉴</h3>
 			<li><a href="/stray/list" id="b1">분양게시판</a></li>
 			<li><a href="/board/disease" id="b2">질병정보</a></li>
 			<li><a href="/map/map" id="b3">병원위치</a></li>
 			<li><a href="/mboard/m_board" id="b4">모임게시판</a></li>
 			<li><a href="/pboard/list" id="b5">SNS</a></li>
-			<li id="mypage" style="color: rgb(50,50,50);">마이페이지</li>
+			<li id="mypage" style="color: rgb(50,50,50); font-family: 'TTLaundryGothicB' !important; font-size: 20px;">
+				마이페이지</li>
 		</ul>
 		<div>
-			<ul id="mypagelist">
+			<ul id="mypagelist" style="font-size: 18px;">
 				<li><a href="/my/profile">회원정보</a></li>
 				<li><a href="/my/contents">등록한글</a></li>
-				<li><a href="/my/alarm">쪽지함</a></li>
+				<li><a href="" id="notepage">쪽지함</a></li>
 				<li><a id="logout">로그아웃</a></li>
 			</ul>
 		</div>
@@ -101,6 +103,7 @@
 		let flag = false;
 		const loginUser = /*[[${session.loginUser}]]*/'';
 		const menu = document.getElementById("menubar");
+		let profileid = '';
 		$(document).on('click', '.menu', function (e) {
 			e.preventDefault(); // 기본 동작 방지
 			if (menu.style.right === "-400px") {
@@ -222,15 +225,18 @@
 			)
 		}
 		function showAlarm() {		//알람 창을 보여주는 함수
-			if ($("#alarmpage").css("display") == 'none') {
-				$("#alarmpage").fadeIn(200);
-				$("#alarmpagetri").fadeIn(200);
-				alarm();
-			}
-			else {
-				$("#alarmpage").fadeOut(200);
-				$("#alarmpagetri").fadeOut(200);
-			}
+			window.setTimeout(function () {
+				if ($("#alarmpage").css("display") == 'none') {
+					$("#alarmpage").fadeIn(200);
+					$("#alarmpagetri").fadeIn(200);
+					console.log("check1");
+					alarm();
+				}
+				else {
+					$("#alarmpage").fadeOut(200);
+					$("#alarmpagetri").fadeOut(200);
+				}
+			}, 10)
 		}
 		function alarm() {		//알람 창에 알람 내역을 불러오는 함수
 			$.getJSON(
@@ -254,6 +260,10 @@
 						else if (content.plike == 1) {
 							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 좋아요가 늘어났어요!</td>
 																				<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
+						}
+						else if (content.note == 1) {
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="#" onclick="notePage()" id="notepage">새로운 쪽지가 왔습니다!</a></td>
+																												<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 					}
 					$("#alarmpage").html(str);
@@ -279,30 +289,57 @@
 		}
 
 		$(document).on('click', '.usermenu', function (e) {
-			event.preventDefault();
+			e.preventDefault();
+			profileid = $(this).html();
+			console.log(profileid);
 			usermenu(e);
 		});
 		function usermenu(e) {
 			var x = e.pageX;
 			var y = e.pageY;
-
 			// 팝업 위치 설정
 			$('#popup').css({
 				top: y - 5 + 'px',
 				left: x - 5 + 'px'
 			}).fadeIn(200);
 
-
 		}
 		$('#popup').click(function (event) {
 			event.stopPropagation(); // 이벤트 전파 방지
 			$(this).fadeOut(200);
+
 		});
 		$(document).on('click', function (event) {
 			if (!$(event.target).closest('#popup').length && !$(event.target).is('.usermenu')) {
 				$('#popup').fadeOut(200);
 			}
 		});
-
+		$(document).on('click', function (event) {
+			if ($("#alarmpage").css("display") != 'none') {
+				if (!$(event.target).closest('#alarmpage').length && !$(event.target).is('#alarm')) {
+					$("#alarmpage").fadeOut(200);
+					$("#alarmpagetri").fadeOut(200);
+				}
+			}
+		});
+		$("#userprofile").on('click', function (e) {
+			window.open('/my/userprofile?userid=' + profileid, '팝업1', 'width=510,height=500,top=140%,left=500%, location=no');
+		});
+		$("#writeNote").on('click', function (e) {
+			if (loginUser == null) {
+				alert("쪽지는 로그인 후에 보낼 수 있습니다!");
+				return;
+			}
+			window.open('/my/writeNote?userid=' + profileid, '팝업2', 'width=490,height=380,top=180%,left=600%, location=no');
+		});
+		$("#notepage").on('click', function (e) {
+			e.preventDefault();
+			window.open('/my/note', '팝업', 'width=600,height=800');
+		});
+		function notePage() {
+			$("#alarmpage").fadeOut(200);
+			$("#alarmpagetri").fadeOut(200);
+			window.open('/my/note', '팝업', 'width=600,height=800');
+		}
 	</script>
 </th:block>

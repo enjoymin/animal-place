@@ -67,9 +67,6 @@
 				</tbody>
 			</table>
 		</div>
-
-		<!-- 페이징 처리하는 테이블 -->
-
 	</div>
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
@@ -164,7 +161,7 @@
 					const board = cList[i];
 					str += `<div class="row rows"><div>${board.boardnum}</div>
 			<div><a class="get" href="/mboard/m_get?mboardnum=${board.boardnum}">${board.boardtitle}</a></div>
-			<div>${board.userid}</div>
+			<div id="profileid">${board.userid}</div>
 			<div>${board.boarddatetime}</div></div>`;
 				}
 				$(".tbody1").html(str);

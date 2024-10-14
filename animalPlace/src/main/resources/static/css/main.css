@@ -23,6 +23,11 @@ a:visited{
 	color: #f9d686;
 }
 
+#wrap {
+	width: 1600px;
+	margin: 0 165px;
+	height: 3300px;
+}
 .mainTopImg{
 	margin-top: 50px;
 	font-family: 'YOnepickTTF-Bold';
