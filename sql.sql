@@ -110,8 +110,8 @@ readcount int default 0,
 userid varchar(300)
 );
 
-<<<<<<< HEAD
-=======
+
+
 create table map_search_history(
 	id serial primary key,
     keyword varchar(300) not null,
@@ -122,7 +122,7 @@ drop table map_search_history;
 select * from map_search_history;
 delete from map_search_history where id = 10;
 
->>>>>>> b693ce7983c0c321dd63b2fec12b5b331b852455
+
 ################################## MAP END
 
 ################################## DISEASE START
