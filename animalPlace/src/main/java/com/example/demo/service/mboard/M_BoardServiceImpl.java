@@ -223,4 +223,10 @@ public class M_BoardServiceImpl  implements M_BoardService{
 	    return boardList;
 	}
 
+	@Override
+	public List<M_BoardDTO> getRecentList() {
+		List<M_BoardDTO> boardList = bmapper.getRecentList();
+	    return boardList;
+	}
+
 }
