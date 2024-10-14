@@ -65,7 +65,7 @@
 					<td><a id="userprofile">회원정보</a></td>
 				</tr>
 				<tr>
-					<td><a>쪽지보내기</a></td>
+					<td><a id="writeNote">쪽지보내기</a></td>
 				</tr>
 			</table>
 		</div>
@@ -298,7 +298,7 @@
 				top: y - 5 + 'px',
 				left: x - 5 + 'px'
 			}).fadeIn(200);
-			
+
 		}
 		$('#popup').click(function (event) {
 			event.stopPropagation(); // 이벤트 전파 방지
@@ -318,8 +318,15 @@
 				}
 			}
 		});
-		$("#userprofile").on('click', function (e){
-			window.open('/my/userprofile?userid='+profileid, '팝업', 'width=600,height=500');
+		$("#userprofile").on('click', function (e) {
+			window.open('/my/userprofile?userid=' + profileid, '팝업', 'width=510,height=500,top=140%,left=500%, location=no');
+		});
+		$("#writeNote").on('click', function (e) {
+			if(loginUser == null){
+				alert("쪽지는 로그인 후에 보낼 수 있습니다!");
+				return;
+			}
+			window.open('/my/writeNote?userid=' + profileid, '팝업2', 'width=490,height=380,top=180%,left=600%, location=no');
 		});
 
 	</script>

@@ -2,14 +2,14 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>내가 쓴 글</title>
+	<title>회원정보</title>
 	<link href="/css/KHE/style.css" rel="stylesheet">
 </head>
 
 <body>
 	<div>
 		여기가 회원정보
-		<table>
+		<table id="prtable">
 			<tr th:if="${myphoto != null}">
 				<td colspan="2">
 					<input type="file" name="myphoto" id="myphoto" style="display: none;">
@@ -27,11 +27,11 @@
 			</tr>
 			<tr>
 				<th>아이디</th>
-				<td></td>
+				<td>[[${user.userid}]]</td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td>[[${user.useremail}]] ??</td>
+				<td>[[${user.useremail}]]</td>
 			</tr>
 			<tr>
 				<th>애완동물</th>

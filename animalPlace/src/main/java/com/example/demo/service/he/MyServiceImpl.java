@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.he.Criteria;
 import com.example.demo.domain.he.MBoardDTO;
+import com.example.demo.domain.he.NoteDTO;
 import com.example.demo.mapper.he.MyMapper;
 import com.example.demo.model.pboard.PFileDTO;
 
@@ -38,5 +39,10 @@ public class MyServiceImpl implements MyService {
 	public long getPBtotal(String userid) {
 		long total = mmapper.getPBtotal(userid);
 		return total;
+	}
+
+	@Override
+	public boolean insertNote(NoteDTO note) {
+		return mmapper.insertNote(note);
 	}
 }

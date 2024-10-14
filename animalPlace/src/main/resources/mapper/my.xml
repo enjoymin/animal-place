@@ -17,4 +17,7 @@
 		join p_board using(boardnum) where userid=#{userid} group by boardnum
 		order by boardnum desc limit #{cri.startrow}, #{cri.amount}
 	</select>
+	<insert id="insertNote">
+		insert into note values(#{receiveuser},#{senduser},#{contents},0)
+	</insert>
 </mapper>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.domain.he.AlarmDTO;
 import com.example.demo.domain.he.Criteria;
 import com.example.demo.domain.he.MBoardDTO;
+import com.example.demo.domain.he.NoteDTO;
 import com.example.demo.domain.he.PageDTO;
 import com.example.demo.model.pboard.PFileDTO;
 import com.example.demo.service.he.AlarmService;
@@ -133,5 +134,20 @@ public class MyController {
 	public void userprofile(HttpServletRequest req, Model model, String userid) {
 		model.addAttribute("user", uservice.getUser(userid));
 		model.addAttribute("myphoto", uservice.getprofile(userid));
+	}
+	@GetMapping("writeNote")
+	public void writeNote(HttpServletRequest req,Model model, String userid) {
+		HttpSession session = req.getSession();
+		String senduser =  (String) session.getAttribute("loginUser");
+		model.addAttribute("receiveuser", userid);
+		model.addAttribute("senduser", senduser);
+	}
+	@PostMapping("writeNote")
+	@ResponseBody
+	public void writeNotesend(NoteDTO note) {
+		service.insertNote(note);
+		System.out.println(note.getReceiveuser());
+		System.out.println(note.getSenduser());
+		System.out.println(note.getContents());
 	}
 }
