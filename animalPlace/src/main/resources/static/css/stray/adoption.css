@@ -29,21 +29,6 @@
 	/*메인 글꼴*/
 	font-family: 'TTLaundryGothicB';
 }
-
-header {
-	width: 100%;
-    height: 100px;
-    background-color: #FF9B9B;
-	background: url(/images/KakaoTalk_20240925_093131856.png) no-repeat center,
-	rgba(255, 155, 155, 1.0);
-	background-size: 400px;	
-	min-width: 1425px;
-}
-footer {
-    height: 100px;
-    background-color: #FF9B9B;
-	clear: both;
-}
 a {
     text-decoration: none;
     color: black;
@@ -57,10 +42,11 @@ a {
     margin: 0 auto;
 	position: relative;
 	user-select: none;
+	margin-top: 20px;
 }
-h1{
-    text-align: center;
-	margin-bottom: 15px;
+#wrap .h1{
+	font-size: 30px;
+	text-align: center;
 }
 a{
 	cursor: pointer;
@@ -187,6 +173,15 @@ select:hover {
 	border-radius:5px;
 	transition: transform linear 0.05s;
 }
+.list.table .tbody .row img.thumbnail {
+    height: 88px;
+    width: 105px;
+    display: block;
+    clear: both;
+    object-fit: fill;
+    transition: all 0.1s linear;
+    padding: 10px;
+}
 
 .btn_table{
 	position: absolute;
@@ -195,8 +190,13 @@ select:hover {
 }
 .btn_table .stray {
     position: absolute;
-    top: -12px;
+    top: -22px;
     left: -190px;
+}
+.btn_table .write {
+    position: absolute;
+    top: -22px;
+    left: 0px;
 }
 #searchForm {
     width: 500px;
@@ -257,17 +257,6 @@ table{
 	width:fit-content; height:fit-content;
 }
 
-img.thumbnail{
-	display: block;
-	width:200px;
-	clear:both;
-	transition: all 0.1s linear;
-	padding: 10px;
-}
-img.thumbnail:hover{
-	transform: scale(1.4);
-	box-shadow: 1px 1px 4px black;
-}
 #main .btn_area, .modify .btn_area{
 	justify-content: flex-end;	
 }
@@ -347,6 +336,9 @@ img.thumbnail:hover{
 .adoption_area tr{
 	height: 30px;
 }
+.adoption_area tr:nth-child(n+7){
+	height: 200px;
+}
 .adoption_area #contents{
 	padding: 5px;
 	height: 300px;
@@ -356,6 +348,19 @@ img.thumbnail:hover{
 	width: 150px;
 }
 
+img.thumbnail {
+    height: 200px;
+    width: 300px;
+    display: block;
+    clear: both;
+    object-fit: fill;
+    transition: all 0.1s linear;
+    padding: 10px;
+}
+img.thumbnail:hover{
+	transform: scale(1.4);
+	box-shadow: 1px 1px 4px black;
+}
 
 
 

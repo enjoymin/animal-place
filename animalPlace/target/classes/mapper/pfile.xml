@@ -18,7 +18,6 @@
 		limit 1
 	</select>
 
-
 	<delete id="deleteFile">
 		delete from p_file
 		where (boardnum=#{boardnum}) and (systemname=#{systemname});

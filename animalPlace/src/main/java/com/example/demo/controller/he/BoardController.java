@@ -6,10 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.he.Criteria;
 
+
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
+	
 	@GetMapping("list")
 	public void list(Criteria cri) {
+		
 	}
 }

@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.he.UserDTO;
 import com.example.demo.model.adoption.AdoptionCriteria;
@@ -27,19 +29,31 @@ public class AdoptionController {
 	private AdoptionService adservice;
 	
 	@GetMapping(value = {"list"})
-	public void list(AdoptionCriteria adCri, Model model) {
+	public void list(int pageNum, AdoptionCriteria adCri, Model model) {
+		System.out.println("pageNum : " +pageNum);
+		System.out.println(adCri);
+		adCri.setPagenum(pageNum);
 		List<AdoptionDTO> list = adservice.getList(adCri);
 		model.addAttribute("pageMaker", new AdoptionPageDTO(adservice.getTotal(adCri), adCri));
 		model.addAttribute("list",list);
 	}
-	
+
 	@GetMapping("write")
 	public void write() {}
 	
 	@PostMapping("write")
-	public void writeOk(AdoptionDTO adoption) {
-		System.out.println(adoption);
-		adservice.regist(adoption);
+	public String writeOk(AdoptionDTO adoption, MultipartFile[] files, HttpServletResponse resp) throws Exception{
+		if(adservice.regist(adoption, files)) {
+			Cookie cookie = new Cookie("w", "t");
+			cookie.setPath("/");
+			cookie.setMaxAge(5);
+			resp.addCookie(cookie);
+			long adoptionnum = adservice.getLastNum(adoption.getUserid());
+			return "redirect:/adoption/get?adoptionnum="+adoptionnum;
+		}
+		else {
+			return "redirect:/adoption/list";
+		}
 	}
 	@GetMapping("get")
 	public String get(AdoptionCriteria adCri, long adoptionnum, HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -70,6 +84,7 @@ public class AdoptionController {
 		model.addAttribute("user", user);
 		model.addAttribute("adoption",adoption);
 		model.addAttribute("adCri",adCri);
+		model.addAttribute("files",adservice.getFiles(adoptionnum));
 		return "/adoption/get";
 	}
 	
@@ -77,14 +92,13 @@ public class AdoptionController {
 	public void modify(AdoptionCriteria adCri, long adoptionnum, Model model) {
 		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
 		model.addAttribute("adoption", adoption);
+		model.addAttribute("files",adservice.getFiles(adoptionnum));
 		model.addAttribute("adCri",adCri);
 	}
 	
 	@PostMapping("modify")
-	public String modify(AdoptionDTO adoption, AdoptionCriteria adCri) throws Exception{
-		System.out.println(adoption);
-		System.out.println(adCri);
-		if(adservice.modify(adoption)) {
+	public String modify(AdoptionDTO adoption, MultipartFile[] files, String updateCnt, AdoptionCriteria adCri) throws Exception{
+		if(adservice.modify(adoption, files, updateCnt)) {
 			return "redirect:/adoption/get"+adCri.getListLink()+"&adoptionnum="+adoption.getAdoptionnum();			
 		}
 		return "redirect:/adoption/get"+adCri.getListLink()+"&adoptionnum="+adoption.getAdoptionnum();
