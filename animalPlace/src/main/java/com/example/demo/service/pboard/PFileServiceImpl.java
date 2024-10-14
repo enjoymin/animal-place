@@ -115,7 +115,7 @@ public class PFileServiceImpl implements PFileService {
 		for(int i = 0; i < list.size(); i++) {
 			flist.add(pfmapper.getImg(list.get(i)));
 		}
+		System.out.println(flist);
 		return flist;
 	}
-
 }

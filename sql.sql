@@ -16,8 +16,9 @@ create table p_board(
     
 	boardflag bool default false #댓글 알림을 위한 컬럼
 );
-##################### drop table p_board;
-
+##################### 
+drop table p_board;
+select * from p_board;
 
 create table p_reply(
 	replynum bigint primary key auto_increment,
@@ -34,6 +35,19 @@ create table p_file(
   orgname varchar(3000) not null,
   boardnum bigint
 );
+select * from p_file;
+
+select 
+	f.boardnum,
+    f.systemname
+from `p_file` f
+	join p_board using(boardnum) where userid = 'apple' order by boardnum desc limit 1,15; 
+select 
+	f.boardnum,
+    MIN(f.systemname) AS systemname
+from `p_file` f
+	join p_board using(boardnum) where userid = 'apple' group by boardnum order by boardnum desc limit 1,15; 
+
 
 create table p_likelist(
 	userid varchar(300),
@@ -57,6 +71,7 @@ create table user(
     userpet varchar(300),
     schedule varchar(300)
 );
+select *from user;
 drop table user;
 insert into  user(userid,userpw,username,addrdetail) values("apple","1234","김사과","중국산");
 
@@ -84,27 +99,35 @@ drop table alarm;
 
 ############################# MAP START
 
-create table posts(
-boardnum bigint auto_increment primary key,
-boardtitle varchar(300) not null,
-boardcontent text not null,
-place_data text not null,
-regdate datetime default now(),
-updatedate datetime default now() on update now(),
-readcount int default 0,
-userid varchar(300)
-);
+#게시판 사용수가 많아 게시판대신 검색순위 제공으로 변경
 
+#create table posts(
+#boardnum bigint auto_increment primary key,
+#boardtitle varchar(300) not null,
+#boardcontent text not null,
+#place_data text not null,
+#regdate datetime default now(),
+#updatedate datetime default now() on update now(),
+#readcount int default 0,
+#serid varchar(300)
+#);
+
+
+<<<<<<< HEAD
+=======
 create table map_search_history(
 	id serial primary key,
     keyword varchar(300) not null,
     search_count int default 1,
     search_time timestamp default current_timestamp
 );
+
+
 drop table map_search_history;
 select * from map_search_history;
-delete from map_search_history where id = 10;
 
+
+>>>>>>> b693ce7983c0c321dd63b2fec12b5b331b852455
 ################################## MAP END
 
 ################################## DISEASE START

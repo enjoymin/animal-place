@@ -41,9 +41,11 @@ li {
 a {
 	text-decoration: none;
 }
-a:link{
+
+a:link {
 	color: black;
 }
+
 a:visited {
 	color: black;
 }
@@ -51,11 +53,13 @@ a:visited {
 a:hover {
 	cursor: pointer;
 }
-input {
+
+header input {
 	padding: 5px;
 	height: 30px;
 	width: 220px;
 }
+
 h1,
 h2,
 h3,
@@ -72,7 +76,7 @@ header {
 	/*
 	background-color: #FF9B9B;
 	*/
-	background-color: none;
+	background-color: #579956;
 	position: fixed;
 	top: 0;
 	z-index: 1050;
@@ -82,33 +86,39 @@ header {
 
 #header {
 	height: 100px;
+	
 }
+
 #lgd,
 #lgp {
 	width: 150px;
 }
 
-.btn {
+.btn-header {
 	width: 130px;
 }
-.btn,
+
+.btn-header,
 .nowPage {
 	margin: 5px;
 }
-input[type=button]{
-	background-color: rgba(87,153,86,0.95);
+
+input[type=button] {
+	background-color: rgba(87, 153, 86, 0.9);
 	border-radius: 5px;
 	border: none;
 	color: white;
 	font-family: 'TTLaundryGothicB';
-		src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
-		font-weight: 700;
-		font-style: normal;
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
 }
-input[type=button]:hover{
+
+input[type=button]:hover {
 	cursor: pointer;
-	background-color: rgba(87,153,86,1);
+	background-color: rgba(87, 153, 86, 1);
 }
+
 img {
 	border: none;
 }
@@ -122,22 +132,26 @@ h6 {
 	font-weight: normal;
 	font-size: inherit;
 }
-#login{
+
+#login {
 	position: absolute;
-	right: 36px;
+	right: 40px;
 	width: 100px;
-	top: 4.5px;
+	top: 3px;
 }
-#login img{
-	width: 65px;
-	height: 65px;
+
+#login img {
+	width: 70px;
+	height: 70px;
 }
+
 #menu {
 	position: absolute;
 	right: 15px;
 	top: 14px;
 }
-#menu img{
+
+#menu img {
 	width: 75px;
 }
 
@@ -209,10 +223,10 @@ h6 {
 	/*
 	background-color: rgb(255, 245, 245);
 	*/
-	background-color: rgb(131, 185, 130);
+	background-color: #f4f4f4;
 	position: absolute;
 	border-radius: 20px;
-	right: 120px;
+	right: 110px;
 	max-height: 400px;
 	top: 94px;
 	width: 350px;
@@ -226,10 +240,10 @@ h6 {
 	content: '';
 	position: absolute;
 	top: 54px;
-	right: 150px;
+	right: 140px;
 	border-width: 20px;
 	border-style: solid;
-	border-color: transparent transparent rgb(131, 185, 130) transparent;
+	border-color: transparent transparent #f4f4f4 transparent;
 	z-index: 1100;
 }
 
@@ -239,29 +253,34 @@ h6 {
 
 .alarmtable {
 	display: flex;
-	
+
 }
 
 .alarmtable td {
 	margin: 5px;
 }
-.alarmtable td:nth-child(1){
+
+.alarmtable td:nth-child(1) {
 	width: 83%;
 }
 
-.atitle a{
-	color: #f9d686;
+.atitle a {
+	color: rgb(248, 203, 99);
 }
-.atitle a:hover{
-	color: rgb(247, 200, 89);
+
+.atitle a:hover {
+	color: rgb(245, 192, 67);
 }
-.acheck{
+
+.acheck {
 	text-align: center;
 }
-.acheck a{
-	color:rgb(128, 128, 128);
+
+.acheck a {
+	color: rgb(128, 128, 128);
 }
-.acheck a:hover{
+
+.acheck a:hover {
 	color: rgb(192, 192, 192);
 }
 
@@ -271,7 +290,7 @@ h6 {
 	padding: 10px;
 	position: absolute;
 	z-index: 500;
-	right: 220px;
+	right: 200px;
 	top: 70px;
 	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
@@ -294,7 +313,7 @@ h6 {
 	transform: skew(115deg);
 }
 
-.modal {
+.modal-header {
 	/*display: none;*/
 	position: fixed;
 	z-index: 1000;
@@ -308,12 +327,13 @@ h6 {
 
 }
 
-.modal-content {
-	position: relative;
+.modal-content-header {
+	position: absolute;
 	background-color: white;
 	border-radius: 25px;
 	margin: 0 auto;
 	top: 30%;
+	left: 40%;
 	display: block;
 	width: 330px;
 	height: 200px;
@@ -321,16 +341,23 @@ h6 {
 	text-align: center;
 	padding: 25px;
 	padding-top: 25px;
-	background-color: rgb(255, 245, 245);
+	background-color: #f4f4f4;
 	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 #modal_login {
-
+	height: 150px;
+	border-collapse: separate;
+	/* 간격 적용을 위해 border-collapse를 separate로 설정 */
+	border-spacing: 0px 5px;
+	/* 세로 간격을 설정 */
+	width: 100%;
+	/* 테이블의 너비를 100%로 설정 */
+	user-select: none;
 	height: 75px;
 }
 
-.close {
+.close-header {
 	position: absolute;
 	top: 5px;
 	right: 15px;
@@ -340,8 +367,8 @@ h6 {
 	transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
+.close-header:hover,
+.close-header:focus {
 	color: #bbb;
 	text-decoration: none;
 	cursor: pointer;

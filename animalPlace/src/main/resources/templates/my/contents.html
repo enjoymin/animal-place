@@ -21,9 +21,10 @@
 		<div id="contentstitle1">등록한 글</div>
 		<div id="mycontents1" class="mycontents">
 			<span style="font-size: 24px;">모임게시판</span>
-			<span><a id="more1" class="more">더 보기</a></span>
+			<span><a id="more1" class="more">더 보기..</a></span>
 			<span><a id="back1" class="more" style="display: none;">돌아가기</a></span>
-			<div class="tar w900">작성글 개수 : [[${mtotal}]]</div>
+			<div class="tar">작성글 개수 : [[${mtotal}]]</div>
+			<div class="w1" style="display: none;">[[${mtotal}]]</div>
 			<div class="list table">
 				<div class="thead tac">
 					<div class="row rowt">
@@ -48,9 +49,10 @@
 		</div>
 		<div id="mycontents2" class="mycontents">
 			<span style="font-size: 24px;">SNS</span>
-			<span><a id="more2" class="more">더 보기</a></span>
+			<span><a id="more2" class="more">더 보기..</a></span>
 			<span><a id="back2" class="more" style="display: none;">돌아가기</a></span>
-			<div class="tar w900">작성글 개수 : [[${ptotal}]]</div>
+			<div class="tar w2">작성글 개수 : [[${ptotal}]]</div>
+			<div class="w2" style="display: none;">[[${mtotal}]]</div>
 			<div class="plist">
 				<div class="tbody2">
 				</div>
@@ -82,6 +84,12 @@
 	window.onload = function () {
 		showListM();
 		showListP();
+		if($(".w1").html() < 6){
+			more1.hide();
+		}
+		if($(".w2").html() < 6){
+			more2.hide();
+		}
 	};
 
 	more1.click(function (e) {

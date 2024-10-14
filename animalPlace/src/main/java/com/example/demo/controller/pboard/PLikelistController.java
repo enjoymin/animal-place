@@ -1,5 +1,6 @@
 package com.example.demo.controller.pboard;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,9 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.model.pboard.PBoardDTO;
+
 import com.example.demo.model.pboard.PLikelistDTO;
-import com.example.demo.service.he.AlarmService;
 import com.example.demo.service.pboard.PBoardService;
 import com.example.demo.service.pboard.PLikelistService;
 
@@ -30,16 +30,12 @@ public class PLikelistController {
     
     @Autowired
     private PBoardService pbservice;
-    
-    @Autowired
-    private AlarmService alservice;
 
     @GetMapping("checklike")
     public ResponseEntity<PLikelistDTO> checkLike(@RequestParam Long boardnum, HttpServletRequest req) {
         HttpSession session = req.getSession();
         String loginUser = (String) session.getAttribute("loginUser");
         PLikelistDTO result = plservice.checklike(boardnum, loginUser);
-        PBoardDTO alarm = pbservice.getBoardByBoardnum(boardnum);
         
         if (result == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null); // 204 No Content
@@ -65,4 +61,5 @@ public class PLikelistController {
         boolean success = plservice.deleteLike(boardnum, loginUser);
         return success ? ResponseEntity.ok("Like removed") : ResponseEntity.status(400).body("Failed to remove like");
     }
+    
 }
