@@ -4,6 +4,7 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.mapper.pboard.PFileMapper;
+import com.example.demo.mapper.pboard.PLikelistMapper;
 import com.example.demo.model.pboard.PBoardDTO;
 import com.example.demo.model.pboard.PFileDTO;
 
@@ -20,6 +22,9 @@ public class PFileServiceImpl implements PFileService {
 
 	@Autowired
 	private PFileMapper pfmapper;
+	
+	@Autowired
+	private PLikelistMapper plmapper;
 
 	@Value("${file.dir}")
 	private String saveFolder;
@@ -105,10 +110,12 @@ public class PFileServiceImpl implements PFileService {
 
 	@Override
 	public ArrayList<String> getBestImage() {
-		System.out.println(pfmapper.getBestImage());
-		
-		//수정 해야함
-		return pfmapper.getBestImage();
+		ArrayList<String> flist = new ArrayList<>();
+		ArrayList<Long> list = plmapper.bestLike();
+		for(int i = 0; i < list.size(); i++) {
+			flist.add(pfmapper.getImg(list.get(i)));
+		}
+		return flist;
 	}
 
 }
