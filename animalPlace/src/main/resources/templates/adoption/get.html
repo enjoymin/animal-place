@@ -52,6 +52,19 @@
 					<th>내 용</th>
 					<td colspan="3" id="contents">[[${adoption.contents}]]</td>
 				</tr>
+				<tr th:each="file:${files}" th:if="${files != null and files.size() > 0}">
+					<th>첨부사진[[${fileStat.index+1}]]</th>
+					<td>
+						<!-- th:with - 일종의 변수 선언 -->
+						<th:block th:with="sar=${file.systemname.split('[.]')}">
+							<th:block th:with="ext = ${sar[sar.length-1]}">
+								<img class="thumbnail" th:if="${ext == 'jpg' or ext == 'png'
+								 or ext == 'jpeg' or ext == 'gif' or ext == 'webp'}"
+								 th:src="${'/adfile/thumbnail?systemname='+file.systemname}">
+							</th:block>
+						</th:block>
+					</td>
+				</tr>
 				<tr th:if="${files == null or files.size() == 0}" class="no-file">
 					<td colspan="4">사진이 없습니다.</td>
 				</tr>
@@ -84,6 +97,7 @@
 			</tbody>
 		</table>
 	</div>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
 </html>
 
