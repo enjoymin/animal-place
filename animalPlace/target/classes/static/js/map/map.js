@@ -254,26 +254,71 @@ function displayPlaces(places) {
 // 인포윈도우 표시 함수
 function displayInfowindow(marker, place) {
     var content = `
-        <div class="place_map">
-            <h4>${place.place_name}</h4>
-            <p>주소: ${place.road_address_name || place.address_name}</p>
-            <p>전화번호: ${place.phone || '정보 없음'}</p>
+        <div style="cursor: default; position: absolute; background: rgb(255, 255, 255); border: none; z-index: 1; display: block; width: 280px; height: 72px; margin-top: -40px; margin-left: -65px;">
+            <div style="position: absolute; width: 11px; height: 9px; background: url('http://t1.daumcdn.net/localimg/localimages/07/mapjsapi/triangle.png') 0% 0% / 11px 9px no-repeat; left: 134px; top: 72px;"></div>
+            <div style="position: absolute; left: 0px; top: 0px;">
+                <div class="place_map" style="cursor: pointer;"> <!-- 클릭 가능한 영역으로 설정 -->
+                    <h4>${place.place_name}</h4>
+                    <p>주소: ${place.road_address_name || place.address_name}</p>
+                    <p>전화번호: ${place.phone || '정보 없음'}</p>
+                </div>
+            </div>
         </div>
     `;
-    
+
     infowindow.setContent(content);
     infowindow.open(map, marker);
     
-    // 클릭 이벤트 추가
+    // 인포윈도우 클릭 이벤트 추가
     const placeMapDiv = document.querySelector('.place_map');
     if (placeMapDiv) {
         placeMapDiv.onclick = function() {
-            const iframe = document.getElementById('iframeElement'); // iframe의 ID
+            const iframe = document.getElementById('iframeElement');
             iframe.src = place.place_url; // 웹사이트 URL 설정
             const search_detail = document.getElementById('search_detail');
             search_detail.scrollIntoView({ behavior: 'smooth' }); // 스크롤 애니메이션
         };
     }
+}
+
+// 마커 클릭 이벤트
+function addMarker(position, idx, place) {
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png',
+        imageSize = new kakao.maps.Size(36, 37),
+        imgOptions = {
+            spriteSize: new kakao.maps.Size(36, 691),
+            spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10),
+            offset: new kakao.maps.Point(13, 37)
+        },
+        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+        marker = new kakao.maps.Marker({
+            position: position,
+            image: markerImage
+        });
+
+    marker.setMap(map);
+    markers.push(marker);
+
+    // 마커 클릭 이벤트
+    kakao.maps.event.addListener(marker, 'click', function() {
+        displayInfowindow(marker, place);
+        const iframe = document.getElementById('iframeElement'); // iframe의 ID
+        iframe.src = place.place_url; // 웹사이트 URL 설정
+        const search_detail = document.getElementById('search_detail');
+        search_detail.scrollIntoView({ behavior: 'smooth' }); // 스크롤 애니메이션
+    });
+
+    // 마우스 오버 이벤트
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+        displayInfowindow(marker, place);
+    });
+
+    // 마우스 아웃 이벤트
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        infowindow.close();
+    });
+
+    return marker;
 }
 
 function addMarker(position, idx, place) {
@@ -328,8 +373,8 @@ function getListItem(index, place) {
     var el = document.createElement('li'),
         itemStr = `<span class="markerbg marker_${index + 1}"></span>
                     <div class="info">
-                        <h5>${place.place_name}</h5>
-                        <span>${place.road_address || place.address}</span>
+                        <h5>${place.place_name}</h5>	
+                        <span>${place.road_address_name || place.address_name}</span>
                         <span class="tel">${place.phone || ''}</span>
                     </div>`;
 
@@ -362,6 +407,30 @@ function displayPagination(pagination) {
 
         fragment.appendChild(el);
     }
+	
 
     paginationEl.appendChild(fragment);
 }
+let isTopHalf = true; // 상태 초기화
+
+// 토글 버튼 클릭 이벤트
+document.getElementById('toggleButton').onclick = function() {
+    var listEl = document.getElementById('menu_wrap');
+
+    // 리스트의 숨김/표시 처리
+    if (listEl.classList.contains('hidden')) {
+        listEl.classList.remove('hidden'); // 리스트 나타내기
+    } else {
+        listEl.classList.add('hidden'); // 리스트 숨기기
+    }
+
+    // 이미지 위치 토글 처리
+    const toggle = document.getElementById('toggleButton');
+    if (isTopHalf) {
+        toggle.style.top = '-100%'; // 아래쪽 반 보이기
+    } else {
+        toggle.style.top = '0'; // 위쪽 반 보이기
+    }
+	
+    isTopHalf = !isTopHalf; // 상태 반전
+};

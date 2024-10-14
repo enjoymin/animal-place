@@ -652,6 +652,17 @@ button:hover {
 	cursor: pointer;
 }
 
+.back_btn{
+	margin-left: 10px;
+	padding: 5px;
+	border: 1px solid #e5e7eb;
+	border-radius: 5px;
+	font-size: 14px;
+	font-family: 'MinSans-Regular';
+	font-weight: 400;
+	cursor: pointer;
+}
+
 /* 스케줄알림 게시판 */
 .schedule_area {
     width: 200px;

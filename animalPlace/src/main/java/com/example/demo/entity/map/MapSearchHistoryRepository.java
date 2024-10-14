@@ -9,7 +9,7 @@ import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface MapSearchHistoryRepository extends JpaRepository<MapSearchHistory, Long>{
-	List<MapSearchHistory> findTop10ByOrderBySearchCountDesc();
-	MapSearchHistory findByKeyword(String keyword);
+public interface MapSearchHistoryRepository extends JpaRepository<MapSearchHistory, Long> {
+    List<MapSearchHistory> findTop10ByOrderBySearchCountDesc();
+    MapSearchHistory findByKeyword(String keyword);
 }

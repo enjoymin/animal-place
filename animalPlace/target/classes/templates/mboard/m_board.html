@@ -9,10 +9,8 @@
 </head>
 
 <body>
-	<header>
-
-	</header>
-
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
+	
 	<th:block th:if="${d != null and d != ''}">
 		<script>
 			alert("게시글 삭제가 완료되었습니다!");
@@ -146,9 +144,10 @@
 						개
 						</div>
 						<select name="view_type" id="view_type" onchange="change_view()">
+							<option value="">보기</option>
 							<option value="L">최신순</option>
 							<option value="O">오래된순</option>
-							<option value="R">추천순</option>
+							<option value="R">조회수순</option>
 						</select>
 					 </div>
 
@@ -251,6 +250,8 @@
 						<div class="more_list_btn" th:if="${m_list != null and m_list.size() > 7}">
 							더보기
 						</div>
+						
+						<div class="back_btn" th:if="${cri.keyword != null or cri.type != null or cri.view_type != null}" onclick="goBack()">돌아가기</div>
 					</div>
 
 				</div>

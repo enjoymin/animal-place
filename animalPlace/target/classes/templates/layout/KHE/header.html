@@ -12,14 +12,14 @@
 			<img src="/images/KHE/alarm.png" style="height: 30px;">
 		</span>
 		<div id="alarmpage" style="display: none;">
-			<table class ="alarmP">
-				
+			<table class="alarmP">
+
 			</table>
 		</div>
 		<div id="alarmpagetri" class="alarmwindow" style="display: none;"></div>
 		<div id="alarmnotice" style="display:none">게시글에 확인하지 않은 내역이 있습니다!</div>
 		<span id="login" class="alarm" style="display:none">
-			<a href="" id="login">로그인</a>
+			<a href="" id="login"><img src="/images/KHE/login.png"></a>
 		</span>
 		<span id="menu">
 			<a href="" class="menu"><img src="/images/KHE/menu.svg"></a>
@@ -101,39 +101,48 @@
 		let flag = false;
 		const loginUser = /*[[${session.loginUser}]]*/'';
 		const menu = document.getElementById("menubar");
-		$(".menu").click(function (e) {
+		$(document).on('click', '.menu', function (e) {
 			e.preventDefault(); // 기본 동작 방지
 			if (menu.style.right === "-400px") {
 				menu.style.right = "0px"; // 메뉴 열기
 			} else {
 				menu.style.right = "-400px"; // 메뉴 닫기
 			}
+
 		});
 
-		window.addEventListener('load', function () {
-			if (loginUser != null) {
-				alex();
-			}
-		})
+
+		$(window).on('load', function () {
+			window.setTimeout(function () {
+				if (loginUser != null) {
+					alex();
+				}
+
+			}, 300)
+		});
+
 
 		const alamcaller = setInterval(alex, 300000); //주기적으로 alex()함수 호출
-		$("#logout").click(function (e) {
+		$(document).on('click', '#logout', function (e) {
 			e.preventDefault();
 			const path = window.location.pathname;
 			window.location.href = "/user/logout?path=" + path;
+
+		});
+		$("#logout").click(function (e) {
 		})
 
-		$(".alarmwindow").click(function (e) {
+		$(document).on('click', '.alarmwindow', function (e) {
 			e.preventDefault();
 			if (flag) {
 				showAlarm();
 			}
-		}
-		)
+		});
 		$(".alarmwindow").hover(function () {
 			$("#alarmnotice").fadeOut(200);
+
 		})
-		$("#login").click(function (e) {
+		$(document).on('click', '#login', function (e) {
 			e.preventDefault();
 			const path = window.location.pathname;
 			$("#loginmodal").fadeIn(200);
@@ -141,7 +150,7 @@
 			$("#lgd").focus();
 			$("#lgd").val("");
 			$("#lgp").val("");
-		})
+		});
 		$('.close').on('click', function () {
 			$('#loginmodal').fadeOut(200); // 모달 숨기기
 		})
