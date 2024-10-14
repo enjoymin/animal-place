@@ -76,7 +76,7 @@ header {
 	/*
 	background-color: #FF9B9B;
 	*/
-	background-color: none;
+	background-color: #579956;
 	position: fixed;
 	top: 0;
 	z-index: 1050;
@@ -86,6 +86,7 @@ header {
 
 #header {
 	height: 100px;
+	
 }
 
 #lgd,
