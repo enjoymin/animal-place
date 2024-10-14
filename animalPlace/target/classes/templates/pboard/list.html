@@ -19,7 +19,7 @@
 	<div id="wrap">
 		<div class="headimg"></div>
 		<input type="hidden" id="lastBoardnum" th:value="${lastBoardnum}" />
-		<div class="btn write">
+		<div class="write">
 			<a href="#" id="openWriteModal">글쓰기</a>
 		</div>
 		<div class="boardlist">
@@ -279,7 +279,7 @@
 
 	$(document).on('click', '.viewPost', function (e) {
 		e.preventDefault(); // 기본 링크 동작 방지
-
+		$('header').hide(); // 헤더 숨기기
 		const boardnum = $(this).data('boardnum'); // boardnum 가져오기
 
 		// AJAX 요청을 통해 게시글 내용을 가져옴
@@ -304,6 +304,7 @@
 	$('.close').on('click', function () {
 		$('#viewPostModal').hide(); // 모달 숨기기
 		$('#modal').hide(); // 모달 숨기기
+		$('header').show(); // 헤더 보이기
 		$('body').removeClass('no-scroll'); // 스크롤 활성화
 
 		// 모달 닫힐 때 Top 버튼 보이기
@@ -313,6 +314,7 @@
 	// 게시글 작성모달 열기
 	$('#openWriteModal').on('click', function (e) {
 		e.preventDefault(); // 링크의 기본 동작 방지
+		$('header').hide(); // 헤더 숨기기
 		if (loginUser == null || loginUser.length === 0) {
 			alert("로그인 해야 게시글을 작성할 수 있습니다.");
 			return;
@@ -344,6 +346,7 @@
 
 		// DataTransfer 초기화
 		dataTransfer = new DataTransfer(); // 파일 리스트 초기화
+		$('header').show(); // 헤더 보이기
 
 		$('body').removeClass('no-scroll'); // 스크롤 활성화
 
@@ -370,13 +373,14 @@
 
 			$('body').removeClass('no-scroll'); // 스크롤 활성화
 
+			$('header').show(); // 헤더 보이기
 			// 모달 닫힐 때 Top 버튼 보이기
 			$('#scrollToTop').fadeIn();
 		}
 		if (event.target === document.getElementById('viewPostModal')) {
 			$('#viewPostModal').hide();
 			$('body').removeClass('no-scroll'); // 스크롤 활성화
-
+			$('header').show(); // 헤더 보이기
 			// 모달 닫힐 때 Top 버튼 보이기
 			$('#scrollToTop').fadeIn();
 		}
