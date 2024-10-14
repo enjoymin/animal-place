@@ -124,17 +124,21 @@ h6 {
 }
 #login{
 	position: absolute;
-	right: 50px;
+	right: 36px;
 	width: 100px;
-	top: 0px;
+	top: 4.5px;
 }
 #login img{
-	width: 80px;
-	height: 80px;
+	width: 65px;
+	height: 65px;
 }
 #menu {
 	position: absolute;
-	right: 10px;
+	right: 15px;
+	top: 14px;
+}
+#menu img{
+	width: 75px;
 }
 
 #menubar {
@@ -191,13 +195,13 @@ h6 {
 
 .alarm {
 	position: absolute;
-	right: 120px;
+	right: 110px;
 	margin: 10px;
 }
 
 .alarm2 {
 	position: absolute;
-	right: 120px;
+	right: 110px;
 	margin: 10px;
 }
 
