@@ -331,7 +331,8 @@ table{
 	padding-left: 140px;
 }
 .adoption_area #breed, .adoption_area #type, .adoption_area #gender,
-.adoption_area #age, .adoption_area #cost, .adoption_area #region{
+.adoption_area #age, .adoption_area #cost, .adoption_area #region,
+.adoption_area #userphone, .adoption_area #useremail{
 	text-align: center;
 	width: 300px;
 }
