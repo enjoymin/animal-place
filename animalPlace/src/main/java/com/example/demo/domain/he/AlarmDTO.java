@@ -12,4 +12,5 @@ public class AlarmDTO {
 	private boolean ameeting;
 	private boolean dmeeting;
 	private boolean plike;
+	private boolean note;
 }

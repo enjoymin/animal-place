@@ -108,6 +108,7 @@ public class MyController {
 		HttpSession session = req.getSession();
 		String userid =  (String) session.getAttribute("loginUser");
 		List<AlarmDTO> alarm =  aservice.getAlarm(userid);
+		System.out.println(alarm);
 		return alarm;
 	}
 	
@@ -145,13 +146,20 @@ public class MyController {
 		String senduser =  (String) session.getAttribute("loginUser");
 		model.addAttribute("receiveuser", userid);
 		model.addAttribute("senduser", senduser);
+		
 	}
 	@PostMapping("writeNote")
 	@ResponseBody
 	public void writeNotesend(NoteDTO note) {
 		service.insertNote(note);
-		System.out.println(note.getReceiveuser());
-		System.out.println(note.getSenduser());
-		System.out.println(note.getContents());
+		String flag = "note";
+		aservice.insertAlarm(note.getReceiveuser(), note.getTitle(), "", flag);
+	}
+	@GetMapping("note")
+	public void note(HttpServletRequest req, Model model, Criteria cri) {
+		HttpSession session = req.getSession();
+		String user =  (String) session.getAttribute("loginUser");
+		List<NoteDTO> list = service.getNote(user, cri);
+		model.addAttribute("note", list);
 	}
 }

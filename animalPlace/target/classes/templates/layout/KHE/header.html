@@ -86,7 +86,7 @@
 			<ul id="mypagelist" style="font-size: 18px;">
 				<li><a href="/my/profile">회원정보</a></li>
 				<li><a href="/my/contents">등록한글</a></li>
-				<li><a href="/my/alarm">쪽지함</a></li>
+				<li><a href="" id="notepage">쪽지함</a></li>
 				<li><a id="logout">로그아웃</a></li>
 			</ul>
 		</div>
@@ -261,6 +261,10 @@
 							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 좋아요가 늘어났어요!</td>
 																				<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
+						else if (content.note == 1) {
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="#" onclick="notePage()" id="notepage">새로운 쪽지가 왔습니다!</a></td>
+																												<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
+						}
 					}
 					$("#alarmpage").html(str);
 				}
@@ -285,7 +289,7 @@
 		}
 
 		$(document).on('click', '.usermenu', function (e) {
-			event.preventDefault();
+			e.preventDefault();
 			profileid = $(this).html();
 			console.log(profileid);
 			usermenu(e);
@@ -319,15 +323,23 @@
 			}
 		});
 		$("#userprofile").on('click', function (e) {
-			window.open('/my/userprofile?userid=' + profileid, '팝업', 'width=510,height=500,top=140%,left=500%, location=no');
+			window.open('/my/userprofile?userid=' + profileid, '팝업1', 'width=510,height=500,top=140%,left=500%, location=no');
 		});
 		$("#writeNote").on('click', function (e) {
-			if(loginUser == null){
+			if (loginUser == null) {
 				alert("쪽지는 로그인 후에 보낼 수 있습니다!");
 				return;
 			}
 			window.open('/my/writeNote?userid=' + profileid, '팝업2', 'width=490,height=380,top=180%,left=600%, location=no');
 		});
-
+		$("#notepage").on('click', function (e) {
+			e.preventDefault();
+			window.open('/my/note', '팝업', 'width=600,height=800');
+		});
+		function notePage() {
+			$("#alarmpage").fadeOut(200);
+			$("#alarmpagetri").fadeOut(200);
+			window.open('/my/note', '팝업', 'width=600,height=800');
+		}
 	</script>
 </th:block>

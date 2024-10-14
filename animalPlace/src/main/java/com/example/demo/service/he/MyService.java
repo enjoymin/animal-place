@@ -13,4 +13,5 @@ public interface MyService {
 	long getPBtotal(String userid);
 	List<PFileDTO> getPFile(Criteria cri, String userid);
 	boolean insertNote(NoteDTO note);
+	List<NoteDTO> getNote(String receiveuser, Criteria cri);
 }

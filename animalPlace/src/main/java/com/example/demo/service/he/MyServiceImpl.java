@@ -45,4 +45,10 @@ public class MyServiceImpl implements MyService {
 	public boolean insertNote(NoteDTO note) {
 		return mmapper.insertNote(note);
 	}
+
+	@Override
+	public List<NoteDTO> getNote(String receiveuser,Criteria cri) {
+		List<NoteDTO> list =  mmapper.getNote(receiveuser,cri);
+		return list;
+	}
 }

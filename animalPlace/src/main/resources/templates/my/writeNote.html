@@ -22,6 +22,12 @@
 				</td>
 			</tr>
 			<tr>
+				<th>제목</th>
+				<td>
+					<input type="text" name="title" id="note-title">
+				</td>
+			</tr>
+			<tr>
 				<th>내용</th>
 				<td><textarea name="contents" id="note" placeholder="내용을 입력하세요" rows="15" cols="35" style="resize:none"
 						;></textarea>
@@ -39,7 +45,7 @@
 <script src="/js/KHE/my.js"></script>
 <script th:inline="javascript">
 	$(window).on('load', function () {
-		$("#note").focus();
+		$(".note-title").focus();
 	});
 	
 	function sendNote() {

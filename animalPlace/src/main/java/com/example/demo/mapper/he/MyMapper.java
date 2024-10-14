@@ -16,4 +16,5 @@ public interface MyMapper {
 	List<PFileDTO> getPFileByUserid(Criteria cri, String userid);
 	long getPBtotal(String userid);
 	boolean insertNote(NoteDTO note);
+	List<NoteDTO> getNote(String receiveuser, Criteria cri);
 }

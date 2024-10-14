@@ -20,4 +20,8 @@
 	<insert id="insertNote">
 		insert into note(receiveuser, senduser, contents) values(#{receiveuser},#{senduser},#{contents})
 	</insert>
+	<select id="getNote">
+		select * from note where receiveuser=#{receiveuser}
+		order by noteNum desc limit #{cri.startrow}, #{cri.amount}
+	</select>
 </mapper>
