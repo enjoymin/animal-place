@@ -632,6 +632,15 @@
 		let listLink = /*[[${pageMaker.adCri.listLink}]]*/'';
 		location.href = '/adoption/get'+listLink+"&adoptionnum="+adoptionnum;
 	})
+	$(".changePage").click(function(e){
+		//e(이벤트)의 기본 작동 막기
+		e.preventDefault();
+		let pageNum = e.target.getAttribute("href");
+		console.log(pageNum);
+		const form = document.searchForm;
+		form.pageNum.value = pageNum;
+		form.submit();
+	})
 </script>
 </html>
 

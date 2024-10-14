@@ -23,8 +23,8 @@ public class AdoptionCriteria {
         this(1, 20); // 기본 생성자: 페이지 1, 항목 수 20
     }
 
-    public AdoptionCriteria(int pagenum, int pageSize) {
-        this.pageNum = pagenum;
+    public AdoptionCriteria(int pageNum, int pageSize) {
+        this.pageNum = pageNum;
         this.pageSize = pageSize;
         calculateRows(); // 시작 행과 끝 행 계산
     }

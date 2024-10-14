@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.he.UserDTO;
@@ -28,7 +29,10 @@ public class AdoptionController {
 	private AdoptionService adservice;
 	
 	@GetMapping(value = {"list"})
-	public void list(AdoptionCriteria adCri, Model model) {
+	public void list(int pageNum, AdoptionCriteria adCri, Model model) {
+		System.out.println("pageNum : " +pageNum);
+		System.out.println(adCri);
+		adCri.setPagenum(pageNum);
 		List<AdoptionDTO> list = adservice.getList(adCri);
 		model.addAttribute("pageMaker", new AdoptionPageDTO(adservice.getTotal(adCri), adCri));
 		model.addAttribute("list",list);

@@ -1,6 +1,117 @@
+@font-face {
+    font-family: 'YOnepickTTF-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/YOnepickTTF-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.mainTopImg{
+	margin-top: 50px;
+	font-family: 'YOnepickTTF-Bold';
+	font-weight: 700;
+	width: 100%;
+	height: 700px;
+	border-radius: 20px;
+	background-color: #579956;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	background-image: url(/images/mainback.png);
+}
+
+@keyframes reveal{
+    0% {
+        transform: translateY(-400%) rotate(0deg);
+    }
+   
+    75% {
+        transform: translateY(50%) rotate(270deg);
+    }
+    100% {
+        transform: translateY(0%) rotate(360deg);
+    }
+}
+
+.mainTopImg > img{
+	animation: reveal 3s ease-in-out;
+    transform-origin: 50% 50%;
+	position: absolute; /* 추가 */
+	margin-bottom: 180px;
+	z-index: 2;
+	
+}
+
+h1 {
+	height: 100px;
+	white-space: nowrap;
+  }
+  
+  h1 span {
+	position: relative;
+	top: 20px;
+	display: inline-block;
+	animation: bounce .3s ease infinite alternate;
+	animation-delay: 3s;
+	font-family: 'YOnepickTTF-Bold', cursive;
+	font-size: 80px;
+	color: #FFF;
+	text-shadow: 0 1px 0 #CCC,
+				 0 2px 0 #CCC,
+				 0 3px 0 #CCC,
+				 0 4px 0 #CCC,
+				 0 5px 0 #CCC,
+				 0 6px 0 transparent,
+				 0 7px 0 transparent,
+				 0 8px 0 transparent,
+				 0 9px 0 transparent,
+				 0 10px 10px rgba(0, 0, 0, .4);
+	z-index: 1;
+  }
+  
+  h1 span:nth-child(1) { animation-delay: 3s; } 
+  h1 span:nth-child(2) { animation-delay: 3.1s; }
+  h1 span:nth-child(3) { animation-delay: 3.2s; }
+  h1 span:nth-child(4) { animation-delay: 3.3s; }
+  h1 span:nth-child(5) { animation-delay: 3.4s; }
+  h1 span:nth-child(6) { animation-delay: 3.5s; }
+  h1 span:nth-child(7) { animation-delay: 3.6s; }
+  h1 span:nth-child(8) { animation-delay: 3.7s; }
+  
+  @keyframes bounce {
+	100% {
+	  top: -20px;
+	  text-shadow: 0 1px 0 #CCC,
+				   0 2px 0 #CCC,
+				   0 3px 0 #CCC,
+				   0 4px 0 #CCC,
+				   0 5px 0 #CCC,
+				   0 6px 0 #CCC,
+				   0 7px 0 #CCC,
+				   0 8px 0 #CCC,
+				   0 9px 0 #CCC,
+				   0 50px 25px rgba(0, 0, 0, .2);
+	}
+  }
+
+.mainTitle {
+    display: inline-block; 
+    animation: bendU 2s ease-in-out 3s forwards; 
+}
+.main{
+	border: 1px solid #000;
+	width: 100%;
+	height: 500px;
+}
 #wrap {
-	width: 1300px;
-	margin: 0 165px;
+	width: 80%;
+	margin: 0 165px 0 165px;
 }
 
 .main-pboard ul {
@@ -10,9 +121,6 @@
 	display: flex;
 }
 
-.main {
-	border: 1px solid black;
-}
 
 .main-pboard {
 	width: 100%;
@@ -32,6 +140,16 @@
 
 }
 
+p {
+	font-family: 'TTLaundryGothicB';
+}
+.pboard-text a {
+	font-family: 'TTLaundryGothicB';
+	color: #ccc !important;
+}
+strong {
+	font-family: 'TTLaundryGothicB';
+}
 .pboard-img img {
 	object-fit: cover;
 	max-width: 100%;
