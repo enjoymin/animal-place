@@ -46,4 +46,6 @@ public interface M_BoardService {
 
 	List<M_BoardDTO> getListByViewType(String view_type);
 
+	List<M_BoardDTO> getRecentList();
+
 }
