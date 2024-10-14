@@ -113,8 +113,8 @@ drop table alarm;
 #);
 
 
-<<<<<<< HEAD
-=======
+
+
 create table map_search_history(
 	id serial primary key,
     keyword varchar(300) not null,
@@ -127,7 +127,7 @@ drop table map_search_history;
 select * from map_search_history;
 
 
->>>>>>> b693ce7983c0c321dd63b2fec12b5b331b852455
+
 ################################## MAP END
 
 ################################## DISEASE START
@@ -198,6 +198,8 @@ create table adfile(
     adoptionnum bigint
 );
 
+insert into adoption (title) value ("test"),("test"),("test"),("test"),("test"),("test"),("test"),("test");
+select *from adoption;
 ###############################
 
 
