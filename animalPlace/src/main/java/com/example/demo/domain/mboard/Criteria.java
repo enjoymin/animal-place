@@ -6,4 +6,5 @@ import lombok.Data;
 public class Criteria {
 	private String type;
 	private String keyword;
+	private String view_type;
 }

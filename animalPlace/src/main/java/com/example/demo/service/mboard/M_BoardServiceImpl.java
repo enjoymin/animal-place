@@ -27,6 +27,11 @@ public class M_BoardServiceImpl  implements M_BoardService{
 	public List<M_BoardDTO> getList() {
 		return bmapper.getList();
 	}
+	
+	@Override
+	public List<M_BoardDTO> getList(Criteria cri) {
+		return bmapper.getList(cri);
+	}
 
 	@Override
 	public boolean regist(M_BoardDTO mboard) {
@@ -207,35 +212,15 @@ public class M_BoardServiceImpl  implements M_BoardService{
 	}
 
 	@Override
-	public List<M_BoardDTO> searchBoards(String type, String keyword) {
-		switch (type) {
-		// 제목일때 검색
-		case "T" :
-			return bmapper.getListByTitle(keyword);			
-		// 내용일때 검색
-		case "C" :
-			return bmapper.getListByContent(keyword);	
-			
-		// 작성자일때 검색
-		case "W" :
-			return bmapper.getListByWriter(keyword);	
-			
-		// 제목 또는 내용일때 검색
-		case "TC" :
-			return bmapper.getListByTitle_Content(keyword);
-			
-		// 날짜일때 검색
-		case "S" :
-			return bmapper.getListBySetdate(keyword);	
-		}
-
-		return null;
-	}
-
-	@Override
 	public void increase_readcount(int mboardnum) {
 		M_BoardDTO mboard = bmapper.getBoardByBoardNum(mboardnum);
 		bmapper.update_readcount(mboardnum, mboard.getReadcount()+1);
+	}
+
+	@Override
+	public List<M_BoardDTO> getListByViewType(String view_type) {
+	    List<M_BoardDTO> boardList = bmapper.getListByViewType(view_type);
+	    return boardList;
 	}
 
 }

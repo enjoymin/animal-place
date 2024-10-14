@@ -679,6 +679,19 @@ function handle_search_btn() {
 		alert("검색 조건과 키워드를 입력하세요.");
 		return;
 	}
+	
+	form.submit();	
+}
 
-	form.submit();
+function goBack() {
+    window.history.back();
+}
+
+/* 게시글 추천순, 오래된순, 최신순으로 보기 구현 */
+function change_view() {
+    const view_type = $("#view_type").val();
+    
+	const currentUrl = new URL(window.location.href);	   
+	currentUrl.searchParams.set('view_type', view_type);	   
+	window.location.href = currentUrl.toString();	
 }

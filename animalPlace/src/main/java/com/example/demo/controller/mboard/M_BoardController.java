@@ -56,10 +56,15 @@ public class M_BoardController {
 					break;
 				}
 			}
-		}
+		}		
+	    
 		// 모든 게시글 추가해주기
-		List<M_BoardDTO> m_list = service.getList();
-		model.addAttribute("m_list", m_list);
+		List<M_BoardDTO> m_list = service.getList(cri);
+		model.addAttribute("m_list", m_list);		
+		// view_type 설정
+		String viewType = req.getParameter("view_type");
+		cri.setView_type(viewType);	    
+		model.addAttribute("cri", cri);
 		// 글 개수 추가해주기
 		model.addAttribute("list_cnt", service.getTotal());
 		// 이 달의 게시글만 추가해주기
@@ -287,24 +292,5 @@ public class M_BoardController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 삭제 실패");
 		}
 	}
-
-//	@GetMapping("m_board_search")
-//	public void m_board_search(@RequestParam("type") String type, @RequestParam("keyword") String keyword, Model model,
-//			HttpSession session) {
-//
-//		List<M_BoardDTO> searchResults = service.searchBoards(type, keyword);
-//		model.addAttribute("m_list", searchResults);
-//		String loginUser = (String) session.getAttribute("loginUser");
-//
-//		// 이 달의 게시글만 추가해주기
-//		List<M_BoardDTO> this_m_list = service.this_m_list();
-//		model.addAttribute("this_m_list", this_m_list);
-//		// 이 달의 게시글의 인원수 추가해주기
-//		List<Integer> member_cnt = service.this_m_list_memNum(this_m_list);
-//		model.addAttribute("member_cnt", member_cnt);
-//		// 나의 스케줄 받아오기
-//		List<M_BoardDTO> my_list = service.getMyList(loginUser);
-//		model.addAttribute("my_list", my_list);
-//	}
 
 }
