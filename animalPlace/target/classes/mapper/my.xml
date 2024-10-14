@@ -18,6 +18,6 @@
 		order by boardnum desc limit #{cri.startrow}, #{cri.amount}
 	</select>
 	<insert id="insertNote">
-		insert into note values(#{receiveuser},#{senduser},#{contents},0)
+		insert into note(receiveuser, senduser, contents) values(#{receiveuser},#{senduser},#{contents})
 	</insert>
 </mapper>

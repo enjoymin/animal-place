@@ -94,6 +94,12 @@
 		set readcount = #{readcount}
 		where boardnum = #{boardnum}
 	</update>
+	
+	<select id="getRecentList">
+		select * from m_board
+		order by boardnum desc
+		LIMIT 3
+	</select>
 
 </mapper>
 

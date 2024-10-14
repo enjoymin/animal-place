@@ -25,12 +25,12 @@
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'HakgyoansimSantteutdotumL';
-    font-weight: 600;
-    font-size: 16px;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'HakgyoansimSantteutdotumL';
+	font-weight: 600;
+	font-size: 16px;
 }
 
 ul,
@@ -63,16 +63,16 @@ a {
     justify-content: center;
 	align-items: center;
     padding: 10px;
-	background-color: #54965a;
 }
 
 .page_title p{
-    color: #FFFFFF;
+	color: #54965a;
     font-size: 60px;
 }
 
 .page_title img{
 	width: 100px;
+	filter: invert(56%) sepia(9%) saturate(2045%) hue-rotate(75deg) brightness(91%) contrast(88%);
 }
 
 .top_btn_area {
@@ -423,11 +423,10 @@ button:hover {
 	width: 100px !important;
     height: 25px;
 	   background-color: #54965a;
-	   color: #FFFFFF;
+	   color: #FFFFFF !important;
        border-radius: 30px;
 	   padding: 3px;
 	   text-align: center;
-	   cursor: pointer;
 }
 
 .close_info{
@@ -439,7 +438,6 @@ button:hover {
        border-radius: 30px;
 	   padding: 3px;
 	   text-align: center;
-	   cursor: pointer;
 }
 
 .row div:nth-child(4){

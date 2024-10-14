@@ -9,6 +9,19 @@
     margin: 0;
     padding: 0;
 }
+ul, ol, li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+	color: #ccc;
+}
+a:active{
+	color: #f9d686;
+}
+a:visited{
+	color: #f9d686;
+}
 
 #wrap {
 	width: 1600px;
@@ -164,3 +177,184 @@ strong {
 .pboard-list p {
 	text-align: center;
 }
+
+/* mbaord 파트 */
+
+@font-face {
+    font-family: 'TTLaundryGothicB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'HakgyoansimSantteutdotumL';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+.mboard_wrap {
+    font-family: 'TTLaundryGothicB';
+    color: #FFF;
+    background-color: #579956;
+    padding: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.mboard_title{
+    font-size: 50px;
+}
+
+.mboard_info{
+    margin-top: 50px;
+}
+
+.mboard_info p{
+    font-family: 'HakgyoansimSantteutdotumL';
+    font-weight: 600;
+}
+
+.mboard_info p:last-child{
+    margin-top: 10px;
+}
+
+.go_mboard{
+    margin-top: 30px;
+}
+
+.go_mboard a{
+    color: #FFF !important;
+    text-decoration: none;
+    border: 1px solid #FFF;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.go_mboard a:hover{
+    background-color: #f9d686;
+    border: none;
+    transition: .5s;
+}
+
+.mboard_img{
+    display: flex;
+    align-items: center;
+}
+
+.mboard_img img:first-child{
+    width: auto;
+    height: 150px;
+    margin-right: 50px;
+}
+
+.mboard_img img:last-child{
+    width: auto;
+    height: 100px;
+    margin-left: 50px;
+}
+
+.mboard_img p{
+    font-size: 40px;
+}
+
+.mboard_list{
+    margin-top: 50px;
+}
+
+.lists{
+    display: flex;
+    border-bottom: 1px solid #FFF;
+}
+
+.lists:hover{
+    background-color: #f9d686;
+    border-bottom: none;
+    transition: .8s;
+}
+
+.lists a{
+   color: #FFF !important;
+    padding: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lists a:nth-child(1){
+    width: 300px;
+}
+
+.lists a:nth-child(2){
+    width: 150px;
+}
+
+.lists a:nth-child(3){
+    width: 200px;
+}
+
+
+.map{
+	position: relative;
+	font-family: 'TTLaundryGothicB';
+}
+.map > h3{
+	position: absolute;
+	right: 10;
+	/* margin-right: 20px; */
+}
+.map > a{
+	width: 50%;
+    display: inline-block;
+    position: absolute;
+    border-radius: 30px;
+    margin: 30px 0px 0px 20px;
+    
+}
+#mapimg > a > img{
+	width: 100%;
+    height: 500px;
+    padding-right: 150px;
+    padding-top: 20px;
+}
+.map >div{
+	width: 100%;
+	height: 500px;
+}
+.map #mapimg{
+    float: left;
+    position: relative;
+    clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
+
+}
+.map #inmap{
+	text-align: right;
+    position: absolute;
+    float: right;
+    clip-path: polygon(30% 0, 100% 0%, 100% 100%, 70% 100%);
+	padding-top: 20px;
+	padding-right: 30px;
+}
+#inmap > h3{
+	font-size: 30px;
+	margin-bottom: 50px;
+}
+#inmap > span{
+	margin: 30px;
+	line-height: 2;
+}
+#inmap > a {
+	margin: 30px 30px;
+    width: 180px;
+    display: inline-block;
+    text-align: center;
+}
+#inmap > a > img{
+	width: 50px;
+    position: absolute;
+    margin-left: -40px;
+	margin-top: -10px;
+}
+	

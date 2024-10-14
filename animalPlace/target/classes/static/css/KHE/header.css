@@ -28,7 +28,7 @@ input:focus {
 @font-face {
 	font-family: 'HakgyoansimSantteutdotumL';
 	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
-	font-weight: 600;
+	font-weight: 300;
 	font-style: normal;
 }
 
@@ -390,6 +390,27 @@ h6 {
 	z-index: 1300;
 }
 
+#alarmpage::-webkit-scrollbar {
+    width: 15px; /* 너비 */
+    height: 12px; /* 높이 */
+}
+
+/* 스크롤바 트랙 (배경) */
+#alarmpage::-webkit-scrollbar-track {
+    background: #f4f4f4; /* 트랙 배경색 */
+    border-radius: 15px; /* 둥근 모서리 */
+}
+
+/* 스크롤바 핸들 */
+#alarmpage::-webkit-scrollbar-thumb {
+    background: #f9d686; /* 핸들 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+}
+
+/* 핸들 호버 상태 */
+#alarmpage::-webkit-scrollbar-thumb:hover {
+    background: rgb(245, 189, 58); /* 호버 시 색상 변경 */
+}
 ::-webkit-scrollbar {
     width: 15px; /* 너비 */
     height: 12px; /* 높이 */
@@ -397,17 +418,17 @@ h6 {
 
 /* 스크롤바 트랙 (배경) */
 ::-webkit-scrollbar-track {
-    background: #f4f4f4; /* 트랙 배경색 */
+    background: white; /* 트랙 배경색 */
     border-radius: 15px; /* 둥근 모서리 */
 }
 
 /* 스크롤바 핸들 */
 ::-webkit-scrollbar-thumb {
-    background: #f9d686; /* 핸들 색상 */
+    background: rgb(153, 153, 153); /* 핸들 색상 */
     border-radius: 10px; /* 둥근 모서리 */
 }
 
 /* 핸들 호버 상태 */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(245, 189, 58); /* 호버 시 색상 변경 */
+    background: rgb(128, 128, 128); /* 호버 시 색상 변경 */
 }

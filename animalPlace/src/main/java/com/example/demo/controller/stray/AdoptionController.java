@@ -29,10 +29,7 @@ public class AdoptionController {
 	private AdoptionService adservice;
 	
 	@GetMapping(value = {"list"})
-	public void list(int pageNum, AdoptionCriteria adCri, Model model) {
-		System.out.println("pageNum : " +pageNum);
-		System.out.println(adCri);
-		adCri.setPagenum(pageNum);
+	public void list(AdoptionCriteria adCri, Model model) {
 		List<AdoptionDTO> list = adservice.getList(adCri);
 		model.addAttribute("pageMaker", new AdoptionPageDTO(adservice.getTotal(adCri), adCri));
 		model.addAttribute("list",list);
@@ -110,7 +107,7 @@ public class AdoptionController {
 		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
 		if(adoption.getUserid().equals(loginUser)) {
 			if(adservice.remove(adoptionnum)) {
-				return "redirect:/adoption/list"+adCri.getListLink();
+				return "redirect:/adoption/list?breed=&type=&region=&gender=&pageNum="+adCri.getPageNum();
 			}
 		}
 		return "redirect:/adoption/get"+adCri.getListLink()+"&adoptionnum="+adoptionnum;

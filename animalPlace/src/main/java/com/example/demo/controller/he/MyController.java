@@ -126,9 +126,13 @@ public class MyController {
 	
 	@PostMapping("insertAlarmByLike")
 	@ResponseBody
-	public void insertAlarmByLike(String ctuserid, String boardtitle, String contentpath) {
-		String flag = "plike";
-		aservice.insertAlarm(ctuserid, boardtitle, contentpath, flag);
+	public void insertAlarmByLike(HttpServletRequest req, String ctuserid, String boardtitle, String contentpath) {
+		HttpSession session = req.getSession();
+		String user =  (String) session.getAttribute("loginUser");
+		if(!user.equals(ctuserid)) {
+			String flag = "plike";
+			aservice.insertAlarm(ctuserid, boardtitle, contentpath, flag);
+		}
 	}
 	@GetMapping("userprofile")
 	public void userprofile(HttpServletRequest req, Model model, String userid) {
