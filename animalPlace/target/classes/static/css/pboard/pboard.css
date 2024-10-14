@@ -617,33 +617,28 @@ button {
 	/* 둥글게 만들기 */
 }
 
-#new_FileList {
+#newFileList {
 	overflow: hidden;
 	width: 500px;
-	/* 원하는 너비 */
 	height: 150px;
 	overflow-y: auto;
-	/* 세로 스크롤 활성화 */
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	padding: 5px;
-	/* 내부 여백 */
 	list-style: none;
-	/* 기본 리스트 스타일 제거 */
 	margin: 10px auto;
-	/* 가운데 정렬 */
 }
-#new_FileList::-webkit-scrollbar {
+#newFileList::-webkit-scrollbar {
 	width: 8px;
 	/* 스크롤바 너비 */
 }
 
-#new_FileList::-webkit-scrollbar-track {
+#newFileList::-webkit-scrollbar-track {
 	background: rgba(241, 241, 241, 0);
 	/* 완전 투명 */
 }
 
-#new_FileList::-webkit-scrollbar-thumb {
+#newFileList::-webkit-scrollbar-thumb {
 	background: #579956;
 	/* 스크롤바 색상 */
 	border-radius: 4px;

@@ -293,17 +293,19 @@ table{
 
 .pagination{
 	margin-top:20px;
+	width: 100%;
 }
 .pagination tr{
 	text-align: center;
 	vertical-align: middle;
 }
 .pagination .nowPage{ margin-right:5px; }
-.pagination a {
-	padding: 5px;
-	width: 30px;
-	height: 30px;
-	margin-right:5px;
+.pagination .changePage {
+	padding: 6px 10px 5px 4px;
+	width: 34px;
+	height: 34px;
+	margin-right: 5px;
+	display: inline-block;
 }
 
 .pagination a:hover {
@@ -329,7 +331,8 @@ table{
 	padding-left: 140px;
 }
 .adoption_area #breed, .adoption_area #type, .adoption_area #gender,
-.adoption_area #age, .adoption_area #cost, .adoption_area #region{
+.adoption_area #age, .adoption_area #cost, .adoption_area #region,
+.adoption_area #userphone, .adoption_area #useremail{
 	text-align: center;
 	width: 300px;
 }
