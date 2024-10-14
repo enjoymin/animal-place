@@ -11,8 +11,7 @@
 }
 
 /* 기타 스타일링 */
-a {
-	display: flex;
+header a {
 	text-decoration: none;
 }
 
