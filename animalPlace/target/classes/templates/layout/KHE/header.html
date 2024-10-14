@@ -236,11 +236,11 @@
 						<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 						else if (content.ameeting == 1) {
-							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 새로운 사람이 참여했습니다!</td>
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>모임에 새로운 사람이 참여했습니다!</td>
 													<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 						else if (content.dmeeting == 1) {
-							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>글에 참여를 취소한 사람이 있습니다!</td>
+							str += `<tr class="alarmtable"><td class="atitle"><a class="atitle" href="${content.contentpath}">${content.boardtitle} </a>모임에 참여를 취소한 사람이 있습니다!</td>
 													<td class="acheck"><a onclick="alcheck(${content.alarmnum})">확인</a></td></tr>`;
 						}
 						else if (content.plike == 1) {
@@ -298,6 +298,10 @@
 				$('#popup').fadeOut(200);
 			}
 		});
-
+		window.onclick = function(e) {
+		    if (e.target === $("#menubar")) {
+		        menu.style.right = "-400px";
+		    }
+		};
 	</script>
 </th:block>
