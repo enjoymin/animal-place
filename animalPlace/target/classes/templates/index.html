@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>애니멀플레이스</title>
-	<link href="/css/KHE/style.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>index</title>
+	<link rel="stylesheet" href="/css/main.css">
 </head>
+
 <body>
-	<div id="wrap" class="all">
-		<div id ="wrap" class="login">
-		        <form action="user/login" method="post" name="loginForm">
-					<input type="hidden" name="path" th:value="${path}">
-		            <table>
-		                <tbody>
-		                    <tr>
-		                        <th id="loginid">아이디</th>
-		                        <td>
-		                            <input id="lgd" type="text" name="userid">
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <th>비밀번호</th>
-		                        <td>
-		                            <input id="lgp" type="password" name="userpw">
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <td colspan="2">
-		                            <div>
-		                                <input type="submit" value="로그인">
-		                                <input type="button" value="회원가입" onclick="location.href = '/user/join'">
-		                            </div>
-		                        </td>
-		                    </tr>
-		                </tbody>
-		            </table>
-		     </form>
-		 </div>
-		<img src="/images/KHE/ap2.png">
+		<th:block th:replace="~{layout/KHE/header::header}"></th:block>
+	<div id="wrap">
+		<div>
+			<div class="mainTopImg">
+				<img src="/images/mainlogoimg.png" alt="">
+				<h1>
+					<span>A</span>
+					<span>n</span>
+					<span>i</span>
+					<span>m</span>
+					<span>a</span>
+					<span>l</span>
+					<span>p</span>
+					<span>l</span>
+					<span>a</span>
+					<span>c</span>
+					<span>e</span>
+				</h1>
+			</div>
+			<div class="main pboard">
+				sns 소개
+			</div>
+			<div class="main mboard">
+				모임게시판 소개
+			</div>
+			<div class="main disease">
+				질병정보 소개
+			</div>
+			<div class="main adoption">
+				분양/유기 소개
+			</div>
+			<div class="main map">
+				검색 소개
+			</div>
+		</div>
 	</div>
 </body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-	window.setTimeout(function(){
-			$("#wrap.login + img").addClass("hdd");
-			$("#wrap.login").css("display", "block");
-			$("#lgd").focus();
-		},1300)
-	window.setTimeout(function(){
-		window.location.href = "/board/list";
-	},1500)
+	document.addEventListener('DOMContentLoaded', function () {
+		const img = document.querySelector('.mainTopImg > img');
+
+		img.addEventListener('animationend', function () {
+			img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
+		});
+	});
 </script>
+
 </html>

@@ -23,6 +23,10 @@
 /* 푸터 */
 footer {
     height: 300px;
+	font-family: 'TTLaundryGothicB';
+}
+#footerft div{
+	font-family: 'TTLaundryGothicB';
 }
 
 .footer_area{

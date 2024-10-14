@@ -76,7 +76,7 @@ header {
 	/*
 	background-color: #FF9B9B;
 	*/
-	background-color: none;
+	background-color: #579956;
 	position: fixed;
 	top: 0;
 	z-index: 1050;
@@ -86,6 +86,7 @@ header {
 
 #header {
 	height: 100px;
+	
 }
 
 #lgd,
@@ -166,10 +167,15 @@ h6 {
 	display: block;
 	transition-duration: 1s;
 	font-family: 'HakgyoansimSantteutdotumL';
+	font-family: 'TTLaundryGothicB' !important;
 	font-weight: 800;
 	font-size: 20px;
 	padding: 20px;
 	z-index: 1000;
+}
+#menubar a{
+	font-family: 'TTLaundryGothicB' !important;
+	font-size:20px;
 }
 
 #menulist {
