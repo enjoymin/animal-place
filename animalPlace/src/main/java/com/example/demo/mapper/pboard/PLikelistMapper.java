@@ -1,5 +1,7 @@
 package com.example.demo.mapper.pboard;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.model.pboard.PLikelistDTO;
@@ -15,4 +17,5 @@ public interface PLikelistMapper {
 
 	boolean deleteLike(Long boardnum, String loginUser);
 
+	ArrayList<Long> bestLike();
 }

@@ -7,12 +7,15 @@ window.onload = function() {
 	document.getElementById('keyword').value = '';
 	//사용자위치로 지도 설정
 	setCurrentLocation();
-	loadRankings(); // 초기 로드 시 순위 가져오기
+	// 초기 로드 시 순위 가져오기
+	loadRankings();
 };
-
+	//마커배열 마들기
 var markers = [];
+	//맵 생성
 var mapContainer = document.getElementById('map'),
 	mapOption = {
+		//기본 위치 설정(사용자 위치를 찾지 못했을 경우)
 		center: new kakao.maps.LatLng(37.566826, 126.9786567),
 		level: 3
 	};
@@ -21,7 +24,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var ps = new kakao.maps.services.Places();
 var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 var pagination;
-
+	//GPS를 이용한 사용자 위치설정
 function setCurrentLocation() {
 	const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
 
@@ -72,11 +75,11 @@ function setCurrentLocation() {
 		}
 	}
 }
-
+	//기본 위치 셋팅 함수
 function setDefaultLocation() {
 	map.setCenter(new kakao.maps.LatLng(37.566826, 126.9786567));
 }
-
+	//검색한 장소를 맵 센터로 설정
 async function searchPlaces() {
 	var keyword = document.getElementById('keyword').value;
 	if (keyword === '') {
@@ -86,10 +89,10 @@ async function searchPlaces() {
 	document.querySelector('.image-container').style.display = 'block';
 	const currentLocation = map.getCenter();
 	ps.keywordSearch(keyword, placesSearchCB, { location: currentLocation });
-
-	await recordSearch(keyword); // 검색 기록 저장
+	// 검색 기록 저장
+	await recordSearch(keyword); 
 }
-
+	//검색 기록 저장 함수
 async function recordSearch(keyword) {
 	if (!keyword.trim()) {
 		alert('키워드를 입력해주세요!');
@@ -115,7 +118,7 @@ async function recordSearch(keyword) {
 }
 
 let previousRankings = [];
-
+	//검색순위 불러오기 함수
 async function loadRankings() {
 	try {
 		const response = await fetch('/search/rankings');
@@ -145,6 +148,7 @@ async function loadRankings() {
 			if (rank.searchCount > prevCount) {
 				change = ` (▲)`;
 				li.style.color = 'red'; // 상승 시 빨간색
+			//왜 작동이 안될까 ??
 			} else if (rank.searchCount < prevCount) {
 				change = ` (▼)`;
 				li.style.color = 'blue'; // 하락 시 파란색
@@ -284,80 +288,46 @@ function displayInfowindow(marker, place) {
 	}
 }
 
-// 마커 클릭 이벤트
+// 마커 추가
 function addMarker(position, idx, place) {
-	var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png',
-		imageSize = new kakao.maps.Size(36, 37),
-		imgOptions = {
-			spriteSize: new kakao.maps.Size(36, 691),
-			spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10),
-			offset: new kakao.maps.Point(13, 37)
-		},
-		markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-		marker = new kakao.maps.Marker({
-			position: position,
-			image: markerImage
-		});
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png',
+        imageSize = new kakao.maps.Size(36, 37),
+        imgOptions = {
+            spriteSize: new kakao.maps.Size(36, 691),
+            spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10),
+            offset: new kakao.maps.Point(13, 37)
+        },
+        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+        marker = new kakao.maps.Marker({
+            position: position,
+            image: markerImage
+        });
 
-	marker.setMap(map);
-	markers.push(marker);
+    marker.setMap(map);
+    markers.push(marker);
 
-	// 마커 클릭 이벤트
-	kakao.maps.event.addListener(marker, 'click', function() {
-		displayInfowindow(marker, place);
-		const iframe = document.getElementById('iframeElement'); // iframe의 ID
-		iframe.src = place.place_url; // 웹사이트 URL 설정
-		const search_detail = document.getElementById('search_detail');
-		search_detail.scrollIntoView({ behavior: 'smooth' }); // 스크롤 애니메이션
-	});
+    // 마커 클릭 이벤트
+    kakao.maps.event.addListener(marker, 'click', function() {
+        displayInfowindow(marker, place);
+        const iframe = document.getElementById('iframeElement'); // iframe의 ID
+        iframe.src = place.place_url; // 웹사이트 URL 설정
+        const search_detail = document.getElementById('search_detail');
+        search_detail.scrollIntoView({ behavior: 'smooth' }); // 스크롤 애니메이션
+    });
 
-	// 마우스 오버 이벤트
-	kakao.maps.event.addListener(marker, 'mouseover', function() {
-		displayInfowindow(marker, place);
-	});
+    // 마우스 오버 이벤트
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+        displayInfowindow(marker, place);
+    });
 
-	// 마우스 아웃 이벤트
-	kakao.maps.event.addListener(marker, 'mouseout', function() {
-		infowindow.close();
-	});
+    // 마우스 아웃 이벤트
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        infowindow.close();
+    });
 
-	return marker;
+    return marker;
 }
 
-function addMarker(position, idx, place) {
-	var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png',
-		imageSize = new kakao.maps.Size(36, 37),
-		imgOptions = {
-			spriteSize: new kakao.maps.Size(36, 691),
-			spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10),
-			offset: new kakao.maps.Point(13, 37)
-		},
-		markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-		marker = new kakao.maps.Marker({
-			position: position,
-			image: markerImage
-		});
-
-	marker.setMap(map);
-	markers.push(marker);
-
-	// 클릭 이벤트
-	kakao.maps.event.addListener(marker, 'click', function() {
-		displayInfowindow(marker, place);
-	});
-
-	// 마우스 오버 이벤트
-	kakao.maps.event.addListener(marker, 'mouseover', function() {
-		displayInfowindow(marker, place);
-	});
-
-	// 마우스 아웃 이벤트
-	kakao.maps.event.addListener(marker, 'mouseout', function() {
-		infowindow.close();
-	});
-
-	return marker;
-}
 
 function removeAllChildNods(el) {
 	while (el.firstChild) {
