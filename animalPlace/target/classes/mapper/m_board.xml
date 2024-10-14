@@ -3,8 +3,52 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.mboard.M_BoardMapper">
 
+	<sql id="cri">
+		<if test="keyword != '' and keyword != null and type != '' and type != null">
+			<choose>
+				<when test="type == 'T'.toString()">
+					boardtitle like concat('%', #{keyword}, '%')
+				</when>
+	 			<when test="type == 'C'.toString()">
+					boardcontent like concat('%', #{keyword}, '%')
+				</when>
+				<when test="type == 'W'.toString()">
+					userid like concat('%', #{keyword}, '%')
+				</when>
+				<when test="type == 'TC'.toString()">
+					<trim prefix="(" suffix=") and">
+                    boardtitle like concat('%', #{keyword}, '%') or
+                    boardcontent like concat('%', #{keyword}, '%')
+                </trim>
+				</when>
+				<when test="type == 'S'.toString()">
+					setdate = #{keyword}
+				</when>
+			</choose>
+		</if>
+		
+	</sql>
+
 	<select id="getList">
-		select * from m_board order by boardnum desc
+		select * from m_board
+		<where>
+        <include refid="cri"></include>
+    	</where>
+		order by
+		 <choose>
+        <when test="view_type == 'L'.toString()">
+            boardnum desc
+        </when>
+        <when test="view_type == 'O'.toString()">
+            boardnum asc
+        </when>
+        <when test="view_type == 'R'.toString()">
+            readcount desc
+        </when>
+        <otherwise>
+            boardnum desc
+        </otherwise>
+    </choose>
 	</select>
 	
 	<insert id="insertBoard">
@@ -38,33 +82,12 @@
 	<select id="getMembers">
 		select member from m_board where boardnum=#{boardnum}
 	</select>
+	
 	<update id="updateMember">
 		update m_board
 		set member = #{member}
 		where boardnum = #{boardnum}
 	</update>
-	
-	<select id="getListByTitle">
-		select * from m_board where boardtitle like concat('%', #{keyword}, '%')
-	</select>
-	
-	<select id="getListByContent">
-		select * from m_board where boardcontent like concat('%', #{keyword}, '%')
-	</select>
-	
-	<select id="getListByWriter">
-		select * from m_board where userid like concat('%', #{keyword}, '%')
-	</select>
-	
-	<select id="getListBySetdate">
-		select * from m_board where getListBySetdate = #{keyword}
-	</select>
-	
-	<select id="getListByTitle_Content">
-		select * from m_board where
-		boardtitle like concat('%', #{keyword}, '%') or
-		boardcontent like concat('%', #{keyword}, '%')
-	</select>
 	
 	<update id="update_readcount">
 		update m_board

@@ -8,8 +8,10 @@ import com.example.demo.domain.mboard.Criteria;
 import com.example.demo.domain.mboard.M_BoardDTO;
 
 @Mapper
-public interface M_BoardMapper {	
+public interface M_BoardMapper {
 	List<M_BoardDTO> getList();
+	
+	List<M_BoardDTO> getList(Criteria cri);
 	
 	int insertBoard(M_BoardDTO board);	
 
@@ -38,4 +40,6 @@ public interface M_BoardMapper {
 	List<M_BoardDTO> getListByTitle_Content(String keyword);
 
 	void update_readcount(int boardnum, int readcount);
+
+	List<M_BoardDTO> getListByViewType(String view_type);
 }

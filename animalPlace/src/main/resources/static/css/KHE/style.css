@@ -81,6 +81,7 @@ h6 {
 	height: 1080px;
 	margin: 0 auto;
 	background-color: #ffeaea;
+	background-color: rgba(87, 153, 86, 1);
 	padding: 200px;
 }
 
@@ -91,7 +92,6 @@ h6 {
 	margin: 200px auto;
 	animation: loginWrap 1.5s 1;
 	font-family: 'HakgyoansimSantteutdotumL';
-
 }
 
 #wrap.login+img {
@@ -128,6 +128,16 @@ body.login {
 
 #joinform td {
 	width: 220px;
+}
+
+#joinform table {
+	border-collapse: separate;
+	/* 간격 적용을 위해 border-collapse를 separate로 설정 */
+	border-spacing: 0px 5px;
+	/* 세로 간격을 설정 */
+	width: 100%;
+	/* 테이블의 너비를 100%로 설정 */
+	user-select: none;
 }
 
 .war {
@@ -316,7 +326,7 @@ input {
 }
 
 input[type=button] {
-	background-color: rgba(87, 153, 86, 0.95);
+	background-color: rgba(87, 153, 86, 0.9);
 	border-radius: 5px;
 	border: none;
 	color: white;
