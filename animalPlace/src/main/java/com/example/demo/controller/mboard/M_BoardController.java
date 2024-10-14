@@ -46,7 +46,7 @@ public class M_BoardController {
 	private AlarmService alservice;
 
 	@GetMapping("m_board")
-	public void m_board(Model model, HttpServletRequest req, HttpSession session, Criteria cri) {
+	public void m_board(@RequestParam(required = false) String view_type, Model model, HttpServletRequest req, HttpSession session) {
 		String loginUser = (String) session.getAttribute("loginUser");
 		Cookie[] cookies = req.getCookies();
 		if (cookies != null) {
@@ -57,9 +57,10 @@ public class M_BoardController {
 				}
 			}
 		}
+		
 		// 모든 게시글 추가해주기
 		List<M_BoardDTO> m_list = service.getList();
-		model.addAttribute("m_list", m_list);
+		model.addAttribute("m_list", m_list);			
 		// 글 개수 추가해주기
 		model.addAttribute("list_cnt", service.getTotal());
 		// 이 달의 게시글만 추가해주기

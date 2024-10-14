@@ -44,6 +44,25 @@
 		where boardnum = #{boardnum}
 	</update>
 	
+	<select id="getListByViewType" parameterType="String">
+		select * from m_board
+		order by
+			<choose>
+				<when test="view_type == 'L'.toString()">
+					boardnum desc
+				</when>
+	 			<when test="view_type == 'O'.toString()">
+					boardnum asc
+				</when>
+				<when test="view_type == 'R'.toString()">
+					readcount desc
+				</when>
+				<otherwise>
+                	boardnum DESC
+            	</otherwise>
+			</choose>
+	</select>
+	
 	<select id="getListByTitle">
 		select * from m_board where boardtitle like concat('%', #{keyword}, '%')
 	</select>
@@ -57,7 +76,7 @@
 	</select>
 	
 	<select id="getListBySetdate">
-		select * from m_board where getListBySetdate = #{keyword}
+		select * from m_board where setdate = #{keyword}
 	</select>
 	
 	<select id="getListByTitle_Content">

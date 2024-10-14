@@ -44,4 +44,6 @@ public interface M_BoardService {
 
 	void increase_readcount(int mboardnum);
 
+	List<M_BoardDTO> getListByViewType(String view_type);
+
 }

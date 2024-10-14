@@ -238,4 +238,10 @@ public class M_BoardServiceImpl  implements M_BoardService{
 		bmapper.update_readcount(mboardnum, mboard.getReadcount()+1);
 	}
 
+	@Override
+	public List<M_BoardDTO> getListByViewType(String view_type) {
+	    List<M_BoardDTO> boardList = bmapper.getListByViewType(view_type);
+	    return boardList;
+	}
+
 }

@@ -75,7 +75,7 @@
 										<div class="mo_list_box">
 											<!-- 프로필 사진 -->
 											<div class="profile_img_box">
-												<img src="/images/test강아지.jpg" alt="" class="profile_img">
+												<img src="/images/mimages/test강아지.png" alt="" class="profile_img">
 											</div>
 
 											<!-- 모임 내용 -->
@@ -141,8 +141,15 @@
 				<div class="board_area">
 
 					<div class="board_count">
+						<div>						
 						글 개수 : <span th:text="${list_cnt != null && list_cnt > 0 ? list_cnt : 0}"></span>
 						개
+						</div>
+						<select name="view_type" id="view_type" onchange="change_view()">
+							<option value="L">최신순</option>
+							<option value="O">오래된순</option>
+							<option value="R">추천순</option>
+						</select>
 					 </div>
 
 					<div class="m_list_table">
@@ -154,13 +161,13 @@
 							<div>작성자</div>
 							<div>작성시간</div>
 						</div>
-
+						
 						<div class="no_list">
-							<div th:if="${m_list == null or m_list.size() == 0}">등록된 게시글이 없습니다.</div>
+							<div class="no_list_txt_m" th:if="${m_list == null or m_list.size() == 0}">등록된 게시글이 없습니다.</div>
 						</div>
-
+						
 						<div class="m_list" style="display: none;" th:if="${m_list != null and m_list.size() > 0}" th:each="m_board:${m_list}">
-							<div id="list" class="row">
+							<div id="list"class="row">
 								<div>[[${m_board.boardnum}]]</div>
 								<div>[[${m_board.readcount}]]</div>
 								<div>[[${m_board.boardtitle}]]</div>
@@ -184,7 +191,7 @@
 								<div class="list_info_1">
 									<div class="profile">
 										<div class="profile_img_box">
-											<img src="/images/test강아지.jpg" alt="" profile_img>
+											<img src="/images/mimages/test강아지.png" alt="" profile_img>
 										</div>
 										<div class="userid">[[${m_board.userid}]]</div>
 									</div>
@@ -236,7 +243,6 @@
 									</th:block>
 								</div>
 							</div>
-
 						</div>
 					</div>
 					

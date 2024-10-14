@@ -38,4 +38,6 @@ public interface M_BoardMapper {
 	List<M_BoardDTO> getListByTitle_Content(String keyword);
 
 	void update_readcount(int boardnum, int readcount);
+
+	List<M_BoardDTO> getListByViewType(String view_type);
 }
