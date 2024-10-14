@@ -23,7 +23,7 @@
 					<tr>
 						<th>제목</th>
 						<td>
-							<input type="text" name="title" maxlength="50" th:value="${adoption.title}">
+							<input type="text" name="title" maxlength="50" th:value="${adoption.title}" placeholder="제목을 입력하세요">
 						</td>
 					</tr>
 					<tr>
@@ -264,7 +264,7 @@
 								<option value="암컷" th:selected="${adCri.gender == '암컷'}">암컷</option>
 							</select>
 							<span>나이</span>
-							<input type="text" name="age" maxlength="50" th:value="${adCri.age}">
+							<input type="text" name="age" maxlength="50" th:value="${adCri.age}" placeholder="나이를 적어주세요(ex:4개월)">
 						</td>
 					</tr>
 					<tr>
@@ -625,6 +625,33 @@
 	}
 	function sendit(){
 		//유효성 검사
+		const title = adoptionForm.title.value.trim();
+		const age = adoptionForm.age.value.trim();
+		const contents = adoptionForm.contents.value.trim();
+		const file = document.getElementById('file0name');
+
+		if (!title) {
+		    alert("제목을 적어주세요.");
+		    adoptionForm.title.focus();
+		    return;
+		}
+		if (!age) {
+		    alert("나이를 적어주세요.");
+		    adoptionForm.age.focus();
+		    return;
+		}
+
+		if (!contents) {
+		    alert("내용을 적어주세요.");
+		    adoptionForm.contents.focus();
+		    return;
+		}
+		
+		if(file.innerText == '선택된 파일 없음'){
+			alert("분양 동물 사진은 필수입니다.");
+			return;
+		}
+		
 		//deleteFiles 배열을 Set으로 변환하여 중복되는 값들을 제거
 		const set = new Set(deleteFiles);
 		//다시 set에 있는 요소들을 꺼내서 배열로 만들어서 deleteFiles에 넣기
@@ -633,6 +660,7 @@
 		deleteFiles = deleteFiles.filter((item) => { return item != undefined })
 		$("#updateCnt").val(deleteFiles.join("\\"));
 		//console.log(deleteFiles)
+		
 		document.adoptionForm.submit();
 	}
 	//i : 현재까지 업로드 된 파일의 개수
@@ -652,7 +680,6 @@
 		systemnames.push(util_arr[j].previousElementSibling.value);
 		orgnames.push(util_arr[j].innerText.trim());
 	}
-	console.log(systemnames,orgnames)
 
 	//기존에 업로드 되어 있던 파일들 중 현재 변화를 시켜줄 파일의 이름
 	let temp_sysname = "";

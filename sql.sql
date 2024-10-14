@@ -198,10 +198,7 @@ create table adfile(
     adoptionnum bigint
 );
 
-insert into adoption (title) value ("test"),("test"),("test"),("test"),("test"),("test"),("test"),("test");
-select *from adoption;
 ###############################
-
 
 #따로 넣어줘야하는거
 

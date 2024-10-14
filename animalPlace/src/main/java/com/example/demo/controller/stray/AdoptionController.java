@@ -110,7 +110,7 @@ public class AdoptionController {
 		AdoptionDTO adoption = adservice.getDetail(adoptionnum);
 		if(adoption.getUserid().equals(loginUser)) {
 			if(adservice.remove(adoptionnum)) {
-				return "redirect:/adoption/list"+adCri.getListLink();
+				return "redirect:/adoption/list?breed=&type=&region=&gender=&pageNum="+adCri.getPageNum();
 			}
 		}
 		return "redirect:/adoption/get"+adCri.getListLink()+"&adoptionnum="+adoptionnum;
