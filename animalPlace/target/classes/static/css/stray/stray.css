@@ -30,6 +30,7 @@
 	font-family: 'TTLaundryGothicB';
 }
 
+/*
 header {
 	width: 100%;
     height: 100px;
@@ -39,6 +40,15 @@ header {
 	background-size: 400px;	
 	min-width: 1425px;
 }
+<<<<<<< HEAD
+=======
+*/
+footer {
+    height: 100px;
+    background-color: #FF9B9B;
+	clear: both;
+}
+>>>>>>> 1ee846fc76a13583e391276087496ee81574b397
 #wrap{
     width: 1400px;
 	height: 1300px;
