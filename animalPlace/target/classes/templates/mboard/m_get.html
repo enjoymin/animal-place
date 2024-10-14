@@ -32,6 +32,8 @@
 			alert("게시글 수정이 완료되었습니다!");
 		</script>
 	</th:block>
+	
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
 
 	<div class="full_wrap">
 		<input type="hidden" th:value="${session.loginUser}" class="loginUser">
