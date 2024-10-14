@@ -129,4 +129,9 @@ public class MyController {
 		String flag = "plike";
 		aservice.insertAlarm(ctuserid, boardtitle, contentpath, flag);
 	}
+	@GetMapping("userprofile")
+	public void userprofile(HttpServletRequest req, Model model, String userid) {
+		model.addAttribute("user", uservice.getUser(userid));
+		model.addAttribute("myphoto", uservice.getprofile(userid));
+	}
 }

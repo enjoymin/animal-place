@@ -5,11 +5,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>index</title>
+	<link rel="stylesheet" href="/css/KHE/header.css">
 	<link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
-		<th:block th:replace="~{layout/KHE/header::header}"></th:block>
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
 	<div id="wrap">
 		<div>
 			<div class="mainTopImg">
@@ -28,23 +29,40 @@
 					<span>e</span>
 				</h1>
 			</div>
-			<div class="main pboard">
-				sns 소개
-			</div>
-			<div class="main mboard">
-				모임게시판 소개
-			</div>
-			<div class="main disease">
-				질병정보 소개
-			</div>
-			<div class="main adoption">
-				분양/유기 소개
-			</div>
-			<div class="main map">
-				검색 소개
+			<div class="main main-pboard">
+				<div class="pboard-text">
+					<Strong>사랑스러운 반려동물의 사진을 공유해봐요</Strong>
+					<a href="../pboard/list">더보기</a>
+				</div>
+				<div th:if="${flist == null or flist.size() == 0}" class="no_list">
+					<div>등록된 게시글이 없습니다.</div>
+				</div>
+				<div class="pboard-list">
+					<div th:if="${flist != null or flist.size() != 0}">
+						<p>좋아요를 많이 받은 게시글</p>
+						<ul class="pboard-imgs">
+							<li class="pboard-img" th:each="img : ${flist}">
+								<img th:src="${'/images/pimages/' + img}">
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="main mboard">
+					모임게시판 소개
+				</div>
+				<div class="main disease">
+					질병정보 소개
+				</div>
+				<div class="main adoption">
+					분양/유기 소개
+				</div>
+				<div class="main map">
+					검색 소개
+				</div>
 			</div>
 		</div>
 	</div>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>	
 </body>
 <script>
 	document.addEventListener('DOMContentLoaded', function () {

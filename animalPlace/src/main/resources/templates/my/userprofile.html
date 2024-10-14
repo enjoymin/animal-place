@@ -1,0 +1,44 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>내가 쓴 글</title>
+	<link href="/css/KHE/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div>
+		여기가 회원정보
+		<table>
+			<tr th:if="${myphoto != null}">
+				<td colspan="2">
+					<input type="file" name="myphoto" id="myphoto" style="display: none;">
+					<a href="javascript:upload()"><img th:src="${'/file/thumbnail?systemname='+myphoto.systemname}"
+							class="thumbnail"></a>
+					<div id="iflag" style="display:none">1</div>
+				</td>
+			</tr>
+			<tr th:if="${myphoto == null}">
+				<td colspan="2">
+					<input type="file" name="myphoto" id="myphoto" style="display: none;">
+					<a href="javascript:upload()"><img src="/images/KHE/baseprofile.png" class="thumbnail"></a>
+					<div id="iflag" style="display:none">0</div>
+				</td>
+			</tr>
+			<tr>
+				<th>아이디</th>
+				<td></td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td>[[${user.useremail}]] ??</td>
+			</tr>
+			<tr>
+				<th>애완동물</th>
+				<td>[[${user.userpet}]]</td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+</html>

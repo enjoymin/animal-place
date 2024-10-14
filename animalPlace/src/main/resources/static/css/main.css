@@ -10,8 +10,13 @@
     padding: 0;
 }
 
+#wrap {
+	width: 1600px;
+	margin: 0 165px;
+	height: 3300px;
+}
 .mainTopImg{
-	margin-top: 200px;
+	margin-top: 50px;
 	font-family: 'YOnepickTTF-Bold';
 	font-weight: 700;
 	width: 100%;
@@ -140,6 +145,16 @@ h1 {
 
 }
 
+p {
+	font-family: 'TTLaundryGothicB';
+}
+.pboard-text a {
+	font-family: 'TTLaundryGothicB';
+	color: #ccc !important;
+}
+strong {
+	font-family: 'TTLaundryGothicB';
+}
 .pboard-img img {
 	object-fit: cover;
 	max-width: 100%;
