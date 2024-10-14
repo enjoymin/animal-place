@@ -63,11 +63,10 @@ a {
     justify-content: center;
 	align-items: center;
     padding: 10px;
-	background-color: #54965a;
 }
 
 .page_title p{
-    color: #FFFFFF;
+	color: #54965a;
     font-size: 60px;
 }
 
