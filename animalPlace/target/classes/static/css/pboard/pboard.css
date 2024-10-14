@@ -1,5 +1,3 @@
-
-
 [type=button] {
 	font-family: 'TTLaundryGothicB';
 	color: white;
@@ -13,6 +11,9 @@
 }
 
 /* 기타 스타일링 */
+header a {
+	text-decoration: none;
+}
 
 #wrap h2 {
 	font-family: 'TTLaundryGothicB';
@@ -29,6 +30,17 @@
 	font-family: 'TTLaundryGothicB';
 }
 
+#modalContent h2 {
+	font-family: 'TTLaundryGothicB';
+}
+
+#modalContent a {
+	font-family: 'TTLaundryGothicB';
+}
+
+#modalContent p {
+	font-family: 'TTLaundryGothicB';
+}
 
 
 .headimg {
@@ -179,6 +191,11 @@
 	content: '  |';
 }
 
+.saveReply::after {
+	margin-left: 10px;
+	content: '  |';
+}
+
 #user_area {
 	display: flex;
 	justify-content: flex-end;
@@ -264,7 +281,7 @@ ul {
 	width: 80px;
 	height: 30px;
 	padding-top: 3px;
-	margin-left:auto;
+	margin-left: auto;
 	margin-right: 50px;
 }
 
@@ -413,7 +430,7 @@ ul {
 /* 댓글 */
 #commentSection {
 	border: 1px solid #ccc;
-	height: 200px;
+	height: 180px;
 	overflow: hidden;
 	border-radius: 5px;
 	/* 타원 형태 만들기 */
@@ -567,7 +584,7 @@ button {
 	overflow: hidden;
 	width: 500px;
 	/* 원하는 너비 */
-	height: 300px;
+	height: 150px;
 	overflow-y: auto;
 	/* 세로 스크롤 활성화 */
 	border: 1px solid #ccc;
@@ -579,6 +596,8 @@ button {
 	margin: 10px auto;
 	/* 가운데 정렬 */
 }
+
+
 
 .board_file::-webkit-scrollbar {
 	width: 8px;
@@ -597,7 +616,33 @@ button {
 	/* 둥글게 만들기 */
 }
 
+#newFileList {
+	overflow: hidden;
+	width: 500px;
+	height: 150px;
+	overflow-y: auto;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 5px;
+	list-style: none;
+	margin: 10px auto;
+}
+#newFileList::-webkit-scrollbar {
+	width: 8px;
+	/* 스크롤바 너비 */
+}
 
+#newFileList::-webkit-scrollbar-track {
+	background: rgba(241, 241, 241, 0);
+	/* 완전 투명 */
+}
+
+#newFileList::-webkit-scrollbar-thumb {
+	background: #579956;
+	/* 스크롤바 색상 */
+	border-radius: 4px;
+	/* 둥글게 만들기 */
+}
 
 #fileList::-webkit-scrollbar {
 	width: 8px;

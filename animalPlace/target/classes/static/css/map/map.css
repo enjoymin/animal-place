@@ -150,13 +150,7 @@ button {
 	border: none;
 	border-radius: 10px;
 	margin: 0 auto;
-	/*position: relative;
-	display: flex;
-	width: 90%;
-	height: 480px;
-	border: none;
-	border-radius: 10px;
-	margin: 0 auto;*/
+
 }
 
 .map_wrap #map {
