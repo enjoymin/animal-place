@@ -33,7 +33,7 @@
 	<select id="getList">
 	    select *
 	    from adoption
-	    where 1=1
+	    where adoptionOk = '분양중'
 	    <include refid="cri"></include>
 	    order by adoptionnum desc limit #{startRow}, #{pageSize}
 	</select>
@@ -45,5 +45,8 @@
 	</select>
 	<select id="getAdoptionByAdoptinnum">
 		select * from adoption where adoptionnum = #{adoptionnum}
+	</select>
+	<select id="getLastNum">
+		select max(adoptionnum) from adoption where userid=#{userid}
 	</select>
 </mapper>

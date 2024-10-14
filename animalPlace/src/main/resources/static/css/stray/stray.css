@@ -39,11 +39,6 @@ header {
 	background-size: 400px;	
 	min-width: 1425px;
 }
-footer {
-    height: 100px;
-    background-color: #FF9B9B;
-	clear: both;
-}
 #wrap{
     width: 1400px;
 	height: 1300px;

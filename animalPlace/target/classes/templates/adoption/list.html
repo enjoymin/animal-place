@@ -316,7 +316,10 @@
 					</div>
 					<!-- 태그에 th:each="변수명:${반복자}" 속성을 달아 놓으면 반복자에서 꺼내오면서 반복되는 횟수만큼 태그를 생성한다. -->
 					<div class="row" th:if="${list != null and list.size() > 0}" th:each="adoption:${list}">
-						<div>사진예정</div>
+						<div>
+						<img class="thumbnail"
+						th:src="${'/adfile/onethumbnail?adoptionnum='+adoption.adoptionnum}">
+						</div>
 						<div>[[${adoption.breed}]]</div>
 						<div>[[${adoption.type}]]</div>
 						<div>
@@ -353,11 +356,13 @@
 							<a class="stray btn" href="/stray/list">유기동물 게시판 이동</a>
 						</td>
 					</tr>
-					<tr>
-						<td>
-							<a class="write btn" href="/adoption/write">글쓰기</a>
-						</td>
-					</tr>
+					<th:block th:if="${session.loginUser != null}">
+						<tr>
+							<td>				
+								<a class="write btn" href="/adoption/write">글쓰기</a>
+							</td>
+						</tr>
+					</th:block>
 				</tbody>
 			</table>
         </div>

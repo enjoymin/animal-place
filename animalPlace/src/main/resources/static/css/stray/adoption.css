@@ -39,11 +39,6 @@ header {
 	background-size: 400px;	
 	min-width: 1425px;
 }
-footer {
-    height: 100px;
-    background-color: #FF9B9B;
-	clear: both;
-}
 a {
     text-decoration: none;
     color: black;
@@ -187,6 +182,15 @@ select:hover {
 	border-radius:5px;
 	transition: transform linear 0.05s;
 }
+.list.table .tbody .row img.thumbnail {
+    height: 88px;
+    width: 105px;
+    display: block;
+    clear: both;
+    object-fit: fill;
+    transition: all 0.1s linear;
+    padding: 10px;
+}
 
 .btn_table{
 	position: absolute;
@@ -257,17 +261,6 @@ table{
 	width:fit-content; height:fit-content;
 }
 
-img.thumbnail{
-	display: block;
-	width:200px;
-	clear:both;
-	transition: all 0.1s linear;
-	padding: 10px;
-}
-img.thumbnail:hover{
-	transform: scale(1.4);
-	box-shadow: 1px 1px 4px black;
-}
 #main .btn_area, .modify .btn_area{
 	justify-content: flex-end;	
 }
@@ -347,6 +340,9 @@ img.thumbnail:hover{
 .adoption_area tr{
 	height: 30px;
 }
+.adoption_area tr:nth-child(n+7){
+	height: 200px;
+}
 .adoption_area #contents{
 	padding: 5px;
 	height: 300px;
@@ -356,6 +352,19 @@ img.thumbnail:hover{
 	width: 150px;
 }
 
+img.thumbnail {
+    height: 200px;
+    width: 300px;
+    display: block;
+    clear: both;
+    object-fit: fill;
+    transition: all 0.1s linear;
+    padding: 10px;
+}
+img.thumbnail:hover{
+	transform: scale(1.4);
+	box-shadow: 1px 1px 4px black;
+}
 
 
 
