@@ -71,7 +71,11 @@ let pwflag = 0;
 if (loginUser != "" && loginUser != null) {
 	idflag = 1;
 }
-
+$("#useremail").keydown(function(e) {
+	if (e.keyCode === 9) {
+		findAddr();
+	}
+});
 function checkId() {
 	const userid = $("#userid").val();
 	const reg = /^(?!.*[가-힣])(?=.*?[a-zA-Z]).{5,}$/
@@ -81,7 +85,7 @@ function checkId() {
 		idflag = 0;
 		return;
 	}
-	if (!reg.test(userid)){
+	if (!reg.test(userid)) {
 		console.log(userid);
 		$("#idwarning2").html("");
 		idwrn.html("아이디 조건에 부합하지 않습니다!")
