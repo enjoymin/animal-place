@@ -14,18 +14,18 @@
 
 /* 기타 스타일링 */
 
-h2 {
+#wrap h2 {
 	font-family: 'TTLaundryGothicB';
 }
 
-a {
+#wrap a {
 	font-family: 'TTLaundryGothicB';
 	display: flex;
 	text-decoration: none;
 	color: white;
 }
 
-p {
+#wrap p {
 	font-family: 'TTLaundryGothicB';
 }
 
