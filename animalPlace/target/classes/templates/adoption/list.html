@@ -14,7 +14,9 @@
 	
 	<div id="main">
         <div id="wrap">
-            <h1>무료 동물 분양 게시판</h1>
+			<div class="h1">
+	            <span>무료 동물 분양 게시판</span>			
+			</div>
             <div class="select_box">
 				<form name="searchForm" id="searchForm" action="/adoption/list">
 					<div class="fbox">				
@@ -629,6 +631,15 @@
 		let adoptionnum = e.target.getAttribute("href");
 		let listLink = /*[[${pageMaker.adCri.listLink}]]*/'';
 		location.href = '/adoption/get'+listLink+"&adoptionnum="+adoptionnum;
+	})
+	$(".changePage").click(function(e){
+		//e(이벤트)의 기본 작동 막기
+		e.preventDefault();
+		let pageNum = e.target.getAttribute("href");
+		console.log(pageNum);
+		const form = document.searchForm;
+		form.pageNum.value = pageNum;
+		form.submit();
 	})
 </script>
 </html>

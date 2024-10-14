@@ -72,6 +72,7 @@ a {
 
 .page_title img{
 	width: 100px;
+	filter: invert(56%) sepia(9%) saturate(2045%) hue-rotate(75deg) brightness(91%) contrast(88%);
 }
 
 .top_btn_area {

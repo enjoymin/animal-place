@@ -159,3 +159,119 @@ strong {
 .pboard-list p {
 	text-align: center;
 }
+
+/* mbaord 파트 */
+
+@font-face {
+    font-family: 'TTLaundryGothicB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'HakgyoansimSantteutdotumL';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+.mboard_wrap {
+    font-family: 'TTLaundryGothicB';
+    color: #FFF;
+    background-color: #579956;
+    padding: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.mboard_title{
+    font-size: 50px;
+}
+
+.mboard_info{
+    margin-top: 50px;
+}
+
+.mboard_info p{
+    font-family: 'HakgyoansimSantteutdotumL';
+    font-weight: 600;
+}
+
+.mboard_info p:last-child{
+    margin-top: 10px;
+}
+
+.go_mboard{
+    margin-top: 30px;
+}
+
+.go_mboard a{
+    color: #FFF;
+    text-decoration: none;
+    border: 1px solid #FFF;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.go_mboard a:hover{
+    background-color: #f9d686;
+    border: none;
+    transition: .5s;
+}
+
+.mboard_img{
+    display: flex;
+    align-items: center;
+}
+
+.mboard_img img:first-child{
+    width: auto;
+    height: 150px;
+    margin-right: 50px;
+}
+
+.mboard_img img:last-child{
+    width: auto;
+    height: 100px;
+    margin-left: 50px;
+}
+
+.mboard_img p{
+    font-size: 40px;
+}
+
+.mboard_list{
+    margin-top: 50px;
+}
+
+.lists{
+    display: flex;
+    border-bottom: 1px solid #FFF;
+}
+
+.lists:hover{
+    background-color: #f9d686;
+    border-bottom: none;
+    transition: .8s;
+}
+
+.lists div{
+    padding: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lists div:nth-child(1){
+    width: 300px;
+}
+
+.lists div:nth-child(2){
+    width: 150px;
+}
+
+.lists div:nth-child(3){
+    width: 200px;
+}
