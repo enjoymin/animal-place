@@ -83,7 +83,6 @@
 	<button id="scrollToTop">Top</button>
 
 	<div id="viewPostModal" class="modal" style="display:none;">
-		<span class="close">&times;</span>
 		<div class="modal_content"></div>
 	</div>
 
@@ -93,7 +92,7 @@
 	</div>
 
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
-	
+
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script th:inline="javascript">
@@ -279,7 +278,8 @@
 
 	$(document).on('click', '.viewPost', function (e) {
 		e.preventDefault(); // 기본 링크 동작 방지
-		$('header').hide(); // 헤더 숨기기
+		$('.hide').hide(); // 헤더 숨기기
+		$('header').css('background-color', 'transparent'); // 배경 색을 투명으로 설정
 		const boardnum = $(this).data('boardnum'); // boardnum 가져오기
 
 		// AJAX 요청을 통해 게시글 내용을 가져옴
@@ -304,7 +304,7 @@
 	$('.close').on('click', function () {
 		$('#viewPostModal').hide(); // 모달 숨기기
 		$('#modal').hide(); // 모달 숨기기
-		$('header').show(); // 헤더 보이기
+		$('header').show();
 		$('body').removeClass('no-scroll'); // 스크롤 활성화
 
 		// 모달 닫힐 때 Top 버튼 보이기
@@ -317,6 +317,7 @@
 		$('header').hide(); // 헤더 숨기기
 		if (loginUser == null || loginUser.length === 0) {
 			alert("로그인 해야 게시글을 작성할 수 있습니다.");
+			$('header').show();
 			return;
 		}
 		$('#modal').css('display', 'flex'); // 모달 표시
@@ -380,8 +381,8 @@
 		if (event.target === document.getElementById('viewPostModal')) {
 			$('#viewPostModal').hide();
 			$('body').removeClass('no-scroll'); // 스크롤 활성화
-			$('header').show(); // 헤더 보이기
-			// 모달 닫힐 때 Top 버튼 보이기
+			$('.hide').show(); // 헤더 숨기기
+			$('header').css('background-color', 'white');
 			$('#scrollToTop').fadeIn();
 		}
 	});

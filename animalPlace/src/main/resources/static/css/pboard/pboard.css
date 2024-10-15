@@ -11,7 +11,6 @@
 }
 
 
-
 #wrap h2 {
 	font-family: 'TTLaundryGothicB';
 }
@@ -126,6 +125,7 @@
 
 .board-likebtn {
 	text-decoration: none;
+	display: flex;
 }
 
 /* 모달 */
@@ -324,7 +324,7 @@ ul {
 	/* 전체 높이 */
 	background-color: rgba(0, 0, 0, 0.5);
 	/* 검은색 배경, 투명도 50% */
-	z-index: 1000;
+	z-index: 1500;
 	/* 다른 요소들 위에 나타나도록 */
 	display: none;
 	/* 기본적으로 숨김 */
