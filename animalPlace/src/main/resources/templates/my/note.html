@@ -32,11 +32,12 @@
 			</tbody>
 		</table>
 	</div>
+	<input type="hidden" th:value="${pageN}" id="pageN">
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/KHE/my.js"></script>
 <script th:inline="javascript">
-	let nowpage = 1;
+	let nowpage = $("#pageN").val();
 	window.onload = function () {
 		showNote();
 	};
