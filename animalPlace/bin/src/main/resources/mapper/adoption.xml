@@ -1,0 +1,52 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.adoption.AdoptionMapper">
+	<sql id="cri">
+		<if test="breed != null and breed != ''">
+        	AND breed = #{breed}
+	    </if>
+	    <if test="type != null and type != ''">
+	        AND type = #{type}
+	    </if>
+	    <if test="region != null and region != ''">
+	        AND region = #{region}
+	    </if>
+	    <if test="gender != null and gender != ''">
+	        AND gender = #{gender}
+	    </if>
+	</sql>
+	<insert id="insertAdoption">
+		insert into adoption(title,contents,breed,type,region,gender,age,cost,adoptionOk,userid)
+		values(#{title},#{contents},#{breed},#{type},#{region},#{gender},#{age},#{cost},#{adoptionOk},#{userid})
+	</insert>
+	<update id="updateAdoption">
+		update adoption
+		set title = #{title}, contents = #{contents}, breed = #{breed},
+		type = #{type}, region = #{region}, gender = #{gender}, age = #{age}, 
+		cost = #{cost}, adoptionOk = #{adoptionOk}
+		where adoptionnum = #{adoptionnum}
+	</update>
+	<delete id="deleteAdoption">
+		delete from adoption where adoptionnum=#{adoptionnum}
+	</delete>
+	<select id="getList">
+	    select *
+	    from adoption
+	    where adoptionOk = '분양중'
+	    <include refid="cri"></include>
+	    order by adoptionnum desc limit #{startRow}, #{pageSize}
+	</select>
+	<select id="getTotal">
+		select count(*)
+		from adoption
+		where 1=1
+		<include refid="cri"></include>
+	</select>
+	<select id="getAdoptionByAdoptinnum">
+		select * from adoption where adoptionnum = #{adoptionnum}
+	</select>
+	<select id="getLastNum">
+		select max(adoptionnum) from adoption where userid=#{userid}
+	</select>
+</mapper>

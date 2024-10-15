@@ -424,7 +424,7 @@ strong {
 }
 
 .disease-a button {
-	border: 1px solid #f9d686;
+	border: 1px solid black;
 	background-color: white;
 	color: white !important;
 	width: 80px;
@@ -438,6 +438,7 @@ strong {
 
 .disease button:hover {
 	background-color: #f9d686;
+	border: 1px solid #f9d686;
 
 }
 
