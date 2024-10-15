@@ -487,17 +487,16 @@ strong {
 }
 
 #straytxt h3, #straytxt span, #straytxt img{
-    text-align: center;	
+
 }
 #straytxt h3 {
-    font-size: 24px;
+    
 }
 #straytxt span{
 	
 }
 #straytxt img {
-	width: 280px;
-    height: 130px;
+
 }
 
 
