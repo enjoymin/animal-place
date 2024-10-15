@@ -336,9 +336,11 @@ strong {
 
 /*---------map 부분-----------*/
 .map {
-    
+    background-color: #579956;
 	position: relative;
 	font-family: 'TTLaundryGothicB';
+    width: 100%;
+    height: 500px;
 }
 
 .map>h3 {
@@ -352,6 +354,7 @@ strong {
     width: 100%;
     height: 100%;
    
+
 }
 #mapimg2>a>img{
     width: 100%;
@@ -363,73 +366,92 @@ strong {
 .map>div {
 	width: 100%;
 	height: 500px;
-}
 
-.map #mapimg {
+}
+.map #map_img{
     width: 33%;
-	float: left;
+    float: left;
 	position: relative;
-    clip-path: polygon(0 0, 70% 0, 100% 100%, 0% 100%);
-    z-index: 3;
-	
 
 }
-.map #mapimg2 {
-    width: 33%;
+.map #mapimg {
+    width: 170px;
 	float: left;
 	position: absolute;
-    margin-left: 26%;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
-    opacity: 0.4;
-    z-index: 3;
+    margin-left: 360px;
+    margin-top: 260px;
+
+}
+
+.map #mapimg2 {
+    width: 300px;
+	float: left;
+	position: absolute;
+    margin-left: 100px;
+    margin-top: 100px;
+
+}
+.map #mapimg3 {
+    width: 130px;
+	float: left;
+	position: absolute;
+    margin-top: 40px;
+    margin-left: 50px;
 
 }
 
 .map #inmap {
     width: 45%;
-	text-align: right;
+    height: 500px;
+	text-align: left;
 	position: absolute;
 	float: left;
-	padding-top: 20px;
 	margin-left: 50%;
-    z-index: 2;
+
 }
 
 #inmap>h3 {
 	font-size: 30px;
+    margin-top: 60px;
+    margin-left: 30px;
 	margin-bottom: 50px;
+    color: white;
+
+
 }
 
 #inmap>span {
+    font-size: 20px;
 	margin: 30px;
 	line-height: 2;
+    margin-left: 150px;
+    color: white;
+
 }
 
 #inmap>a {
 	margin: 30px 30px;
-	width: 180px;
+    width: 80px;
 	display: inline-block;
 	text-align: center;
     position: relative;
-    z-index: 3;
-    font-weight: bold;
+    margin-left: 320px;
 }
 
-#inmap>a>img {
-	width: 50px;
-	position: absolute;
-	margin-left: -40px;
-	margin-top: -10px;
-    z-index: 3;
+
+#go_map:hover {
+    background-color: #f9d686;
+    border: none;
+    transition: .5s;
 }
-#inmap #backimg{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    opacity: 0.4;
-    position: absolute;
-    margin-left: -140px;
-    z-index: 0;
+
+#go_map{
+    color: #FFF !important;
+    text-decoration: none;
+    border: 1px solid #FFF;
+    border-radius: 30px;
+    padding: 10px;
+
 }
 
 /* -------메인 질병 파트--------- */
