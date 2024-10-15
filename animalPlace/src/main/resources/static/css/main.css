@@ -50,7 +50,7 @@ a:visited{
 	position: relative;
 	background-image: url(/images/mainback.png);
 }
-
+/*---------------------------------------------*/
 @keyframes reveal {
 	0% {
 		transform: translateY(-400%) rotate(0deg);
@@ -150,6 +150,12 @@ h1 span:nth-child(8) {
 	}
 }
 
+/*--------------------------------------------------------------*/
+/*추가*/
+.block{
+	display: none;
+}
+/**/
 .mainTitle {
 	display: inline-block;
 	animation: bendU 2s ease-in-out 3s forwards;
@@ -638,7 +644,7 @@ strong {
     overflow: hidden;
     justify-content: center;
     text-align: center;
-    line-height: 480px;
+    line-height: 600px;
 }
 .main-pic1{
     background-image: url(/images/메인사진1.jpg);
