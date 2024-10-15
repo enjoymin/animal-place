@@ -152,6 +152,7 @@ public class MyController {
 	@ResponseBody
 	public void writeNotesend(NoteDTO note) {
 		service.insertNote(note);
+		System.out.println("check");
 		String flag = "note";
 		aservice.insertAlarm(note.getReceiveuser(), note.getTitle(), "", flag);
 	}
@@ -161,5 +162,13 @@ public class MyController {
 		String user =  (String) session.getAttribute("loginUser");
 		List<NoteDTO> list = service.getNote(user, cri);
 		model.addAttribute("note", list);
+	}
+	@GetMapping("noteList")
+	@ResponseBody
+	public List<NoteDTO> noteList(HttpServletRequest req, Model model, Criteria cri) {
+		HttpSession session = req.getSession();
+		String user =  (String) session.getAttribute("loginUser");
+		List<NoteDTO> list = service.getNote(user, cri);
+		return list;
 	}
 }

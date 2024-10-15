@@ -49,6 +49,10 @@
 	});
 	
 	function sendNote() {
+		if($("#note-title").val() == null || $("#note-title").val() == ''){
+			alert("제목을 입력해 주세요!")
+			return;
+		}
 		if($("#note").val() == null || $("#note").val() == ''){
 			alert("내용을 입력해 주세요!")
 			return;
