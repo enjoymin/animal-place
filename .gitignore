@@ -24,6 +24,9 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+# Ignore application.properties
+src/main/resources/application.properties
+
 # 추가할 경로
 /src/main/resources/static/images/pimages/
 
