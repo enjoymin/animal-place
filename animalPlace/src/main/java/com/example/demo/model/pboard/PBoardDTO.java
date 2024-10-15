@@ -10,6 +10,7 @@ public class PBoardDTO {
 	private long boardlikecnt;
 	private String regdate;
 	private String updatedate;
+	private boolean boardflag;
 	private String userid;
 	private String file;
 }
