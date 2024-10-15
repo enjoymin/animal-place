@@ -154,6 +154,16 @@ h1 span:nth-child(8) {
 /*추가*/
 .block{
 	display: none;
+	width: 400px;
+	color: white;
+}
+.block-title  {
+	font-size: 50px;
+}
+.block-serve{
+	font-family: 'HakgyoansimSantteutdotumL';
+		font-weight: 600;
+		
 }
 /**/
 .mainTitle {
