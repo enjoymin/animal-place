@@ -74,6 +74,7 @@ public class PReplyController {
 			PReplyDTO replydto = prservice.getFirstReply(boardnum, replyuserid);
 			
 			//알람 -한얼님
+
 			if (replydto != null) {
 				registReply.put("reply", replydto);
 				if(!replyuserid.equals(ctuserid)) {

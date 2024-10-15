@@ -18,10 +18,23 @@
 		order by boardnum desc limit #{cri.startrow}, #{cri.amount}
 	</select>
 	<insert id="insertNote">
+<<<<<<< HEAD
+		insert into note(receiveuser, senduser, title, contents) values(#{receiveuser},#{senduser},#{title},#{contents})
+=======
 		insert into note(receiveuser, senduser, contents) values(#{receiveuser},#{senduser},#{contents})
+>>>>>>> 65912f6867db07df377b6915552cefbff1c00725
 	</insert>
 	<select id="getNote">
 		select * from note where receiveuser=#{receiveuser}
 		order by noteNum desc limit #{cri.startrow}, #{cri.amount}
 	</select>
+<<<<<<< HEAD
+	<select id="getNtotal">
+		select count(*) from note where receiveuser = #{user}
+	</select>
+	<select id="getNoteCT">
+		select * from note where noteNum = #{noteNum}
+	</select>
+=======
+>>>>>>> 65912f6867db07df377b6915552cefbff1c00725
 </mapper>
