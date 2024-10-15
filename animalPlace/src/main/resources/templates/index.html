@@ -30,9 +30,9 @@
 					<span>e</span>
 				</h1>
 				<div class="block">
-				       <h1>애니멀 플레이스</h1>
-				       <p>우리 애니멀 플레이스는 어쩌구 저쩌구</p>
-				   </div>
+					<h1>애니멀 플레이스</h1>
+					<p>우리 애니멀 플레이스는 어쩌구 저쩌구</p>
+				</div>
 			</div>
 			<div class="menu-up">
 
@@ -155,36 +155,46 @@
 			</div>
 			<div class="disease-main-right"><img src="/images/목욕하는 강아지.jpg" alt=""></div>
 		</div>
-		<div class="main stray">
-			<div id="strayimg">
-				<a href="/stray/list"><img src="/images/adoption/stray.png"></a>
+
+
+		<div class="main_stray_adoption">
+			<div class="stray">
+				<div class="stray_txt">
+					유기동물 게시판
+				</div>
+
+				<div class="stray_info">
+					<p>상처받은 아이들에게 따뜻한 위로가 되어줄 가족을 찾습니다.</P>
+					<p>서로의 소중한 존재가 되어, 함께 행복한 인생을 만들어 나가길 바랍니다.</P>
+				</div>
+
+				<div class="go_stray"><a href="/stray/list">바로가기</a></div>
+
+				<div class="stray_img"><img src="/images/목줄 강아지.png"></div>
 			</div>
 
-			<div id="straytxt">
-				<a href="/stray/list" class="txt">
-					<h3>버림받고 유기된 동물들</h3>
-					<span>상처받은 아이들의 보금자리가 되어주세요</span>
-					<img src="/images/adoption/유기.png">
-				</a>
+			<div class="adoption">
+				<div class="adoption_img"><img src="/images/쉬는 강아지.png"></div>
+
+				<div class="adoption_txt">
+					분양 게시판
+				</div>
+
+				<div class="adoption_info">
+					<p>사랑스러운 반려동물과 함께 인생을 더욱 다채롭게 만들어보세요!</p>
+					<p>여러분에게 둘도 없는 친구가 되어줄 소중한 친구들이 기다리고 있습니다.</p>
+				</div>
+
+				<div class="go_adoption"><a href="/adoption/list">바로가기</a></div>
 			</div>
 		</div>
-		<div class="main adoption">
-			<div id="adoptionimg">
-				<a href="/adoption/list"><img src="/images/adoption/adoption.png"></a>
-			</div>
-			<div id="adoptiontxt">
-				<a href="/adoption/list" class="txt">
-					<h3>분양합니다</h3>
-					<span>보금자리가 되어줄<br>새로운 가족을 찾습니다</span>
-					<img src="/images/adoption/분양.png">
-				</a>
-			</div>
-		</div>
+
+
 		<div class="main map">
 			<div id="map_img">
 				<img src="/images/map/bgmapimg6.png" alt="" id="mapimg">
 				<img src="/images/map/bgmapimg7.png" alt="" id="mapimg2">
-				<img src="/images/map/bgmapimg8.png" alt="" id="mapimg3">
+				
 			</div>
 			<div id="inmap">
 				<h3>주변 동물병원을 함께 찾아보아요</h3>
@@ -196,40 +206,40 @@
 				<a href="../map/map" id="go_map">검색하기</a>
 			</div>
 		</div>
-		</div>
+	</div>
 	</div>
 
-	
+
 
 	</div>
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
-	    const img = document.querySelector('.mainTopImg > img');
-	    const h1 = document.querySelector('.mainTopImg > h1');
-	    const block = document.querySelector('.block');
-	    const spans = document.querySelectorAll('h1 span');
+		const img = document.querySelector('.mainTopImg > img');
+		const h1 = document.querySelector('.mainTopImg > h1');
+		const block = document.querySelector('.block');
+		const spans = document.querySelectorAll('h1 span');
 
-	    img.addEventListener('animationend', function () {
-	        img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
-	        block.style.display = 'block'; // block 클래스를 제거하고 표시
-	    });
+		img.addEventListener('animationend', function () {
+			img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
+			block.style.display = 'block'; // block 클래스를 제거하고 표시
+		});
 
-	    setTimeout(() => {
-	        // 로고와 텍스트를 왼쪽으로 이동
-	        img.style.transition = 'transform 1s'; // 부드러운 이동을 위해 transition 추가
-	        h1.style.transition = 'transform 1s';
-	        img.style.transform = 'translateX(-390px)'; // 왼쪽으로 이동 (픽셀 값은 조정 가능)
-	        h1.style.transform = 'translateX(-250px)'; // 같은 양만큼 왼쪽으로 이동
+		setTimeout(() => {
+			// 로고와 텍스트를 왼쪽으로 이동
+			img.style.transition = 'transform 1s'; // 부드러운 이동을 위해 transition 추가
+			h1.style.transition = 'transform 1s';
+			img.style.transform = 'translateX(-390px)'; // 왼쪽으로 이동 (픽셀 값은 조정 가능)
+			h1.style.transform = 'translateX(-250px)'; // 같은 양만큼 왼쪽으로 이동
 
-	        // 5초 후에 바운스 효과 멈추기
-	        setTimeout(() => {
-	            spans.forEach(span => {
-	                span.style.animation = 'none'; // 애니메이션을 없애기
-	            });
-	        }, 4000); // 5초 후 실행
-	    }, 3000); // 3초 후 실행
+			// 5초 후에 바운스 효과 멈추기
+			setTimeout(() => {
+				spans.forEach(span => {
+					span.style.animation = 'none'; // 애니메이션을 없애기
+				});
+			}, 4000); // 5초 후 실행
+		}, 3000); // 3초 후 실행
 	});
 
 
