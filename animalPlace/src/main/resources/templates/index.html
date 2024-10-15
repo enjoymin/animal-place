@@ -46,76 +46,90 @@
 							</li>
 						</ul>
 					</div>
-					</div>
-				<div class="main mboard">
-						<div class="mboard_wrap">
-					
-							<div class="mboard_txt">
-								<p class="mboard_title">
-									모임 게시판
-								</p>
-					
-								<div class="mboard_info">
-									<p>
-										당신의 반려동물과 함께할 수 있는 특별한 순간을 만들어보세요!
-									</p>
-									<p>
-										다양한 반려인들과 함께 즐거운 모임에 참여하여 소중한 인연을 맺을 수 있습니다!
-									</p>
-								</div>
-					
-								<div class="go_mboard">
-									<a href="/mboard/m_board">바로가기</a>
-								</div>
-							</div>
-					
-							<div class="mboard_con">
-					
-								<div class="mboard_img">
-									<img src="/images/mimages/노는 강아지.png" alt="">
-									<p>Recent Posts</p>
-									<img src="/images/mimages/공.png" alt="">
-								</div>
-					
-								<div class="mboard_list">
-					
-									<div th:if="${mlist == null or flist.size() == 0}" class="no_list">
-										<div>등록된 게시글이 없습니다.</div>
-									</div>
-					
-									<div class="lists" th:if="${mlist != null and mlist.size() > 0}" th:each="m_board:${mlist}">
-										<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.boardtitle}]]</a>
-										<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.userid}]]</a>
-										<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.setdate}]]</a>
-									</div>
-								</div>
-					
-							</div>
-					
-						</div>
 				</div>
-					<div class="main disease">
-						질병정보 소개
+				<div class="main mboard">
+					<div class="mboard_wrap">
+
+						<div class="mboard_txt">
+							<p class="mboard_title">
+								모임 게시판
+							</p>
+
+							<div class="mboard_info">
+								<p>
+									당신의 반려동물과 함께할 수 있는 특별한 순간을 만들어보세요!
+								</p>
+								<p>
+									다양한 반려인들과 함께 즐거운 모임에 참여하여 소중한 인연을 맺을 수 있습니다!
+								</p>
+							</div>
+
+							<div class="go_mboard">
+								<a href="/mboard/m_board">바로가기</a>
+							</div>
+						</div>
+
+						<div class="mboard_con">
+
+							<div class="mboard_img">
+								<img src="/images/mimages/노는 강아지.png" alt="">
+								<p>Recent Posts</p>
+								<img src="/images/mimages/공.webp" alt="">
+							</div>
+
+							<div class="mboard_list">
+
+								<div th:if="${mlist == null or flist.size() == 0}" class="no_list">
+									<div>등록된 게시글이 없습니다.</div>
+								</div>
+
+								<div class="lists" th:if="${mlist != null and mlist.size() > 0}"
+									th:each="m_board:${mlist}">
+									<a
+										th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.boardtitle}]]</a>
+									<a
+										th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.userid}]]</a>
+									<a
+										th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.setdate}]]</a>
+								</div>
+							</div>
+
+						</div>
+
 					</div>
+				</div>
+				<div class="main disease">
+					<div class="disease-main-left">
+						<div class="disease-title">
+							<p>반려동물 질병 확인</p>
+						</div>
+						<div class="disease-left">
+							<p>당신의 반려동물의 건강상태를 확인해보세요!</p>
+							<p>동물들의 신체부위에 따른 증상과 질병 등 을 확인할 수 있습니다!</p>
+						</div>
+						<div class="disease-a"><button><a href="./disease.html">바로가기</a></button></div>
+					</div>
+					<div class="disease-main-right"><img src="/images/목욕하는 강아지.jpg" alt=""></div>
+				</div>
 				<div class="main adoption">
 					분양/유기 소개
 				</div>
 				<div class="main map">
-				    <div id="mapimg">
-				        <a href="../map/map"><img src="/images/mainmap1.png" alt="" width="300px"></a>
-				    </div>
-				    <div id="inmap">
-				        <h3>주변 동물병원을 검색해봐요</h3>
-				        <span>🌎 MAP검색을 통해</span><br>
-				        <span>주변 동물병원과 지역정보를</span><br>
-				        <span>확인할 수 있어요..🤩</span><br>
-				        <a href="../map/map"><img src="/images/mappage.png" alt="">지도검색Go!</a>
-				    </div>
+					<div id="mapimg">
+						<a href="../map/map"><img src="/images/mainmap1.png" alt="" width="300px"></a>
+					</div>
+					<div id="inmap">
+						<h3>주변 동물병원을 검색해봐요</h3>
+						<span>🌎 MAP검색을 통해</span><br>
+						<span>주변 동물병원과 지역정보를</span><br>
+						<span>확인할 수 있어요..🤩</span><br>
+						<a href="../map/map"><img src="/images/mappage.png" alt="">지도검색Go!</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<th:block th:replace="~{layout/footer::footer}"></th:block>	
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
