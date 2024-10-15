@@ -17,7 +17,11 @@
 					<a href="../pboard/list">더보기</a>
 				</div>
 				<div th:if="${flist == null or flist.size() == 0}" class="no_list">
-					<div>등록된 게시글이 없습니다.</div>
+					<img src="/images/nolike.webp">
+					<div>
+						<p>좋아요된 게시물이 없어요...</p>
+						<p>더보기를 눌러서 마음에 드는 게시글에 좋아요를 눌러 주세요</p>
+					</div>
 				</div>
 				<div class="pboard-list">
 					<div th:if="${flist != null or flist.size() != 0}">
