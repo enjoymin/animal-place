@@ -59,7 +59,7 @@
 			</div>
 			<div id="caption"></div>
 		</div>
-		<div id="popup" style="display: none;">
+		<div id="popup-user" style="display: none;">
 			<table>
 				<tr>
 					<td><a id="userprofile">회원정보</a></td>
@@ -229,7 +229,6 @@
 				if ($("#alarmpage").css("display") == 'none') {
 					$("#alarmpage").fadeIn(200);
 					$("#alarmpagetri").fadeIn(200);
-					console.log("check1");
 					alarm();
 				}
 				else {
@@ -295,23 +294,27 @@
 			usermenu(e);
 		});
 		function usermenu(e) {
-			var x = e.pageX;
-			var y = e.pageY;
+			console.log("check");
+			var lx = e.pageX;
+			var ly = e.pageY;
 			// 팝업 위치 설정
-			$('#popup').css({
-				top: y - 5 + 'px',
-				left: x - 5 + 'px'
+			var scrollTop = $(window).scrollTop();
+			var scrollLeft = $(window).scrollLeft();
+			
+			$('#popup-user').css({
+				top: (ly - scrollTop - 5) + 'px',
+				left: (lx -scrollLeft - 5) + 'px'
 			}).fadeIn(200);
 
 		}
-		$('#popup').click(function (event) {
+		$('#popup-user').click(function (event) {
 			event.stopPropagation(); // 이벤트 전파 방지
 			$(this).fadeOut(200);
 
 		});
 		$(document).on('click', function (event) {
-			if (!$(event.target).closest('#popup').length && !$(event.target).is('.usermenu')) {
-				$('#popup').fadeOut(200);
+			if (!$(event.target).closest('#popup-user').length && !$(event.target).is('.usermenu')) {
+				$('#popup-user').fadeOut(200);
 			}
 		});
 		$(document).on('click', function (event) {
@@ -334,12 +337,12 @@
 		});
 		$("#notepage").on('click', function (e) {
 			e.preventDefault();
-			window.open('/my/note', '팝업', 'width=600,height=580,top=40%,left=40%');
+			window.open('/my/note?page=1', '팝업', 'width=600,height=580,top=40%,left=40%');
 		});
 		function notePage() {
 			$("#alarmpage").fadeOut(200);
 			$("#alarmpagetri").fadeOut(200);
-			window.open('/my/note', '팝업', 'width=600,height=580,top=40%,left=40%');
+			window.open('/my/note?page=1', '팝업', 'width=600,height=580,top=40%,left=40%');
 		}
 	</script>
 </th:block>

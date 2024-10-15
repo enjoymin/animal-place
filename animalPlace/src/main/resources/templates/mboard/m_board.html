@@ -78,7 +78,7 @@
 											<!-- 모임 내용 -->
 											<div class="mo_list_contents">
 												<div class="mo_list_writer">
-													<p>[[${m_board.userid}]]</p>
+													<p class="usermenu">[[${m_board.userid}]]</p>
 												</div>
 												<a class="mo_list_title" th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">
 													[[${m_board.boardtitle}]]
@@ -169,7 +169,7 @@
 								<div>[[${m_board.boardnum}]]</div>
 								<div>[[${m_board.readcount}]]</div>
 								<div>[[${m_board.boardtitle}]]</div>
-								<div>[[${m_board.userid}]]</div>
+								<div class="usermenu">[[${m_board.userid}]]</div>
 								<div class="plus_btn">
 									<div>[[${m_board.boarddatetime}]]</div>
 									<div class="plus_info">+</div>
@@ -191,7 +191,7 @@
 										<div class="profile_img_box">
 											<img src="/images/mimages/test강아지.png" alt="" profile_img>
 										</div>
-										<div class="userid">[[${m_board.userid}]]</div>
+										<div class="userid usermenu">[[${m_board.userid}]]</div>
 									</div>
 
 									<div class="list_date">
