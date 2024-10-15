@@ -6,19 +6,19 @@
 	<link href="/css/KHE/style.css" rel="stylesheet">
 </head>
 
-<body>
-	<div class="notecss">
+<body style="background-color:#f4f4f4">
+	<div class="notecss notecss2">
 		<table>
 			<tr>
-				<th>받는 사람</th>
+				<th>받은 사람</th>
 				<td>
-					<input type="text" name="receiveuser" th:value="${note.receiveuser}" readonly>
+					<input type="text" name="receiveuser" th:value="${note.receiveuser}" readonly style="color:#f9d686;">
 				</td>
 			</tr>
 			<tr>
 				<th>보낸 사람</th>
 				<td>
-					<input type="text" name="senduser" th:value="${note.senduser}" readonly>
+					<input type="text" name="senduser" th:value="${note.senduser}" readonly style="color:rgba(87, 153, 86, 1);">
 				</td>
 			</tr>
 			<tr>

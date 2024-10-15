@@ -352,25 +352,62 @@ input[type=button]:hover {
 .nowPage {
 	color: #f9d686;
 }
-.newcheck{
+
+.newcheck {
 	color: red;
 }
-#profileid{
-	color:rgba(87, 153, 86, 1);
+
+#profileid {
+	color: rgba(87, 153, 86, 1);
 }
-.usermenu{
-	color:rgba(87, 153, 86, 1);
+
+.usermenu {
+	color: rgba(87, 153, 86, 1);
 }
+
 .notewrap table {
 	margin: 0 auto;
 }
-.notecss{
+
+.notecss {
+	
+}
+
+.notecss2 {
 	display: flex;
+	height: 550px;
 	align-items: center;
 	justify-content: center;
 }
-.notecss table{
+
+.notecss table {
 	display: flex;
 	justify-content: center;
 	text-align: center;
+	border-collapse: separate;
+		/* 간격 적용을 위해 border-collapse를 separate로 설정 */
+		border-spacing: 0px 10px;
+}
+
+.notecss input {
+	border: none;
+	background-color: #f4f4f4;
+}
+
+.notecss1 table tr:nth-child(3) input {
+	border: 1px solid black;
+	border-radius: 3px;
+	background-color: white;
+}
+.notecss input[type=button]{
+	background-color: rgba(87, 153, 86, 0.9);
+}
+.notecss input[type=button]:hover{
+	background-color: rgba(87, 153, 86, 1);
+}
+.notecss2 textarea{
+	border: none;
+	padding: 5px;
+	border-radius: 10px;
+	background-color: #f4f4f4;	
 }
