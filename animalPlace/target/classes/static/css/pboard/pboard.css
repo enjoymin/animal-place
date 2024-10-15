@@ -10,10 +10,6 @@
 	border-radius: 5px;
 }
 
-/* 기타 스타일링 */
-header a {
-	text-decoration: none;
-}
 
 #wrap h2 {
 	font-family: 'TTLaundryGothicB';
@@ -36,6 +32,7 @@ header a {
 
 #modalContent a {
 	font-family: 'TTLaundryGothicB';
+	text-decoration: none;
 }
 
 #modalContent p {

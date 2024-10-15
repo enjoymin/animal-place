@@ -305,7 +305,6 @@ input {
 
 .prow .c_thumbnail {
 	width: 100%;
-
 	height: 200px;
 	max-height: 200px;
 	object-fit: cover;
@@ -352,4 +351,16 @@ input[type=button]:hover {
 
 .nowPage {
 	color: #f9d686;
+}
+.newcheck{
+	color: red;
+}
+#profileid{
+	color:rgba(87, 153, 86, 1);
+}
+.usermenu{
+	color:rgba(87, 153, 86, 1);
+}
+.notewrap table {
+	margin: 0 auto;
 }
