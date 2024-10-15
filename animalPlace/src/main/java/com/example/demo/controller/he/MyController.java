@@ -88,7 +88,6 @@ public class MyController {
 		HttpSession session = req.getSession();
 		String userid =  (String) session.getAttribute("loginUser");
 		List<PFileDTO> list = service.getPFile(cri, userid);
-		System.out.println(list);
 		return list;
 	}
 	@ResponseBody
@@ -109,7 +108,6 @@ public class MyController {
 		HttpSession session = req.getSession();
 		String userid =  (String) session.getAttribute("loginUser");
 		List<AlarmDTO> alarm =  aservice.getAlarm(userid);
-		System.out.println(alarm);
 		return alarm;
 	}
 	
@@ -152,13 +150,15 @@ public class MyController {
 	@PostMapping("writeNote")
 	@ResponseBody
 	public void writeNotesend(NoteDTO note) {
-		service.insertNote(note);
-		System.out.println("check");
+		long noteNum = service.insertNote(note);
 		String flag = "note";
-		aservice.insertAlarm(note.getReceiveuser(), note.getTitle(), "", flag);
+		aservice.insertAlarm(note.getReceiveuser(), note.getTitle(), "/my/getNote?noteNum="+noteNum, flag);
 	}
 	@GetMapping("note")
-	public void note() {}
+	public void note(int page, Model model) {
+		model.addAttribute("pageN", page);
+	}
+	
 	@GetMapping("noteList")
 	@ResponseBody
 	public Map<String, Object> noteList(HttpServletRequest req, Model model, Criteria cri) {
@@ -168,13 +168,21 @@ public class MyController {
 		Map<String, Object> response = new HashMap<>();
 		response.put("list", list);
 		response.put("pageMaker",new PageDTO(service.getNtotal(user), cri));
-		System.out.println(response);
 		return response;
 	}
 	@GetMapping("getNote")
 	public void getNote(HttpServletRequest req, Model model, long noteNum, int page) {
+		HttpSession session = req.getSession();
+		String user =  (String) session.getAttribute("loginUser");
 		NoteDTO note = service.getNoteCT(noteNum);
 		model.addAttribute("note", note);
 		model.addAttribute("pageN", page);
+		aservice.deleteAlarmByPath(user, "/my/getNote?noteNum="+noteNum);
+		service.updateNote(noteNum);
+	}
+	@GetMapping("deleteNote")
+	public String deleteNote(Model model, long noteNum, int page) {
+		service.delelteNote(noteNum);
+		return "redirect:/my/note?page="+page;
 	}
 }

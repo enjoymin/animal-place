@@ -1,0 +1,376 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'TTLaundryGothicB';
+}
+
+input:focus {
+	outline: none;
+}
+
+/* 메인 폰트 */
+@font-face {
+	font-family: 'TTLaundryGothicB';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+/* 서브 폰트 */
+@font-face {
+	font-family: 'NanumBarunpen';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 서브서브 폰트 */
+@font-face {
+	font-family: 'HakgyoansimSantteutdotumL';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
+	font-weight: 700;
+	font-style: oblique;
+}
+
+ul,
+ol,
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: black;
+}
+
+a:visited {
+	color: black;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
+img {
+	border: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+	font-size: inherit;
+}
+
+
+#wrap {
+	margin: 200px auto;
+	margin-top: 30px;
+	width: 1300px;
+}
+
+#wrap.all {
+	width: 1400px;
+	height: 1080px;
+	margin: 0 auto;
+	background-color: #ffeaea;
+	background-color: rgba(87, 153, 86, 1);
+	padding: 200px;
+}
+
+#wrap.login {
+	display: none;
+	width: 250px;
+	text-align: center;
+	margin: 200px auto;
+	animation: loginWrap 1.5s 1;
+	font-family: 'HakgyoansimSantteutdotumL';
+}
+
+#wrap.login+img {
+	display: block;
+	text-align: center;
+	margin: 200px auto;
+	position: relative;
+	animation: loginImage 1.5s 1;
+}
+
+body.login {
+	animation: loginBg 1.5s 1;
+}
+
+#joinform {
+	margin: 0 auto;
+	margin-top: 100px;
+	width: 500px;
+	transform: scale(1.15);
+}
+
+#joinform table {
+	width: 500px;
+	height: 500px;
+}
+
+#joinform tr {
+	margin-bottom: 10px;
+}
+
+#joinform th {
+	width: 220px;
+}
+
+#joinform td {
+	width: 220px;
+}
+
+#joinform table {
+	border-collapse: separate;
+	/* 간격 적용을 위해 border-collapse를 separate로 설정 */
+	border-spacing: 0px 5px;
+	/* 세로 간격을 설정 */
+	width: 100%;
+	/* 테이블의 너비를 100%로 설정 */
+	user-select: none;
+}
+
+.war {
+	font-family: 'HakgyoansimSantteutdotumL';
+}
+
+#joinform input::placeholder {
+	font-size: 11px;
+}
+
+.thumbnail {
+	margin: 0 50px 0 50px;
+	width: 400px;
+	height: auto;
+	max-height: 400px;
+	object-fit: cover;
+}
+
+.warning {
+	color: red;
+	font-size: 12px;
+}
+
+.warning2 {
+	color: rgb(49, 168, 108);
+	font-size: 12px;
+}
+
+.hdd {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+input {
+	padding: 5px;
+	height: 30px;
+	width: 220px;
+}
+
+#lgd,
+#lgp {
+	width: 150px;
+}
+
+.btn {
+	width: 130px;
+}
+
+@keyframes loginWrap {
+	from {
+		opacity: 0;
+		top: -50px;
+	}
+
+	30% {
+		opacity: 0;
+		top: -50px;
+	}
+
+	to {
+		opacity: 1;
+		top: 0;
+	}
+}
+
+@keyframes loginImage {
+	from {
+		opacity: 1;
+		top: 0;
+	}
+
+	30% {
+		opacity: 1;
+		top: 0;
+	}
+
+	to {
+		opacity: 0;
+		top: -50px;
+	}
+}
+
+@keyframes loginBg {
+	from {
+		background-color: #fff;
+	}
+
+	to {
+		background-color: rgb(245, 246, 247);
+	}
+}
+
+#contentstitle1 {
+	font-family: 'TTLaundryGothicB';
+	font-size: 40px;
+	margin: 15px;
+}
+
+.row {
+	display: flex;
+	vertical-align: middle;
+	align-items: center;
+}
+
+.row * {
+	width: 100%;
+}
+
+.row>div {
+	padding: 5px;
+	text-align: center;
+}
+
+.mycontents table {
+	margin: 0 auto;
+}
+
+.mycontents {
+	border: 0.5px solid #f9d686;
+	border-radius: 20px;
+	padding: 15px;
+	background-color: rgb(251, 251, 251);
+	margin-bottom: 40px;
+}
+
+.rowt {
+	background-color: rgb(240, 240, 240);
+}
+
+.btn,
+.nowPage {
+	margin: 5px;
+}
+
+.rows:hover {
+	background-color: #f9d686;
+	transform: scale(1.01);
+	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.row div:nth-child(1) {
+	width: 10%;
+}
+
+.row div:nth-child(2) {
+	width: 52%;
+}
+
+.row div:nth-child(3) {
+	width: 15%;
+}
+
+.row div:nth-child(4) {
+	width: 20%;
+}
+
+.tbody2 {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.prow {
+	width: 20%;
+}
+
+.prow .c_thumbnail {
+	width: 100%;
+	height: 200px;
+	max-height: 200px;
+	object-fit: cover;
+}
+
+.c_thumbnail:hover {
+	transform: scale(1.2);
+}
+
+.tbody2 {
+	padding: 25px;
+	padding-top: 15px;
+}
+
+.tar {
+	margin-left: 85%;
+	margin-bottom: 10px;
+}
+
+input[type=button] {
+	background-color: rgba(87, 153, 86, 0.9);
+	border-radius: 5px;
+	border: none;
+	color: white;
+	font-family: 'TTLaundryGothicB';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+input[type=button]:hover {
+	cursor: pointer;
+	background-color: rgba(87, 153, 86, 1);
+}
+
+.more {
+	color: rgb(128, 128, 128);
+}
+
+.more:hover {
+	transform: scale(1.1);
+	color: rgb(192, 192, 192);
+}
+
+.nowPage {
+	color: #f9d686;
+}
+.newcheck{
+	color: red;
+}
+#profileid{
+	color:rgba(87, 153, 86, 1);
+}
+.usermenu{
+	color:rgba(87, 153, 86, 1);
+}
+.notewrap table {
+	margin: 0 auto;
+}
+.notecss{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.notecss table{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
