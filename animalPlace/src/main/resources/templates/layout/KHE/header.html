@@ -2,14 +2,14 @@
 	<link href="/css/KHE/header.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<header>
-		<span style="margin-left: 50px;">
-			<a href="/"><img src="/images/KHE/aplogo.png" style="height: 100px;"></a>
+		<span>
+			<a href="/" style="font-size: 50px; color:rgba(87, 153, 86, 1);">Animal Place</a>
 		</span>
 		<span id="alarm" class="alarm alarmwindow">
-			<a href=""><img src="/images/KHE/bell1.png" style="height: 50px;"></a>
+			<a href=""><img src="/images/KHE/bell1.png" style="height: 40px;"></a>
 		</span>
 		<span id="alarm2" class="alarm2" style="display:none; ">
-			<img src="/images/KHE/alarm.png" style="height: 18px;">
+			<img src="/images/KHE/alarm.png" style="height: 13px;">
 		</span>
 		<div id="alarmpage" style="display: none;">
 			<table class="alarmP">
@@ -17,7 +17,7 @@
 			</table>
 		</div>
 		<div id="alarmpagetri" class="alarmwindow" style="display: none;"></div>
-		<div id="alarmnotice" style="display:none; font-family: 'HakgyoansimSantteutdotumL';">확인하지 않은 내용들이 존재합니다!
+		<div id="alarmnotice" style="display:none; font-family: 'MinSans-Regular';">새롭게 확인해야할 내용이 있어요!
 		</div>
 		<span id="login" class="alarm" style="display:none">
 			<a href="" id="login"><img src="/images/KHE/login.png"></a>
@@ -297,7 +297,6 @@
 			usermenu(e);
 		});
 		function usermenu(e) {
-			console.log("check");
 			var lx = e.pageX;
 			var ly = e.pageY;
 			// 팝업 위치 설정
