@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.domain.he.AlarmDTO;
 import com.example.demo.domain.he.Criteria;
 import com.example.demo.domain.he.MBoardDTO;
+import com.example.demo.domain.he.NoteDTO;
 import com.example.demo.domain.he.PageDTO;
 import com.example.demo.model.pboard.PFileDTO;
 import com.example.demo.service.he.AlarmService;
@@ -107,6 +108,7 @@ public class MyController {
 		HttpSession session = req.getSession();
 		String userid =  (String) session.getAttribute("loginUser");
 		List<AlarmDTO> alarm =  aservice.getAlarm(userid);
+		System.out.println(alarm);
 		return alarm;
 	}
 	
@@ -125,8 +127,39 @@ public class MyController {
 	
 	@PostMapping("insertAlarmByLike")
 	@ResponseBody
-	public void insertAlarmByLike(String ctuserid, String boardtitle, String contentpath) {
-		String flag = "plike";
-		aservice.insertAlarm(ctuserid, boardtitle, contentpath, flag);
+	public void insertAlarmByLike(HttpServletRequest req, String ctuserid, String boardtitle, String contentpath) {
+		HttpSession session = req.getSession();
+		String user =  (String) session.getAttribute("loginUser");
+		if(!user.equals(ctuserid)) {
+			String flag = "plike";
+			aservice.insertAlarm(ctuserid, boardtitle, contentpath, flag);
+		}
+	}
+	@GetMapping("userprofile")
+	public void userprofile(HttpServletRequest req, Model model, String userid) {
+		model.addAttribute("user", uservice.getUser(userid));
+		model.addAttribute("myphoto", uservice.getprofile(userid));
+	}
+	@GetMapping("writeNote")
+	public void writeNote(HttpServletRequest req,Model model, String userid) {
+		HttpSession session = req.getSession();
+		String senduser =  (String) session.getAttribute("loginUser");
+		model.addAttribute("receiveuser", userid);
+		model.addAttribute("senduser", senduser);
+		
+	}
+	@PostMapping("writeNote")
+	@ResponseBody
+	public void writeNotesend(NoteDTO note) {
+		service.insertNote(note);
+		String flag = "note";
+		aservice.insertAlarm(note.getReceiveuser(), note.getTitle(), "", flag);
+	}
+	@GetMapping("note")
+	public void note(HttpServletRequest req, Model model, Criteria cri) {
+		HttpSession session = req.getSession();
+		String user =  (String) session.getAttribute("loginUser");
+		List<NoteDTO> list = service.getNote(user, cri);
+		model.addAttribute("note", list);
 	}
 }

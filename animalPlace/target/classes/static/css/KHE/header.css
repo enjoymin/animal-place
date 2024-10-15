@@ -167,10 +167,15 @@ h6 {
 	display: block;
 	transition-duration: 1s;
 	font-family: 'HakgyoansimSantteutdotumL';
+	font-family: 'TTLaundryGothicB' !important;
 	font-weight: 800;
 	font-size: 20px;
 	padding: 20px;
 	z-index: 1000;
+}
+#menubar a{
+	font-family: 'TTLaundryGothicB' !important;
+	font-size:20px;
 }
 
 #menulist {
@@ -223,9 +228,10 @@ h6 {
 	/*
 	background-color: rgb(255, 245, 245);
 	*/
+	font-family: 'TTLaundryGothicB';
 	background-color: #f4f4f4;
 	position: absolute;
-	border-radius: 20px;
+	border-radius: 13px;
 	right: 110px;
 	max-height: 400px;
 	top: 94px;
@@ -382,4 +388,47 @@ h6 {
 	border-radius: 5px;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 	z-index: 1300;
+}
+
+#alarmpage::-webkit-scrollbar {
+    width: 15px; /* 너비 */
+    height: 12px; /* 높이 */
+}
+
+/* 스크롤바 트랙 (배경) */
+#alarmpage::-webkit-scrollbar-track {
+    background: #f4f4f4; /* 트랙 배경색 */
+    border-radius: 15px; /* 둥근 모서리 */
+}
+
+/* 스크롤바 핸들 */
+#alarmpage::-webkit-scrollbar-thumb {
+    background: #f9d686; /* 핸들 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+}
+
+/* 핸들 호버 상태 */
+#alarmpage::-webkit-scrollbar-thumb:hover {
+    background: rgb(245, 189, 58); /* 호버 시 색상 변경 */
+}
+::-webkit-scrollbar {
+    width: 15px; /* 너비 */
+    height: 12px; /* 높이 */
+}
+
+/* 스크롤바 트랙 (배경) */
+::-webkit-scrollbar-track {
+    background: white; /* 트랙 배경색 */
+    border-radius: 15px; /* 둥근 모서리 */
+}
+
+/* 스크롤바 핸들 */
+::-webkit-scrollbar-thumb {
+    background: rgb(153, 153, 153); /* 핸들 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+}
+
+/* 핸들 호버 상태 */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(128, 128, 128); /* 호버 시 색상 변경 */
 }

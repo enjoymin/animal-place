@@ -2,7 +2,7 @@
 @font-face {
     font-family: 'TTLaundryGothicB';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
-    font-weight: 700;
+    font-weight: 300;
     font-style: normal;
 }
 /* 서브 폰트 */
@@ -16,13 +16,17 @@
 @font-face {
     font-family: 'MinSans-Regular';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Regular.woff') format('woff');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
 }
 
 /* 푸터 */
 footer {
     height: 300px;
+	
+}
+#footerft div,a{
+	font-family: 'TTLaundryGothicB';
 }
 
 .footer_area{

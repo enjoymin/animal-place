@@ -74,7 +74,11 @@ public class PReplyController {
 			PReplyDTO replydto = prservice.getFirstReply(boardnum, replyuserid);
 			if (replydto != null) {
 				registReply.put("reply", replydto);
-				alservice.insertAlarm(ctuserid, boardtitle, contentpath, flag);
+				if(!replyuserid.equals(ctuserid)) {
+					System.out.println(replyuserid);
+					System.out.println(ctuserid);
+					alservice.insertAlarm(ctuserid, boardtitle, contentpath, flag);
+				}
 				return ResponseEntity.ok(registReply);
 			}
 		}
