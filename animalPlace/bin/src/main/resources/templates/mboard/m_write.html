@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모임 글쓰기 게시판</title>
+    <link rel="stylesheet" href="/css/mboard/style.css">
+</head>
+<body class="write">
+	
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
+	
+    <div class="inner_wrap">
+
+        <!-- 게시판제목 -->
+        <div class="top_container">
+            <div class="page_title">
+				<img src="/images/mimages/65457f8ac9851.png">
+                <p id="MF">모임 게시판</p>
+            </div>
+        </div>
+
+        <!-- 글쓰기 컨테이너 시작 -->
+        <div class="m_write_container">
+
+            <!-- 폼 -->
+            <form action="/mboard/m_write" method="post" name="m_board_form">
+                <table class="m_board_form_table">
+                    <tr>
+                        <th>제목</th>
+                        <td>
+                            <input type="text" name="boardtitle" maxlength="50" placeholder="제목을 입력하세요">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>작성자</th>
+                        <td>
+                            <input type="text" name="userid" maxlength="50" readonly th:value="${session.loginUser}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>모임 날짜</th>
+                        <td>
+                        <input type="text" name="setdate" maxlength="10" placeholder="날짜를 정해주세요 (2024-00-00)">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>모임 장소</th>
+                        <td>
+                        <input type="text" name="place" maxlength="15" placeholder="장소를 정해주세요">
+                        </td>
+                    </tr>
+					
+					<tr>
+					  	<th>모집 인원</th>
+					    <td>
+					    	<div class="m_board_peopleNum">
+					        	<input type="text" name="mnum" maxlength="2" placeholder="O~99">
+					            <span id="people_num_Label">명</span>
+					        </div>
+					    </td>
+					</tr>
+
+                    <tr>
+                        <th>내용</th>
+                        <td>
+                            <textarea name="boardcontent" id=""></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+            <!-- 버튼 -->
+            <table class="form_btn_area">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a class="btn" href="javascript:sendit()">등록</a>
+						    <a class="btn" th:href="${'/mboard/m_board'}">목록</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	function sendit(){
+		const m_board_form = document.m_board_form;
+		//유효성 검사
+		const boardtitle = document.m_board_form.boardtitle;
+		if(boardtitle.value==""){
+			alert("제목을 입력해 주세요!");
+			boardtitle.focus();
+			return;
+		}
+		const setdate = document.m_board_form.setdate;
+		if(setdate.value==""){
+			alert("날짜를 입력해 주세요!");
+			setdate.focus();
+			return;
+		}
+		
+		const nowdate = new Date();
+		const inputDate = new Date(setdate.value);
+		
+		// 현재 날짜와 입력된 날짜의 시간을 00:00:00으로 설정해야 당일비교까지 가능
+		nowdate.setHours(0, 0, 0, 0);
+		inputDate.setHours(0, 0, 0, 0);
+		
+		if(inputDate<nowdate){
+			alert("현재 시점보다 이전 날짜는 입력하실 수 없습니다!");
+			setdate.focus();
+			return;
+		}	
+		
+		const place = document.m_board_form.place;
+		if(place.value==""){
+			alert("장소를 입력해 주세요!");
+			place.focus();
+			return;
+		}
+		const mnum = document.m_board_form.mnum;
+		if(mnum.value==""){
+			alert("모임 인원수를 입력해 주세요!");
+			mnum.focus();
+			return;
+		}
+		
+		if (isNaN(mnum.value) || mnum.value <= 0) {
+		    alert("모임 인원수는 숫자여야 하며 0보다 커야 합니다!");
+		    mnum.focus();
+		    return;
+		}
+
+		const boardcontent = document.m_board_form.boardcontent;
+		if(boardcontent.value==""){
+			alert("내용을 입력해 주세요!");
+			boardcontent.focus();
+			return;
+		}
+		
+		const userid = document.m_board_form.userid.value;
+			// 작성자의 스케줄 확인하고 해당 날짜에 있으면 글 작성 안되게!
+			// ★ 로그인 유저에 맞는 스케줄 가져오는 Ajax
+			$.ajax({
+				method: "GET",
+				url: `/user/get_schedule?userid=${userid}`,
+				success: function (response) {
+					const currentSchedule = response.split("\\").filter(Boolean);
+					if (currentSchedule.includes(setdate.value)) {
+						alert("회원님께서는 해당 날짜에 스케줄이 등록되어있습니다! 다른 날짜를 입력해주세요!");
+						setdate.focus();
+						return;
+					}
+					
+					if (currentSchedule.length >= 3) {
+						alert("최대 가능 스케줄은 3개입니다. 최대 스케줄을 초과하였습니다! 스케줄 조정 후 작성바랍니다.");
+						return;
+					}
+					
+					else{
+						m_board_form.submit();
+					}
+				},
+				error: function(xhr) {
+					console.error("스케줄 가져오기 오류 : ", xhr.statusText);
+				}
+			});
+
+	}
+	
+</script>
+</html>
