@@ -299,10 +299,11 @@
 			var ly = e.pageY;
 			// 팝업 위치 설정
 			var scrollTop = $(window).scrollTop();
+			var scrollLeft = $(window).scrollLeft();
 			
 			$('#popup-user').css({
 				top: (ly - scrollTop - 5) + 'px',
-				left: (lx - 5) + 'px'
+				left: (lx -scrollLeft - 5) + 'px'
 			}).fadeIn(200);
 
 		}

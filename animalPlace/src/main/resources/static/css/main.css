@@ -164,6 +164,7 @@ h1 span:nth-child(8) {
 #wrap {
 	width: 80%;
 	margin: 0 165px 0 165px;
+	height: 100%;
 }
 
 .main-pboard ul {
@@ -465,3 +466,112 @@ strong {
 	width: 500px;
 	height: 400px;
 }
+
+/* -------메인 유기 파트--------- */
+.stray{
+	background-color: #579956;
+}
+#strayimg{
+	float: left;
+}
+#strayimg img {
+    width: 500px;
+    height: 500px;
+    padding: 15px;
+    border-radius: 85px;
+}
+#straytxt {
+	float: right;
+	position: relative;
+	width: 50%;
+	
+}
+#straytxt .txt {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    line-height: 4;
+}
+
+#straytxt h3, #straytxt span, #straytxt img{
+	color: #FFF;
+}
+#straytxt h3 {
+    font-size: 30px;
+}
+#straytxt span {
+    font-size: 20px;
+}
+#straytxt img {
+    width: 120px;
+    display: block;
+    border-radius: 40px;
+    position: absolute;
+    top: 210px;
+    right: 0px;
+}
+
+/* -------메인 분양 파트--------- */
+.adoption{
+	font-family: 'TTLaundryGothicB';
+}
+#adoptionimg{
+	float: right;
+}
+#adoptionimg img {
+    width: 500px;
+    height: 500px;
+    padding: 15px;
+    border-radius: 85px;
+}
+#adoptiontxt {
+	float: left;
+	position: relative;
+	width: 50%;
+	
+}
+#adoptiontxt .txt {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    line-height: 3;
+}
+#adoptiontxt h3 {
+    font-size: 30px;
+}
+#adoptiontxt span {
+    font-size: 20px;
+}
+#adoptiontxt img {
+    width: 120px;
+    display: block;
+    border-radius: 40px;
+    position: absolute;
+    top: 220px;
+    left: 0px;
+	transform: scaleX(-1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
