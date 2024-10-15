@@ -72,6 +72,7 @@ public class PReplyController {
 		System.out.println(replycontent + " " + boardnum + " " + replyuserid);
 		if (prservice.registReply(replycontent, boardnum, replyuserid)) {
 			PReplyDTO replydto = prservice.getFirstReply(boardnum, replyuserid);
+
 			if (replydto != null) {
 				registReply.put("reply", replydto);
 				if(!replyuserid.equals(ctuserid)) {

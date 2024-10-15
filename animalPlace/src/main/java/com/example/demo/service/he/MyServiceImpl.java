@@ -51,4 +51,16 @@ public class MyServiceImpl implements MyService {
 		List<NoteDTO> list =  mmapper.getNote(receiveuser,cri);
 		return list;
 	}
+
+	@Override
+	public long getNtotal(String user) {
+		long total = mmapper.getNtotal(user);
+		return total;
+	}
+
+	@Override
+	public NoteDTO getNoteCT(long noteNum) {
+		NoteDTO note = mmapper.getNoteCT(noteNum);
+		return note;
+	}
 }

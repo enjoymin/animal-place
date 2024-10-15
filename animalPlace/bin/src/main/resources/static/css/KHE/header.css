@@ -431,4 +431,8 @@ h6 {
 /* 핸들 호버 상태 */
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(128, 128, 128); /* 호버 시 색상 변경 */
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 65912f6867db07df377b6915552cefbff1c00725
