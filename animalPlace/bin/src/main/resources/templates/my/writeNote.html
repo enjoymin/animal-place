@@ -1,0 +1,64 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>쪽지 보내기</title>
+	<link href="/css/KHE/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<form id="noteForm" action="/my/writeNote" method="post" name="noteForm">
+		<table>
+			<tr>
+				<th>받는 사람</th>
+				<td>
+					<input type="text" name="receiveuser" th:value="${receiveuser}" readonly>
+				</td>
+			</tr>
+			<tr>
+				<th>보내는사람 사람</th>
+				<td>
+					<input type="text" name="senduser" th:value="${senduser}" readonly>
+				</td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td>
+					<input type="text" name="title" id="note-title">
+				</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea name="contents" id="note" placeholder="내용을 입력하세요" rows="15" cols="35" style="resize:none"
+						;></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="button" value="보내기" onclick="sendNote()">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/KHE/my.js"></script>
+<script th:inline="javascript">
+	$(window).on('load', function () {
+		$(".note-title").focus();
+	});
+	
+	function sendNote() {
+		if($("#note").val() == null || $("#note").val() == ''){
+			alert("내용을 입력해 주세요!")
+			return;
+		}
+		const writeNote = document.noteForm;
+		writeNote.submit();
+		setTimeout(function () {
+			window.close();
+		}, 0);
+	}
+</script>
+
+</html>
