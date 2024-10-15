@@ -334,7 +334,7 @@ strong {
 	width: 200px;
 }
 
-
+/*---------map 부분-----------*/
 .map {
 	position: relative;
 	font-family: 'TTLaundryGothicB';
@@ -356,10 +356,10 @@ strong {
 }
 
 #mapimg>a>img {
-	width: 100%;
-	height: 500px;
-	padding-right: 150px;
-	padding-top: 20px;
+    width: 100%;
+    height: 500px;
+    padding-right: 450px;
+    padding-top: 20px;
 }
 
 .map>div {
