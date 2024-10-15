@@ -80,8 +80,11 @@
 							<div class="mboard_list">
 
 								<div th:if="${mlist == null or flist.size() == 0}" class="no_list">
-									<div>좋아요된 게시글이 없어요. 더보기를 눌러서 좋아요를 눌러주세요!</div>
 									<img src="/images/nolike.webp">
+									<div>
+										<p>좋아요된 게시물이 없어요...</p>
+										<p>더보기를 눌러서 마음에 드는 게시글에 좋아요를 눌러 주세요</p>
+									</div>
 								</div>
 
 								<div class="lists" th:if="${mlist != null and mlist.size() > 0}"
