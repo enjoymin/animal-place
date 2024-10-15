@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.he.MyMapper">
+	<select id="getMBtotal">
+		select count(*) from m_board where userid =#{userid}
+	</select>
+	<select id="getMBList">
+		select * from m_board where userid=#{userid}
+		order by boardnum desc limit #{cri.startrow}, #{cri.amount}
+	</select>
+	<select id="getPBtotal">
+		select count(*) from p_board where userid =#{userid}
+	</select>
+	<select id="getPFileByUserid">
+		select f.boardnum, MIN(f.systemname) AS systemname from `p_file` f
+		join p_board using(boardnum) where userid=#{userid} group by boardnum
+		order by boardnum desc limit #{cri.startrow}, #{cri.amount}
+	</select>
+	<insert id="insertNote">
+		insert into note(receiveuser, senduser, title, contents) values(#{receiveuser},#{senduser},#{title},#{contents})
+	</insert>
+	<select id="getNote">
+		select * from note where receiveuser=#{receiveuser}
+		order by noteNum desc limit #{cri.startrow}, #{cri.amount}
+	</select>
+	<select id="getNtotal">
+		select count(*) from note where receiveuser = #{user}
+	</select>
+	<select id="getNoteCT">
+		select * from note where noteNum = #{noteNum}
+	</select>
+	<select id="getnoteNum">
+		select noteNum from note where receiveuser=#{receiveuser}
+		order by noteNum desc limit 1
+	</select>
+	<update id="updateNote">
+		update note set readcnt = readcnt +1 where noteNum = #{noteNum}
+	</update>
+	<delete id="deleteNote">
+		delete from note where noteNum = #{noteNum}
+	</delete>
+</mapper>

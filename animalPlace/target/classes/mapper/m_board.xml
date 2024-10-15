@@ -1,0 +1,107 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.mboard.M_BoardMapper">
+
+	<sql id="cri">
+		<if test="keyword != '' and keyword != null and type != '' and type != null">
+			<choose>
+				<when test="type == 'T'.toString()">
+					boardtitle like concat('%', #{keyword}, '%')
+				</when>
+	 			<when test="type == 'C'.toString()">
+					boardcontent like concat('%', #{keyword}, '%')
+				</when>
+				<when test="type == 'W'.toString()">
+					userid like concat('%', #{keyword}, '%')
+				</when>
+				<when test="type == 'TC'.toString()">
+					<trim prefix="(" suffix=") and">
+                    boardtitle like concat('%', #{keyword}, '%') or
+                    boardcontent like concat('%', #{keyword}, '%')
+                </trim>
+				</when>
+				<when test="type == 'S'.toString()">
+					setdate = #{keyword}
+				</when>
+			</choose>
+		</if>
+		
+	</sql>
+
+	<select id="getList">
+		select * from m_board
+		<where>
+        <include refid="cri"></include>
+    	</where>
+		order by
+		 <choose>
+        <when test="view_type == 'L'.toString()">
+            boardnum desc
+        </when>
+        <when test="view_type == 'O'.toString()">
+            boardnum asc
+        </when>
+        <when test="view_type == 'R'.toString()">
+            readcount desc
+        </when>
+        <otherwise>
+            boardnum desc
+        </otherwise>
+    </choose>
+	</select>
+	
+	<insert id="insertBoard">
+		insert into m_board (boardtitle, userid, setdate, dDay, place, mnum, boardcontent) 
+		values (#{boardtitle}, #{userid}, #{setdate}, #{dDay}, #{place}, #{mnum}, #{boardcontent})
+	</insert>
+
+	<update id="updateBoard">
+		update m_board
+		set boardtitle = #{boardtitle}, boardcontent = #{boardcontent}, setdate = #{setdate},
+		dDay = #{dDay}, place = #{place}, mnum = #{mnum}
+		where boardnum = #{boardnum}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete from m_board where boardnum=#{boardnum}
+	</delete>
+	
+	<select id="getBoardByBoardNum">
+		select * from m_board where boardnum=#{boardnum}
+	</select>
+	
+	<select id="getTotal">
+		select count(*) from m_board
+	</select>
+	
+	<select id="getLastNum">
+		select max(boardnum) from m_board where userid=#{userid}
+	</select>
+	
+	<select id="getMembers">
+		select member from m_board where boardnum=#{boardnum}
+	</select>
+	
+	<update id="updateMember">
+		update m_board
+		set member = #{member}
+		where boardnum = #{boardnum}
+	</update>
+	
+	<update id="update_readcount">
+		update m_board
+		set readcount = #{readcount}
+		where boardnum = #{boardnum}
+	</update>
+	
+	<select id="getRecentList">
+		select * from m_board
+		order by boardnum desc
+		LIMIT 3
+	</select>
+
+</mapper>
+
+
+

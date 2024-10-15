@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>내가 쓴 글</title>
+	<link href="/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/footer.css">
+</head>
+
+<body class="list">
+	<th:block th:replace="~{layout/header::header}"></th:block>
+	<th:block th:if="${session.loginUser == null}">
+		<script>
+			alert("해당 페이지는 로그인 후에만 이용 가능합니다!")
+			const path = window.location.pathname;
+			window.location.href = "/user/login?path=" + path;
+		</script>
+	</th:block>
+</body>
+</html>
