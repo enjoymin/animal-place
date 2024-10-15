@@ -342,7 +342,7 @@ strong {
 
 /*---------map 부분-----------*/
 .map {
-    background-color: #579956;
+/*    background-color: #579956;*/
 	position: relative;
 	font-family: 'TTLaundryGothicB';
     width: 100%;
@@ -421,7 +421,7 @@ strong {
     margin-top: 60px;
     margin-left: 30px;
 	margin-bottom: 50px;
-    color: white;
+    color: #579956;
 
 
 }
@@ -431,7 +431,7 @@ strong {
 	margin: 30px;
 	line-height: 2;
     margin-left: 150px;
-    color: white;
+    color: #579956;
 
 }
 
@@ -454,9 +454,10 @@ strong {
 #go_map{
     color: #FFF !important;
     text-decoration: none;
-    border: 1px solid #FFF;
+    border: 1px solid #579956;
     border-radius: 30px;
     padding: 10px;
+	background-color: #579956;
 
 }
 
@@ -521,9 +522,7 @@ strong {
 }
 
 /* -------메인 유기 파트--------- */
-.stray{
-	background-color: #579956;
-}
+
 #strayimg{
 	float: left;
 }
@@ -707,6 +706,101 @@ strong {
 .menu-down > div:hover {
     transform: scale(1.1); /* 10% 확대 */
 }
+/* 유기 분양 파트 */
+
+.main_stray_adoption {
+   background-color: #f7f7f7;
+   height: 500px;
+   color: #111;
+   position: relative;
+   margin-bottom: 50px;
+}
+
+.stray{
+   margin: 10px;
+   margin-right: 80px;
+   padding: 50px;
+   position: absolute;
+   left: 100px;
+}
+
+.adoption{
+   margin: 10px;
+   margin-left: 80px;
+   padding: 50px;
+   position: absolute;
+   right: 100px;
+   text-align: right;
+}
+
+.stray_txt{
+   font-family: 'TTLaundryGothicB';
+   font-size: 50px;
+}
+
+.adoption_txt{
+   font-family: 'TTLaundryGothicB';
+   font-size: 50px;
+}
+
+.main_stray_adoption a{
+   background-color: #579956;
+   color: #FFF !important;
+   border-radius: 30px;
+   padding: 10px;
+}
+
+.main_stray_adoption a:hover{
+   background-color: #f9d686;
+   border: none;
+   transition: .8s;
+}
+
+.stray_info{
+   margin-top: 30px;
+}
+
+.adoption_info{
+   margin-top: 30px;
+}
+
+.stray_info p{
+   font-family: 'HakgyoansimSantteutdotumL';
+   font-weight: 600;
+}
+
+.stray_info p:last-child{
+   margin-top: 10px;
+}
+
+.adoption_info p{
+   font-family: 'HakgyoansimSantteutdotumL';
+   font-weight: 600;
+}
+
+.adoption p:last-child{
+   margin-top: 10px;
+}
+
+.go_stray {
+   margin-top: 50px;
+}
+
+.go_adoption{
+   margin-top: 50px;
+}
+
+.stray_img img{
+   width: 180px;
+   margin-left: 300px;
+}
+
+.adoption_img img{
+   width: 180px;
+   margin-right: 300px;
+}
+
+/* 유기 분양 파트 끝 */
 
 
 
