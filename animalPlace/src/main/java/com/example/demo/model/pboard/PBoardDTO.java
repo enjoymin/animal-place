@@ -13,3 +13,4 @@ public class PBoardDTO {
 	private String userid;
 	private String file;
 }
+
