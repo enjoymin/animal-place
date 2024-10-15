@@ -336,9 +336,9 @@ strong {
 
 /*---------map 부분-----------*/
 .map {
+    
 	position: relative;
 	font-family: 'TTLaundryGothicB';
-	background-color: #f7f7f7;
 }
 
 .map>h3 {
@@ -347,20 +347,17 @@ strong {
 	/* margin-right: 20px; */
 }
 
-.map>a {
-	width: 50%;
-	display: inline-block;
-	position: absolute;
-	border-radius: 30px;
-	margin: 30px 0px 0px 20px;
-
-}
-
 #mapimg>a>img {
+
     width: 100%;
-    height: 500px;
-    padding-right: 450px;
-    padding-top: 20px;
+    height: 100%;
+   
+}
+#mapimg2>a>img{
+    width: 100%;
+    height: 100%;
+
+
 }
 
 .map>div {
@@ -369,19 +366,33 @@ strong {
 }
 
 .map #mapimg {
+    width: 33%;
 	float: left;
 	position: relative;
-	clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
+    clip-path: polygon(0 0, 70% 0, 100% 100%, 0% 100%);
+    z-index: 3;
+	
+
+}
+.map #mapimg2 {
+    width: 33%;
+	float: left;
+	position: absolute;
+    margin-left: 26%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+    opacity: 0.4;
+    z-index: 3;
 
 }
 
 .map #inmap {
+    width: 45%;
 	text-align: right;
 	position: absolute;
-	float: right;
-	clip-path: polygon(30% 0, 100% 0%, 100% 100%, 70% 100%);
+	float: left;
 	padding-top: 20px;
-	padding-right: 30px;
+	margin-left: 50%;
+    z-index: 2;
 }
 
 #inmap>h3 {
@@ -399,6 +410,9 @@ strong {
 	width: 180px;
 	display: inline-block;
 	text-align: center;
+    position: relative;
+    z-index: 3;
+    font-weight: bold;
 }
 
 #inmap>a>img {
@@ -406,6 +420,16 @@ strong {
 	position: absolute;
 	margin-left: -40px;
 	margin-top: -10px;
+    z-index: 3;
+}
+#inmap #backimg{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0.4;
+    position: absolute;
+    margin-left: -140px;
+    z-index: 0;
 }
 
 /* -------메인 질병 파트--------- */
