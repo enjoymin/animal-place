@@ -32,7 +32,7 @@
 							th:src="${board.file != null ? '/images/pimages/' + board.file : '/images/pimages/test-image.jpg'}">
 					</a>
 					<div class="like">
-						<p class="id">[[${board.userid}]]</p>
+						<p class="id usermenu">[[${board.userid}]]</p>
 						<a href="" class="likebtn" th:data-boardnum="${board.boardnum}">
 							<img class="likeimg"
 								th:src="${llist[iterStat.index] == null ? '/images/pimages/nomal.png' : '/images/pimages/like.png'}" />
@@ -226,7 +226,7 @@
 	                                        <img class="boardimg" src="${imageUrl}">
 	                                    </a>
 	                                    <div class="like">
-	                                        <p class="id">${list.userid}</p>
+	                                        <p class="id usermenu">${list.userid}</p>
 	                                        <a href="" class="likebtn" data-boardnum="${list.boardnum}">
 	                                            <img class="likeimg" src="${userLike != null ? '/images/pimages/like.png' : '/images/pimages/nomal.png'}" />
 	                                            <p class="likecnt">${list.boardlikecnt}</p>

@@ -60,6 +60,10 @@ header input {
 	width: 220px;
 }
 
+.usermenu{
+	cursor:pointer;
+}
+
 h1,
 h2,
 h3,

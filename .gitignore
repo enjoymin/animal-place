@@ -2,11 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=maven
 
 ### Maven ###
-<<<<<<< HEAD
-ainmalPlace/target/
-=======
 animalPlace/target/
->>>>>>> 9b8805b2a0889f1ad1fcb41f16c1a4d5d5700d05
+
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup

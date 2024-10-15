@@ -41,7 +41,7 @@
 				<h2 id="title" th:text="${board.boardtitle}">제목</h2>
 
 				<div id="user_area">
-					<p id="userid" th:text="${board.userid}">작성자</p>
+					<p class="usermenu" id="userid" th:text="${board.userid}">작성자</p>
 					<a href="#" class="board-likebtn" id="viewPostlike" th:data-boardnum="${board.boardnum}">
 						<img class="likeimg"
 							th:src="${llist == null ? '/images/pimages/nomal.png' : '/images/pimages/like.png'}" />
@@ -66,7 +66,7 @@
 				<ul id="commentList" class="list_unstyled">
 					<li th:each="reply : ${rlist}">
 						<div class="reply">
-							<strong class="userID" th:text="${reply.replyuserid}">작성자</strong>
+							<strong class="userID usermenu" th:text="${reply.replyuserid}">작성자</strong>
 							<p class="replyContent" th:text="${reply.replycontent}">댓글 내용</p>
 							<textarea class="editTextarea" style="display: none;"
 								th:text="${reply.replycontent}"></textarea>
@@ -451,7 +451,7 @@
 							$('#commentList').append(`
 					            <li>
 					                <div class="reply">
-					                    <strong class="userID" th:text="${reply.replyuserid}">${reply.replyuserid}</strong>
+					                    <strong class="userID usermenu" th:text="${reply.replyuserid}">${reply.replyuserid}</strong>
 					                    <p class="replyContent" th:text="${reply.replycontent}">${reply.replycontent}</p>
 					                    <textarea class="editTextarea" style="display: none;" th:text="${reply.replycontent}">${reply.replycontent}</textarea>
 										<div class="buttonGroup" style="display: ${reply.replyuserid === loginUser ? 'block' : 'none'};">
