@@ -272,7 +272,6 @@ h6 {
 
 .alarmtable {
 	display: flex;
-
 }
 
 .alarmtable td {
@@ -309,8 +308,8 @@ h6 {
 	padding: 10px;
 	position: absolute;
 	z-index: 500;
-	right: 160px;
-	top: 60px;
+	right: 150px;
+	top: 55px;
 	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
