@@ -17,7 +17,7 @@
 			</table>
 		</div>
 		<div id="alarmpagetri" class="alarmwindow" style="display: none;"></div>
-		<div id="alarmnotice" style="display:none; font-family: 'HakgyoansimSantteutdotumL';">게시글에 확인하지 않은 내역이 있습니다!
+		<div id="alarmnotice" style="display:none; font-family: 'HakgyoansimSantteutdotumL';">확인하지 않은 내용들이 존재합니다!
 		</div>
 		<span id="login" class="alarm" style="display:none">
 			<a href="" id="login"><img src="/images/KHE/login.png"></a>
@@ -88,7 +88,7 @@
 				<li><a href="/my/profile">회원정보</a></li>
 				<li><a href="/my/contents">등록한글</a></li>
 				<li><a href="" id="notepage">쪽지함</a></li>
-				<li><a id="logout">로그아웃</a></li>
+				<li><a id="logout" style="color: rgb(80, 80, 80);">로그아웃</a></li>
 			</ul>
 		</div>
 		<th:block th:if="${session.loginUser == null}">
@@ -291,7 +291,9 @@
 		$(document).on('click', '.usermenu', function (e) {
 			e.preventDefault();
 			profileid = $(this).html();
-			console.log(profileid);
+			if(loginUser == profileid){
+				return;
+			}
 			usermenu(e);
 		});
 		function usermenu(e) {
