@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="/css/mboard/style.css">
 </head>
 <body class="write">
-	
-	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
-	
+   
+   <th:block th:replace="~{layout/KHE/header::header}"></th:block>
+   
     <div class="inner_wrap">
 
         <!-- 게시판제목 -->
         <div class="top_container">
             <div class="page_title">
-                <p id="MF">모임 게시판</p>
+                <a href="/mboard/m_board"><p id="MF">모임 게시판</p></a>
             </div>
         </div>
 
@@ -25,10 +25,10 @@
             <!-- 폼 -->
             <form action="/mboard/m_modify" method="post" name="m_board_form">
                 <table class="m_board_form_table">
-					<input type="hidden" name="boardnum" th:value="${mboard.boardnum}">
-					<input type="hidden" name="dDay" th:value="${mboard.dDay}">
-					<input type="hidden" name="oldDate" th:value="${mboard.setdate}">
-					<input type="hidden" name="member" th:value="${mboard.member}">
+               <input type="hidden" name="boardnum" th:value="${mboard.boardnum}">
+               <input type="hidden" name="dDay" th:value="${mboard.dDay}">
+               <input type="hidden" name="oldDate" th:value="${mboard.setdate}">
+               <input type="hidden" name="member" th:value="${mboard.member}">
                     <tr>
                         <th>제목</th>
                         <td>
@@ -56,16 +56,16 @@
                         <input type="text" name="place" maxlength="15" th:value="${mboard.place}">
                         </td>
                     </tr>
-					
-					<tr>
-					  	<th>모집 인원</th>
-					    <td>
-					    	<div class="m_board_peopleNum">
-					        	<input type="text" name="mnum" maxlength="2" th:value="${mboard.mnum}">
-					            <span id="people_num_Label">명</span>
-					        </div>
-					    </td>
-					</tr>
+               
+               <tr>
+                    <th>모집 인원</th>
+                   <td>
+                      <div class="m_board_peopleNum">
+                          <input type="text" name="mnum" maxlength="2" th:value="${mboard.mnum}">
+                           <span id="people_num_Label">명</span>
+                       </div>
+                   </td>
+               </tr>
 
                     <tr>
                         <th>내용</th>
@@ -82,7 +82,7 @@
                     <tr>
                         <td>
                             <a class="btn" href="javascript:sendit()">수정완료</a>
-						    <a class="btn" th:href="${'/mboard/m_board'}">목록</a>
+                      <a class="btn" th:href="${'/mboard/m_board'}">목록</a>
                         </td>
                     </tr>
                 </tbody>
@@ -91,71 +91,71 @@
 
     </div>
 
-	<th:block th:replace="~{layout/footer::footer}"></th:block>
+   <th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
 <script>
-	function sendit(){
-		const m_board_form = document.m_board_form;
-		//유효성 검사
-		const boardtitle = document.m_board_form.boardtitle;
-		if(boardtitle.value==""){
-			alert("제목을 입력해 주세요!");
-			boardtitle.focus();
-			return;
-		}
-		const setdate = document.m_board_form.setdate;
-		if(setdate.value==""){
-			alert("날짜를 입력해 주세요!");
-			setdate.focus();
-			return;
-		}
-		
-		const nowdate = new Date();
-		const inputDate = new Date(setdate.value);
-			console.log("현재 날짜:", nowdate);
-			console.log("입력된 날짜:", inputDate);
-			
-			// 현재 날짜와 입력된 날짜의 시간을 00:00:00으로 설정해야 당일비교까지 가능
-			nowdate.setHours(0, 0, 0, 0);
-			inputDate.setHours(0, 0, 0, 0);
-		
-			if(inputDate<nowdate){
-				alert("현재 시점보다 이전 날짜는 입력하실 수 없습니다!");
-				setdate.focus();
-				return;
-			}
-		
-		const place = document.m_board_form.place;
-		if(place.value==""){
-			alert("장소를 입력해 주세요!");
-			place.focus();
-			return;
-		}
-		const mnum = document.m_board_form.mnum;
-		if(mnum.value==""){
-			alert("모임 인원수를 입력해 주세요!");
-			mnum.focus();
-			return;
-		}
-		
-		const member = document.m_board_form.member.value;
-		const membersArray = member.split("\\"); // '\\'로 문자열을 나눔
-		const memberCount = membersArray.length; // 멤버 개수
+   function sendit(){
+      const m_board_form = document.m_board_form;
+      //유효성 검사
+      const boardtitle = document.m_board_form.boardtitle;
+      if(boardtitle.value==""){
+         alert("제목을 입력해 주세요!");
+         boardtitle.focus();
+         return;
+      }
+      const setdate = document.m_board_form.setdate;
+      if(setdate.value==""){
+         alert("날짜를 입력해 주세요!");
+         setdate.focus();
+         return;
+      }
+      
+      const nowdate = new Date();
+      const inputDate = new Date(setdate.value);
+         console.log("현재 날짜:", nowdate);
+         console.log("입력된 날짜:", inputDate);
+         
+         // 현재 날짜와 입력된 날짜의 시간을 00:00:00으로 설정해야 당일비교까지 가능
+         nowdate.setHours(0, 0, 0, 0);
+         inputDate.setHours(0, 0, 0, 0);
+      
+         if(inputDate<nowdate){
+            alert("현재 시점보다 이전 날짜는 입력하실 수 없습니다!");
+            setdate.focus();
+            return;
+         }
+      
+      const place = document.m_board_form.place;
+      if(place.value==""){
+         alert("장소를 입력해 주세요!");
+         place.focus();
+         return;
+      }
+      const mnum = document.m_board_form.mnum;
+      if(mnum.value==""){
+         alert("모임 인원수를 입력해 주세요!");
+         mnum.focus();
+         return;
+      }
+      
+      const member = document.m_board_form.member.value;
+      const membersArray = member.split("\\"); // '\\'로 문자열을 나눔
+      const memberCount = membersArray.length; // 멤버 개수
 
-		if(mnum.value<memberCount){
-			alert("인원은 현재 참가한 사람들의 수 보다 작아질 수 없습니다!")
-			mnum.focus();
-			return;
-		}
+      if(mnum.value<memberCount){
+         alert("인원은 현재 참가한 사람들의 수 보다 작아질 수 없습니다!")
+         mnum.focus();
+         return;
+      }
 
-		const boardcontent = document.m_board_form.boardcontent;
-		if(boardcontent.value==""){
-			alert("내용을 입력해 주세요!");
-			boardcontent.focus();
-			return;
-		}
-		
-		m_board_form.submit();
-	}
+      const boardcontent = document.m_board_form.boardcontent;
+      if(boardcontent.value==""){
+         alert("내용을 입력해 주세요!");
+         boardcontent.focus();
+         return;
+      }
+      
+      m_board_form.submit();
+   }
 </script>
 </html>
