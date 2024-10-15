@@ -41,7 +41,7 @@
 				<h2 id="title" th:text="${board.boardtitle}">제목</h2>
 
 				<div id="user_area">
-					<p id="userid" th:text="${board.userid}">작성자</p>
+					<p id="userid" class="usermenu" th:text="${board.userid}">작성자</p>
 					<a href="#" class="board-likebtn" id="viewPostlike" th:data-boardnum="${board.boardnum}">
 						<img class="likeimg"
 							th:src="${llist == null ? '/images/pimages/nomal.png' : '/images/pimages/like.png'}" />
