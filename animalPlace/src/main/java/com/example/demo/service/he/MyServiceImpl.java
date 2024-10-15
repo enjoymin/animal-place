@@ -42,8 +42,10 @@ public class MyServiceImpl implements MyService {
 	}
 
 	@Override
-	public boolean insertNote(NoteDTO note) {
-		return mmapper.insertNote(note);
+	public long insertNote(NoteDTO note) {
+		mmapper.insertNote(note);
+		long noteNum = mmapper.getnoteNum(note.getReceiveuser());
+		return noteNum;
 	}
 
 	@Override
@@ -62,5 +64,16 @@ public class MyServiceImpl implements MyService {
 	public NoteDTO getNoteCT(long noteNum) {
 		NoteDTO note = mmapper.getNoteCT(noteNum);
 		return note;
+	}
+
+	@Override
+	public boolean updateNote(long noteNum) {
+		return mmapper.updateNote(noteNum);
+	}
+
+	@Override
+	public boolean delelteNote(long noteNum) {
+		
+		return mmapper.deleteNote(noteNum);
 	}
 }

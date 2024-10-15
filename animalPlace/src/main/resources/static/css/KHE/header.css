@@ -382,7 +382,7 @@ h6 {
 	cursor: pointer;
 }
 
-#popup {
+#popup-user {
 	position: absolute;
 	padding: 10px;
 	background-color: white;
@@ -390,6 +390,10 @@ h6 {
 	border-radius: 5px;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 	z-index: 1300;
+}
+#popup-user table{
+	border-collapse: separate;
+	border-spacing: 0px 8px;
 }
 
 #alarmpage::-webkit-scrollbar {

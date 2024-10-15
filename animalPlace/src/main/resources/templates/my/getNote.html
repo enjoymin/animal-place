@@ -9,16 +9,22 @@
 <body style="background-color:#f4f4f4">
 	<div class="notecss notecss2">
 		<table>
+			
 			<tr>
 				<th>받은 사람</th>
 				<td>
-					<input type="text" name="receiveuser" th:value="${note.receiveuser}" readonly style="color:#f9d686;">
+					<input type="text" name="receiveuser" th:value="${note.receiveuser}" readonly
+						style="color:#f9d686;">
+				</td>
+				<td>
+					<input type="button" value="답장" id="recend" onclick="writeNote()">
 				</td>
 			</tr>
 			<tr>
 				<th>보낸 사람</th>
 				<td>
-					<input type="text" name="senduser" th:value="${note.senduser}" readonly style="color:rgba(87, 153, 86, 1);">
+					<input type="text" name="senduser" th:value="${note.senduser}" id="senduser" readonly
+						style="color:rgba(87, 153, 86, 1);">
 				</td>
 			</tr>
 			<tr>
@@ -35,17 +41,31 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="삭제" onclick="sendNote()">
-					<input type="button" value="목록" onclick="sendNote()">
+					<input type="button" value="삭제" onclick="deleteNote()">
+					<input type="button" value="목록" onclick="note()">
 				</td>
 			</tr>
 		</table>
+		<input type="hidden" id="page" th:value="${pageN}">
+		<input type="hidden" id="noteNum" th:value="${note.noteNum}"
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/js/KHE/my.js"></script>
 <script th:inline="javascript">
-
+	function writeNote(){
+		const userid = $("#senduser").val();
+		window.open('/my/writeNote?userid=' + userid, '팝업2', 'width=490,height=430,top=180%,left=600%, location=no');
+	}
+	function note(){
+		const page = $("#page").val();
+		window.location.href='/my/note?page='+page;		
+	}
+	function deleteNote(){
+		const noteNum = $("#noteNum").val();
+		const page = $("#page").val();
+		window.location.href='/my/deleteNote?noteNum='+noteNum+'&page='+page;
+	}
 </script>
 
 </html>

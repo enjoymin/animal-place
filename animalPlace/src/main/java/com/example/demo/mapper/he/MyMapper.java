@@ -19,4 +19,7 @@ public interface MyMapper {
 	List<NoteDTO> getNote(String receiveuser, Criteria cri);
 	long getNtotal(String user);
 	NoteDTO getNoteCT(long noteNum);
+	long getnoteNum(String receiveuser);
+	boolean updateNote(long noteNum);
+	boolean deleteNote(long noteNum);
 }

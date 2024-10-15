@@ -12,8 +12,10 @@ public interface MyService {
 	List<MBoardDTO> getMBList(Criteria cri, String userid);
 	long getPBtotal(String userid);
 	List<PFileDTO> getPFile(Criteria cri, String userid);
-	boolean insertNote(NoteDTO note);
+	long insertNote(NoteDTO note);
 	List<NoteDTO> getNote(String receiveuser, Criteria cri);
 	long getNtotal(String user);
 	NoteDTO getNoteCT(long noteNum);
+	boolean updateNote(long noteNum);
+	boolean delelteNote(long noteNum);
 }
