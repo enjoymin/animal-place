@@ -467,6 +467,9 @@ strong {
 }
 
 /* -------메인 유기/분양 파트--------- */
+#strayimg{
+	float: left;
+}
 #strayimg img {
     width: 500px;
     height: 500px;
@@ -474,16 +477,27 @@ strong {
     border-radius: 85px;
 }
 #straytxt {
+	float: right;
+	position: relative;
+	width: 50%;
+	text-align: justify;
+}
+#straytxt .txt{
 	
 }
-#straytxt h3{
-	
+
+#straytxt h3, #straytxt span, #straytxt img{
+    text-align: center;	
+}
+#straytxt h3 {
+    font-size: 24px;
 }
 #straytxt span{
 	
 }
-#straytxt img{
-	
+#straytxt img {
+	width: 280px;
+    height: 130px;
 }
 
 
