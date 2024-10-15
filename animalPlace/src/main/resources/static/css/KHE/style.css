@@ -364,3 +364,13 @@ input[type=button]:hover {
 .notewrap table {
 	margin: 0 auto;
 }
+.notecss{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.notecss table{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
