@@ -13,6 +13,7 @@
 	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
 	<div id="wrap">
 		<div>
+
 			<div class="mainTopImg">
 				<img src="/images/mainlogoimg.png" alt="">
 				<h1>
@@ -28,169 +29,212 @@
 					<span>c</span>
 					<span>e</span>
 				</h1>
+				<div class="block">
+				       <h1>애니멀 플레이스</h1>
+				       <p>우리 애니멀 플레이스는 어쩌구 저쩌구</p>
+				   </div>
 			</div>
 			<div class="menu-up">
-			              
-			           </div>
-			           <div class="menu-down">
-			               <div class="main-pic1">
-							   <a href="/board/disease"><p>질병 게시판</p></a>
-			               </div>
-			               <div class="main-pic2">
-			                  <a href="/mboard/m_board"><p>모임 게시판</p></a>
-			               </div>
-			               <div class="main-pic3">
-			                   <a href="/pboard/list"><p>SNS</p></a>
-			               </div>
-			               <div class="main-pic4">
-			                   <a href="/adoption/list"><p>분양 게시판</p></a>
-			               </div>
-			               <div class="main-pic5">
-			                  <a href="/stray/list"><p>유기동물 게시판</p></a>
-			               </div>
-			               <div class="main-pic6">
-			                   <a href="/map/map"><p>병원 위치</p></a>
-			               </div>
-			           </div>
-			       </div>
-			<div class="main main-pboard">
-				<div class="pboard-text">
-					<Strong>사랑스러운 반려동물의 사진을 공유해봐요</Strong>
-					<a href="../pboard/list">더보기</a>
-				</div>
-				<div class="pboard-list">
-					<div th:if="${flist != null or flist.size() != 0}">
-						<p>좋아요를 많이 받은 게시글</p>
-						<ul class="pboard-imgs">
-							<div th:if="${flist == null or flist.size() == 0}" class="no_list">
 
-								<img src="/images/nolike.webp">
-								<div>
-									<p>좋아요된 게시물이 없어요...</p>
-									<p>더보기를 눌러서 마음에 드는 게시글에 좋아요를 눌러 주세요</p>
-								</div>
-
-							</div>
-							<li class="pboard-img" th:each="img : ${flist}">
-								<img th:src="${'/images/pimages/' + img}">
-							</li>
-						</ul>
-					</div>
-				</div>
 			</div>
-			<div class="main mboard">
-				<div class="mboard_wrap">
-
-					<div class="mboard_txt">
-						<p class="mboard_title">
-							모임 게시판
-						</p>
-
-						<div class="mboard_info">
-							<p>
-								당신의 반려동물과 함께할 수 있는 특별한 순간을 만들어보세요!
-							</p>
-							<p>
-								다양한 반려인들과 함께 즐거운 모임에 참여하여 소중한 인연을 맺을 수 있습니다!
-							</p>
-						</div>
-
-						<div class="go_mboard">
-							<a href="/mboard/m_board">바로가기</a>
-						</div>
-					</div>
-
-					<div class="mboard_con">
-
-						<div class="mboard_img">
-							<img src="/images/mimages/노는 강아지.png" alt="">
-							<p>Recent Posts</p>
-							<img src="/images/mimages/공.png" alt="">
-						</div>
-
-						<div class="mboard_list">
-
-							<div th:if="${mlist == null or mlist.size() == 0}" class="no_list">
-								<div>등록된 게시글이 없습니다.</div>
-							</div>
-
-							<div class="lists" th:if="${mlist != null and mlist.size() > 0}" th:each="m_board:${mlist}">
-								<a
-									th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.boardtitle}]]</a>
-								<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.userid}]]</a>
-								<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.setdate}]]</a>
-							</div>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-			<div class="main disease">
-				<div class="disease-main-left">
-					<div class="disease-title">
-						<p>반려동물 질병 확인</p>
-					</div>
-					<div class="disease-left">
-						<p>당신의 반려동물의 건강상태를 확인해보세요!</p>
-						<p>동물들의 신체부위에 따른 증상과 질병 등 을 확인할 수 있습니다!</p>
-					</div>
-					<div class="disease-a"><button><a href="/board/disease">바로가기</a></button></div>
-				</div>
-				<div class="disease-main-right"><img src="/images/목욕하는 강아지.jpg" alt=""></div>
-			</div>
-			<div class="main stray">
-				<div id="strayimg">
-					<a href="/stray/list"><img src="/images/adoption/stray.png"></a>
-				</div>
-				<div id="straytxt">
-					<a href="/stray/list" class="txt">
-						<h3>버림받고 유기된 동물들</h3>
-						<span>상처받은 아이들의 보금자리가 되어주세요</span>
-						<img src="/images/adoption/유기.png">
+			<div class="menu-down">
+				<div class="main-pic1">
+					<a href="/board/disease">
+						<p>질병 게시판</p>
 					</a>
 				</div>
-			</div>
-			<div class="main adoption">
-				<div id="adoptionimg">
-					<a href="/adoption/list"><img src="/images/adoption/adoption.png"></a>
-				</div>
-				<div id="adoptiontxt">
-					<a href="/adoption/list" class="txt">
-						<h3>분양합니다</h3>
-						<span>보금자리가 되어줄<br>새로운 가족을 찾습니다</span>
-						<img src="/images/adoption/분양.png">
+				<div class="main-pic2">
+					<a href="/mboard/m_board">
+						<p>모임 게시판</p>
 					</a>
 				</div>
-			</div>
-			<div class="main map">
-				<div id="map_img">
-					<img src="/images/map/bgmapimg6.png" alt="" id="mapimg">
-					<img src="/images/map/bgmapimg7.png" alt="" id="mapimg2">
-					<img src="/images/map/bgmapimg8.png" alt="" id="mapimg3">
+				<div class="main-pic3">
+					<a href="/pboard/list">
+						<p>SNS</p>
+					</a>
 				</div>
-				<div id="inmap">
-					<h3>주변 동물병원을 함께 찾아보아요</h3>
-					<span>🌎 편리한 지도 검색을 통해</span><br>
-					<span>주변의 동물병원과 지역 정보를</span><br>
-					<span>쉽고 간편하게 확인할 수 있습니다. </span><br>
-					<span>사랑하는 반려동물의 건강을 위해,</span><br>
-					<span>필요한 정보를 한눈에 알아보세요! 🤩</span><br>
-					<a href="../map/map" id="go_map">검색하기</a>
+				<div class="main-pic4">
+					<a href="/adoption/list">
+						<p>분양 게시판</p>
+					</a>
+				</div>
+				<div class="main-pic5">
+					<a href="/stray/list">
+						<p>유기동물 게시판</p>
+					</a>
+				</div>
+				<div class="main-pic6">
+					<a href="/map/map">
+						<p>병원 위치</p>
+					</a>
 				</div>
 			</div>
 		</div>
+		<div class="main main-pboard">
+			<div class="pboard-text">
+				<Strong>사랑스러운 반려동물의 사진을 공유해봐요</Strong>
+				<a href="../pboard/list">더보기</a>
+			</div>
+			<div class="pboard-list">
+				<div th:if="${flist != null or flist.size() != 0}">
+					<p>좋아요를 많이 받은 게시글</p>
+					<ul class="pboard-imgs">
+						<div th:if="${flist == null or flist.size() == 0}" class="no_list">
+
+							<img src="/images/nolike.webp">
+							<div>
+								<p>좋아요된 게시물이 없어요...</p>
+								<p>더보기를 눌러서 마음에 드는 게시글에 좋아요를 눌러 주세요</p>
+							</div>
+
+						</div>
+						<li class="pboard-img" th:each="img : ${flist}">
+							<img th:src="${'/images/pimages/' + img}">
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="main mboard">
+			<div class="mboard_wrap">
+
+				<div class="mboard_txt">
+					<p class="mboard_title">
+						모임 게시판
+					</p>
+
+					<div class="mboard_info">
+						<p>
+							당신의 반려동물과 함께할 수 있는 특별한 순간을 만들어보세요!
+						</p>
+						<p>
+							다양한 반려인들과 함께 즐거운 모임에 참여하여 소중한 인연을 맺을 수 있습니다!
+						</p>
+					</div>
+
+					<div class="go_mboard">
+						<a href="/mboard/m_board">바로가기</a>
+					</div>
+				</div>
+
+				<div class="mboard_con">
+
+					<div class="mboard_img">
+						<img src="/images/mimages/노는 강아지.png" alt="">
+						<p>Recent Posts</p>
+						<img src="/images/mimages/공.png" alt="">
+					</div>
+
+					<div class="mboard_list">
+
+						<div th:if="${mlist == null or mlist.size() == 0}" class="no_list">
+							<div>등록된 게시글이 없습니다.</div>
+						</div>
+
+						<div class="lists" th:if="${mlist != null and mlist.size() > 0}" th:each="m_board:${mlist}">
+							<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.boardtitle}]]</a>
+							<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.userid}]]</a>
+							<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.setdate}]]</a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<div class="main disease">
+			<div class="disease-main-left">
+				<div class="disease-title">
+					<p>반려동물 질병 확인</p>
+				</div>
+				<div class="disease-left">
+					<p>당신의 반려동물의 건강상태를 확인해보세요!</p>
+					<p>동물들의 신체부위에 따른 증상과 질병 등 을 확인할 수 있습니다!</p>
+				</div>
+				<div class="disease-a"><button><a href="/board/disease">바로가기</a></button></div>
+			</div>
+			<div class="disease-main-right"><img src="/images/목욕하는 강아지.jpg" alt=""></div>
+		</div>
+		<div class="main stray">
+			<div id="strayimg">
+				<a href="/stray/list"><img src="/images/adoption/stray.png"></a>
+			</div>
+
+			<div id="straytxt">
+				<a href="/stray/list" class="txt">
+					<h3>버림받고 유기된 동물들</h3>
+					<span>상처받은 아이들의 보금자리가 되어주세요</span>
+					<img src="/images/adoption/유기.png">
+				</a>
+			</div>
+		</div>
+		<div class="main adoption">
+			<div id="adoptionimg">
+				<a href="/adoption/list"><img src="/images/adoption/adoption.png"></a>
+			</div>
+			<div id="adoptiontxt">
+				<a href="/adoption/list" class="txt">
+					<h3>분양합니다</h3>
+					<span>보금자리가 되어줄<br>새로운 가족을 찾습니다</span>
+					<img src="/images/adoption/분양.png">
+				</a>
+			</div>
+		</div>
+		<div class="main map">
+			<div id="mapimg">
+				<a href="../map/map"><img src="/images/map/bgimg4.jpg" alt=""></a>
+			</div>
+			<div id="mapimg2">
+				<a href="../map/map"><img src="/images/map/bgimg5.jpg" alt=""></a>
+			</div>
+			<div id="inmap">
+				<h3>주변 동물병원을 함께 찾아보아요</h3>
+				<span>🌎 편리한 지도 검색을 통해</span><br>
+				<span>주변의 동물병원과 지역 정보를</span><br>
+				<span>쉽고 간편하게 확인할 수 있습니다. </span><br>
+				<span>사랑하는 반려동물의 건강을 위해,</span><br>
+				<span>필요한 정보를 한눈에 알아보세요! 🤩</span><br>
+				<a href="../map/map"><img src="/images/map/mappage.png" alt="">GO</a>
+				<img src="/images/map/inmapbg.jpg" alt="" id="backimg">
+			</div>
+		</div>
+	</div>
+	</div>
+
+	
+
 	</div>
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
-		const img = document.querySelector('.mainTopImg > img');
+	    const img = document.querySelector('.mainTopImg > img');
+	    const h1 = document.querySelector('.mainTopImg > h1');
+	    const block = document.querySelector('.block');
+	    const spans = document.querySelectorAll('h1 span');
 
-		img.addEventListener('animationend', function () {
-			img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
-		});
+	    img.addEventListener('animationend', function () {
+	        img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
+	        block.style.display = 'block'; // block 클래스를 제거하고 표시
+	    });
+
+	    setTimeout(() => {
+	        // 로고와 텍스트를 왼쪽으로 이동
+	        img.style.transition = 'transform 1s'; // 부드러운 이동을 위해 transition 추가
+	        h1.style.transition = 'transform 1s';
+	        img.style.transform = 'translateX(-390px)'; // 왼쪽으로 이동 (픽셀 값은 조정 가능)
+	        h1.style.transform = 'translateX(-250px)'; // 같은 양만큼 왼쪽으로 이동
+
+	        // 5초 후에 바운스 효과 멈추기
+	        setTimeout(() => {
+	            spans.forEach(span => {
+	                span.style.animation = 'none'; // 애니메이션을 없애기
+	            });
+	        }, 4000); // 5초 후 실행
+	    }, 3000); // 3초 후 실행
 	});
+
+
 </script>
 
 </html>
