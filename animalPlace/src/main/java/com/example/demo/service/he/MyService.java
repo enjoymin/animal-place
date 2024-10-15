@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.domain.he.Criteria;
 import com.example.demo.domain.he.MBoardDTO;
+import com.example.demo.domain.he.NoteDTO;
 import com.example.demo.model.pboard.PFileDTO;
 
 public interface MyService {
@@ -11,4 +12,6 @@ public interface MyService {
 	List<MBoardDTO> getMBList(Criteria cri, String userid);
 	long getPBtotal(String userid);
 	List<PFileDTO> getPFile(Criteria cri, String userid);
+	boolean insertNote(NoteDTO note);
+	List<NoteDTO> getNote(String receiveuser, Criteria cri);
 }
