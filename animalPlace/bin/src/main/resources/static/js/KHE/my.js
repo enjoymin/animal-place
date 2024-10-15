@@ -34,6 +34,7 @@ const myServiceP = {
 			}
 		)
 	}
+<<<<<<< HEAD
 }
 const myServiceN = {
 	select : function(pagenum, callback){
@@ -44,4 +45,6 @@ const myServiceN = {
 			}
 		)
 	}
+=======
+>>>>>>> 65912f6867db07df377b6915552cefbff1c00725
 }

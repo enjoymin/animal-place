@@ -305,6 +305,10 @@ input {
 
 .prow .c_thumbnail {
 	width: 100%;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 65912f6867db07df377b6915552cefbff1c00725
 	height: 200px;
 	max-height: 200px;
 	object-fit: cover;
@@ -351,6 +355,7 @@ input[type=button]:hover {
 
 .nowPage {
 	color: #f9d686;
+<<<<<<< HEAD
 }
 .newcheck{
 	color: red;
@@ -363,4 +368,6 @@ input[type=button]:hover {
 }
 .notewrap table {
 	margin: 0 auto;
+=======
+>>>>>>> 65912f6867db07df377b6915552cefbff1c00725
 }
