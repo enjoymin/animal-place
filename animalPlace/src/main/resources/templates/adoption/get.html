@@ -112,6 +112,9 @@
 	</div>
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
+<script th:inline="javascript">
+	console.log(/*[[${user}]]*/'');
+</script>
 </html>
 
 

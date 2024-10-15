@@ -7,25 +7,26 @@ use project;
 
 ################################# PBOARD START
 create table p_board(
-   boardnum bigint primary key auto_increment,
-   boardtitle varchar(300) not null,
-   boardcontents varchar(300) not null,
-   regdate datetime default now(), #등록시간
-   updatedate datetime default now(), #수정시간
-   userid varchar(300),
+	boardnum bigint primary key auto_increment,
+	boardtitle varchar(300) not null,
+	boardcontents varchar(300) not null,
+	regdate datetime default now(), #등록시간
+	updatedate datetime default now(), #수정시간
+	userid varchar(300),
     
-   boardflag bool default false #댓글 알림을 위한 컬럼
+	boardflag bool default false #댓글 알림을 위한 컬럼
 );
-##################### drop table p_board;
-
+##################### 
+drop table p_board;
+select * from p_board;
 
 create table p_reply(
-   replynum bigint primary key auto_increment,
-   replycontent text not null,
-   regdate datetime default now(),
-   updatedate datetime default now(),
-   replyuserid varchar(300),
-   boardnum bigint
+	replynum bigint primary key auto_increment,
+	replycontent text not null,
+	regdate datetime default now(),
+	updatedate datetime default now(),
+	replyuserid varchar(300),
+	boardnum bigint
 );
 
 #p_pic -> p_file로 수정
@@ -34,18 +35,31 @@ create table p_file(
   orgname varchar(3000) not null,
   boardnum bigint
 );
+select * from p_file;
+
+select 
+	f.boardnum,
+    f.systemname
+from `p_file` f
+	join p_board using(boardnum) where userid = 'apple' order by boardnum desc limit 1,15; 
+select 
+	f.boardnum,
+    MIN(f.systemname) AS systemname
+from `p_file` f
+	join p_board using(boardnum) where userid = 'apple' group by boardnum order by boardnum desc limit 1,15; 
+
 
 create table p_likelist(
-   userid varchar(300),
-   pboardnum bigint
+	userid varchar(300),
+	pboardnum bigint
 );
 
 ######################## PBOARD END
 
 ###################### USER START
-select * from user;
+
 create table user(
-   userid varchar(300) primary key,
+	userid varchar(300) primary key,
     userpw varchar(300),
     username varchar(300),
     userphone varchar(300),
@@ -57,18 +71,19 @@ create table user(
     userpet varchar(300),
     schedule varchar(300)
 );
+select *from user;
 drop table user;
 insert into  user(userid,userpw,username,addrdetail) values("apple","1234","김사과","중국산");
 
 insert into  user(userid,userpw,username,addrdetail) values("banana","1234","반하나","중국산");
 
 create table myphoto(
-   systemname varchar(1000),
+	systemname varchar(1000),
     userid varchar(300)
 );
 
 create table alarm(
-   alarmnum int primary key auto_increment,
+	alarmnum int primary key auto_increment,
     userid varchar(300) not null,
     boardtitle varchar(1000) not null,
     contentpath varchar(3000) not null,
@@ -84,16 +99,34 @@ drop table alarm;
 
 ############################# MAP START
 
-create table posts(
-boardnum bigint auto_increment primary key,
-boardtitle varchar(300) not null,
-boardcontent text not null,
-place_data text not null,
-regdate datetime default now(),
-updatedate datetime default now() on update now(),
-readcount int default 0,
-userid varchar(300)
+#게시판 사용수가 많아 게시판대신 검색순위 제공으로 변경
+
+#create table posts(
+#boardnum bigint auto_increment primary key,
+#boardtitle varchar(300) not null,
+#boardcontent text not null,
+#place_data text not null,
+#regdate datetime default now(),
+#updatedate datetime default now() on update now(),
+#readcount int default 0,
+#serid varchar(300)
+#);
+
+
+
+
+create table map_search_history(
+	id serial primary key,
+    keyword varchar(300) not null,
+    search_count int default 1,
+    search_time timestamp default current_timestamp
 );
+
+
+drop table map_search_history;
+select * from map_search_history;
+
+
 
 ################################## MAP END
 
@@ -123,7 +156,7 @@ boardnum int auto_increment primary key,
     boardcontent varchar(3000),
     boarddatetime datetime default now(),
     boardflag boolean default false,
-   readcount int default 0,
+	readcount int default 0,
     member varchar(3000)
 );
 select * from m_board;
@@ -154,22 +187,18 @@ create table adoption(
     gender varchar(100),
     age varchar(100),
     cost varchar(100),
+    regdate datetime default now(),
     adoptionOk varchar(100),
     userid varchar(300)
 );
-delete from p_board where boardnum = 211;
-
-drop table adoption;
-insert into adoption(title,breed,type,adoptionOk) values("test3","강아지","불독","분양중");
 
 create table adfile(
    systemname varchar(3000),
-   orgname varchar(3000),
+	orgname varchar(3000),
     adoptionnum bigint
 );
 
 ###############################
-
 
 #따로 넣어줘야하는거
 
