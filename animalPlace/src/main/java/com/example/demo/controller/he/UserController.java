@@ -60,7 +60,7 @@ public class UserController {
 				return "redirect:" + path;
 			} 
 			else {
-				return "redirect:/board/list";
+				return "redirect:/";
 			}
 		} else
 			return "redirect:/";

@@ -29,6 +29,30 @@
 					<span>e</span>
 				</h1>
 			</div>
+			<div class="menu-up">
+			              
+			           </div>
+			           <div class="menu-down">
+			               <div class="main-pic1">
+			                   <p>질병 게시판</p>
+			               </div>
+			               <div class="main-pic2">
+			                   <p>모임 게시판</p>
+			               </div>
+			               <div class="main-pic3">
+			                   <p>SNS</p>
+			               </div>
+			               <div class="main-pic4">
+			                   <p>분양 게시판</p>
+			               </div>
+			               <div class="main-pic5">
+			                   <p>유기동물 정보</p>
+			               </div>
+			               <div class="main-pic6">
+			                   <p>MAP</p>
+			               </div>
+			           </div>
+			       </div>
 			<div class="main main-pboard">
 				<div class="pboard-text">
 					<Strong>사랑스러운 반려동물의 사진을 공유해봐요</Strong>
@@ -86,7 +110,7 @@
 
 						<div class="mboard_list">
 
-							<div th:if="${mlist == null or flist.size() == 0}" class="no_list">
+							<div th:if="${mlist == null or mlist.size() == 0}" class="no_list">
 								<div>등록된 게시글이 없습니다.</div>
 							</div>
 
@@ -132,16 +156,16 @@
 					<a href="/adoption/list"><img src="/images/adoption/adoption.png"></a>
 				</div>
 				<div id="adoptiontxt">
-					<a href="/stray/list" class="txt">
+					<a href="/adoption/list" class="txt">
 						<h3>분양합니다</h3>
-						<span>이 아이들의 새로운 가족을 찾습니다</span>
+						<span>보금자리가 되어줄<br>새로운 가족을 찾습니다</span>
 						<img src="/images/adoption/분양.png">
 					</a>
 				</div>
 			</div>
 			<div class="main map">
 				<div id="mapimg">
-					<a href="../map/map"><img src="/images/map/bgimg1.png" alt="" width="300px"></a>
+					<a href="../map/map"><img src="/images/map/bgimg4.jpg" alt=""></a>
 				</div>
 				<div id="inmap">
 					<h3>주변 동물병원을 검색해봐요</h3>

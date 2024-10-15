@@ -43,7 +43,6 @@
 			<!-- 게시판 제목 -->
 			<div class="top_container">
 				<div class="page_title">
-					<img src="/images/mimages/65457f8ac9851.png">
 					<p id="MF">모임 게시판</p>
 				</div>
 			</div>
@@ -66,7 +65,7 @@
 										<div class="profile_img_box">
 											<img src="/images/test강아지.jpg" alt="" class="profile_img">
 										</div>
-										<div class="userid">[[${m_board.userid}]]</div>
+										<div class="userid usermenu">[[${m_board.userid}]]</div>
 									</div>
 									<div class="list_date">
 										조회수 : [[${m_board.readcount}]]
@@ -136,7 +135,7 @@
 												</div>
 
 												<div class="reply_text">
-													<div class="reply_username" th:text="${reply.replyuserid}"></div>
+													<div class="reply_username usermenu" th:text="${reply.replyuserid}"></div>
 
 													<div class="reply_con" th:text="${reply.replycontent}"></div>
 												</div>
