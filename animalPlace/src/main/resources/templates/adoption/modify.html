@@ -10,11 +10,12 @@
 </style>
 </head>
 <body>
-	<!--<th:block th:replace="~{layout/header::header}"></th:block>-->
-	<header></header>
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
 	<div id="main">
         <div id="wrap">
-            <h1>무료 동물 분양 등록</h1>
+			<div class="h2">
+	            <span>무료 동물 분양 등록</span>
+			</div>
 			<form id="adoptionForm" method="post" name="adoptionForm" action="/adoption/modify" enctype="multipart/form-data">
 				<input type="hidden" name="adoptionnum" th:value="${adoption.adoptionnum}">
 				<input type="hidden" name="pageNum" th:value="${adCri.pageNum}">
