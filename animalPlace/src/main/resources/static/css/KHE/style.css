@@ -393,7 +393,9 @@ input[type=button]:hover {
 	border: none;
 	background-color: #f4f4f4;
 }
-
+/*datalist 
+asdsad 
+aasdas */
 .notecss1 table tr:nth-child(3) input {
 	border: 1px solid black;
 	border-radius: 3px;
@@ -410,4 +412,14 @@ input[type=button]:hover {
 	padding: 5px;
 	border-radius: 10px;
 	background-color: #f4f4f4;	
+	outline: none;
+}
+.notecss2 textarea:focus{
+	border : none;
+}
+#recend{
+	position: absolute;
+	width: 60px;
+	right: 120px;
+	top:110px;
 }

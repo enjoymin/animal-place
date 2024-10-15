@@ -30,4 +30,14 @@
 	<select id="getNoteCT">
 		select * from note where noteNum = #{noteNum}
 	</select>
+	<select id="getnoteNum">
+		select noteNum from note where receiveuser=#{receiveuser}
+		order by noteNum desc limit 1
+	</select>
+	<update id="updateNote">
+		update note set readcnt = readcnt +1 where noteNum = #{noteNum}
+	</update>
+	<delete id="deleteNote">
+		delete from note where noteNum = #{noteNum}
+	</delete>
 </mapper>

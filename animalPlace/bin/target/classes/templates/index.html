@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>index</title>
+	<link rel="stylesheet" href="/css/KHE/header.css">
+	<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+	<th:block th:replace="~{layout/KHE/header::header}"></th:block>
+	<div id="wrap">
+		<div>
+			<div class="mainTopImg">
+				<img src="/images/mainlogoimg.png" alt="">
+				<h1>
+					<span>A</span>
+					<span>n</span>
+					<span>i</span>
+					<span>m</span>
+					<span>a</span>
+					<span>l</span>
+					<span>p</span>
+					<span>l</span>
+					<span>a</span>
+					<span>c</span>
+					<span>e</span>
+				</h1>
+			</div>
+			<div class="main main-pboard">
+				<div class="pboard-text">
+					<Strong>사랑스러운 반려동물의 사진을 공유해봐요</Strong>
+					<a href="../pboard/list">더보기</a>
+				</div>
+				<div th:if="${flist == null or flist.size() == 0}" class="no_list">
+					<div>등록된 게시글이 없습니다.</div>
+				</div>
+				<div class="pboard-list">
+					<div th:if="${flist != null or flist.size() != 0}">
+						<p>좋아요를 많이 받은 게시글</p>
+						<ul class="pboard-imgs">
+							<li class="pboard-img" th:each="img : ${flist}">
+								<img th:src="${'/images/pimages/' + img}">
+							</li>
+						</ul>
+					</div>
+					</div>
+				<div class="main mboard">
+						<div class="mboard_wrap">
+					
+							<div class="mboard_txt">
+								<p class="mboard_title">
+									모임 게시판
+								</p>
+					
+								<div class="mboard_info">
+									<p>
+										당신의 반려동물과 함께할 수 있는 특별한 순간을 만들어보세요!
+									</p>
+									<p>
+										다양한 반려인들과 함께 즐거운 모임에 참여하여 소중한 인연을 맺을 수 있습니다!
+									</p>
+								</div>
+					
+								<div class="go_mboard">
+									<a href="/mboard/m_board">바로가기</a>
+								</div>
+							</div>
+					
+							<div class="mboard_con">
+					
+								<div class="mboard_img">
+									<img src="/images/mimages/노는 강아지.png" alt="">
+									<p>Recent Posts</p>
+									<img src="/images/mimages/공.png" alt="">
+								</div>
+					
+								<div class="mboard_list">
+					
+									<div th:if="${mlist == null or flist.size() == 0}" class="no_list">
+										<div>등록된 게시글이 없습니다.</div>
+									</div>
+					
+									<div class="lists" th:if="${mlist != null and mlist.size() > 0}" th:each="m_board:${mlist}">
+										<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.boardtitle}]]</a>
+										<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.userid}]]</a>
+										<a th:href="@{/mboard/m_get(mboardnum=${m_board.boardnum})}">[[${m_board.setdate}]]</a>
+									</div>
+								</div>
+					
+							</div>
+					
+						</div>
+				</div>
+					<div class="main disease">
+						질병정보 소개
+					</div>
+				<div class="main adoption">
+					분양/유기 소개
+				</div>
+				<div class="main map">
+				    <div id="mapimg">
+				        <a href="../map/map"><img src="/images/map/bgimg1.png" alt="" width="300px"></a>
+				    </div>
+				    <div id="inmap">
+				        <h3>주변 동물병원을 검색해봐요</h3>
+				        <span>🌎 MAP검색을 통해</span><br>
+				        <span>주변 동물병원과 지역정보를</span><br>
+				        <span>확인할 수 있어요..🤩</span><br>
+				        <a href="../map/map"><img src="/images/map/mappage.png" alt="">지도검색Go!</a>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block th:replace="~{layout/footer::footer}"></th:block>	
+</body>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const img = document.querySelector('.mainTopImg > img');
+
+		img.addEventListener('animationend', function () {
+			img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
+		});
+	});
+</script>
+
+</html>
