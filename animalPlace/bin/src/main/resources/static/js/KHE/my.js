@@ -34,4 +34,17 @@ const myServiceP = {
 			}
 		)
 	}
+<<<<<<< HEAD
+}
+const myServiceN = {
+	select : function(pagenum, callback){
+		$.getJSON(
+			`/my/noteList?pagenum=${pagenum}`,
+			function(data){
+				callback(data.list,data.pageMaker);
+			}
+		)
+	}
+=======
+>>>>>>> 65912f6867db07df377b6915552cefbff1c00725
 }

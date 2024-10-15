@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -152,14 +153,28 @@ public class MyController {
 	@ResponseBody
 	public void writeNotesend(NoteDTO note) {
 		service.insertNote(note);
+		System.out.println("check");
 		String flag = "note";
 		aservice.insertAlarm(note.getReceiveuser(), note.getTitle(), "", flag);
 	}
 	@GetMapping("note")
-	public void note(HttpServletRequest req, Model model, Criteria cri) {
+	public void note() {}
+	@GetMapping("noteList")
+	@ResponseBody
+	public Map<String, Object> noteList(HttpServletRequest req, Model model, Criteria cri) {
 		HttpSession session = req.getSession();
 		String user =  (String) session.getAttribute("loginUser");
 		List<NoteDTO> list = service.getNote(user, cri);
-		model.addAttribute("note", list);
+		Map<String, Object> response = new HashMap<>();
+		response.put("list", list);
+		response.put("pageMaker",new PageDTO(service.getNtotal(user), cri));
+		System.out.println(response);
+		return response;
+	}
+	@GetMapping("getNote")
+	public void getNote(HttpServletRequest req, Model model, long noteNum, int page) {
+		NoteDTO note = service.getNoteCT(noteNum);
+		model.addAttribute("note", note);
+		model.addAttribute("pageN", page);
 	}
 }

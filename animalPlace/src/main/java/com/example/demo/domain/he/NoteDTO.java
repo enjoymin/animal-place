@@ -9,5 +9,6 @@ public class NoteDTO {
 	private String receiveuser;
 	private String title;
 	private String contents;
+	private String regdate;
 	private int readcnt;
 }

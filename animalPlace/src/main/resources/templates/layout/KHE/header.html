@@ -6,10 +6,10 @@
 			<a href="/"><img src="/images/KHE/aplogo.png" style="height: 100px;"></a>
 		</span>
 		<span id="alarm" class="alarm alarmwindow">
-			<a href=""><img src="/images/KHE/bell1.png" style="height: 80px;"></a>
+			<a href=""><img src="/images/KHE/bell1.png" style="height: 50px;"></a>
 		</span>
 		<span id="alarm2" class="alarm2" style="display:none; ">
-			<img src="/images/KHE/alarm.png" style="height: 30px;">
+			<img src="/images/KHE/alarm.png" style="height: 18px;">
 		</span>
 		<div id="alarmpage" style="display: none;">
 			<table class="alarmP">
@@ -330,16 +330,16 @@
 				alert("쪽지는 로그인 후에 보낼 수 있습니다!");
 				return;
 			}
-			window.open('/my/writeNote?userid=' + profileid, '팝업2', 'width=490,height=380,top=180%,left=600%, location=no');
+			window.open('/my/writeNote?userid=' + profileid, '팝업2', 'width=490,height=430,top=180%,left=600%, location=no');
 		});
 		$("#notepage").on('click', function (e) {
 			e.preventDefault();
-			window.open('/my/note', '팝업', 'width=600,height=800');
+			window.open('/my/note', '팝업', 'width=600,height=580,top=40%,left=40%');
 		});
 		function notePage() {
 			$("#alarmpage").fadeOut(200);
 			$("#alarmpagetri").fadeOut(200);
-			window.open('/my/note', '팝업', 'width=600,height=800');
+			window.open('/my/note', '팝업', 'width=600,height=580,top=40%,left=40%');
 		}
 	</script>
 </th:block>
