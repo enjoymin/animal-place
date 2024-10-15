@@ -338,6 +338,7 @@ strong {
 .map {
 	position: relative;
 	font-family: 'TTLaundryGothicB';
+	background-color: #f7f7f7;
 }
 
 .map>h3 {
@@ -598,6 +599,7 @@ strong {
 .menu-down div p {
     color: white;
     font-size: 20px;
+	user-select: none; 
 }
 .menu-down div{
     /* border: 1px solid black; */
@@ -618,6 +620,7 @@ strong {
     background-image: url(/images/메인사진1.jpg);
     background-size: cover;
     justify-content: center;
+	
 }
 .main-pic2{
     background-image: url(/images/메인사진2.jpg);
@@ -640,8 +643,8 @@ strong {
     background-image: url(/images/메인사진6.jpg);
 }
 
-.wrap-menu .menu-up > div,
-.wrap-menu .menu-down > div {
+ .menu-up > div,
+.menu-down > div {
 
     transition: transform 0.3s ease; /* 부드러운 애니메이션 효과 */
    
