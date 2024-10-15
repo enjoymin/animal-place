@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import com.example.demo.model.pboard.PLikelistDTO;
 import com.example.demo.service.pboard.PBoardService;
 import com.example.demo.service.pboard.PLikelistService;
