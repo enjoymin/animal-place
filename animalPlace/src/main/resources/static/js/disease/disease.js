@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	});
 
+	window.onload = function(){
+	    $("#btn1").click();
+	}
 	document.querySelectorAll('.animal-btn').forEach(function(button) {
 		button.addEventListener('click', function() {
 			document.querySelectorAll('.animal-btn').forEach(btn => btn.classList.remove('active'));
