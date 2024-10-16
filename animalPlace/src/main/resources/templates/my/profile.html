@@ -90,7 +90,18 @@
 					</tr>
 					<tr>
 						<th><label for="userpet">애완동물</label></th>
-						<td><input type="text" name="userpet" id="userpet" th:value="${user.userpet}"></td>
+						<td>
+							<div>
+								<div class="pet_input">
+									<input type="text" name="pet" onkeyup="petKeyup()"
+										style="width: 166px; margin-right: 5px;"><input type="button" value="추가"
+										onclick="addPet()" style="width:50px;">
+								</div>
+								<div class="pet_list"></div>
+								<input type="hidden" name="userpet">
+								<input type="hidden" name="petL" th:value="${user.userpet}" id="petL">
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -109,6 +120,25 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/KHE/user.js"></script>
 <script th:inline="javascript">
+	$(window).on('load', function () {
+		const petList = $("#petL").val();
+		var animalArray = petList.split('\\');
+		const pet_list = document.getElementsByClassName("pet_list")[0];
+		for (let i = 0; i < animalArray.length; i++) {
+			const inputPet = document.createElement("div");
+			inputPet.classList = "userpet";
+			inputPet.name = "userpet";
+			//span 태그 노드 내부 내용으로 입력한 취미 문자열 설정
+			inputPet.innerHTML = animalArray[i];
+			//취미 목록 배열에 입력한 취미 문자열 추가
+			arPet.push(animalArray[i]);
+			inputPet.addEventListener("click", deletePet)
+
+			pet_list.appendChild(inputPet);
+		}
+
+	});
+
 	let iflag = $("#iflag").html();
 	let myphotosrc = $(".thumbnail").attr('src');
 	function upload() {
@@ -124,7 +154,6 @@
 			else {
 				$('.thumbnail').attr('src', '/images/KHE/baseprofile.png');
 			}
-			console.log($("#myphoto").val());
 			return;
 		}
 		let ext = file.name.split(".").pop();

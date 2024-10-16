@@ -88,8 +88,15 @@
 					<tr>
 						<th><label for="userpet">애완동물</label></th>
 						<td>
+							<div>
+								<div class="pet_input">
+									<input type="text" name="pet" onkeyup="petKeyup()" style="width: 166px; margin-right: 5px;"><input type="button"
+										value="추가" onclick="addPet()" style="width:50px;">
+								</div>
+								<div class="pet_list"></div>
+								<input type="hidden" name="userpet">
+							</div>
 							
-							<input type="text" name="userpet" id="userpet">
 						</td>
 					</tr>
 					<tr>
