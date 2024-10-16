@@ -11,7 +11,7 @@
 	</select>
 	<update id="updateUser">
 		update user
-		set userpw=#{userpw}, zipcode=#{zipcode}, addr=#{addr},
+		set userpw=#{userpw}, username=#{username}, userphone=#{userphone}, useremail=#{useremail}, zipcode=#{zipcode}, addr=#{addr},
 		addrdetail=#{addrdetail}, addretc=#{addretc}, userpet=#{userpet}, schedule=#{schedule}
 		where userid=#{userid}
 	</update>
