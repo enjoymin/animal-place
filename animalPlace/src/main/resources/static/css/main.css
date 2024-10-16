@@ -175,6 +175,10 @@ h1 span:nth-child(8) {
 		margin-bottom: 5px;
 		
 }
+.shrink {
+    transform: scale(0.5); /* 크기를 80%로 줄임 */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+}
 /**/
 .mainTitle {
    display: inline-block;
