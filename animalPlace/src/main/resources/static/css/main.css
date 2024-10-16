@@ -22,6 +22,7 @@ a {
 	color: #ccc;
 }
 
+
 /* a:active{
 	color: #f9d686;
 }
@@ -154,6 +155,19 @@ h1 span:nth-child(8) {
 /*추가*/
 .block{
 	display: none;
+	width: 400px;
+	color: white;
+	/*10월 16일*/
+	opacity: 0;    
+	transition: opacity 0.5s ease; 
+}
+.block-title  {
+	font-size: 50px;
+}
+.block-serve{
+	font-family: 'HakgyoansimSantteutdotumL';
+		font-weight: 600;
+		
 }
 /**/
 .mainTitle {
@@ -180,14 +194,28 @@ h1 span:nth-child(8) {
 	display: flex;
 }
 
+.pboard-title {
+	font-size: 50px;
+}
+.main-pboard strong {
+	color: #579956;
+}
+
+.main-pboard p {
+	color: #579956;
+	margin : 10px;
+}
 
 .main-pboard {
 	width: 100%;
 }
 
 .pboard-text {
-	display: flex;
 	justify-content: space-between;
+}
+.pboard-text a{
+	float: right;
+	margin-right: 10px;
 }
 
 .pboard-img {
