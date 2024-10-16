@@ -261,7 +261,6 @@
 
 
 
-
 .del_item {
 	display: flex;
 	align-items: center;
@@ -551,6 +550,7 @@ button {
 }
 
 #addFileButton {
+	font-family: 'TTLaundryGothicB';
 	width: 150px;
 	height: 30px;
 	margin-bottom: 20px;
