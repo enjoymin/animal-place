@@ -13,13 +13,13 @@
 				<tr>
 					<th >받는 사람</th>
 					<td >
-						<input type="text" name="receiveuser" th:value="${receiveuser}" readonly style="color:rgba(87, 153, 86, 1);">
+						<input type="text" name="receiveuser" th:value="${receiveuser}" id="ruser" readonly style="color:rgba(87, 153, 86, 1);">
 					</td>
 				</tr>
 				<tr>
 					<th>보내는 사람</th>
 					<td>
-						<input type="text" name="senduser" th:value="${senduser}" readonly style="color:#f9d686;">
+						<input type="text" name="senduser" th:value="${senduser}" id="suser" readonly style="color:#f9d686;">
 					</td>
 				</tr>
 				<tr>
@@ -59,11 +59,21 @@
 			alert("내용을 입력해 주세요!")
 			return;
 		}
-		const writeNote = document.noteForm;
-		writeNote.submit();
-		setTimeout(function () {
-			window.close();
-		}, 0);
+		//const writeNote = document.noteForm;
+		//writeNote.submit();
+		
+		$.ajax({
+			url: '/my/writeNote',
+			type:'POST',
+			data: {
+				receiveuser: $("#ruser").val(),
+				senduser: $("#suser").val(),
+				title: $("#note-title").val(),
+				contents: $("#note").val()
+			},
+			dataType: 'json'
+		})
+		window.close();
 	}
 </script>
 

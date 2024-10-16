@@ -166,7 +166,6 @@
 			reader.onload = function (ie) {
 				$('.thumbnail').attr('src', ie.target.result);
 			}
-			console.log($("#myphoto").val());
 		}
 		else {
 			alert("이미지 파일이 아닙니다!");
@@ -177,11 +176,9 @@
 				$('.thumbnail').attr('src', '/images/KHE/baseprofile.png');
 			}
 			$("#myphoto").val('');
-			console.log($("#myphoto").val())
 			return;
 		}
 	})
-	console.log($("#myphoto").val())	
 </script>
 
 </html>
