@@ -39,6 +39,11 @@
 	font-family: 'TTLaundryGothicB';
 }
 
+.title {
+	font-family: 'TTLaundryGothicB';
+	color: #579956;
+	font-size: 50px;
+}
 
 .headimg {
 	width: 100%;
@@ -89,6 +94,15 @@
 	flex-direction: column;
 	z-index: 10;
 	/* 세로 정렬 */
+}
+
+.no_list {
+	margin: 0 auto;
+}
+
+.no_list p{
+	font-size: 50px;
+	color: #579956;	
 }
 
 .likebtn {
@@ -148,8 +162,8 @@
 	background-color: white !important;
 	padding: 20px !important;
 	border-radius: 5px !important;
-	width: 1000px !important;
-	height: 900px;
+	width: 800px !important;
+	height: 880px;
 	text-align: center !important;
 }
 
@@ -285,10 +299,12 @@ ul {
 
 #warningMessage p {
 	color: red;
+	font-family: 'TTLaundryGothicB';
 }
 
 #warningText p {
 	color: red;
+	font-family: 'TTLaundryGothicB';
 }
 
 .carousel-inner {

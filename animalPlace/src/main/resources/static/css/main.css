@@ -166,12 +166,7 @@ h1 span:nth-child(8) {
 .block-serve{
    text-align: left;
 }
-#bye{
-   text-align: left;
-   font-family: 'HakgyoansimSantteutdotumL';
-      font-weight: 600;
-      font-size: 22px;
-      margin-bottom: 5px;
+
 
 
 	width: 400px;    font-family: 'TTLaundryGothicB';
@@ -183,6 +178,7 @@ h1 span:nth-child(8) {
 .block-serve{
 	text-align: left;
 }
+
 #bye{
 	text-align: left;
 	font-family: 'HakgyoansimSantteutdotumL';
@@ -190,7 +186,10 @@ h1 span:nth-child(8) {
 		font-size: 22px;
 		margin-bottom: 5px;
 		
-
+}
+.shrink {
+    transform: scale(0.5); /* 크기를 80%로 줄임 */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
 }
 /**/
 .mainTitle {
@@ -213,8 +212,12 @@ h1 span:nth-child(8) {
 .main-pboard ul {
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
+	margin-top: 20px;
 	display: flex;
+}
+
+.main-pboard .no_list{
+	margin : 0 auto;
 }
 
 .pboard-title {
@@ -247,7 +250,6 @@ h1 span:nth-child(8) {
 	border: 1px solid black;
 	margin: 10px 30px;
 	display: flex;
-
 }
 
 p {
@@ -269,6 +271,7 @@ strong {
    object-fit: cover;
    max-width: 100%;
    max-height: 100%;
+   margin: 0 auto;
 }
 
 .pboard-list p {
@@ -877,8 +880,22 @@ strong {
 }
 
 /* 유기 분양 파트 끝 */
-
-
+/*TOP버튼*/
+#scrollTopBtn {
+    font-family: 'TTLaundryGothicB';
+    background-color: #f9d686;
+    color: #F26363;
+    border: none;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 70px;
+    z-index: 1000;
+}
 
 
 
