@@ -30,8 +30,11 @@
 					<span>e</span>
 				</h1>
 				<div class="block">
-					<h1>애니멀 플레이스</h1>
-					<p>우리 애니멀 플레이스는 어쩌구 저쩌구</p>
+					<h1 class="block-title">애니멀 플레이스</h1>
+					<div class="block-serve">
+						<p id="bye">이 사이트는 질병 정보, 동물 병원 위치, 입양 정보, 포토 게시판, 모임 안내 등 다양한 기능을 제공하여</p>
+						<p id="bye">연령에 관계없이 반려동물을 키우는 사람들이라면 누구든 필요로 하는 정보들을 한곳에서 쉽게 접근할 수 있습니다!</p>
+					</div>
 				</div>
 			</div>
 			<div class="menu-up">
@@ -73,7 +76,7 @@
 		<div class="main main-pboard">
 			<div class="pboard-text">
 				<p class="pboard-title">
-					동물 사진 게시판
+					동물 사진 게시
 				</p>
 				<p>사랑스러운 반려동물의 사진을 공유해봐요</p>
 				<a href="../pboard/list">더보기</a>
@@ -197,7 +200,7 @@
 			<div id="map_img">
 				<img src="/images/map/bgmapimg6.png" alt="" id="mapimg">
 				<img src="/images/map/bgmapimg7.png" alt="" id="mapimg2">
-				
+
 			</div>
 			<div id="inmap">
 				<h3>주변 동물병원을 함께 찾아보아요</h3>
@@ -233,8 +236,8 @@
 			// 로고와 텍스트를 왼쪽으로 이동
 			img.style.transition = 'transform 1s'; // 부드러운 이동을 위해 transition 추가
 			h1.style.transition = 'transform 1s';
-			img.style.transform = 'translateX(-390px)'; // 왼쪽으로 이동 (픽셀 값은 조정 가능)
-			h1.style.transform = 'translateX(-250px)'; // 같은 양만큼 왼쪽으로 이동
+			img.style.transform = 'translateX(-380px)'; // 왼쪽으로 이동 (픽셀 값은 조정 가능)
+			h1.style.transform = 'translateX(-150px)'; // 같은 양만큼 왼쪽으로 이동
 
 			// 5초 후에 바운스 효과 멈추기
 			setTimeout(() => {
