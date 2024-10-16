@@ -91,6 +91,15 @@
 	/* 세로 정렬 */
 }
 
+.no_list {
+	margin: 0 auto;
+}
+
+.no_list p{
+	font-size: 50px;
+	color: #579956;	
+}
+
 .likebtn {
 	text-decoration: none;
 	color: white;
