@@ -319,22 +319,20 @@
 						<div>등록된 게시글이 없습니다.</div>
 					</div>
 					<!-- 태그에 th:each="변수명:${반복자}" 속성을 달아 놓으면 반복자에서 꺼내오면서 반복되는 횟수만큼 태그를 생성한다. -->
-						<div class="row"th:if="${list != null and list.size() > 0}" th:each="adoption:${list}">
-						<a class="get"  th:href="${adoption.adoptionnum}"  >
+					<div class="row"th:if="${list != null and list.size() > 0}" th:each="adoption:${list}">
+						<a class="get" th:href="${adoption.adoptionnum}">
 							<div>
 							<img class="thumbnail"
 							th:src="${'/adfile/onethumbnail?adoptionnum='+adoption.adoptionnum}">
 							</div>
 							<div>[[${adoption.breed}]]</div>
 							<div>[[${adoption.type}]]</div>
-							<div>
-								[[${adoption.title}]]
-							</div>
+							<div>[[${adoption.title}]]</div>
 							<div>[[${adoption.gender}]]</div>
 							<div>[[${adoption.region}]]</div>
 							<div>[[${adoption.regdate}]]</div>
 						</a>
-						</div>
+					</div>
 				</div>
 			</div>
 			<!-- 페이징 처리하는 테이블 -->
@@ -630,7 +628,7 @@
 	
 	$(".get").click(function(e){
 		e.preventDefault();
-		let adoptionnum = e.target.getAttribute("href");
+		let adoptionnum = this.getAttribute("href");
 		let listLink = /*[[${pageMaker.adCri.listLink}]]*/'';
 		location.href = '/adoption/get'+listLink+"&adoptionnum="+adoptionnum;
 	})
