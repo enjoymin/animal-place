@@ -13,9 +13,6 @@ public class DiseaseServiceImpl implements DiseaseService {
 
     @Autowired
     private DiseaseMapper diseaseMapper;
-
-    // 다른 메소드들...
-
     @Override
     public List<DiseaseDTO> getDiseasesByAnimalAndBodyPart(String animalName, String bodyPart) {
         return diseaseMapper.getDiseasesByAnimalAndBodyPart(animalName, bodyPart);

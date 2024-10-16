@@ -79,7 +79,7 @@ console.log(animal, bodyPart);
 
 function displayDiseases(diseases) {
 	const diseaseList = document.querySelector('.disease-list');
-	diseaseList.innerHTML = ''; // 기존 리스트 초기화
+	diseaseList.innerHTML = ''; 
 
 	
 	diseases.forEach(disease => {

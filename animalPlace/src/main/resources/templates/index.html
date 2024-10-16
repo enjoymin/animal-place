@@ -16,7 +16,7 @@
 
 			<div class="mainTopImg">
 				<img src="/images/mainlogoimg.png" alt="">
-				<h1>
+				<h1 id="mainTitle">
 					<span>A</span>
 					<span>n</span>
 					<span>i</span>
@@ -33,16 +33,9 @@
 					<h1 class="block-title">애니멀 플레이스</h1>
 
 					<div class="block-serve">
-						<p id="bye">이 사이트는 질병 정보, 동물 병원 위치, 입양 정보, 포토 게시판, 모임 안내 등 다양한 기능을 제공하여</p>
-						<p id="bye">연령에 관계없이 반려동물을 키우는 사람들이라면 누구든 필요로 하는 정보들을 한곳에서 쉽게 접근할 수 있습니다!</p>
-					</div>
-
-					<p class="block-serve">
-					<p>현재 다양한 동물 병원 사이트와 입양 플랫폼이 존재하지만,</p>
-					<p>반려동물을 위한 통합 커뮤니티는 부족한 상황입니다.</p>
-					<p>이 사이트는 질병 정보, 동물 병원 위치, 입양 정보, 포토 게시판, 모임 안내 등 다양한 기능을 제공하여</p>
-					<p>연령에 관계없이 반려동물을 키우는 사람들이라면 누구든 필요로 하는 정보들을 한곳에서 쉽게 접근할 수 있도록 기획하였습니다.</p>
-					</p>
+					<p id="bye">이 사이트는 질병 정보, 동물 병원 위치, 입양 정보, 포토 게시판, 모임 안내 등 다양한 기능을 제공하여</p>
+					<p id="bye">연령에 관계없이 반려동물을 키우는 사람들이라면 누구든 필요로 하는 정보들을 한곳에서 쉽게 접근할 수 있습니다!</p>
+					 </div>
 
 				</div>
 			</div>
@@ -85,7 +78,7 @@
 		<div class="main main-pboard">
 			<div class="pboard-text">
 				<p class="pboard-title">
-					동물 사진 게시
+					동물 사진 게시판
 				</p>
 				<p>사랑스러운 반려동물의 사진을 공유해봐요</p>
 				<a href="../pboard/list">더보기</a>
@@ -227,6 +220,7 @@
 
 
 	</div>
+	<button id="scrollTopBtn" style="display: none;">Top</button>
 	<th:block th:replace="~{layout/footer::footer}"></th:block>
 </body>
 <script>
@@ -256,8 +250,13 @@
 			img.style.transform = 'translateX(-380px)'; // 왼쪽으로 이동 (픽셀 값은 조정 가능)
 			h1.style.transform = 'translateX(-150px)'; // 같은 양만큼 왼쪽으로 이동
 
+
 			h1.style.transform = 'translateX(-200px)'; // 같은 양만큼 왼쪽으로 이동
 
+			//스판 사이즈 줄이기
+				//spans.forEach(span => {
+			           // span.classList.add('shrink'); // shrink 클래스 추가
+			       // });
 
 			// 5초 후에 바운스 효과 멈추기
 			setTimeout(() => {
@@ -267,7 +266,23 @@
 			}, 2000); // 2초 후 실행
 		}, 6000); // 6초 후 실행
 	});
+	    document.addEventListener('DOMContentLoaded', function () {
+	    const scrollTopBtn = document.getElementById('scrollTopBtn');
 
+	    // 스크롤할 때 버튼 표시/숨기기
+	    window.onscroll = function() {
+	        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+	            scrollTopBtn.style.display = 'block'; // 버튼 표시
+	        } else {
+	            scrollTopBtn.style.display = 'none'; // 버튼 숨기기
+	        }
+	    };
+
+	    // 버튼 클릭 시 상단으로 스크롤
+	    scrollTopBtn.addEventListener('click', function() {
+	        window.scrollTo({ top: 0, behavior: 'smooth' }); // 부드럽게 스크롤
+	    });
+	});
 
 </script>
 

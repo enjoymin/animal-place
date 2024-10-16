@@ -166,28 +166,18 @@ h1 span:nth-child(8) {
 .block-serve{
    text-align: left;
 }
-#bye{
-   text-align: left;
-   font-family: 'HakgyoansimSantteutdotumL';
-      font-weight: 600;
-      font-size: 22px;
-      margin-bottom: 5px;
 
-	display: none;
-	width: 400px;
-	color: white;
-	/*10월 16일*/
-	opacity: 0;    
-	transition: opacity 0.5s ease; 
-}
-.block-title  {
-	font-size: 50px;
-}
-.block-serve{
+#bye{
+	text-align: left;
 	font-family: 'HakgyoansimSantteutdotumL';
 		font-weight: 600;
+		font-size: 22px;
+		margin-bottom: 5px;
 		
-
+}
+.shrink {
+    transform: scale(0.5); /* 크기를 80%로 줄임 */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
 }
 /**/
 .mainTitle {
@@ -210,8 +200,12 @@ h1 span:nth-child(8) {
 .main-pboard ul {
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
+	margin-top: 20px;
 	display: flex;
+}
+
+.main-pboard .no_list{
+	margin : 0 auto;
 }
 
 .pboard-title {
@@ -244,12 +238,12 @@ h1 span:nth-child(8) {
 	border: 1px solid black;
 	margin: 10px 30px;
 	display: flex;
-
 }
 
 p {
-   font-family: 'TTLaundryGothicB';
-   /*font-size: 26px;*/
+	font-family: 'TTLaundryGothicB';
+	/*font-size: 26px;*/
+
 }
 
 .pboard-text a {
@@ -265,6 +259,7 @@ strong {
    object-fit: cover;
    max-width: 100%;
    max-height: 100%;
+   margin: 0 auto;
 }
 
 .pboard-list p {
@@ -527,22 +522,45 @@ strong {
    color: #579956;
 }
 
+/*
+
+#go_map:hover {
+    background-color: #f9d686;
+    border: none;
+    transition: .5s;
+}
+
+#go_map{
+    color: #FFF !important;
+    text-decoration: none;
+    border: 1px solid #579956;
+    border-radius: 30px;
+    padding: 10px;
+   background-color: #579956;
+
+}
+*/
+
 .disease-a button {
-   border: 1px solid black;
-   background-color: white;
-   color: white !important;
-   width: 80px;
-   height: 50px;
-   border-radius: 10px;
+	color: #FFF !important;
+	   text-decoration: none;
+	   border: 1px solid #579956;
+	   border-radius: 30px;
+	   padding: 10px;
+	  background-color: #579956;
 }
 
 .disease-a button a {
-   color: black;
+   color: white;
 }
 
 .disease button:hover {
-   background-color: #f9d686;
-   border: 1px solid #f9d686;
+	color: #FFF !important;
+	    text-decoration: none;
+	    border: 1px solid #f9d686;
+	    border-radius: 30px;
+	    padding: 10px;
+	   background-color: #f9d686;
 
 }
 
@@ -850,8 +868,22 @@ strong {
 }
 
 /* 유기 분양 파트 끝 */
-
-
+/*TOP버튼*/
+#scrollTopBtn {
+    font-family: 'TTLaundryGothicB';
+    background-color: #f9d686;
+    color: #F26363;
+    border: none;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 70px;
+    z-index: 1000;
+}
 
 
 
