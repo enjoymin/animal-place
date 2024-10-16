@@ -154,15 +154,21 @@ h1 span:nth-child(8) {
 /*추가*/
 .block{
 	display: none;
-	width: 400px;
+	width: 400px;    font-family: 'TTLaundryGothicB';
 	color: white;
 }
 .block-title  {
-	font-size: 50px;
+	font-size: 60px;
 }
 .block-serve{
+	text-align: left;
+}
+#bye{
+	text-align: left;
 	font-family: 'HakgyoansimSantteutdotumL';
 		font-weight: 600;
+		font-size: 22px;
+		margin-bottom: 5px;
 		
 }
 /**/
@@ -211,6 +217,7 @@ h1 span:nth-child(8) {
 
 p {
 	font-family: 'TTLaundryGothicB';
+	/*font-size: 26px;*/
 }
 
 .pboard-text a {
