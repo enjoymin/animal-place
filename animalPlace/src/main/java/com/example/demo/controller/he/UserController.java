@@ -66,6 +66,7 @@ public class UserController {
 			return "redirect:/";
 	}
 
+	
 	@GetMapping("isUser")
 	@ResponseBody
 	public boolean isUser(String userid, String userpw) {
@@ -85,15 +86,12 @@ public class UserController {
 	@PostMapping("logout")
 	public String logout(String path, HttpServletRequest req) {
 		req.getSession().invalidate();
-		System.out.println(path);
 		return "redirect:" + path;
 	}
 
 	@PostMapping("modify")
 	public String modify(UserDTO user, MultipartFile myphoto) {
-		System.out.println(myphoto);
 		if (myphoto == null || myphoto.isEmpty()) {
-			System.out.println("check");
 		}
 		if (service.updateUser(user, myphoto)) {
 		} else {
