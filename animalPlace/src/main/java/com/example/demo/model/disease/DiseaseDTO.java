@@ -1,19 +1,19 @@
 package com.example.demo.model.disease;
 
 public class DiseaseDTO {
-    private String name;        // 질병 이름
-    private String symptoms;    // 증상
-    private String imageUrl;    // 이미지 URL
-    private String solution;    // 해결책
+    private String name;        
+    private String symptoms;  
+    private String imageUrl;   
+    private String solution;    
 
-    // 생성자
+ 
     public DiseaseDTO(String name, String symptoms, String imageUrl) {
         this.name = name;
         this.symptoms = symptoms;
         this.imageUrl = imageUrl;
     }
 
-    // Getter 및 Setter
+ 
     public String getName() {
         return name;
     }

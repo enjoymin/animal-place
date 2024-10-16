@@ -23,30 +23,30 @@
 /* 푸터 */
 footer {
     height: 300px;
-	
+   
 }
 #footerft div,a{
-	font-family: 'TTLaundryGothicB';
+   font-family: 'TTLaundryGothicB';
 }
 
 .footer_area{
-	margin-top: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   margin-top: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .footer_rayout{
-	width: 100%;
-	background-color: #54965a;	
-	padding: 25px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   width: 100%;
+   background-color: #54965a;   
+   padding: 25px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .footer_logo{
-	text-align: center;
+   text-align: center;
 }
 
 .footer_logo img{
@@ -61,30 +61,25 @@ footer {
 .footer_box{
     margin-left: 50px;
     padding: 10px;
-}
-
-.team_info{
-    display: flex;
-    justify-content: space-between;
+   width: 1270px;
 }
 
 .team_name {
     display: flex;
-    flex-wrap: wrap; /* 줄 바꿈 허용 */
 }
 
 .team_name div {
     margin: 10px;
-    width: calc(33.33% - 20px); /* 세 개씩 나누기 */
     box-sizing: border-box; /* 패딩과 보더를 포함 */
     font-size: 13px;
     color: #FFFFFF;
+   width: 432px;
 }
 
 .team_name a{
     font-size: 13px;
     margin: 10px;
-	color: #FFFFFF;
+   color: #FFFFFF;
 }
 
 .Team_Notion{
@@ -99,6 +94,7 @@ footer {
     padding: 10px;
     color: #FFFFFF;
     font-size: 25px;
+   text-align: center;
 }
 
 .Team_Notion a{
@@ -134,5 +130,6 @@ footer {
 }
 
 .toolbox div{
+	text-align: center;
     margin-left: 10px;
 }
