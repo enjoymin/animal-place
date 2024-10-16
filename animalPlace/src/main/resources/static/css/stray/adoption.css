@@ -146,6 +146,12 @@ select:hover {
 .table .row *{
 	width:100%;
 }
+.table .row .get{
+	display: flex;
+	vertical-align: middle;
+	align-items: center;	
+	text-align: center;
+}
 .tar{ text-align: right !important; }
 .tac{ text-align: center !important; }
 .tal{ text-align: left !important; }
@@ -166,10 +172,10 @@ select:hover {
 	border-top:1px solid #ccc;
 }
 .list.table > .tbody > .row:nth-child(2n+1) {
-	background-color: rgb(240, 255, 240);
+	background-color: #C2E8CE;
 }
 .list.table > .tbody > .row:hover {
-	background-color: #C2E8CE;
+	background-color: #F7FFE5;
 }
 .list.table > .tbody > .row:last-child{ border-bottom: 1px solid #ccc; }
 .list.table > .tbody > .row > div{
@@ -329,7 +335,7 @@ table{
 }
 
 .pagination a:hover {
-	background-color: rgb(198, 175, 245);
+	background-color: rgb(252, 235, 197);
 }
 
 .nowPage {
@@ -338,8 +344,8 @@ table{
 	height: 30px;
 	display: inline-block;
 	border-radius: 3px;
-	background-color: rgb(198, 175, 245);
-	color: #fff;
+	background-color: rgb(252, 235, 197);
+	color: #000;
 	font-weight: bold;
 }
 
@@ -380,10 +386,7 @@ img.thumbnail {
     transition: all 0.1s linear;
     padding: 10px;
 }
-img.thumbnail:hover{
-	transform: scale(1.4);
-	box-shadow: 1px 1px 4px black;
-}
+
 
 
 
