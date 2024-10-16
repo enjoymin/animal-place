@@ -91,6 +91,9 @@
 				<li><a href="/my/contents">등록한글</a></li>
 				<li><a href="" id="notepage">쪽지함</a></li>
 				<li><a id="logout" style="color: rgb(80, 80, 80);">로그아웃</a></li>
+				<form id="logoutForm" action="/user/logout" method="post" name="logoutForm">
+					<input type="hidden" name="path" id="logoutPath">
+				</form>
 			</ul>
 		</div>
 		<th:block th:if="${session.loginUser == null}">
@@ -109,6 +112,8 @@
 		let profileid = '';
 		$(document).on('click', '.menu', function (e) {
 			e.preventDefault(); // 기본 동작 방지
+			const path = window.location.pathname + window.location.search;
+			console.log(path);
 			if (menu.style.right === "-400px") {
 				window.setTimeout(function () {
 					menu.style.right = "0px"; // 메뉴 열기
@@ -135,16 +140,14 @@
 			}, 300)
 		});
 
-
 		const alamcaller = setInterval(alex, 300000); //주기적으로 alex()함수 호출
 		$(document).on('click', '#logout', function (e) {
 			e.preventDefault();
-			const path = window.location.pathname;
-			window.location.href = "/user/logout?path=" + path;
-
+			const path = window.location.pathname + window.location.search;
+			$("#logoutPath").val(path);
+			const logoutForm = document.logoutForm;
+			logoutForm.submit();
 		});
-		$("#logout").click(function (e) {
-		})
 
 		$(document).on('click', '.alarmwindow', function (e) {
 			e.preventDefault();
@@ -158,7 +161,7 @@
 		})
 		$(document).on('click', '#login', function (e) {
 			e.preventDefault();
-			const path = window.location.pathname;
+			const path = window.location.pathname + window.location.search;
 			$("#loginmodal").fadeIn(200);
 			$("#path").val(path);
 			$("#lgd").focus();
