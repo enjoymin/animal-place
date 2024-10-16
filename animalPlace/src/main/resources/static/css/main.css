@@ -166,26 +166,7 @@ h1 span:nth-child(8) {
 .block-serve{
    text-align: left;
 }
-#bye{
-   text-align: left;
-   font-family: 'HakgyoansimSantteutdotumL';
-      font-weight: 600;
-      font-size: 22px;
-      margin-bottom: 5px;
 
-	display: none;
-	width: 400px;    font-family: 'TTLaundryGothicB';
-	color: white;
-	/*10월 16일*/
-	opacity: 0;    
-	transition: opacity 0.5s ease; 
-}
-.block-title  {
-	font-size: 60px;
-}
-.block-serve{
-	text-align: left;
-}
 #bye{
 	text-align: left;
 	font-family: 'HakgyoansimSantteutdotumL';
@@ -193,7 +174,10 @@ h1 span:nth-child(8) {
 		font-size: 22px;
 		margin-bottom: 5px;
 		
-
+}
+.shrink {
+    transform: scale(0.5); /* 크기를 80%로 줄임 */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
 }
 /**/
 .mainTitle {
@@ -884,8 +868,22 @@ strong {
 }
 
 /* 유기 분양 파트 끝 */
-
-
+/*TOP버튼*/
+#scrollTopBtn {
+    font-family: 'TTLaundryGothicB';
+    background-color: #f9d686;
+    color: #F26363;
+    border: none;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 70px;
+    z-index: 1000;
+}
 
 
 
