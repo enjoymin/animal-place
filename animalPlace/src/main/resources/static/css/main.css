@@ -22,6 +22,7 @@ a {
 	color: #ccc;
 }
 
+
 /* a:active{
 	color: #f9d686;
 }
@@ -50,7 +51,7 @@ a:visited{
 	position: relative;
 	background-image: url(/images/mainback.png);
 }
-
+/*---------------------------------------------*/
 @keyframes reveal {
 	0% {
 		transform: translateY(-400%) rotate(0deg);
@@ -150,6 +151,22 @@ h1 span:nth-child(8) {
 	}
 }
 
+/*--------------------------------------------------------------*/
+/*추가*/
+.block{
+	display: none;
+	width: 400px;
+	color: white;
+}
+.block-title  {
+	font-size: 50px;
+}
+.block-serve{
+	font-family: 'HakgyoansimSantteutdotumL';
+		font-weight: 600;
+		
+}
+/**/
 .mainTitle {
 	display: inline-block;
 	animation: bendU 2s ease-in-out 3s forwards;
@@ -174,14 +191,28 @@ h1 span:nth-child(8) {
 	display: flex;
 }
 
+.pboard-title {
+	font-size: 50px;
+}
+.main-pboard strong {
+	color: #579956;
+}
+
+.main-pboard p {
+	color: #579956;
+	margin : 10px;
+}
 
 .main-pboard {
 	width: 100%;
 }
 
 .pboard-text {
-	display: flex;
 	justify-content: space-between;
+}
+.pboard-text a{
+	float: right;
+	margin-right: 10px;
 }
 
 .pboard-img {
@@ -336,9 +367,11 @@ strong {
 
 /*---------map 부분-----------*/
 .map {
-    
+/*    background-color: #579956;*/
 	position: relative;
 	font-family: 'TTLaundryGothicB';
+    width: 100%;
+    height: 500px;
 }
 
 .map>h3 {
@@ -352,6 +385,7 @@ strong {
     width: 100%;
     height: 100%;
    
+
 }
 #mapimg2>a>img{
     width: 100%;
@@ -363,73 +397,93 @@ strong {
 .map>div {
 	width: 100%;
 	height: 500px;
-}
 
-.map #mapimg {
+}
+.map #map_img{
     width: 33%;
-	float: left;
+    float: left;
 	position: relative;
-    clip-path: polygon(0 0, 70% 0, 100% 100%, 0% 100%);
-    z-index: 3;
-	
 
 }
-.map #mapimg2 {
-    width: 33%;
+.map #mapimg {
+    width: 170px;
 	float: left;
 	position: absolute;
-    margin-left: 26%;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
-    opacity: 0.4;
-    z-index: 3;
+    margin-left: 360px;
+    margin-top: 260px;
+
+}
+
+.map #mapimg2 {
+    width: 300px;
+	float: left;
+	position: absolute;
+    margin-left: 100px;
+    margin-top: 100px;
+
+}
+.map #mapimg3 {
+    width: 130px;
+	float: left;
+	position: absolute;
+    margin-top: 40px;
+    margin-left: 50px;
 
 }
 
 .map #inmap {
     width: 45%;
-	text-align: right;
+    height: 500px;
+	text-align: left;
 	position: absolute;
 	float: left;
-	padding-top: 20px;
 	margin-left: 50%;
-    z-index: 2;
+
 }
 
 #inmap>h3 {
 	font-size: 30px;
+    margin-top: 60px;
+    margin-left: 30px;
 	margin-bottom: 50px;
+    color: #579956;
+
+
 }
 
 #inmap>span {
+    font-size: 20px;
 	margin: 30px;
 	line-height: 2;
+    margin-left: 150px;
+    color: #579956;
+
 }
 
 #inmap>a {
 	margin: 30px 30px;
-	width: 180px;
+    width: 80px;
 	display: inline-block;
 	text-align: center;
     position: relative;
-    z-index: 3;
-    font-weight: bold;
+    margin-left: 320px;
 }
 
-#inmap>a>img {
-	width: 50px;
-	position: absolute;
-	margin-left: -40px;
-	margin-top: -10px;
-    z-index: 3;
+
+#go_map:hover {
+    background-color: #f9d686;
+    border: none;
+    transition: .5s;
 }
-#inmap #backimg{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    opacity: 0.4;
-    position: absolute;
-    margin-left: -140px;
-    z-index: 0;
+
+#go_map{
+    color: #FFF !important;
+    text-decoration: none;
+    border: 1px solid #579956;
+    border-radius: 30px;
+    padding: 10px;
+	background-color: #579956;
+
 }
 
 /* -------메인 질병 파트--------- */
@@ -493,9 +547,7 @@ strong {
 }
 
 /* -------메인 유기 파트--------- */
-.stray{
-	background-color: #579956;
-}
+
 #strayimg{
 	float: left;
 }
@@ -638,7 +690,7 @@ strong {
     overflow: hidden;
     justify-content: center;
     text-align: center;
-    line-height: 480px;
+    line-height: 600px;
 }
 .main-pic1{
     background-image: url(/images/메인사진1.jpg);
@@ -679,6 +731,101 @@ strong {
 .menu-down > div:hover {
     transform: scale(1.1); /* 10% 확대 */
 }
+/* 유기 분양 파트 */
+
+.main_stray_adoption {
+   background-color: #f7f7f7;
+   height: 500px;
+   color: #111;
+   position: relative;
+   margin-bottom: 50px;
+}
+
+.stray{
+   margin: 10px;
+   margin-right: 80px;
+   padding: 50px;
+   position: absolute;
+   left: 100px;
+}
+
+.adoption{
+   margin: 10px;
+   margin-left: 80px;
+   padding: 50px;
+   position: absolute;
+   right: 100px;
+   text-align: right;
+}
+
+.stray_txt{
+   font-family: 'TTLaundryGothicB';
+   font-size: 50px;
+}
+
+.adoption_txt{
+   font-family: 'TTLaundryGothicB';
+   font-size: 50px;
+}
+
+.main_stray_adoption a{
+   background-color: #579956;
+   color: #FFF !important;
+   border-radius: 30px;
+   padding: 10px;
+}
+
+.main_stray_adoption a:hover{
+   background-color: #f9d686;
+   border: none;
+   transition: .8s;
+}
+
+.stray_info{
+   margin-top: 30px;
+}
+
+.adoption_info{
+   margin-top: 30px;
+}
+
+.stray_info p{
+   font-family: 'HakgyoansimSantteutdotumL';
+   font-weight: 600;
+}
+
+.stray_info p:last-child{
+   margin-top: 10px;
+}
+
+.adoption_info p{
+   font-family: 'HakgyoansimSantteutdotumL';
+   font-weight: 600;
+}
+
+.adoption p:last-child{
+   margin-top: 10px;
+}
+
+.go_stray {
+   margin-top: 50px;
+}
+
+.go_adoption{
+   margin-top: 50px;
+}
+
+.stray_img img{
+   width: 180px;
+   margin-left: 300px;
+}
+
+.adoption_img img{
+   width: 180px;
+   margin-right: 300px;
+}
+
+/* 유기 분양 파트 끝 */
 
 
 
