@@ -140,6 +140,7 @@ CREATE TABLE disease (
     image_url VARCHAR(300),
     solution TEXT
 );
+drop table disease;
 ################################## DISEASE END
 
 
