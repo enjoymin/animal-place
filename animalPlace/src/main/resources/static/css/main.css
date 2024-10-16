@@ -22,6 +22,7 @@ a {
 	color: #ccc;
 }
 
+
 /* a:active{
 	color: #f9d686;
 }
@@ -190,14 +191,28 @@ h1 span:nth-child(8) {
 	display: flex;
 }
 
+.pboard-title {
+	font-size: 50px;
+}
+.main-pboard strong {
+	color: #579956;
+}
+
+.main-pboard p {
+	color: #579956;
+	margin : 10px;
+}
 
 .main-pboard {
 	width: 100%;
 }
 
 .pboard-text {
-	display: flex;
 	justify-content: space-between;
+}
+.pboard-text a{
+	float: right;
+	margin-right: 10px;
 }
 
 .pboard-img {
