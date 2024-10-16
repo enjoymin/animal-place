@@ -31,10 +31,10 @@ public class DiseaseController {
         return "disease/board/disease"; 
     }
 
-    // 동물 이름과 신체 부위에 따른 질병 정보를 반환하는 메소드
+  
     @GetMapping("disease/{animalName}/{bodyPart}")
     @ResponseBody
     public List<DiseaseDTO> getDiseasesByAnimalAndBodyPart(@PathVariable String animalName, @PathVariable String bodyPart) {
-        return diseaseService.getDiseasesByAnimalAndBodyPart(animalName, bodyPart); // DiseaseDTO를 반환해야 함
+        return diseaseService.getDiseasesByAnimalAndBodyPart(animalName, bodyPart); 
     }
 }
