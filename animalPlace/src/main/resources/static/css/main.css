@@ -216,8 +216,12 @@ h1 span:nth-child(8) {
 .main-pboard ul {
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
+	margin-top: 20px;
 	display: flex;
+}
+
+.main-pboard .no_list{
+	margin : 0 auto;
 }
 
 .pboard-title {
@@ -250,7 +254,6 @@ h1 span:nth-child(8) {
 	border: 1px solid black;
 	margin: 10px 30px;
 	display: flex;
-
 }
 
 p {
@@ -272,6 +275,7 @@ strong {
    object-fit: cover;
    max-width: 100%;
    max-height: 100%;
+   margin: 0 auto;
 }
 
 .pboard-list p {
