@@ -53,7 +53,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean updateUser(UserDTO user, MultipartFile file) {
 		if (file == null || file.isEmpty()) {
-			System.out.println("true");
 			return umapper.updateUser(user) == 1;
 		} else {
 			if (fmapper.getProfile(user.getUserid()) != null) {
