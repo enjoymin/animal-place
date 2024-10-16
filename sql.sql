@@ -74,8 +74,8 @@ create table user(
 select *from user;
 drop table user;
 insert into  user(userid,userpw,username,addrdetail) values("apple","1234","김사과","중국산");
-
 insert into  user(userid,userpw,username,addrdetail) values("banana","1234","반하나","중국산");
+delete from user where userid = 'doori';
 
 create table myphoto(
 	systemname varchar(1000),
@@ -90,43 +90,40 @@ create table alarm(
     reply boolean default false,
     ameeting boolean default false,
     dmeeting boolean default false,
-    plike boolean default false
+    plike boolean default false,
+    note boolean default false
 );
 select * from alarm;
 drop table alarm;
+
+create table note(
+	noteNum bigint primary key auto_increment,
+	receiveuser varchar(100) not null,
+    senduser varchar(100) not null,
+    title varchar(300) not null,
+    contents varchar(3000) not null,
+    regdate datetime default now(),
+    readcnt int default 0
+);
+select * from note;
+drop table note;
+insert into note(receiveuser, senduser, title, contents) values('apple', 'banana', '하이', '안녕하세요');
+insert into note(receiveuser, senduser, title, contents,readcnt) values('apple', 'banana', '하이', '안녕하세요',2);
 
 ############################ USER END
 
 ############################# MAP START
 
-#게시판 사용수가 많아 게시판대신 검색순위 제공으로 변경
-
-#create table posts(
-#boardnum bigint auto_increment primary key,
-#boardtitle varchar(300) not null,
-#boardcontent text not null,
-#place_data text not null,
-#regdate datetime default now(),
-#updatedate datetime default now() on update now(),
-#readcount int default 0,
-#serid varchar(300)
-#);
-
-
-
-
-create table map_search_history(
-	id serial primary key,
-    keyword varchar(300) not null,
-    search_count int default 1,
-    search_time timestamp default current_timestamp
+create table posts(
+boardnum bigint auto_increment primary key,
+boardtitle varchar(300) not null,
+boardcontent text not null,
+place_data text not null,
+regdate datetime default now(),
+updatedate datetime default now() on update now(),
+readcount int default 0,
+userid varchar(300)
 );
-
-
-drop table map_search_history;
-select * from map_search_history;
-
-
 
 ################################## MAP END
 
@@ -140,7 +137,6 @@ CREATE TABLE disease (
     image_url VARCHAR(300),
     solution TEXT
 );
-drop table disease;
 ################################## DISEASE END
 
 
@@ -198,9 +194,9 @@ create table adfile(
 	orgname varchar(3000),
     adoptionnum bigint
 );
-select * from adoption;
-drop table adoption;
+
 ###############################
+
 
 #따로 넣어줘야하는거
 
@@ -236,7 +232,7 @@ INSERT INTO disease (animal_name, body_part, name, symptoms, image_url, solution
 ("고양이", "머리", '진균성 두피염', '탈모, 가려움증, 피부 발진, 비늘 같은 것', '/images/disease/고양이 진균성 두피염.jpg', '항진균제 사용 및 영향을 받은 부위를 청결하게 유지하여 증상 완화. 주기적인 샤워와 환경 소독으로 재발 방지.'),
 ("고양이", "목", '갑상선 기능 항진증', '체중 변화, 탈모, 과다한 식욕, 불안', '/images/disease/고양이 갑상선 기능 항진증.jpg', '호르몬 치료와 정기적인 혈액 검사를 통해 호르몬 수치 모니터링. 수의사와 상담하여 적절한 식이 요법을 조정.'),
 ("고양이", "목", '기관지염', '기침, 호흡 곤란, 재채기, 가래', '/images/disease/고양이 기관지염.jpg', '약물 치료와 함께 환경 관리를 통해 증상 완화. 자극적인 요소를 피하고, 주기적인 건강 검진을 통해 장기적인 관리.'),
-("고양이", "목", '목 종양', '부풀어 오른 목, 삼키기 어려움, 통증', '/images/disease/고양이 목 종양.jpg', '수술적 제거 후 방사선 치료가 필요할 수 있으며, 수의사와 상담하여 적절한 후속 조치 계획. 정기적인 검진으로 상태 모니터링.'),
+("고양이", "목", '목 종양', '부풀어 오른 목, 삼키기 어려움, 통증', '/images/disease/disease/고양이 목 종양.jpg', '수술적 제거 후 방사선 치료가 필요할 수 있으며, 수의사와 상담하여 적절한 후속 조치 계획. 정기적인 검진으로 상태 모니터링.'),
 ("고양이", "목", '식도 질환', '구토, 식욕 감소, 침흘림, 삼키기 어려움', '/images/disease/고양이 식도 질환.jpg', '수의사 진료 후 약물 치료 및 식이 요법 조절. 부드러운 사료 제공으로 소화 부담 최소화. 정기적인 검진으로 건강 유지.'),
 ("고양이", "몸통", '비만', '체중 증가, 활동 감소, 숨쉬기 힘듦, 에너지 저하', '/images/disease/고양이 비만.jpg', '식단 조절과 규칙적인 운동을 통해 체중 관리. 수의사와 상담하여 적절한 체중 감량 계획 수립. 장기적인 건강 유지.'),
 ("고양이", "몸통", '심장병', '기침, 숨쉬기 힘듦, 무기력, 식욕 감소', '/images/disease/고양이 심장병.jpg', '약물 치료와 저염식이 필요하며, 수의사와 상담하여 주기적인 심장 검사 및 모니터링을 통해 상태 관리. 스트레스 최소화와 규칙적인 운동이 필요.'),
