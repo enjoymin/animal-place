@@ -561,7 +561,7 @@ fieldset div button:hover {
 	/* 기본적으로 숨김 */
 	position: fixed;
 	/* 고정 위치 */
-	top: 330px;
+	top: 420px;
 	/* 화면의 중앙에 위치 */
 	left: 50%;
 	transform: translate(-50%, -50%);

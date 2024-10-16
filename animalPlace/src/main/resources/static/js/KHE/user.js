@@ -182,7 +182,7 @@ function addPet() {
 	inputPet.innerHTML = pet.value;
 	//취미 목록 배열에 입력한 취미 문자열 추가
 	arPet.push(pet.value);
-	
+
 	inputPet.addEventListener("click", deletePet)
 
 	pet_list.appendChild(inputPet);
@@ -224,6 +224,18 @@ function sendit() {
 	if (pwflag != 1) {
 		alert("비밀번호를 확인해 주세요!")
 		$("#userpw").focus();
+		return;
+	}
+	if ($("#username").val() == "") {
+		alert("이름을 입력해 주세요!");
+		return;
+	}
+	if ($("#userphone").val() == "") {
+		alert("전화번호를 입력해 주세요!");
+		return;
+	}
+	if ($("#useremail").val() == "") {
+		alert("이메일을 입력해 주세요!");
 		return;
 	}
 	if ($("#zipcode").val() == "") {
