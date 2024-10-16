@@ -257,7 +257,9 @@
 							</th:block>
 							<th:block th:if="${pageMaker.adCri.breed == '기타'}">
 								<span>품종 선택</span>
-								<option value="기타" th:selected="${pageMaker.adCri.type == '기타'}">기타</option>
+								<select id="type" name="type">
+									<option value="기타" th:selected="${pageMaker.adCri.type == '기타'}">기타</option>
+								</select>	
 							</th:block>
 		                </div>
 					</div>
@@ -317,22 +319,22 @@
 						<div>등록된 게시글이 없습니다.</div>
 					</div>
 					<!-- 태그에 th:each="변수명:${반복자}" 속성을 달아 놓으면 반복자에서 꺼내오면서 반복되는 횟수만큼 태그를 생성한다. -->
-					<div class="row" th:if="${list != null and list.size() > 0}" th:each="adoption:${list}">
-						<div>
-						<img class="thumbnail"
-						th:src="${'/adfile/onethumbnail?adoptionnum='+adoption.adoptionnum}">
+						<div class="row"th:if="${list != null and list.size() > 0}" th:each="adoption:${list}">
+						<a class="get"  th:href="${adoption.adoptionnum}"  >
+							<div>
+							<img class="thumbnail"
+							th:src="${'/adfile/onethumbnail?adoptionnum='+adoption.adoptionnum}">
+							</div>
+							<div>[[${adoption.breed}]]</div>
+							<div>[[${adoption.type}]]</div>
+							<div>
+								[[${adoption.title}]]
+							</div>
+							<div>[[${adoption.gender}]]</div>
+							<div>[[${adoption.region}]]</div>
+							<div>[[${adoption.regdate}]]</div>
+						</a>
 						</div>
-						<div>[[${adoption.breed}]]</div>
-						<div>[[${adoption.type}]]</div>
-						<div>
-							<a class="get" th:href="${adoption.adoptionnum}">
-							[[${adoption.title}]]
-							</a>
-						</div>
-						<div>[[${adoption.gender}]]</div>
-						<div>[[${adoption.region}]]</div>
-						<div>[[${adoption.regdate}]]</div>
-					</div>
 				</div>
 			</div>
 			<!-- 페이징 처리하는 테이블 -->

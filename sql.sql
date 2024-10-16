@@ -7,25 +7,26 @@ use project;
 
 ################################# PBOARD START
 create table p_board(
-   boardnum bigint primary key auto_increment,
-   boardtitle varchar(300) not null,
-   boardcontents varchar(300) not null,
-   regdate datetime default now(), #등록시간
-   updatedate datetime default now(), #수정시간
-   userid varchar(300),
+	boardnum bigint primary key auto_increment,
+	boardtitle varchar(300) not null,
+	boardcontents varchar(300) not null,
+	regdate datetime default now(), #등록시간
+	updatedate datetime default now(), #수정시간
+	userid varchar(300),
     
-   boardflag bool default false #댓글 알림을 위한 컬럼
+	boardflag bool default false #댓글 알림을 위한 컬럼
 );
-##################### drop table p_board;
-
+##################### 
+drop table p_board;
+select * from p_board;
 
 create table p_reply(
-   replynum bigint primary key auto_increment,
-   replycontent text not null,
-   regdate datetime default now(),
-   updatedate datetime default now(),
-   replyuserid varchar(300),
-   boardnum bigint
+	replynum bigint primary key auto_increment,
+	replycontent text not null,
+	regdate datetime default now(),
+	updatedate datetime default now(),
+	replyuserid varchar(300),
+	boardnum bigint
 );
 
 #p_pic -> p_file로 수정
@@ -34,18 +35,31 @@ create table p_file(
   orgname varchar(3000) not null,
   boardnum bigint
 );
+select * from p_file;
+
+select 
+	f.boardnum,
+    f.systemname
+from `p_file` f
+	join p_board using(boardnum) where userid = 'apple' order by boardnum desc limit 1,15; 
+select 
+	f.boardnum,
+    MIN(f.systemname) AS systemname
+from `p_file` f
+	join p_board using(boardnum) where userid = 'apple' group by boardnum order by boardnum desc limit 1,15; 
+
 
 create table p_likelist(
-   userid varchar(300),
-   pboardnum bigint
+	userid varchar(300),
+	pboardnum bigint
 );
 
 ######################## PBOARD END
 
 ###################### USER START
-select * from user;
+
 create table user(
-   userid varchar(300) primary key,
+	userid varchar(300) primary key,
     userpw varchar(300),
     username varchar(300),
     userphone varchar(300),
@@ -57,18 +71,19 @@ create table user(
     userpet varchar(300),
     schedule varchar(300)
 );
+select *from user;
 drop table user;
 insert into  user(userid,userpw,username,addrdetail) values("apple","1234","김사과","중국산");
 
 insert into  user(userid,userpw,username,addrdetail) values("banana","1234","반하나","중국산");
 
 create table myphoto(
-   systemname varchar(1000),
+	systemname varchar(1000),
     userid varchar(300)
 );
 
 create table alarm(
-   alarmnum int primary key auto_increment,
+	alarmnum int primary key auto_increment,
     userid varchar(300) not null,
     boardtitle varchar(1000) not null,
     contentpath varchar(3000) not null,
@@ -84,16 +99,34 @@ drop table alarm;
 
 ############################# MAP START
 
-create table posts(
-boardnum bigint auto_increment primary key,
-boardtitle varchar(300) not null,
-boardcontent text not null,
-place_data text not null,
-regdate datetime default now(),
-updatedate datetime default now() on update now(),
-readcount int default 0,
-userid varchar(300)
+#게시판 사용수가 많아 게시판대신 검색순위 제공으로 변경
+
+#create table posts(
+#boardnum bigint auto_increment primary key,
+#boardtitle varchar(300) not null,
+#boardcontent text not null,
+#place_data text not null,
+#regdate datetime default now(),
+#updatedate datetime default now() on update now(),
+#readcount int default 0,
+#serid varchar(300)
+#);
+
+
+
+
+create table map_search_history(
+	id serial primary key,
+    keyword varchar(300) not null,
+    search_count int default 1,
+    search_time timestamp default current_timestamp
 );
+
+
+drop table map_search_history;
+select * from map_search_history;
+
+
 
 ################################## MAP END
 
@@ -107,6 +140,7 @@ CREATE TABLE disease (
     image_url VARCHAR(300),
     solution TEXT
 );
+drop table disease;
 ################################## DISEASE END
 
 
@@ -123,7 +157,7 @@ boardnum int auto_increment primary key,
     boardcontent varchar(3000),
     boarddatetime datetime default now(),
     boardflag boolean default false,
-   readcount int default 0,
+	readcount int default 0,
     member varchar(3000)
 );
 select * from m_board;
@@ -154,22 +188,19 @@ create table adoption(
     gender varchar(100),
     age varchar(100),
     cost varchar(100),
+    regdate datetime default now(),
     adoptionOk varchar(100),
     userid varchar(300)
 );
-delete from p_board where boardnum = 211;
-
-drop table adoption;
-insert into adoption(title,breed,type,adoptionOk) values("test3","강아지","불독","분양중");
 
 create table adfile(
    systemname varchar(3000),
-   orgname varchar(3000),
+	orgname varchar(3000),
     adoptionnum bigint
 );
-
+select * from adoption;
+drop table adoption;
 ###############################
-
 
 #따로 넣어줘야하는거
 
@@ -205,7 +236,7 @@ INSERT INTO disease (animal_name, body_part, name, symptoms, image_url, solution
 ("고양이", "머리", '진균성 두피염', '탈모, 가려움증, 피부 발진, 비늘 같은 것', '/images/disease/고양이 진균성 두피염.jpg', '항진균제 사용 및 영향을 받은 부위를 청결하게 유지하여 증상 완화. 주기적인 샤워와 환경 소독으로 재발 방지.'),
 ("고양이", "목", '갑상선 기능 항진증', '체중 변화, 탈모, 과다한 식욕, 불안', '/images/disease/고양이 갑상선 기능 항진증.jpg', '호르몬 치료와 정기적인 혈액 검사를 통해 호르몬 수치 모니터링. 수의사와 상담하여 적절한 식이 요법을 조정.'),
 ("고양이", "목", '기관지염', '기침, 호흡 곤란, 재채기, 가래', '/images/disease/고양이 기관지염.jpg', '약물 치료와 함께 환경 관리를 통해 증상 완화. 자극적인 요소를 피하고, 주기적인 건강 검진을 통해 장기적인 관리.'),
-("고양이", "목", '목 종양', '부풀어 오른 목, 삼키기 어려움, 통증', '/images/disease/disease/고양이 목 종양.jpg', '수술적 제거 후 방사선 치료가 필요할 수 있으며, 수의사와 상담하여 적절한 후속 조치 계획. 정기적인 검진으로 상태 모니터링.'),
+("고양이", "목", '목 종양', '부풀어 오른 목, 삼키기 어려움, 통증', '/images/disease/고양이 목 종양.jpg', '수술적 제거 후 방사선 치료가 필요할 수 있으며, 수의사와 상담하여 적절한 후속 조치 계획. 정기적인 검진으로 상태 모니터링.'),
 ("고양이", "목", '식도 질환', '구토, 식욕 감소, 침흘림, 삼키기 어려움', '/images/disease/고양이 식도 질환.jpg', '수의사 진료 후 약물 치료 및 식이 요법 조절. 부드러운 사료 제공으로 소화 부담 최소화. 정기적인 검진으로 건강 유지.'),
 ("고양이", "몸통", '비만', '체중 증가, 활동 감소, 숨쉬기 힘듦, 에너지 저하', '/images/disease/고양이 비만.jpg', '식단 조절과 규칙적인 운동을 통해 체중 관리. 수의사와 상담하여 적절한 체중 감량 계획 수립. 장기적인 건강 유지.'),
 ("고양이", "몸통", '심장병', '기침, 숨쉬기 힘듦, 무기력, 식욕 감소', '/images/disease/고양이 심장병.jpg', '약물 치료와 저염식이 필요하며, 수의사와 상담하여 주기적인 심장 검사 및 모니터링을 통해 상태 관리. 스트레스 최소화와 규칙적인 운동이 필요.'),
