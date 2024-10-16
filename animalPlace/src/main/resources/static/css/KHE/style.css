@@ -423,3 +423,14 @@ aasdas */
 	right: 120px;
 	top:110px;
 }
+.pet_list{
+	display: flex;
+}
+.userpet{
+	background-color: #f9d686;
+	color:rgba(87, 153, 86, 1);
+	border-radius:  5px;
+	margin: 5px 5px 5px 0;
+	padding: 3px;
+	cursor: pointer;
+}

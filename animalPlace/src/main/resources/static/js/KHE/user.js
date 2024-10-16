@@ -154,7 +154,67 @@ function checkPw_re() {
 		pwflag = 1;
 	}
 }
+const arPet = [];
+function addPet() {
+	const joinForm = document.joinForm;
+	const pet_list = document.getElementsByClassName("pet_list")[0];
+	const pet = joinForm.pet;
 
+	if (pet.value == "") {
+		alert("애완동물을 입력해 주세요!");
+		pet.focus();
+		return;
+	}
+	if (arPet.indexOf(pet.value) != -1) {
+		alert("중복된 애완동물입니다!");
+		pet.focus();
+		pet.value = "";
+		return;
+	}
+	if (arPet.length == 5) {
+		alert("애완동물은 5종류만 입력해주세요!")
+		return;
+	}
+	//span 태그 노드 생성
+	const inputPet = document.createElement("div");
+	inputPet.classList = "userpet";
+	inputPet.name = "userpet";
+	//span 태그 노드 내부 내용으로 입력한 취미 문자열 설정
+	inputPet.innerHTML = pet.value;
+	//취미 목록 배열에 입력한 취미 문자열 추가
+	arPet.push(pet.value);
+	
+	inputPet.addEventListener("click", deletePet)
+
+	pet_list.appendChild(inputPet);
+
+	pet.value = "";
+	pet.focus();
+}
+function petKeyup() {
+	if (window.event.keyCode == 13) {
+		addPet();
+	}
+}
+function deletePet(e) {
+	//e.target : 클릭된 대상(1. span태그 클릭 / 2. a태그 클릭)
+	let deleteNode = null;
+	if (e.target.classList == "xBox") {
+		deleteNode = e.target.parentNode;
+	}
+	else {
+		deleteNode = e.target;
+	}
+
+	let txt = deleteNode.innerText;
+	for (let i in arPet) {
+		if (arPet[i] == txt) {
+			arPet.splice(i, 1);
+			break;
+		}
+	}
+	deleteNode.remove();
+}
 function sendit() {
 	checkPw_re();
 	if (idflag != 1) {
@@ -172,5 +232,8 @@ function sendit() {
 		return;
 	}
 	const joinForm = document.joinForm;
+	const PetTag = joinForm.userpet;
+	PetTag.value = arPet.join("\\");
+	alert("회원정보 등록 성공!")
 	joinForm.submit();
 }
