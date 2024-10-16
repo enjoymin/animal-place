@@ -166,26 +166,7 @@ h1 span:nth-child(8) {
 .block-serve{
    text-align: left;
 }
-#bye{
-   text-align: left;
-   font-family: 'HakgyoansimSantteutdotumL';
-      font-weight: 600;
-      font-size: 22px;
-      margin-bottom: 5px;
 
-	display: none;
-	width: 400px;    font-family: 'TTLaundryGothicB';
-	color: white;
-	/*10월 16일*/
-	opacity: 0;    
-	transition: opacity 0.5s ease; 
-}
-.block-title  {
-	font-size: 60px;
-}
-.block-serve{
-	text-align: left;
-}
 #bye{
 	text-align: left;
 	font-family: 'HakgyoansimSantteutdotumL';
@@ -193,7 +174,6 @@ h1 span:nth-child(8) {
 		font-size: 22px;
 		margin-bottom: 5px;
 		
-
 }
 /**/
 .mainTitle {
