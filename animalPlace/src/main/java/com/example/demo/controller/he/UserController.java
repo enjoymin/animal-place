@@ -66,6 +66,7 @@ public class UserController {
 			return "redirect:/";
 	}
 
+	
 	@GetMapping("isUser")
 	@ResponseBody
 	public boolean isUser(String userid, String userpw) {
