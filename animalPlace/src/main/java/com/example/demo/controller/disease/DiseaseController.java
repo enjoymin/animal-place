@@ -20,12 +20,11 @@ public class DiseaseController {
     @Autowired
     private DiseaseService diseaseService;
 
-    // 기본 페이지를 보여주는 메소드 (index.html)
     @GetMapping("/")
     public String showIndexPage() {
         return "board/index"; 
     }
-    // 기본 페이지를 보여주는 메소드
+   
     @GetMapping("disease")
     public String showDiseasePage() {
         return "disease/board/disease"; 

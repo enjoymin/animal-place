@@ -4,7 +4,7 @@
 	padding: 0;
 }
 
-/* 메인 폰트 */
+
 @font-face {
 	font-family: 'TTLaundryGothicB';
 	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
@@ -12,7 +12,7 @@
 	font-style: normal;
 }
 
-/* 서브 폰트 */
+
 @font-face {
 	font-family: 'HakgyoansimSantteutdotumL';
 	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimSantteutdotumL.woff2') format('woff2');
@@ -149,10 +149,6 @@ button {
 	cursor: pointer;
 }
 
-.animal-btn:focus {
-	/* box-shadow: 0 0 15px rgba(255, 155, 155, 0.7); */
-	/* 색상과 크기를 필요에 맞게 조정해줘 */
-}
 
 /* 아우라 효과 내깅 */
 .animal-btn.active {
@@ -494,51 +490,13 @@ fieldset div button:hover {
 	background-color: white;
 }
 
-.right-item fieldset {
-	/* padding: 20px; */
-}
+
 
 .right-item fieldset p {
 	margin-bottom: 5px;
 }
 
-/* \--------------------------------- */
-/* 1번째 자세히 보기 버튼 */
-/* .detail-infor {
-    position: absolute; 
-    top: 650px; 
-    left: 1400px;
-    z-index: 3000;
-    width: 350px; 
-    height: 450px; 
-    background-color: #FFEAEA;
-    border-radius: 20px;
-} */
-/* 2번째 자세히 보기 버튼 */
-/* .detail-infor {
-    position: absolute;
-    top: 950px; 
-    left: 1400px; 
-    z-index: 3000;
-    width: 350px; 
-    height: 450px; 
-    background-color: #FFEAEA;
-    border-radius: 20px;
-} */
-/* 3번째 자세히 보기 버튼 */
-/* .detail-infor {
-    position: absolute; 
-    top: 1300px; 
-    left: 1400px; 
-    z-index: 3000;
-    width: 350px; 
-    height: 450px; 
-    background-color: #FFEAEA;
-    border-radius: 20px;
-} */
-/* 4번째 자세히 보기 버튼 */
 
-/* 모달 외부 배경을 위한 스타일 */
 /* 모달 외부 배경을 위한 스타일 */
 .modal-background {
 	display: none;
