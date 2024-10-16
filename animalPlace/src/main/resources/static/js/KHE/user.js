@@ -86,7 +86,6 @@ function checkId() {
 		return;
 	}
 	if (!reg.test(userid)) {
-		console.log(userid);
 		$("#idwarning2").html("");
 		idwrn.html("아이디 조건에 부합하지 않습니다!")
 		idflag = 0;
