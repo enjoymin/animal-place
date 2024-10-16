@@ -154,7 +154,76 @@ function checkPw_re() {
 		pwflag = 1;
 	}
 }
+const arHobby = [];
+function addHobby(){
+	const joinForm = document.joinForm;
+	const hobby_list = document.getElementsByClassName("hobby_list")[0];
+	const hobby = joinForm.hobby;
 
+	if(hobby.value == ""){
+		alert("취미를 입력해 주세요!");
+		hobby.focus();
+		return;
+	}
+	if(arHobby.indexOf(hobby.value) != -1){
+		alert("중복된 취미입니다!");
+		hobby.focus();
+		hobby.value = "";
+		return;
+	}
+	if(arHobby.length == 5){
+		alert("취미는 5개 이하로 입력해주세요!")
+		return;
+	}
+	//span 태그 노드 생성
+	const inputHobby = document.createElement("span");
+	//span 태그 노드 클래스 속성 값으로 userhobby
+	inputHobby.classList = "userhobby";
+	//span 태그 노드 name 속성 값으로 userhobby
+	inputHobby.name = "userhobby";
+	//span 태그 노드 내부 내용으로 입력한 취미 문자열 설정
+	inputHobby.innerHTML = hobby.value;
+	//취미 목록 배열에 입력한 취미 문자열 추가
+	arHobby.push(hobby.value);
+	
+	//a태그 노드 생성
+	const xBox = document.createElement("a");
+	//a 태그 노드 클래스 속성 값으로 xBox
+	xBox.classList = "xBox";
+	//만들어진 a태그를 위에 만든 span 태그의 자식으로 추가
+	inputHobby.appendChild(xBox);
+	
+	inputHobby.addEventListener("click",deleteHobby)
+	
+	hobby_list.appendChild(inputHobby);
+	
+	hobby.value = "";
+	hobby.focus();
+}
+function hobbyKeyup(){
+	if(window.event.keyCode == 13){
+		addHobby();
+	}
+}
+function deleteHobby(e){
+	//e.target : 클릭된 대상(1. span태그 클릭 / 2. a태그 클릭)
+	let deleteNode = null;
+	if(e.target.classList == "xBox"){
+		deleteNode = e.target.parentNode;
+	}
+	else{
+		deleteNode = e.target;
+	}
+	
+	let txt = deleteNode.innerText;
+	for(let i in arHobby){
+		if(arHobby[i] == txt){
+			arHobby.splice(i,1);
+			break;
+		}
+	}
+	deleteNode.remove();
+}
 function sendit() {
 	checkPw_re();
 	if (idflag != 1) {
