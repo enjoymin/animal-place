@@ -31,10 +31,12 @@
 				</h1>
 				<div class="block">
 					<h1 class="block-title">애니멀 플레이스</h1>
+
 					<div class="block-serve">
 					<p id="bye">이 사이트는 질병 정보, 동물 병원 위치, 입양 정보, 포토 게시판, 모임 안내 등 다양한 기능을 제공하여</p>
 					<p id="bye">연령에 관계없이 반려동물을 키우는 사람들이라면 누구든 필요로 하는 정보들을 한곳에서 쉽게 접근할 수 있습니다!</p>
 					 </div>
+
 				</div>
 			</div>
 			<div class="menu-up">
@@ -75,7 +77,10 @@
 		</div>
 		<div class="main main-pboard">
 			<div class="pboard-text">
-				<Strong>사랑스러운 반려동물의 사진을 공유해봐요</Strong>
+				<p class="pboard-title">
+					동물 사진 게시
+				</p>
+				<p>사랑스러운 반려동물의 사진을 공유해봐요</p>
 				<a href="../pboard/list">더보기</a>
 			</div>
 			<div class="pboard-list">
@@ -197,7 +202,7 @@
 			<div id="map_img">
 				<img src="/images/map/bgmapimg6.png" alt="" id="mapimg">
 				<img src="/images/map/bgmapimg7.png" alt="" id="mapimg2">
-				
+
 			</div>
 			<div id="inmap">
 				<h3>주변 동물병원을 함께 찾아보아요</h3>
@@ -225,9 +230,17 @@
 		const spans = document.querySelectorAll('h1 span');
 
 		img.addEventListener('animationend', function () {
-			img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
-			block.style.display = 'block'; // block 클래스를 제거하고 표시
-		});
+		        img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
+
+		        setTimeout(function() {
+		            block.style.display = 'block'; // block을 표시
+		            block.style.opacity = 0; // 초기 투명도 설정
+		            
+		            requestAnimationFrame(() => {
+		                block.style.opacity = 1; // 애니메이션 효과로 투명도 변경
+		            });
+		        }, 3000);
+		    });
 
 		setTimeout(() => {
 			// 로고와 텍스트를 왼쪽으로 이동
@@ -236,13 +249,18 @@
 			img.style.transform = 'translateX(-380px)'; // 왼쪽으로 이동 (픽셀 값은 조정 가능)
 			h1.style.transform = 'translateX(-150px)'; // 같은 양만큼 왼쪽으로 이동
 
+
+			h1.style.transform = 'translateX(-200px)'; // 같은 양만큼 왼쪽으로 이동
+
+
+
 			// 5초 후에 바운스 효과 멈추기
 			setTimeout(() => {
 				spans.forEach(span => {
 					span.style.animation = 'none'; // 애니메이션을 없애기
 				});
-			}, 4000); // 5초 후 실행
-		}, 3000); // 3초 후 실행
+			}, 2000); // 2초 후 실행
+		}, 6000); // 6초 후 실행
 	});
 
 
