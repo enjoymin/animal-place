@@ -82,9 +82,10 @@ public class UserController {
 //		return "redirect:/";
 //	}
 
-	@GetMapping("logout")
+	@PostMapping("logout")
 	public String logout(String path, HttpServletRequest req) {
 		req.getSession().invalidate();
+		System.out.println(path);
 		return "redirect:" + path;
 	}
 
