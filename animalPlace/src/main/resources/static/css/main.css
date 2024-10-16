@@ -157,6 +157,8 @@ h1 span:nth-child(8) {
    display: none;
    width: 400px;    font-family: 'TTLaundryGothicB';
    color: white;
+   opacity: 0;    
+   transition: opacity 0.5s ease;
 }
 .block-title  {
    font-size: 60px;
@@ -174,6 +176,9 @@ h1 span:nth-child(8) {
 	display: none;
 	width: 400px;
 	color: white;
+	/*10월 16일*/
+	opacity: 0;    
+	transition: opacity 0.5s ease; 
 }
 .block-title  {
 	font-size: 50px;

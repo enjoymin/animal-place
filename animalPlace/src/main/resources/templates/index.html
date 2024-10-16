@@ -237,9 +237,17 @@
 		const spans = document.querySelectorAll('h1 span');
 
 		img.addEventListener('animationend', function () {
-			img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
-			block.style.display = 'block'; // block 클래스를 제거하고 표시
-		});
+		        img.style.zIndex = 0; // 애니메이션이 끝나면 z-index를 0으로 변경
+
+		        setTimeout(function() {
+		            block.style.display = 'block'; // block을 표시
+		            block.style.opacity = 0; // 초기 투명도 설정
+		            
+		            requestAnimationFrame(() => {
+		                block.style.opacity = 1; // 애니메이션 효과로 투명도 변경
+		            });
+		        }, 3000);
+		    });
 
 		setTimeout(() => {
 			// 로고와 텍스트를 왼쪽으로 이동
@@ -256,8 +264,8 @@
 				spans.forEach(span => {
 					span.style.animation = 'none'; // 애니메이션을 없애기
 				});
-			}, 4000); // 5초 후 실행
-		}, 3000); // 3초 후 실행
+			}, 2000); // 2초 후 실행
+		}, 6000); // 6초 후 실행
 	});
 
 
