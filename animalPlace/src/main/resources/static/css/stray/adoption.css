@@ -146,6 +146,12 @@ select:hover {
 .table .row *{
 	width:100%;
 }
+.table .row .get{
+	display: flex;
+	vertical-align: middle;
+	align-items: center;	
+	text-align: center;
+}
 .tar{ text-align: right !important; }
 .tac{ text-align: center !important; }
 .tal{ text-align: left !important; }
