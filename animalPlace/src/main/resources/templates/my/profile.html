@@ -81,7 +81,7 @@
 					</tr>
 					<tr>
 						<th>상세주소</th>
-						<td><input type="text" name="addrdetail" id="addrdetail" placeholder="상세주소"></td>
+						<td><input type="text" name="addrdetail" id="addrdetail" placeholder="상세주소" th:value="${user.addrdetail}"></td>
 					</tr>
 					<tr>
 						<th>참고항목</th>
@@ -125,6 +125,9 @@
 		var animalArray = petList.split('\\');
 		const pet_list = document.getElementsByClassName("pet_list")[0];
 		for (let i = 0; i < animalArray.length; i++) {
+			if(animalArray[i]=="" || animalArray[i] == null){
+				continue;
+			}
 			const inputPet = document.createElement("div");
 			inputPet.classList = "userpet";
 			inputPet.name = "userpet";
