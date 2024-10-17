@@ -369,9 +369,7 @@ input[type=button]:hover {
 	margin: 0 auto;
 }
 
-.notecss {
-	
-}
+.notecss {}
 
 .notecss2 {
 	display: flex;
@@ -385,14 +383,15 @@ input[type=button]:hover {
 	justify-content: center;
 	text-align: center;
 	border-collapse: separate;
-		/* 간격 적용을 위해 border-collapse를 separate로 설정 */
-		border-spacing: 0px 10px;
+	/* 간격 적용을 위해 border-collapse를 separate로 설정 */
+	border-spacing: 0px 10px;
 }
 
 .notecss input {
 	border: none;
 	background-color: #f4f4f4;
 }
+
 /*datalist 
 asdsad 
 aasdas */
@@ -401,36 +400,53 @@ aasdas */
 	border-radius: 3px;
 	background-color: white;
 }
-.notecss input[type=button]{
+
+.notecss input[type=button] {
 	background-color: rgba(87, 153, 86, 0.9);
 }
-.notecss input[type=button]:hover{
+
+.notecss input[type=button]:hover {
 	background-color: rgba(87, 153, 86, 1);
 }
-.notecss2 textarea{
+
+.notecss2 textarea {
 	border: none;
 	padding: 5px;
 	border-radius: 10px;
-	background-color: #f4f4f4;	
+	background-color: #f4f4f4;
 	outline: none;
 }
-.notecss2 textarea:focus{
-	border : none;
+
+.notecss2 textarea:focus {
+	border: none;
 }
-#recend{
+
+#recend {
 	position: absolute;
 	width: 60px;
 	right: 120px;
-	top:110px;
+	top: 110px;
 }
-.pet_list{
+
+.pet_list {
 	display: flex;
 }
-.userpet{
+
+.userpet {
 	background-color: #f9d686;
-	color:rgba(87, 153, 86, 1);
-	border-radius:  5px;
+	color: rgba(87, 153, 86, 1);
+	border-radius: 5px;
 	margin: 5px 5px 5px 0;
 	padding: 3px;
 	cursor: pointer;
+}
+
+#prtable {
+	
+}
+#prtable th{
+	width: 140px;
+}
+#prtable td{
+	width: 50px;
 }
