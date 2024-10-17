@@ -106,7 +106,8 @@
 							</div>
 						</td>
 					</tr>
-
+					[[${path}]], aaa
+					<input type="hidden" name="path" th:value="${path}" id="aa">
 				</tbody>
 			</table>
 		</form>
@@ -117,7 +118,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/KHE/user.js"></script>
 <script>
-
+	window.setTimeout(console.log($("#aa").val()),500);
 </script>
 
 </html>
