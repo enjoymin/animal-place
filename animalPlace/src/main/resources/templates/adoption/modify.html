@@ -257,7 +257,9 @@
 							</th:block>
 							<th:block th:if="${adCri.breed == '기타'}">
 								<span>품종 선택</span>
-								<option value="기타" th:selected="${adCri.type == '기타'}">기타</option>
+								<select id="type" name="type">
+									<option value="기타" th:selected="${adCri.type == '기타'}">기타</option>
+								</select>
 							</th:block>
 							<span>성별 선택</span>
 							<select id="gender" name="gender">
