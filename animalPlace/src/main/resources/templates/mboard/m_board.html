@@ -36,7 +36,7 @@
                         <option value="C">내용</option>
                         <option value="W">작성자</option>
                         <option value="TC">제목 또는 내용</option>
-						<option value="S">모임 날짜</option>
+                  <option value="S">모임 날짜</option>
                      </select>
                   <!-- 검색 창 -->
                   <input type="search" id="keyword" name="keyword">
@@ -143,12 +143,13 @@
                   글 개수 : <span th:text="${list_cnt != null && list_cnt > 0 ? list_cnt : 0}"></span>
                   개
                   </div>
-                  <select name="view_type" id="view_type" onchange="change_view()">
-                     <option value="">보기</option>
-                     <option value="L">최신순</option>
-                     <option value="O">오래된순</option>
-                     <option value="R">조회수순</option>
-                  </select>
+              <form name="view_form" method="get" id="view_form" action="/mboard/m_board">
+                     <select name="view_type" id="view_type" onchange="change_view()">
+                        <option value="L" th:selected="${cri.view_type == 'L' or cri.view_type == null}">최신순</option>
+                       <option value="O" th:selected="${cri.view_type == 'O'}">오래된순</option>
+                       <option value="R" th:selected="${cri.view_type == 'R'}">조회수순</option>
+                     </select>
+              </form>
                 </div>
 
                <div class="m_list_table">
@@ -251,7 +252,7 @@
                      더보기
                   </div>
                   
-                  <div class="back_btn" th:if="${cri.keyword != null or cri.type != null or cri.view_type != null}" onclick="goBack()">돌아가기</div>
+                  <div class="back_btn" th:if="${cri.keyword != null or cri.type != null}" onclick="goBack()">돌아가기</div>
                </div>
 
             </div>
