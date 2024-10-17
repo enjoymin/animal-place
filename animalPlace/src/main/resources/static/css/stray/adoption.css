@@ -349,6 +349,15 @@ table{
 	font-weight: bold;
 }
 
+img.thumbnail {
+    height: 200px;
+    width: 300px;
+    display: block;
+    clear: both;
+    object-fit: fill;
+    transition: all 0.1s linear;
+    padding: 10px;
+}
 /* get */
 .adoption_area{
 	float: left;
@@ -365,7 +374,10 @@ table{
 .adoption_area tr{
 	height: 30px;
 }
-.adoption_area tr:nth-child(n+7){
+.adoption_area tr:nth-child(7) td {
+    padding: 0px 190px;
+}
+.adoption_area tr:nth-child(8){
 	height: 200px;
 }
 .adoption_area #contents{
@@ -376,15 +388,42 @@ table{
 .adoption_area th{
 	width: 150px;
 }
+.adoption_area img{
+	height: 450px;
+	width: 450px;
+}
 
-img.thumbnail {
-    height: 200px;
-    width: 300px;
+.right{
+	float: right;
+}
+.right .text_area{
+	border: 1px solid black;
+	width: 350px;
+}
+.right .txt {
+    text-align: center;
+    border: 1px solid black;
+    width: 280px;
+    margin: 270px Auto 0px;
+}
+.right .img {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 350px;
+    justify-content: space-between;
+    border: 5px solid #C2E8CE;
+}
+.right img.thumbnail {
+    height: 108px;
+    width: 108px;
     display: block;
     clear: both;
     object-fit: fill;
     transition: all 0.1s linear;
     padding: 10px;
+    cursor: pointer;
+    margin: 2px;
 }
 
 
