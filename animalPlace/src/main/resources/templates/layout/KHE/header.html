@@ -26,8 +26,10 @@
 			<span id="menu">
 				<a href="" class="menu"><img src="/images/KHE/menu.svg"></a>
 			</span>
+
 			<div id="loginmodal" class="modal-header" style="display: none;">
 				<div class="modal-content-header" id="modal-image">
+
 					<span class="close-header">&times;</span>
 					<form id="loginForm" action="/user/login" method="post" name="loginForm">
 						<input id="path" type="hidden" name="path" th:value="${path}">
@@ -49,18 +51,22 @@
 									<td colspan="2">
 										<div>
 											<input class="btn-header" id="submitlogin" type="button" value="로그인">
-											<input class="btn-header" type="button" value="회원가입"
-												onclick="location.href = '/user/join'">
+											<input class="btn-header" type="button" value="회원가입" onclick="Join()">
+
 										</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</form>
+					<form action="/user/moveJoin" method="post" name="moveJoin" id="moveJoin">
+						<input type="hidden" name="jpath" id="jpath">
+					</form>
 				</div>
 				<div id="caption"></div>
 			</div>
 		</div>
+
 		<div id="popup-user" style="display: none;">
 			<table>
 				<tr>
@@ -72,6 +78,7 @@
 			</table>
 		</div>
 	</header>
+
 	<div id="header"></div>
 	<div id="menubar" style="right: -400px">
 		<ul id="menulist">
@@ -138,7 +145,7 @@
 		});
 
 		const alamcaller = setInterval(alex, 300000); //주기적으로 alex()함수 호출
-		
+
 		$(document).on('click', '#logout', function (e) {
 			e.preventDefault();
 			const path = window.location.pathname + window.location.search;
@@ -348,6 +355,12 @@
 			$("#alarmpage").fadeOut(200);
 			$("#alarmpagetri").fadeOut(200);
 			window.open('/my/note?page=1', '팝업', 'width=600,height=580,top=40%,left=40%');
+		}
+		function Join() {
+			const path = window.location.pathname + window.location.search;
+			$("#jpath").val(path);
+			const moveJoin = document.moveJoin;
+			moveJoin.submit();
 		}
 	</script>
 </th:block>

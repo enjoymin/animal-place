@@ -5,6 +5,7 @@ import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,16 +30,21 @@ public class UserController {
 	private UserService service;
 
 	@GetMapping("join")
-	public void replace() {
+	public void replace(String path, Model model) {
+		model.addAttribute("path", path);
 	}
 
 	@PostMapping("join")
-	public String join(UserDTO user) {
+	public String join(UserDTO user, @RequestParam String path) {
 		if (service.join(user)) {
-
 		} else {
 		}
-		return "redirect:/";
+		return "redirect:"+path;
+	}
+	@PostMapping("moveJoin")
+	public String moveJoin(String jpath, Model model) {
+		model.addAttribute("path", jpath);
+		return "/user/join";
 	}
 	
 	@GetMapping("checkId")
