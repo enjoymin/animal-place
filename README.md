@@ -20,7 +20,9 @@ First TeamProject
 
 **윤혜정** - 모임 게시판
 
+
 **장수호** - 동물 사진 게시판
+
 
 ## 프로젝트 소개
 ### 주제 선정 이유
@@ -36,11 +38,12 @@ First TeamProject
   2024.09.19 ~ 2024.10.18
 
 
-### 로고 및 디자인
-이미지 넣기
+### 로고
+<img src="https://github.com/enjoymin/animal-place/blob/main/readmeFiles/logo.png" width="1000" background-color="black">
 
 
 ## 개발 환경
+
 
 
 ## 타임테이블
