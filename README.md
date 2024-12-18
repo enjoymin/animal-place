@@ -47,7 +47,7 @@ First TeamProject
 
 
 ## ERD
-
+<img src="https://github.com/enjoymin/animal-place/blob/main/readmeFiles/table.png">
 
 
 
