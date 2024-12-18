@@ -1,5 +1,4 @@
-# animal-place
-First TeamProject
+![logo](https://github.com/user-attachments/assets/aa253707-2dc4-4b6b-8a7f-6baf1e6d0471)
 
 2team
 
@@ -36,10 +35,6 @@ First TeamProject
 
 ### 프로젝트 진행 기간
   2024.09.19 ~ 2024.10.18
-
-
-### 로고
-![logo](https://github.com/user-attachments/assets/aa253707-2dc4-4b6b-8a7f-6baf1e6d0471)
 
 
 
