@@ -6,7 +6,7 @@
 
 
 ## 팀원 소개 - 역할 분담 🤦‍♂️🤦‍♀️
-**김영민** - 병원 위치 확인 [팀장]   
+**김영민** - 병원 위치 확인 **[팀장]**
 
 
 **강한얼** - 회원가입 / 마이페이지
@@ -49,7 +49,7 @@
 
 
 
-### 프로젝트 진행 기간⏲
+### ⏲  프로젝트 진행 기간
   2024.09.19 ~ 2024.10.18
 
 <br />
@@ -66,6 +66,7 @@
 
 ## 타임테이블📅
 
+![image](https://github.com/user-attachments/assets/fe304143-82af-40b6-bbdf-571ff895ffeb)
 
 
 <br />
@@ -75,8 +76,12 @@
 ## ERD
 <img src="https://github.com/enjoymin/animal-place/blob/main/readmeFiles/table.png">
 
+<br />
+<br />
 
 
-
+## 기타
+ *  [Team notion](https://www.notion.so/KH-2-106c2614df4c80e89b89db2fbf3b6b3a?pvs=4)
+ *  [발표자료 - ppt](https://www.canva.com/design/DAGTnFAa7yg/bUu7nCntNzv9p9Hm9d9KIQ/edit)
   
 
