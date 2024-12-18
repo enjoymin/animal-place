@@ -39,11 +39,12 @@ First TeamProject
 
 
 ### 로고
-<img src="https://github.com/enjoymin/animal-place/blob/main/readmeFiles/logo.png" width="1000" background-color="black">
+![logo](https://github.com/user-attachments/assets/aa253707-2dc4-4b6b-8a7f-6baf1e6d0471)
+
 
 
 ## 개발 환경
-
+<img src="https://github.com/enjoymin/animal-place/blob/main/readmeFiles/skill.png">
 
 
 ## 타임테이블
