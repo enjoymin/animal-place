@@ -49,9 +49,6 @@ First TeamProject
 ## ERD
 
 
-## 주요 기능 소개
-### 동물게시판
-> 
 
 
 
